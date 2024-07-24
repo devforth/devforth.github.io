@@ -13,7 +13,7 @@
 
 
 <link rel="search" type="application/opensearchdescription+xml" title="Vue extendable Admin Panel on Tailwind" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.b4918ccf.css">
-<script src="/assets/js/runtime~main.6bdc8b4f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.88d5c2b8.js" defer="defer"></script>
 <script src="/assets/js/main.a37b2e49.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -101,7 +101,7 @@ in <a href="/docs/api/types/AdminForthConfig/interfaces/IAdminForthDataSourceCon
 This method is reused both to list records and show one record (by passing limit 1 and offset 0) .</p>
 <p>Fields are returned from db &quot;as is&quot; then AdminForthBaseConnector.getData will transform each field using <a href="/docs/api/types/AdminForthConfig/interfaces/IAdminForthDataSourceConnector#getfieldvalue">IAdminForthDataSourceConnector.getFieldValue</a></p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="parameters-4">Parameters<a class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" href="/docs/api/types/AdminForthConfig/interfaces/IAdminForthDataSourceConnectorBase#parameters-4">​</a></h4>
-<table><thead><tr><th style="text-align:left">Parameter</th><th style="text-align:left">Type</th></tr></thead><tbody><tr><td style="text-align:left"><code>__namedParameters</code></td><td style="text-align:left"><code>object</code></td></tr><tr><td style="text-align:left"><code>__namedParameters.filters</code></td><td style="text-align:left"><code>object</code>[]</td></tr><tr><td style="text-align:left"><code>__namedParameters.limit</code></td><td style="text-align:left"><code>number</code></td></tr><tr><td style="text-align:left"><code>__namedParameters.offset</code></td><td style="text-align:left"><code>number</code></td></tr><tr><td style="text-align:left"><code>__namedParameters.resource</code></td><td style="text-align:left"><a href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource"><code>AdminForthResource</code></a></td></tr><tr><td style="text-align:left"><code>__namedParameters.sort</code></td><td style="text-align:left"><code>object</code>[]</td></tr></tbody></table>
+<table><thead><tr><th style="text-align:left">Parameter</th><th style="text-align:left">Type</th></tr></thead><tbody><tr><td style="text-align:left"><code>__namedParameters</code></td><td style="text-align:left"><code>object</code></td></tr><tr><td style="text-align:left"><code>__namedParameters.filters</code></td><td style="text-align:left"><code>object</code>[]</td></tr><tr><td style="text-align:left"><code>__namedParameters.getTotals</code>?</td><td style="text-align:left"><code>boolean</code></td></tr><tr><td style="text-align:left"><code>__namedParameters.limit</code></td><td style="text-align:left"><code>number</code></td></tr><tr><td style="text-align:left"><code>__namedParameters.offset</code></td><td style="text-align:left"><code>number</code></td></tr><tr><td style="text-align:left"><code>__namedParameters.resource</code></td><td style="text-align:left"><a href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource"><code>AdminForthResource</code></a></td></tr><tr><td style="text-align:left"><code>__namedParameters.sort</code></td><td style="text-align:left"><code>object</code>[]</td></tr></tbody></table>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="returns-4">Returns<a class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" href="/docs/api/types/AdminForthConfig/interfaces/IAdminForthDataSourceConnectorBase#returns-4">​</a></h4>
 <p><code>Promise</code>&lt;<code>object</code>&gt;</p>
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="data-1">data<a class="hash-link" aria-label="Direct link to data" title="Direct link to data" href="/docs/api/types/AdminForthConfig/interfaces/IAdminForthDataSourceConnectorBase#data-1">​</a></h5>
@@ -173,7 +173,10 @@ Called only for columns which have AdminForthResourceColumn.allowMinMaxQuery set
 <blockquote>
 <p><strong>getRecordByPrimaryKeyWithOriginalTypes</strong>(<code>resource</code>, <code>recordId</code>): <code>Promise</code>&lt;<code>any</code>&gt;</p>
 </blockquote>
-<p>Function which will be called to fetch record from database.</p>
+<p>Optional.
+You an redefine this function to define how one record should be fetched from database.
+You you will not redefine it, AdminForth will use IAdminForthDataSourceConnector.getData with limit 1 and offset 0 and
+filter by primary key.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="parameters-10">Parameters<a class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" href="/docs/api/types/AdminForthConfig/interfaces/IAdminForthDataSourceConnectorBase#parameters-10">​</a></h4>
 <table><thead><tr><th style="text-align:left">Parameter</th><th style="text-align:left">Type</th></tr></thead><tbody><tr><td style="text-align:left"><code>resource</code></td><td style="text-align:left"><a href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource"><code>AdminForthResource</code></a></td></tr><tr><td style="text-align:left"><code>recordId</code></td><td style="text-align:left"><code>string</code></td></tr></tbody></table>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="returns-10">Returns<a class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" href="/docs/api/types/AdminForthConfig/interfaces/IAdminForthDataSourceConnectorBase#returns-10">​</a></h4>
