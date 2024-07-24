@@ -13,7 +13,7 @@
 
 
 <link rel="search" type="application/opensearchdescription+xml" title="Vue extendable Admin Panel on Tailwind" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.b4918ccf.css">
-<script src="/assets/js/runtime~main.88d5c2b8.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a760a04d.js" defer="defer"></script>
 <script src="/assets/js/main.a37b2e49.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -24,14 +24,22 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="type-declaration">Type declaration<a class="hash-link" aria-label="Direct link to Type declaration" title="Direct link to Type declaration" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthBulkAction#type-declaration">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="action">action()<a class="hash-link" aria-label="Direct link to action()" title="Direct link to action()" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthBulkAction#action">​</a></h3>
 <blockquote>
-<p><strong>action</strong>: (<code>{ resource, selectedIds, adminUser }</code>) =&gt; <code>Promise</code>&lt;<code>void</code>&gt;</p>
+<p><strong>action</strong>: (<code>{ resource, selectedIds, adminUser }</code>) =&gt; <code>Promise</code>&lt;<code>object</code>&gt;</p>
 </blockquote>
 <p>Callback which will be called on backend when user clicks on action button.
 It should return Promise which will be resolved when action is done.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="parameters">Parameters<a class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthBulkAction#parameters">​</a></h4>
 <table><thead><tr><th style="text-align:left">Parameter</th><th style="text-align:left">Type</th></tr></thead><tbody><tr><td style="text-align:left"><code>{ resource, selectedIds, adminUser }</code></td><td style="text-align:left"><code>object</code></td></tr><tr><td style="text-align:left"><code>{ resource, selectedIds, adminUser }.adminUser</code></td><td style="text-align:left"><a href="/docs/api/types/AdminForthConfig/type-aliases/AdminUser"><code>AdminUser</code></a></td></tr><tr><td style="text-align:left"><code>{ resource, selectedIds, adminUser }.resource</code></td><td style="text-align:left"><a href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource"><code>AdminForthResource</code></a></td></tr><tr><td style="text-align:left"><code>{ resource, selectedIds, adminUser }.selectedIds</code></td><td style="text-align:left"><code>any</code>[]</td></tr></tbody></table>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="returns">Returns<a class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthBulkAction#returns">​</a></h4>
-<p><code>Promise</code>&lt;<code>void</code>&gt;</p>
+<p><code>Promise</code>&lt;<code>object</code>&gt;</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="error">error?<a class="hash-link" aria-label="Direct link to error?" title="Direct link to error?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthBulkAction#error">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>error</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="ok">ok<a class="hash-link" aria-label="Direct link to ok" title="Direct link to ok" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthBulkAction#ok">​</a></h5>
+<blockquote>
+<p><strong>ok</strong>: <code>boolean</code></p>
+</blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="allowed">allowed()?<a class="hash-link" aria-label="Direct link to allowed()?" title="Direct link to allowed()?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthBulkAction#allowed">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>allowed</strong>: (<code>{ resource, adminUser, selectedIds, allowedActions }</code>) =&gt; <code>Promise</code>&lt;<code>boolean</code>&gt;</p>
