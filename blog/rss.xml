@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Vue extendable Admin Panel on Tailwind Blog</title>
-        <link>https://adminforth.dev/blog</link>
+        <link>https://adminforth.dev/blog/</link>
         <description>Vue extendable Admin Panel on Tailwind Blog</description>
         <lastBuildDate>Mon, 05 Aug 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,15 +10,15 @@
         <language>en</language>
         <item>
             <title><![CDATA[Chat-GPT plugin to co-write texts and strings]]></title>
-            <link>https://adminforth.dev/blog/chatgpt-plugin</link>
-            <guid>https://adminforth.dev/blog/chatgpt-plugin</guid>
+            <link>https://adminforth.dev/blog/chatgpt-plugin/</link>
+            <guid>https://adminforth.dev/blog/chatgpt-plugin/</guid>
             <pubDate>Mon, 05 Aug 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Couple of days ago we released a plugin which allows you to co-write texts and strings with the AI.]]></description>
             <content:encoded><![CDATA[<p>Couple of days ago we released a plugin which allows you to co-write texts and strings with the AI.</p>
 <p>Today LLM is already a must tool to speed-up writing, brainstorming, or generating ideas.</p>
 <p>Here is how it looks in action:</p>
 <p><img decoding="async" loading="lazy" alt="alt text" src="https://adminforth.dev/assets/images/demoChatGpt-cb045146add2758d6fb571efef680e80.gif" width="1999" height="1499" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="simple-controls">Simple controls<a class="hash-link" aria-label="Direct link to Simple controls" title="Direct link to Simple controls" href="https://adminforth.dev/blog/chatgpt-plugin#simple-controls">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="simple-controls">Simple controls<a class="hash-link" aria-label="Direct link to Simple controls" title="Direct link to Simple controls" href="https://adminforth.dev/blog/chatgpt-plugin/#simple-controls">​</a></h2>
 <p>To control plugin we use our open-source <a href="https://github.com/devforth/vue-suggestion-input" target="_blank" rel="noopener noreferrer">vue-suggestion-input</a>.
 It allows to:</p>
 <ul>
@@ -27,11 +27,11 @@ It allows to:</p>
 <li>Regenerate suggestion with <code>Ctrl + Down</code>.</li>
 <li>On mobile suggestion word is accepted with swipe right on the screen.</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="want-to-try-it-out">Want to try it out?<a class="hash-link" aria-label="Direct link to Want to try it out?" title="Direct link to Want to try it out?" href="https://adminforth.dev/blog/chatgpt-plugin#want-to-try-it-out">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="want-to-try-it-out">Want to try it out?<a class="hash-link" aria-label="Direct link to Want to try it out?" title="Direct link to Want to try it out?" href="https://adminforth.dev/blog/chatgpt-plugin/#want-to-try-it-out">​</a></h2>
 <p>First follow the instructions in the <a href="https://adminforth.dev/docs/tutorial/gettingStarted" target="_blank" rel="noopener noreferrer">Getting Started</a></p>
 <p>tutorial to create a new project.</p>
 <p>To install the plugin, follow the instructions in the <a href="https://adminforth.dev/docs/tutorial/Plugins/chat-gpt" target="_blank" rel="noopener noreferrer">Chat-GPT plugin page</a>.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="context-matters-but-with-sane-limit">Context matters, but with sane limit!<a class="hash-link" aria-label="Direct link to Context matters, but with sane limit!" title="Direct link to Context matters, but with sane limit!" href="https://adminforth.dev/blog/chatgpt-plugin#context-matters-but-with-sane-limit">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="context-matters-but-with-sane-limit">Context matters, but with sane limit!<a class="hash-link" aria-label="Direct link to Context matters, but with sane limit!" title="Direct link to Context matters, but with sane limit!" href="https://adminforth.dev/blog/chatgpt-plugin/#context-matters-but-with-sane-limit">​</a></h2>
 <p>When the prompts are called, the plugin passes to LLM not only previous text in current field to complete, but also passes values of other fields in record edited. This allows to generate more relevant completions.
 For example if you have a record with fields <code>title</code> and <code>description</code>, and you are editing <code>description</code>, the plugin will pass <code>title</code> value to LLM as well.</p>
 <p>But obviously longer prompts lead to higher LLM costs and longer response times. That is why we created mechanics to limit the length of prompts passed to LLM.</p>
@@ -44,7 +44,7 @@ For example if you have a record with fields <code>title</code> and <code>descri
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token plain">promptInputLimit + maxFields * maxFieldLength + &lt;LLM request static part&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>Where <code>&lt;LLM request static part&gt;</code> is a constant part of request to LLM which looks like this:</p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token plain">Continue writing for text/string field "${this.options.fieldName}" in the table "${resLabel}"\n</span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain">Record has values for the context: ${inputContext}\n</span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain">Current field value: ${currentVal}\n</span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain">Don't talk to me. Just write text. No quotes. Don't repeat current field value, just write completion\n</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="model-configuration">Model configuration<a class="hash-link" aria-label="Direct link to Model configuration" title="Direct link to Model configuration" href="https://adminforth.dev/blog/chatgpt-plugin#model-configuration">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="model-configuration">Model configuration<a class="hash-link" aria-label="Direct link to Model configuration" title="Direct link to Model configuration" href="https://adminforth.dev/blog/chatgpt-plugin/#model-configuration">​</a></h2>
 <p>Of course you can define which model to use for completion. By default plugin uses <code>gpt-4o-mini</code> model ($0.150 / 1M input tokens, $0.600 / 1M output tokens for Aug 2024). But you can change it to any other model available in OpenAI API. More powerful replacement is <code>gpt-4o</code> model ($5.00 / 1M input tokens, $15.00 / 1M output tokens for Aug 2024).</p>
 <p>Also you can define other parameters for completion like:</p>
 <ul>
@@ -52,7 +52,7 @@ For example if you have a record with fields <code>title</code> and <code>descri
 <li><code>temperature</code> - model temperature, default is 0.7. You can increase it to get more creative completions (but with risk of getting nonsense). Or decrease it to get more conservative completions.</li>
 <li><code>debounceTime</code> - debounce time in milliseconds, default is 300. After typing each character, plugin waits for <code>debounceTime</code> milliseconds before sending request to LLM. If new character is typed during this time, then timer is reset. This is done to prevent sending too many requests to LLM.</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="frontend-story">Frontend story<a class="hash-link" aria-label="Direct link to Frontend story" title="Direct link to Frontend story" href="https://adminforth.dev/blog/chatgpt-plugin#frontend-story">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="frontend-story">Frontend story<a class="hash-link" aria-label="Direct link to Frontend story" title="Direct link to Frontend story" href="https://adminforth.dev/blog/chatgpt-plugin/#frontend-story">​</a></h2>
 <p>When we were working on plugin, we wanted to make it as user-friendly as possible.</p>
 <p>Most frontend packages for completion have old-fashioned dropdowns, which are not very convenient to use.</p>
 <p>We wanted to have something very similar to Copilot or Google doc. So we created our own package <a href="https://github.com/devforth/vue-suggestion-input" target="_blank" rel="noopener noreferrer">vue-suggestion-input</a>. It is also MIT and open-source so you can use it in your projects as well.</p>
