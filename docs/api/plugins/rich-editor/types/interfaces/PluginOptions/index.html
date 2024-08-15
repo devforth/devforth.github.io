@@ -15,7 +15,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Create Admin Panels faster on Node and Vue with AdminForth Framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.32441807.css">
-<script src="/assets/js/runtime~main.26a2e383.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.94ec255d.js" defer="defer"></script>
 <script src="/assets/js/main.fb8b90f5.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -26,6 +26,63 @@
 <p><strong>completion</strong>: <code>object</code></p>
 </blockquote>
 <p>The completion section is used to define the completion provider and its parameters.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="expert">expert?<a class="hash-link" aria-label="Direct link to expert?" title="Direct link to expert?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expert">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>expert</strong>: <code>object</code></p>
+</blockquote>
+<p>Expert settings</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="expertdebouncetime">expert.debounceTime?<a class="hash-link" aria-label="Direct link to expert.debounceTime?" title="Direct link to expert.debounceTime?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expertdebouncetime">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>debounceTime</strong>: <code>number</code></p>
+</blockquote>
+<p>Time in ms to wait after user stops typing before sending request to completion provider. Default is 300 ms.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="expertmaxtokens">expert.maxTokens?<a class="hash-link" aria-label="Direct link to expert.maxTokens?" title="Direct link to expert.maxTokens?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expertmaxtokens">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>maxTokens</strong>: <code>number</code></p>
+</blockquote>
+<p>Number of tokens to generate. Default is 50. 1 token ~= ¾ words</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="expertpromptinputlimit">expert.promptInputLimit?<a class="hash-link" aria-label="Direct link to expert.promptInputLimit?" title="Direct link to expert.promptInputLimit?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expertpromptinputlimit">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>promptInputLimit</strong>: <code>number</code></p>
+</blockquote>
+<p>Maximum number of last characters which will be used for completion for target field. Default is 500.
+Higher value will give better context but will cost more.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="expertrecordcontext">expert.recordContext?<a class="hash-link" aria-label="Direct link to expert.recordContext?" title="Direct link to expert.recordContext?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expertrecordcontext">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>recordContext</strong>: <code>object</code></p>
+</blockquote>
+<p>When completion is made, this plugin passes non-empty fields of the record to the LLM model for record context understanding.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="expertrecordcontextmaxfieldlength">expert.recordContext.maxFieldLength?<a class="hash-link" aria-label="Direct link to expert.recordContext.maxFieldLength?" title="Direct link to expert.recordContext.maxFieldLength?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expertrecordcontextmaxfieldlength">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>maxFieldLength</strong>: <code>number</code></p>
+</blockquote>
+<p>Limit of input field value. Default is 300. If field is longer, it will be truncated.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="expertrecordcontextmaxfields">expert.recordContext.maxFields?<a class="hash-link" aria-label="Direct link to expert.recordContext.maxFields?" title="Direct link to expert.recordContext.maxFields?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expertrecordcontextmaxfields">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>maxFields</strong>: <code>number</code></p>
+</blockquote>
+<p>Using this field you can limit number of fields passed to the model.
+Default is 5.
+Completion field is not included in this limit.
+Set to 0 to disable context passing at all.
+If count of fields exceeds this number, longest fields will be selected.
+If some of values will exceed maxFieldLength, it will be smartly truncated by splitting ito splitParts, taking their
+starting substring and joining back with &#x27;...&#x27;.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="expertrecordcontextsplitparts">expert.recordContext.splitParts?<a class="hash-link" aria-label="Direct link to expert.recordContext.splitParts?" title="Direct link to expert.recordContext.splitParts?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expertrecordcontextsplitparts">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>splitParts</strong>: <code>number</code></p>
+</blockquote>
+<p>How many parts to split field value if it exceeds maxFieldLength. Default is 5.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="expertstop">expert.stop?<a class="hash-link" aria-label="Direct link to expert.stop?" title="Direct link to expert.stop?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expertstop">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>stop</strong>: <code>string</code>[]</p>
+</blockquote>
+<p>Stop completion on these characters. Default is [&#x27;.&#x27;]</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="experttemperature">expert.temperature?<a class="hash-link" aria-label="Direct link to expert.temperature?" title="Direct link to expert.temperature?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#experttemperature">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>temperature</strong>: <code>number</code></p>
+</blockquote>
+<p>Temperature (0-1). Lower is more deterministic, higher is more unpredicted creative. Default is 0.7.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="params">params<a class="hash-link" aria-label="Direct link to params" title="Direct link to params" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#params">​</a></h4>
 <blockquote>
 <p><strong>params</strong>: <code>object</code></p>
@@ -50,58 +107,10 @@ Default is <code>gpt-4o-mini</code>. Use e.g. more expensive <code>gpt-4o</code>
 </blockquote>
 <p>The provider is the name of the plugin that will be used to provide completions.</p>
 <hr>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="expert">expert?<a class="hash-link" aria-label="Direct link to expert?" title="Direct link to expert?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expert">​</a></h3>
-<blockquote>
-<p><code>optional</code> <strong>expert</strong>: <code>object</code></p>
-</blockquote>
-<p>Expert settings</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="maxtokens">maxTokens?<a class="hash-link" aria-label="Direct link to maxTokens?" title="Direct link to maxTokens?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#maxtokens">​</a></h4>
-<blockquote>
-<p><code>optional</code> <strong>maxTokens</strong>: <code>number</code></p>
-</blockquote>
-<p>Number of tokens to generate. Default is 50. 1 token ~= ¾ words</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="promptinputlimit">promptInputLimit?<a class="hash-link" aria-label="Direct link to promptInputLimit?" title="Direct link to promptInputLimit?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#promptinputlimit">​</a></h4>
-<blockquote>
-<p><code>optional</code> <strong>promptInputLimit</strong>: <code>number</code></p>
-</blockquote>
-<p>Maximum number of last characters which will be used for completion for target field. Default is 500.
-Higher value will give better context but will cost more.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="recordcontext">recordContext?<a class="hash-link" aria-label="Direct link to recordContext?" title="Direct link to recordContext?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#recordcontext">​</a></h4>
-<blockquote>
-<p><code>optional</code> <strong>recordContext</strong>: <code>object</code></p>
-</blockquote>
-<p>When completion is made, this plugin passes non-empty fields of the record to the LLM model for record context understanding.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="recordcontextmaxfieldlength">recordContext.maxFieldLength?<a class="hash-link" aria-label="Direct link to recordContext.maxFieldLength?" title="Direct link to recordContext.maxFieldLength?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#recordcontextmaxfieldlength">​</a></h4>
-<blockquote>
-<p><code>optional</code> <strong>maxFieldLength</strong>: <code>number</code></p>
-</blockquote>
-<p>Limit of input field value. Default is 300. If field is longer, it will be truncated.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="recordcontextmaxfields">recordContext.maxFields?<a class="hash-link" aria-label="Direct link to recordContext.maxFields?" title="Direct link to recordContext.maxFields?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#recordcontextmaxfields">​</a></h4>
-<blockquote>
-<p><code>optional</code> <strong>maxFields</strong>: <code>number</code></p>
-</blockquote>
-<p>Using this field you can limit number of fields passed to the model.
-Default is 5.
-Completion field is not included in this limit.
-Set to 0 to disable context passing at all.
-If count of fields exceeds this number, longest fields will be selected.
-If some of values will exceed maxFieldLength, it will be smartly truncated by splitting ito splitParts, taking their
-starting substring and joining back with &#x27;...&#x27;.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="recordcontextsplitparts">recordContext.splitParts?<a class="hash-link" aria-label="Direct link to recordContext.splitParts?" title="Direct link to recordContext.splitParts?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#recordcontextsplitparts">​</a></h4>
-<blockquote>
-<p><code>optional</code> <strong>splitParts</strong>: <code>number</code></p>
-</blockquote>
-<p>How many parts to split field value if it exceeds maxFieldLength. Default is 5.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="temperature">temperature?<a class="hash-link" aria-label="Direct link to temperature?" title="Direct link to temperature?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#temperature">​</a></h4>
-<blockquote>
-<p><code>optional</code> <strong>temperature</strong>: <code>number</code></p>
-</blockquote>
-<p>Temperature (0-1). Lower is more deterministic, higher is more unpredicted creative. Default is 0.7.</p>
-<hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="htmlfieldname">htmlFieldName<a class="hash-link" aria-label="Direct link to htmlFieldName" title="Direct link to htmlFieldName" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#htmlfieldname">​</a></h3>
 <blockquote>
 <p><strong>htmlFieldName</strong>: <code>string</code></p>
 </blockquote>
-<p>Field where plugin will auto-complete text. Should be string or text field.</p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/api/plugins/rich-editor/types/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">plugins/rich-editor/types</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/api/plugins/two-factors-auth/types/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">plugins/two-factors-auth/types</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a class="table-of-contents__link toc-highlight" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#properties">Properties</a><ul><li><a class="table-of-contents__link toc-highlight" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#completion">completion</a></li><li><a class="table-of-contents__link toc-highlight" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#expert">expert?</a></li><li><a class="table-of-contents__link toc-highlight" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#htmlfieldname">htmlFieldName</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/tutorial/gettingStarted/">Tutorial</a></li><li class="footer__item"><a href="https://demo.adminforth.dev/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Live Demo</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/api/">API</a></li><li class="footer__item"><a class="footer__link-item" href="/blog/archive/">Blog Archive</a></li><li class="footer__item"><a class="footer__link-item" href="/search/">Find anything</a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://devforth.io" target="_blank" rel="noopener noreferrer" class="footer__link-item">DevForth.io<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://devforth.io/contact" target="_blank" rel="noopener noreferrer" class="footer__link-item">We can develop dashboard and admin panel for your project<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/devforth/adminforth" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 Devforth sp. z o.o.</div></div></div></footer></div>
+<p>Field where plugin will auto-complete text. Should be string or text field.</p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/api/plugins/rich-editor/types/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">plugins/rich-editor/types</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/api/plugins/two-factors-auth/types/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">plugins/two-factors-auth/types</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a class="table-of-contents__link toc-highlight" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#properties">Properties</a><ul><li><a class="table-of-contents__link toc-highlight" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#completion">completion</a></li><li><a class="table-of-contents__link toc-highlight" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#htmlfieldname">htmlFieldName</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/tutorial/gettingStarted/">Tutorial</a></li><li class="footer__item"><a href="https://demo.adminforth.dev/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Live Demo</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/api/">API</a></li><li class="footer__item"><a class="footer__link-item" href="/blog/archive/">Blog Archive</a></li><li class="footer__item"><a class="footer__link-item" href="/search/">Find anything</a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://devforth.io" target="_blank" rel="noopener noreferrer" class="footer__link-item">DevForth.io<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://devforth.io/contact" target="_blank" rel="noopener noreferrer" class="footer__link-item">We can develop dashboard and admin panel for your project<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/devforth/adminforth" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 Devforth sp. z o.o.</div></div></div></footer></div>
 </body>
 </html>
