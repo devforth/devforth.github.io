@@ -15,7 +15,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Create Admin Panels faster on Node and Vue with AdminForth Framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.32441807.css">
-<script src="/assets/js/runtime~main.94ec255d.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.855610ed.js" defer="defer"></script>
 <script src="/assets/js/main.fb8b90f5.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -41,10 +41,13 @@ Each column has its own configuration.</p>
 <blockquote>
 <p><code>optional</code> <strong>dataSourceColumns</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResourceColumn/"><code>AdminForthResourceColumn</code></a>[]</p>
 </blockquote>
+<p>Internal array of columns which are not virtual. You should not edit it.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hooks">hooks?<a class="hash-link" aria-label="Direct link to hooks?" title="Direct link to hooks?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hooks">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>hooks</strong>: <code>object</code></p>
 </blockquote>
+<p>Hooks allow you to change the data on different stages of resource lifecycle.
+Hooks are functions which will be called on backend side (only backend side).</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hookscreate">hooks.create?<a class="hash-link" aria-label="Direct link to hooks.create?" title="Direct link to hooks.create?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hookscreate">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>create</strong>: <code>object</code></p>
@@ -53,10 +56,20 @@ Each column has its own configuration.</p>
 <blockquote>
 <p><code>optional</code> <strong>afterSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterSaveFunction/"><code>AfterSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterSaveFunction/"><code>AfterSaveFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>Initiate some trigger after record saved to database (e.g sync to another datasource)</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hookscreatebeforesave">hooks.create.beforeSave?<a class="hash-link" aria-label="Direct link to hooks.create.beforeSave?" title="Direct link to hooks.create.beforeSave?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hookscreatebeforesave">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>beforeSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>Validate record before saving to database and interrupt execution if validation failed (<code>allowedActions.create</code> should be preferred in most cases)</li>
+<li>fill-in adminUser as creator of record</li>
+<li>Attach additional data to record before saving to database (mostly fillOnCreate should be used instead)</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hooksdelete">hooks.delete?<a class="hash-link" aria-label="Direct link to hooks.delete?" title="Direct link to hooks.delete?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hooksdelete">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>delete</strong>: <code>object</code></p>
@@ -65,10 +78,18 @@ Each column has its own configuration.</p>
 <blockquote>
 <p><code>optional</code> <strong>afterSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>Initiate some trigger after record deleted from database (e.g sync to another datasource)</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hooksdeletebeforesave">hooks.delete.beforeSave?<a class="hash-link" aria-label="Direct link to hooks.delete.beforeSave?" title="Direct link to hooks.delete.beforeSave?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hooksdeletebeforesave">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>beforeSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>Validate that record can be deleted and interrupt execution if validation failed (<code>allowedActions.delete</code> should be preferred in most cases)</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hooksedit">hooks.edit?<a class="hash-link" aria-label="Direct link to hooks.edit?" title="Direct link to hooks.edit?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hooksedit">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>edit</strong>: <code>object</code></p>
@@ -77,10 +98,18 @@ Each column has its own configuration.</p>
 <blockquote>
 <p><code>optional</code> <strong>afterSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterSaveFunction/"><code>AfterSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterSaveFunction/"><code>AfterSaveFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>Same as hooks.create.afterSave but for edit page</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hookseditbeforesave">hooks.edit.beforeSave?<a class="hash-link" aria-label="Direct link to hooks.edit.beforeSave?" title="Direct link to hooks.edit.beforeSave?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hookseditbeforesave">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>beforeSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>Same as hooks.create.beforeSave but for edit page</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hookslist">hooks.list?<a class="hash-link" aria-label="Direct link to hooks.list?" title="Direct link to hooks.list?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hookslist">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>list</strong>: <code>object</code></p>
@@ -89,10 +118,19 @@ Each column has its own configuration.</p>
 <blockquote>
 <p><code>optional</code> <strong>afterDatasourceResponse</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterDataSourceResponseFunction/"><code>AfterDataSourceResponseFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterDataSourceResponseFunction/"><code>AfterDataSourceResponseFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>Same as hooks.show.afterDatasourceResponse but applied for each record in list</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hookslistbeforedatasourcerequest">hooks.list.beforeDatasourceRequest?<a class="hash-link" aria-label="Direct link to hooks.list.beforeDatasourceRequest?" title="Direct link to hooks.list.beforeDatasourceRequest?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hookslistbeforedatasourcerequest">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>beforeDatasourceRequest</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeDataSourceRequestFunction/"><code>BeforeDataSourceRequestFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeDataSourceRequestFunction/"><code>BeforeDataSourceRequestFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>add additional filters in addition to what user selected before fetching data from database.</li>
+<li>same as hooks.show.beforeDatasourceRequest</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hooksshow">hooks.show?<a class="hash-link" aria-label="Direct link to hooks.show?" title="Direct link to hooks.show?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hooksshow">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>show</strong>: <code>object</code></p>
@@ -101,10 +139,20 @@ Each column has its own configuration.</p>
 <blockquote>
 <p><code>optional</code> <strong>afterDatasourceResponse</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterDataSourceResponseFunction/"><code>AfterDataSourceResponseFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterDataSourceResponseFunction/"><code>AfterDataSourceResponseFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>Transform value for some field for record returned from database before returning to frontend (minimize, sanitize, etc)</li>
+<li>If some-why you can&#x27;t use <code>backendOnly</code> you can cleanup sensitive fields here</li>
+<li>Attach additional data to record before returning to frontend</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hooksshowbeforedatasourcerequest">hooks.show.beforeDatasourceRequest?<a class="hash-link" aria-label="Direct link to hooks.show.beforeDatasourceRequest?" title="Direct link to hooks.show.beforeDatasourceRequest?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hooksshowbeforedatasourcerequest">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>beforeDatasourceRequest</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeDataSourceRequestFunction/"><code>BeforeDataSourceRequestFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeDataSourceRequestFunction/"><code>BeforeDataSourceRequestFunction</code></a>[]</p>
 </blockquote>
+<p>Typical usecases:</p>
+<ul>
+<li>request additional data from database before returning to frontend for soft-join</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="label">label?<a class="hash-link" aria-label="Direct link to label?" title="Direct link to label?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#label">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>label</strong>: <code>string</code></p>
