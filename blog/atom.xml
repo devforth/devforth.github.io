@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://adminforth.dev/blog/</id>
-    <title>Create Admin Panels faster on Node and Vue with AdminForth Framework Blog</title>
+    <title>Vue &amp; Node admin panel framework Blog</title>
     <updated>2024-08-05T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://adminforth.dev/blog/"/>
-    <subtitle>Create Admin Panels faster on Node and Vue with AdminForth Framework Blog</subtitle>
+    <subtitle>Vue &amp; Node admin panel framework Blog</subtitle>
     <icon>https://adminforth.dev/img/favicon.png</icon>
     <entry>
         <title type="html"><![CDATA[Chat-GPT plugin to co-write texts and strings]]></title>
