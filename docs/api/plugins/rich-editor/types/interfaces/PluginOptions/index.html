@@ -15,7 +15,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Vue &amp; Node admin panel framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.ce766278.css">
-<script src="/assets/js/runtime~main.838a8b1c.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.189f4f7e.js" defer="defer"></script>
 <script src="/assets/js/main.58daaebd.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -140,6 +140,23 @@ Default is <code>gpt-4o-mini</code>. Use e.g. more expensive <code>gpt-4o</code>
 <p><strong>provider</strong>: <code>string</code></p>
 </blockquote>
 <p>The provider is the name of the plugin that will be used to provide completions.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="ratelimit">rateLimit?<a class="hash-link" aria-label="Direct link to rateLimit?" title="Direct link to rateLimit?" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#ratelimit">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>rateLimit</strong>: <code>object</code></p>
+</blockquote>
+<p>Since AI generation can be expensive, we can limit the number of requests per IP.
+Completion will simply stop working when limit is reached so user will not be bothered with error messages.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="ratelimiterrormessage">rateLimit.errorMessage<a class="hash-link" aria-label="Direct link to rateLimit.errorMessage" title="Direct link to rateLimit.errorMessage" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#ratelimiterrormessage">​</a></h4>
+<blockquote>
+<p><strong>errorMessage</strong>: <code>string</code></p>
+</blockquote>
+<p>Message shown to user when rate limit is reached</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="ratelimitlimit">rateLimit.limit<a class="hash-link" aria-label="Direct link to rateLimit.limit" title="Direct link to rateLimit.limit" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#ratelimitlimit">​</a></h4>
+<blockquote>
+<p><strong>limit</strong>: <code>string</code></p>
+</blockquote>
+<p>E.g. 5/1d - 5 requests per day
+3/1h - 3 requests per hour</p>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="htmlfieldname">htmlFieldName<a class="hash-link" aria-label="Direct link to htmlFieldName" title="Direct link to htmlFieldName" href="/docs/api/plugins/rich-editor/types/interfaces/PluginOptions/#htmlfieldname">​</a></h3>
 <blockquote>
