@@ -15,7 +15,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Vue &amp; Node admin panel framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.ce766278.css">
-<script src="/assets/js/runtime~main.1b1e4fde.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.bccc7b9b.js" defer="defer"></script>
 <script src="/assets/js/main.42e3bff3.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -56,7 +56,7 @@ Hooks are functions which will be called on backend side (only backend side).</p
 <blockquote>
 <p><code>optional</code> <strong>afterSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterSaveFunction/"><code>AfterSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterSaveFunction/"><code>AfterSaveFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
 <li>Initiate some trigger after record saved to database (e.g sync to another datasource)</li>
 </ul>
@@ -64,7 +64,7 @@ Hooks are functions which will be called on backend side (only backend side).</p
 <blockquote>
 <p><code>optional</code> <strong>beforeSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
 <li>Validate record before saving to database and interrupt execution if validation failed (<code>allowedActions.create</code> should be preferred in most cases)</li>
 <li>fill-in adminUser as creator of record</li>
@@ -78,7 +78,7 @@ Hooks are functions which will be called on backend side (only backend side).</p
 <blockquote>
 <p><code>optional</code> <strong>afterSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
 <li>Initiate some trigger after record deleted from database (e.g sync to another datasource)</li>
 </ul>
@@ -86,7 +86,7 @@ Hooks are functions which will be called on backend side (only backend side).</p
 <blockquote>
 <p><code>optional</code> <strong>beforeSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
 <li>Validate that record can be deleted and interrupt execution if validation failed (<code>allowedActions.delete</code> should be preferred in most cases)</li>
 </ul>
@@ -98,7 +98,7 @@ Hooks are functions which will be called on backend side (only backend side).</p
 <blockquote>
 <p><code>optional</code> <strong>afterSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterSaveFunction/"><code>AfterSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterSaveFunction/"><code>AfterSaveFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
 <li>Same as hooks.create.afterSave but for edit page</li>
 </ul>
@@ -106,7 +106,7 @@ Hooks are functions which will be called on backend side (only backend side).</p
 <blockquote>
 <p><code>optional</code> <strong>beforeSave</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeSaveFunction/"><code>BeforeSaveFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
 <li>Same as hooks.create.beforeSave but for edit page</li>
 </ul>
@@ -118,15 +118,16 @@ Hooks are functions which will be called on backend side (only backend side).</p
 <blockquote>
 <p><code>optional</code> <strong>afterDatasourceResponse</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterDataSourceResponseFunction/"><code>AfterDataSourceResponseFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterDataSourceResponseFunction/"><code>AfterDataSourceResponseFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
-<li>Same as hooks.show.afterDatasourceResponse but applied for each record in list</li>
+<li>Same as hooks.show.afterDatasourceResponse but applied for all records returned from database for
+showing in list view, e.g. add new field to each record in list view</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="hookslistbeforedatasourcerequest">hooks.list.beforeDatasourceRequest?<a class="hash-link" aria-label="Direct link to hooks.list.beforeDatasourceRequest?" title="Direct link to hooks.list.beforeDatasourceRequest?" href="/docs/api/types/AdminForthConfig/type-aliases/AdminForthResource/#hookslistbeforedatasourcerequest">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>beforeDatasourceRequest</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeDataSourceRequestFunction/"><code>BeforeDataSourceRequestFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeDataSourceRequestFunction/"><code>BeforeDataSourceRequestFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
 <li>add additional filters in addition to what user selected before fetching data from database.</li>
 <li>same as hooks.show.beforeDatasourceRequest</li>
@@ -139,7 +140,7 @@ Hooks are functions which will be called on backend side (only backend side).</p
 <blockquote>
 <p><code>optional</code> <strong>afterDatasourceResponse</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterDataSourceResponseFunction/"><code>AfterDataSourceResponseFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/AfterDataSourceResponseFunction/"><code>AfterDataSourceResponseFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
 <li>Transform value for some field for record returned from database before returning to frontend (minimize, sanitize, etc)</li>
 <li>If some-why you can&#x27;t use <code>backendOnly</code> you can cleanup sensitive fields here</li>
@@ -149,7 +150,7 @@ Hooks are functions which will be called on backend side (only backend side).</p
 <blockquote>
 <p><code>optional</code> <strong>beforeDatasourceRequest</strong>: <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeDataSourceRequestFunction/"><code>BeforeDataSourceRequestFunction</code></a> | <a href="/docs/api/types/AdminForthConfig/type-aliases/BeforeDataSourceRequestFunction/"><code>BeforeDataSourceRequestFunction</code></a>[]</p>
 </blockquote>
-<p>Typical usecases:</p>
+<p>Typical use-cases:</p>
 <ul>
 <li>request additional data from database before returning to frontend for soft-join</li>
 </ul>
