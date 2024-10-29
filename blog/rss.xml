@@ -17,7 +17,6 @@
             <content:encoded><![CDATA[<p>Many developers today are using copilots to write code faster and relax their minds from a routine tasks.</p>
 <p>But what about writing plain text? For example blogs and micro-blogs: sometimes you want to share your progress but you are lazy for typing. Then you can give a try to AI-assisted blogging. Our Open-Source AdminForth framework has couple of new AI-capable plugins to write text and generate images.</p>
 <p><img decoding="async" loading="lazy" alt="alt text" src="https://adminforth.dev/assets/images/nuxtBlog-d00baa7e1b41d87869b09d475045fa7b.gif" width="1999" height="1499" class="img_ev3q"></p>
-<p>You can also touch a blog which we will create in <a href="https://blog-demo.adminforth.dev/admin" target="_blank" rel="noopener noreferrer">live</a>.</p>
 <p>For AI plugins are backed by OpenAI API, but their architecture allows to be easily extended for other AI providers once OpenAI competitors will reach the same or better level of quality.</p>
 <p>Here we will suggest you simple as 1-2-3 steps to build and host a blog with AI assistant which will help you to write posts.</p>
 <p>Our tech stack will include:</p>
