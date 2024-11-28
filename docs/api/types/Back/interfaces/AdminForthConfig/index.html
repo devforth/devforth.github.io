@@ -15,7 +15,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Vue &amp; Node admin panel framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.f98b04f3.css">
-<script src="/assets/js/runtime~main.d62ad559.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a889d77e.js" defer="defer"></script>
 <script src="/assets/js/main.02426f6f.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -36,6 +36,13 @@
 </blockquote>
 <p>Function or functions  which will be called before user try to login.
 Each function will resive User object as an argument</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="clientipheader">clientIpHeader?<a class="hash-link" aria-label="Direct link to clientIpHeader?" title="Direct link to clientIpHeader?" href="/docs/api/types/Back/interfaces/AdminForthConfig/#clientipheader">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>clientIpHeader</strong>: <code>string</code></p>
+</blockquote>
+<p>Client IP header name. If set, AdminForth will use this header to get client IP address.
+Otherwise it will use first IP address from X-Forwarded-For header.
+If you are using Cloudflare, set this to &#x27;CF-Connecting-IP&#x27;. Case-insensitive.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="democredentials">demoCredentials?<a class="hash-link" aria-label="Direct link to demoCredentials?" title="Direct link to demoCredentials?" href="/docs/api/types/Back/interfaces/AdminForthConfig/#democredentials">​</a></h4>
 <blockquote>
 <p><code>optional</code> <strong>demoCredentials</strong>: <code>string</code></p>
