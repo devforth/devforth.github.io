@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkadminforth=self.webpackChunkadminforth||[]).push([[1672],{3024:t=>{t.exports=JSON.parse('{"authors":[{"name":"Ivan Borshcho","title":"Maintainer of AdminForth","url":"https://github.com/ivictbor","imageURL":"https://avatars.githubusercontent.com/u/1838656?v=4","key":"ivanb","page":null,"count":5}]}')}}]);
