@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Why manual releases and release notes is a chaos and how to fix it]]></title>
+            <title><![CDATA[Why manual Release Notes and Versions are a chaos and how to fix it]]></title>
             <link>https://adminforth.dev/blog/how-we-manage-versions/</link>
             <guid>https://adminforth.dev/blog/how-we-manage-versions/</guid>
             <pubDate>Sun, 19 Jan 2025 00:00:00 GMT</pubDate>
@@ -163,6 +163,7 @@ For our internal team we use Slack and we want to get notifications about releas
 <p>So we ended with a simple <a href="https://github.com/devforth/adminforth/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">link to GitHub releases</a></p>]]></content:encoded>
             <category>git</category>
             <category>versioning</category>
+            <category>npm</category>
         </item>
         <item>
             <title><![CDATA[Backup database to AWS Glacier]]></title>

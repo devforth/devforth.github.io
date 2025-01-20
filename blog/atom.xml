@@ -8,7 +8,7 @@
     <subtitle>Vue &amp; Node admin panel framework Blog</subtitle>
     <icon>https://adminforth.dev/img/favicon.png</icon>
     <entry>
-        <title type="html"><![CDATA[Why manual releases and release notes is a chaos and how to fix it]]></title>
+        <title type="html"><![CDATA[Why manual Release Notes and Versions are a chaos and how to fix it]]></title>
         <id>https://adminforth.dev/blog/how-we-manage-versions/</id>
         <link href="https://adminforth.dev/blog/how-we-manage-versions/"/>
         <updated>2025-01-19T00:00:00.000Z</updated>
@@ -166,6 +166,7 @@ For our internal team we use Slack and we want to get notifications about releas
         </author>
         <category label="git" term="git"/>
         <category label="versioning" term="versioning"/>
+        <category label="npm" term="npm"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Backup database to AWS Glacier]]></title>
