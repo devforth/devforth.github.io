@@ -159,7 +159,17 @@ For our internal team we use Slack and we want to get notifications about releas
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="should-i-maintain-changelogmd-anymore">Should I maintain CHANGELOG.md anymore?<a href="https://adminforth.dev/blog/why-manual-release-notes-and-versions-are-a-chaos-and-how-to-fix-it/#should-i-maintain-changelogmd-anymore" class="hash-link" aria-label="Direct link to Should I maintain CHANGELOG.md anymore?" title="Direct link to Should I maintain CHANGELOG.md anymore?">​</a></h2>
 <p><code>semantic-release</code> has a plugin for generating not only GitHub release notes, but also CHANGELOG.md.</p>
 <p>Since previusly we used CHANGELOG.md I thought it would be good to have it in project. But once I entered <a href="https://github.com/semantic-release/changelog" target="_blank" rel="noopener noreferrer">plugin page</a> I got a notice which <a href="https://semantic-release.gitbook.io/semantic-release/support/faq#should-release-notes-be-committed-to-a-changelog.md-in-my-repository-during-a-release" target="_blank" rel="noopener noreferrer">explained complexity</a> added for this approach.</p>
-<p>So we ended with a simple <a href="https://github.com/devforth/adminforth/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">link to GitHub releases</a></p>]]></content>
+<p>So we ended with a simple <a href="https://github.com/devforth/adminforth/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">link to GitHub releases</a></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="is-it-all-that-good">Is it all that good?<a href="https://adminforth.dev/blog/why-manual-release-notes-and-versions-are-a-chaos-and-how-to-fix-it/#is-it-all-that-good" class="hash-link" aria-label="Direct link to Is it all that good?" title="Direct link to Is it all that good?">​</a></h2>
+<p>Well, there are no perfect approaches in the world.</p>
+<p>Of course <code>semantic-release</code> has some cons.</p>
+<p>First of all, while you can write a commit messages without any prefix and they will not be included in release, you still have to follow strict commit message format when you are releasing feature or fix. And you don't have to forget to use this format. Instead of making manual forming of release notes which is done by one person, now every developer in team has to follow the same format and has to write clear commit messages.</p>
+<p>And there are couple of bad things with last points:</p>
+<ul>
+<li>It is not so easy to modify commit message once it is pushed to GitHub, so commit writing becomes one of the most critical parts of development process where you have to be very careful.</li>
+<li>Commit message should be understood not only by developers of framework, but also by users of framework. And some developers might think that these are two absolutely different dementions of understanding: first one is for developers, second one is for users. But in fact, at AdminForth, we think that set of user-friendly commit messages is a very small subset of set of developer-friendly commit messages. So if you write user-friendly commit messages, there is no chance that developers will not understand them.</li>
+</ul>
+<p>You are still fine with merging incoming PRs and ignore their commit messages becuse GitHub allows to edit commit message before merging ( using <code>Squash and merge</code> option )</p>]]></content>
         <author>
             <name>Ivan Borshcho</name>
             <uri>https://github.com/ivictbor</uri>
