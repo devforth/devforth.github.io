@@ -50,8 +50,6 @@ GitHub did nothing to detect and revoke token, many other services would not do 
 <li>check what you publish at least when you change something in your build pipeline. I did miss the fact .env file was published.</li>
 <li>appreciate services which monitor for such leaks and react on them. They can save you from potential security breach.</li>
 </ul>]]></content:encoded>
-            <category>ChatGPT</category>
-            <category>Plugin</category>
         </item>
         <item>
             <title><![CDATA[Why manual releases and release notes is a chaos and how to fix it]]></title>

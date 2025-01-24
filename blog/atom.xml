@@ -53,8 +53,6 @@ GitHub did nothing to detect and revoke token, many other services would not do 
             <name>Ivan Borshcho</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
-        <category label="ChatGPT" term="ChatGPT"/>
-        <category label="Plugin" term="Plugin"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Why manual releases and release notes is a chaos and how to fix it]]></title>
