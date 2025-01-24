@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[How I open-sourced my secret access tokens from Github, Slack and NPM and who of them cares about it]]></title>
+            <title><![CDATA[How I open-sourced my secret access tokens from GitHub, Slack and NPM and who of them cares about it]]></title>
             <link>https://adminforth.dev/blog/how-i-opensourced-my-secret-tokens/</link>
             <guid>https://adminforth.dev/blog/how-i-opensourced-my-secret-tokens/</guid>
             <pubDate>Fri, 24 Jan 2025 00:00:00 GMT</pubDate>
@@ -22,10 +22,10 @@
 <p>Pretty dump method to export secrets to <code>.vault.env</code> file, but it was late evening and I did not want to spend much time on it for start.</p>
 <p>I made a first push, and everything worked fine from first attmpt. I was happy.</p>
 <p>Then I started to add same code to first plugin. And plugin build failed with very unexpected error.</p>
-<p>It said that my npm token is invalid. I was surprised, started to print env to see what is wrong (pritnting env to build log is pretty bad practice and is last thing you want to do, but I knew it is internal CI and project is private).</p>
-<p>And I saw that my npm token is not in env and was the same.</p>
+<p>It said that my npm token is invalid. I was surprised, started to print env to see what is wrong (printing env to build log is pretty bad practice and is last thing you want to do, but I knew it is internal CI and project is private).</p>
+<p>And I saw that my npm token is still in env and is the same.</p>
 <p>I went to first repository and retried build. And it failed with the same error.</p>
-<p>I went to npm and found out that token disappeared at all. I was shocked and recreated it.</p>
+<p>I went to npm and found out that token disappeared at all from the list. I was shocked and recreated it.</p>
 <p>On next build I figured out that Slack webhook is also not working. GitHub releases were created fine without issues on both repositories.</p>
 <p>Then I noticed email push notification from Slack called "Notification about invalidated webhook URLs"</p>
 <p><img decoding="async" loading="lazy" alt="Slack Notification about invalidated webhook URLs" src="https://adminforth.dev/assets/images/image-d15614a6703b6388201dc9a5dee77da7.png" width="1606" height="1634" class="img_ev3q"></p>
