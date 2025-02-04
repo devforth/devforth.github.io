@@ -221,9 +221,9 @@ For our internal team we use Slack and we want to get notifications about releas
             <name>Ivan Borshcho</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
-        <category label="git" term="git"/>
-        <category label="versioning" term="versioning"/>
-        <category label="npm" term="npm"/>
+        <category label="Git" term="Git"/>
+        <category label="Versioning" term="Versioning"/>
+        <category label="NPM" term="NPM"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Backup database to AWS Glacier]]></title>

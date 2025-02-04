@@ -214,9 +214,9 @@ For our internal team we use Slack and we want to get notifications about releas
 <li>Commit message should be understood not only by developers of framework, but also by users of framework. And some developers might think that these are two absolutely different dementions of understanding: first one is for developers, second one is for users. But in fact, at AdminForth, we think that set of user-friendly commit messages is a very small subset of set of developer-friendly commit messages. So if you write user-friendly commit messages, there is no chance that developers will not understand them.</li>
 </ul>
 <p>You are still fine with merging incoming PRs and ignore their commit messages becuse GitHub allows to edit commit message before merging ( using <code>Squash and merge</code> option )</p>]]></content:encoded>
-            <category>git</category>
-            <category>versioning</category>
-            <category>npm</category>
+            <category>Git</category>
+            <category>Versioning</category>
+            <category>NPM</category>
         </item>
         <item>
             <title><![CDATA[Backup database to AWS Glacier]]></title>
