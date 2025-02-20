@@ -9,37 +9,36 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[IaaC Deploy setup to Amazon EC2 with GitHub actions, Deocker, terraform and self-hosted Docker Registry]]></title>
+            <title><![CDATA[IaaC Deploy setup to Amazon EC2 with GitHub actions, Docker, terraform and self-hosted Docker Registry]]></title>
             <link>https://adminforth.dev/blog/compose-ec2-deployment-github-actions-registry/</link>
             <guid>https://adminforth.dev/blog/compose-ec2-deployment-github-actions-registry/</guid>
             <pubDate>Wed, 19 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[IaaC Deploy setup to Amazon EC2 with GitHub actions, Deocker, terraform and self-hosted Docker Registry]]></description>
-            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="alt text" src="https://adminforth.dev/assets/images/ga-tf-aws-2618e638da36717e70f7fe4be33468e6.jpg" width="1200" height="630" class="img_ev3q"></p>
+            <description><![CDATA[IaaC Deploy setup to Amazon EC2 with GitHub actions, Docker, terraform and self-hosted Docker Registry]]></description>
+            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="alt text" src="https://adminforth.dev/assets/images/ga-tf-aws-fd1b40a236f46c0ffc8c09ef37abaf38.jpg" width="1200" height="630" class="img_ev3q"></p>
 <p>This guide shows how to deploy own Docker apps (with AdminForth as example) to Amazon EC2 instance with Docker and Terraform involving Docker self-hosted registry.</p>
 <p>Needed resources:</p>
 <ul>
 <li>GitHub actions Free plan which includes 2000 minutes per month (1000 of 2-minute builds per month - more then enough for many projects, if you are not running tests etc). Extra builds would cost <code>0.008$</code> per minute.</li>
-<li>AWS account where we will auto-spawn EC2 instance. We will use t3a.small instance (2 vCPUs, 2GB RAM) which costs <code>~14$</code> per month in <code>us-east-1</code> region (cheapest region).</li>
-<li>$2 per month for EBS gp2 storage (20GB) for EC2 instance</li>
+<li>AWS account where we will auto-spawn EC2 instance. We will use <code>t3a.small</code> instance (2 vCPUs, 2GB RAM) which costs <code>~14$</code> per month in <code>us-east-1</code> region (cheapest region). Also it will take <code>$2</code> per month for EBS gp2 storage (20GB) for EC2 instance</li>
 </ul>
 <p>This is it, registry will be auto-spawned on EC2 instance, so no extra costs for it. Also GitHub storage is not used, so no extra costs for it.</p>
 <p>The setup has next features:</p>
 <ul>
-<li>Build process is done using IaaC approach with HashiCorp Terraform, so almoast no manual actions are needed from you. Every resource including EC2 server instance is described in code which is commited to repo and should not be manually clicked.</li>
+<li>Build process is done using IaaC approach with HashiCorp Terraform, so almoast no manual actions are needed from you. Every resource including EC2 server instance is described in code which is commited to repo so no manual clicks are needed.</li>
 <li>Docker build process is done on GitHub actions, so EC2 server is not overloaded</li>
-<li>Changes in infrastructure including changing server type, adding S3 Bucket, changing size of sever Disk is also done in code and can be done by commiting code to repo.</li>
+<li>Changes in infrastructure including changing server type, adding S3 Bucket, changing size of sever disk is also can be done by commiting code to repo.</li>
 <li>Docker images and cache are stored on EC2 server, so no extra costs for Docker registry are needed.</li>
-<li>Total build time for average commit to AdminForth app (with vite rebuilds) is around 2 minutes.</li>
+<li>Total build time for average commit to AdminForth app (with Vite rebuilds) is around 2 minutes.</li>
 </ul>
 <p>Previously we had a blog post about <a href="https://adminforth.dev/blog/compose-ec2-deployment-github-actions/">deploying AdminForth to EC2 with Terraform without registry</a>. That method might work well but has a significant disadvantage - build process happens on EC2 itself and uses EC2 RAM and CPU. This can be a problem if your EC2 instance is well-loaded without extra free resources. Moreover, low-end EC2 instances have a small amount of RAM and CPU, so build process which involves vite/tsc/etc can be slow or even fail.</p>
 <p>So obviously to solve this problem we need to move the build process to CI, however it introduces new chellenges and we will solve them in this post.</p>
 <p>Quick difference between approaches from previous post and current post:</p>
-<table><thead><tr><th>Feature</th><th>Without Registry</th><th>With Registry</th></tr></thead><tbody><tr><td>How and where docker build happens</td><td>Source code is copied to EC2 and docker build is done there</td><td>Docker build is done on CI and docker image is pushed to registry (in this post we run registry automatically on EC2)</td></tr><tr><td>Docker build layers cache</td><td>Cache is stored on EC2</td><td>GitHub actions has no own Docker cache out of the box, so it should be stored in dedicated place (we use self-hosted registry on the CI as it is free)</td></tr><tr><td>Advantages</td><td>Much simpler setup with less code ( we don't need code to run registry and make it trusted, secured, and don't need extra cache setup as is naturally stored on EC2).</td><td>Build is done on CI, so EC2 server is not overloaded. For cheap/middle EC2s CI builds are faster than on EC2. Plus time is saved because we don't need to copy source code to EC2</td></tr><tr><td>Disadvantages</td><td>Build on EC2 requires additional server RAM / overloads CPU</td><td>More terraform code is needed. registry cache might require small extra space on EC2</td></tr></tbody></table>
+<table><thead><tr><th>Feature</th><th>Without Registry</th><th>With Registry</th></tr></thead><tbody><tr><td>How and where docker build happens</td><td>Source code is rsync-ed from CI to EC2 and docker build is done there</td><td>Docker build is done on CI and docker image is pushed to registry (in this post we run registry automatically on EC2)</td></tr><tr><td>How Docker build layers are cached</td><td>Cache is stored on EC2</td><td>GitHub actions has no own Docker cache out of the box, so it should be stored in dedicated place (we use self-hosted registry on the EC2 as it is free)</td></tr><tr><td>Advantages</td><td>Simpler setup with less code (we don't need code to run and secure registry, and don't need extra cache setup as is naturally persisted on EC2).</td><td>Build is done on CI, so EC2 server is not overloaded. For most cases CI builds are faster than on EC2. Plus time is saved because we don't need to rsync source code to EC2</td></tr><tr><td>Disadvantages</td><td>Build on EC2 requires additional server RAM / overloads CPU</td><td>More terraform code is needed. registry cache might require small extra space on EC2</td></tr></tbody></table>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="chellenges-when-you-build-on-ci">Chellenges when you build on CI<a href="https://adminforth.dev/blog/compose-ec2-deployment-github-actions-registry/#chellenges-when-you-build-on-ci" class="hash-link" aria-label="Direct link to Chellenges when you build on CI" title="Direct link to Chellenges when you build on CI">​</a></h2>
 <p>A little bit of theory.</p>
 <p>When you move build process to CI you have to solve next chellenges:</p>
 <ol>
-<li>We need to deliver built docker images to EC2 somehow</li>
+<li>We need to deliver built docker images to EC2 somehow (and only we)</li>
 <li>We need to persist cache between builds</li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="delivering-images">Delivering images<a href="https://adminforth.dev/blog/compose-ec2-deployment-github-actions-registry/#delivering-images" class="hash-link" aria-label="Direct link to Delivering images" title="Direct link to Delivering images">​</a></h3>

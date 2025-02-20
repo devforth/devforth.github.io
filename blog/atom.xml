@@ -8,37 +8,36 @@
     <subtitle>Vue &amp; Node admin panel framework Blog</subtitle>
     <icon>https://adminforth.dev/img/favicon.png</icon>
     <entry>
-        <title type="html"><![CDATA[IaaC Deploy setup to Amazon EC2 with GitHub actions, Deocker, terraform and self-hosted Docker Registry]]></title>
+        <title type="html"><![CDATA[IaaC Deploy setup to Amazon EC2 with GitHub actions, Docker, terraform and self-hosted Docker Registry]]></title>
         <id>https://adminforth.dev/blog/compose-ec2-deployment-github-actions-registry/</id>
         <link href="https://adminforth.dev/blog/compose-ec2-deployment-github-actions-registry/"/>
         <updated>2025-02-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[IaaC Deploy setup to Amazon EC2 with GitHub actions, Deocker, terraform and self-hosted Docker Registry]]></summary>
-        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="alt text" src="https://adminforth.dev/assets/images/ga-tf-aws-2618e638da36717e70f7fe4be33468e6.jpg" width="1200" height="630" class="img_ev3q"></p>
+        <summary type="html"><![CDATA[IaaC Deploy setup to Amazon EC2 with GitHub actions, Docker, terraform and self-hosted Docker Registry]]></summary>
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="alt text" src="https://adminforth.dev/assets/images/ga-tf-aws-fd1b40a236f46c0ffc8c09ef37abaf38.jpg" width="1200" height="630" class="img_ev3q"></p>
 <p>This guide shows how to deploy own Docker apps (with AdminForth as example) to Amazon EC2 instance with Docker and Terraform involving Docker self-hosted registry.</p>
 <p>Needed resources:</p>
 <ul>
 <li>GitHub actions Free plan which includes 2000 minutes per month (1000 of 2-minute builds per month - more then enough for many projects, if you are not running tests etc). Extra builds would cost <code>0.008$</code> per minute.</li>
-<li>AWS account where we will auto-spawn EC2 instance. We will use t3a.small instance (2 vCPUs, 2GB RAM) which costs <code>~14$</code> per month in <code>us-east-1</code> region (cheapest region).</li>
-<li>$2 per month for EBS gp2 storage (20GB) for EC2 instance</li>
+<li>AWS account where we will auto-spawn EC2 instance. We will use <code>t3a.small</code> instance (2 vCPUs, 2GB RAM) which costs <code>~14$</code> per month in <code>us-east-1</code> region (cheapest region). Also it will take <code>$2</code> per month for EBS gp2 storage (20GB) for EC2 instance</li>
 </ul>
 <p>This is it, registry will be auto-spawned on EC2 instance, so no extra costs for it. Also GitHub storage is not used, so no extra costs for it.</p>
 <p>The setup has next features:</p>
 <ul>
-<li>Build process is done using IaaC approach with HashiCorp Terraform, so almoast no manual actions are needed from you. Every resource including EC2 server instance is described in code which is commited to repo and should not be manually clicked.</li>
+<li>Build process is done using IaaC approach with HashiCorp Terraform, so almoast no manual actions are needed from you. Every resource including EC2 server instance is described in code which is commited to repo so no manual clicks are needed.</li>
 <li>Docker build process is done on GitHub actions, so EC2 server is not overloaded</li>
-<li>Changes in infrastructure including changing server type, adding S3 Bucket, changing size of sever Disk is also done in code and can be done by commiting code to repo.</li>
+<li>Changes in infrastructure including changing server type, adding S3 Bucket, changing size of sever disk is also can be done by commiting code to repo.</li>
 <li>Docker images and cache are stored on EC2 server, so no extra costs for Docker registry are needed.</li>
-<li>Total build time for average commit to AdminForth app (with vite rebuilds) is around 2 minutes.</li>
+<li>Total build time for average commit to AdminForth app (with Vite rebuilds) is around 2 minutes.</li>
 </ul>
 <p>Previously we had a blog post about <a href="https://adminforth.dev/blog/compose-ec2-deployment-github-actions/">deploying AdminForth to EC2 with Terraform without registry</a>. That method might work well but has a significant disadvantage - build process happens on EC2 itself and uses EC2 RAM and CPU. This can be a problem if your EC2 instance is well-loaded without extra free resources. Moreover, low-end EC2 instances have a small amount of RAM and CPU, so build process which involves vite/tsc/etc can be slow or even fail.</p>
 <p>So obviously to solve this problem we need to move the build process to CI, however it introduces new chellenges and we will solve them in this post.</p>
 <p>Quick difference between approaches from previous post and current post:</p>
-<table><thead><tr><th>Feature</th><th>Without Registry</th><th>With Registry</th></tr></thead><tbody><tr><td>How and where docker build happens</td><td>Source code is copied to EC2 and docker build is done there</td><td>Docker build is done on CI and docker image is pushed to registry (in this post we run registry automatically on EC2)</td></tr><tr><td>Docker build layers cache</td><td>Cache is stored on EC2</td><td>GitHub actions has no own Docker cache out of the box, so it should be stored in dedicated place (we use self-hosted registry on the CI as it is free)</td></tr><tr><td>Advantages</td><td>Much simpler setup with less code ( we don't need code to run registry and make it trusted, secured, and don't need extra cache setup as is naturally stored on EC2).</td><td>Build is done on CI, so EC2 server is not overloaded. For cheap/middle EC2s CI builds are faster than on EC2. Plus time is saved because we don't need to copy source code to EC2</td></tr><tr><td>Disadvantages</td><td>Build on EC2 requires additional server RAM / overloads CPU</td><td>More terraform code is needed. registry cache might require small extra space on EC2</td></tr></tbody></table>
+<table><thead><tr><th>Feature</th><th>Without Registry</th><th>With Registry</th></tr></thead><tbody><tr><td>How and where docker build happens</td><td>Source code is rsync-ed from CI to EC2 and docker build is done there</td><td>Docker build is done on CI and docker image is pushed to registry (in this post we run registry automatically on EC2)</td></tr><tr><td>How Docker build layers are cached</td><td>Cache is stored on EC2</td><td>GitHub actions has no own Docker cache out of the box, so it should be stored in dedicated place (we use self-hosted registry on the EC2 as it is free)</td></tr><tr><td>Advantages</td><td>Simpler setup with less code (we don't need code to run and secure registry, and don't need extra cache setup as is naturally persisted on EC2).</td><td>Build is done on CI, so EC2 server is not overloaded. For most cases CI builds are faster than on EC2. Plus time is saved because we don't need to rsync source code to EC2</td></tr><tr><td>Disadvantages</td><td>Build on EC2 requires additional server RAM / overloads CPU</td><td>More terraform code is needed. registry cache might require small extra space on EC2</td></tr></tbody></table>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="chellenges-when-you-build-on-ci">Chellenges when you build on CI<a href="https://adminforth.dev/blog/compose-ec2-deployment-github-actions-registry/#chellenges-when-you-build-on-ci" class="hash-link" aria-label="Direct link to Chellenges when you build on CI" title="Direct link to Chellenges when you build on CI">​</a></h2>
 <p>A little bit of theory.</p>
 <p>When you move build process to CI you have to solve next chellenges:</p>
 <ol>
-<li>We need to deliver built docker images to EC2 somehow</li>
+<li>We need to deliver built docker images to EC2 somehow (and only we)</li>
 <li>We need to persist cache between builds</li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="delivering-images">Delivering images<a href="https://adminforth.dev/blog/compose-ec2-deployment-github-actions-registry/#delivering-images" class="hash-link" aria-label="Direct link to Delivering images" title="Direct link to Delivering images">​</a></h3>
@@ -165,7 +164,7 @@ Unfortunately we can't use variables, HashiCorp thinks it is too dangerous 😥<
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token function" style="color:#e6db74">sudo</span><span class="token plain"> growpart /dev/nvme0n1 </span><span class="token number" style="color:#ae81ff">1</span><span class="token plain"></span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain"></span><span class="token function" style="color:#e6db74">sudo</span><span class="token plain"> resize2fs /dev/nvme0n1p1</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>This will extend partition to the full disk size. No reboot is needed.</p>]]></content>
         <author>
-            <name>Ivan Borshcho</name>
+            <name>Ivan Borshchov</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
         <category label="AWS" term="AWS"/>
@@ -215,7 +214,7 @@ Unfortunately we can't use variables, HashiCorp thinks it is too dangerous 😥<
 <li>Appreciate services that monitor for leaks and respond to them. They can save you from potential security breaches.</li>
 </ul>]]></content>
         <author>
-            <name>Ivan Borshcho</name>
+            <name>Ivan Borshchov</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
     </entry>
@@ -383,7 +382,7 @@ For our internal team we use Slack and we want to get notifications about releas
 </ul>
 <p>You are still fine with merging incoming PRs and ignore their commit messages becuse GitHub allows to edit commit message before merging ( using <code>Squash and merge</code> option )</p>]]></content>
         <author>
-            <name>Ivan Borshcho</name>
+            <name>Ivan Borshchov</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
         <category label="Git" term="Git"/>
@@ -413,7 +412,7 @@ For our internal team we use Slack and we want to get notifications about releas
 <li>On first, second and third month cost will increase slowly from $0.00 to $0.80 per month.</li>
 </ul>]]></content>
         <author>
-            <name>Ivan Borshcho</name>
+            <name>Ivan Borshchov</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
         <category label="AWS" term="AWS"/>
@@ -486,7 +485,7 @@ Unfortunately we can't use variables, HashiCorp thinks it is too dangerous 😥<
 </ul>
 <p>Now you can push your changes to GitHub and see how it will be deployed automatically.</p>]]></content>
         <author>
-            <name>Ivan Borshcho</name>
+            <name>Ivan Borshchov</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
         <category label="AWS" term="AWS"/>
@@ -512,7 +511,7 @@ Unfortunately we can't use variables, HashiCorp thinks it is too dangerous 😥<
 <p>Then with any change in code:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token plain">terraform apply -auto-approve</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content>
         <author>
-            <name>Ivan Borshcho</name>
+            <name>Ivan Borshchov</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
         <category label="AWS" term="AWS"/>
@@ -657,7 +656,7 @@ While this will work fine, it might give slower serving then if you would route 
 <li><a href="https://nuxt.com/docs/getting-started/introduction" target="_blank" rel="noopener noreferrer">Nuxt.js documentation</a></li>
 </ul>]]></content>
         <author>
-            <name>Ivan Borshcho</name>
+            <name>Ivan Borshchov</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
         <category label="Nuxt.js" term="Nuxt.js"/>
@@ -713,7 +712,7 @@ For example if you have a record with fields <code>title</code> and <code>descri
 <p>Under the hood vue-suggestion-input uses <a href="https://quilljs.com/" target="_blank" rel="noopener noreferrer">quill</a> editor. Quill is one of the WYSIWYG editors which have really good
 API to work with DOM inside of editor. Basically all pieces of content in editor are represented as so called blots. And best thing - you can create your own custom blot. So we created our own blot which is responsible for rendering completion suggestion. Then you just "dance" around positioning of selection, suggestion and text modification, and thees things are easy-peasy with quill API.</p>]]></content>
         <author>
-            <name>Ivan Borshcho</name>
+            <name>Ivan Borshchov</name>
             <uri>https://github.com/ivictbor</uri>
         </author>
         <category label="ChatGPT" term="ChatGPT"/>
