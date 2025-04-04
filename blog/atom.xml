@@ -83,7 +83,7 @@
 <p><img decoding="async" loading="lazy" alt="alt text" src="https://adminforth.dev/assets/images/image-8-7d2e6af907b827e7f1d362b565d6290f.png" width="592" height="345" class="img_ev3q"></p>
 <p>Finally, you can sign in to AdminForth with your Keycloak credentials. (if user with the same email exists in AdminForth)</p>]]></content>
         <author>
-            <name>Maxim Pipkun</name>
+            <name>Maxim Pypkun</name>
             <uri>https://github.com/NoOne7135</uri>
         </author>
         <category label="Keycloak" term="Keycloak"/>
