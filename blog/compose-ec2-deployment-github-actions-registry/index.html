@@ -16,7 +16,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Vue &amp; Node admin panel framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.ba19fe4b.css">
-<script src="/assets/js/runtime~main.bc1ec1b5.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.8c816ee5.js" defer="defer"></script>
 <script src="/assets/js/main.86de354a.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -29,10 +29,7 @@
 <h1>Bechnmarking build time</h1>
 <p>When I implmented this solution, I was curious whether it will be faster to build images on EC2 or on CI. So I did a little bit of testing.
 First I used results form <a href="/blog/compose-ec2-deployment-github-actions/">deploying AdminForth to EC2 with Terraform without registry</a> where we built images on EC2. Then I did the same test but with self-hosted registry on EC2 and compared to <a href="/blog/compose-aws-ec2-ecr-terraform-github-actions/">deploying AdminForth to EC2 with Amazon ECR</a> where we built images on CI and pushed to Amazon ECR.</p>
-<p>| Feature | Without Registry (build directly on EC2) | With self-hosted registry | With Amazon ECR |
-| --- | --- | --- |
-| Initial build time* |  3m 13.541s | 2m 48.412s | 3m 54s |
-| Rebuild time (changed <code>index.ts</code>)*|  0m 51.653s | 0m 54.120s |</p>
+<table><thead><tr><th>Feature</th><th>Without Registry (build directly on EC2)</th><th>With self-hosted registry</th><th>With Amazon ECR</th></tr></thead><tbody><tr><td>Initial build time*</td><td>3m 13.541s</td><td>2m 48.412s</td><td>3m 54s</td></tr><tr><td>Rebuild time (changed <code>index.ts</code>)*</td><td>0m 51.653s</td><td>0m42.131s</td><td>0m 54.120s</td></tr></tbody></table>
 <sub>* All tests done from local machine (Intel(R) Core(TM) Ultra 9 185H, Docker Desktop/WSL2 64 GB RAM, 300Mbps up/down) up to working state</sub>
 <p>So it indeed own self-hosted registry is faster then ECR and overall build time of pure AdminForth is faster then building on EC2. When ECR is slower then self-hosted registry, it is because of network speed.</p>
 <h1>Chellenges when you build on CI</h1>
