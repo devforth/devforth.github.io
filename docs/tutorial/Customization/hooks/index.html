@@ -15,7 +15,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Vue &amp; Node admin panel framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.6d3bd8a8.css">
-<script src="/assets/js/runtime~main.513d7205.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.225098d4.js" defer="defer"></script>
 <script src="/assets/js/main.59214cfe.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -43,7 +43,7 @@ For simplicity of course you can specify hook as scalar async function and not a
 <p>If multiple hooks are defined (e.g. plugin might add own hook to <code>list.beforeDatasourceRequest</code> after you will already add one in your config), then hooks will be executed one by one, and can&#x27;t be parallelized. This ensures that different hooks will not interfere with each other, but also means that if you have bootleneck in one hook, all other hooks will wait for it and whole request will be slower.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="initial-data-for-edit-page-flow">Initial data for edit page flow<a class="hash-link" aria-label="Direct link to Initial data for edit page flow" title="Direct link to Initial data for edit page flow" href="/docs/tutorial/Customization/hooks/#initial-data-for-edit-page-flow">​</a></h2>
 <p>When user opens edit page, AdminForth makes a request to the backend to get the initial data for the form.</p>
-<p><img decoding="async" loading="lazy" alt="Initial data for edit page flow" src="/assets/images/initial_edit_data_flow-d3f2bff1b9250456ae1420cbdd61af62.png" width="2654" height="2354" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Initial data for edit page flow" src="/assets/images/get_resource_data-d4b59ed2505a41211c39f9d98c5c1245.png" width="2654" height="2354" class="img_ev3q"></p>
 <p>Practically you can use <code>show.afterDatasourceResponse</code> to modify or add some data before it is displayed on the edit page.</p>
 <p>For example <a href="/docs/tutorial/Plugins/upload/">upload plugin</a> uses this hook to generate signed preview URL so user can see existing uploaded file preview  in form, and at the same time database stores only original file path which might be not accessible without presigned URL.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="saving-data-on-edit-page">Saving data on edit page<a class="hash-link" aria-label="Direct link to Saving data on edit page" title="Direct link to Saving data on edit page" href="/docs/tutorial/Customization/hooks/#saving-data-on-edit-page">​</a></h2>
