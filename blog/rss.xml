@@ -48,14 +48,21 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-installation-of-the-bulk-ai-flow-plugin">Example: Installation of the Bulk-ai-flow Plugin<a href="https://adminforth.dev/blog/context7-setup-vscode/#example-installation-of-the-bulk-ai-flow-plugin" class="hash-link" aria-label="Direct link to Example: Installation of the Bulk-ai-flow Plugin" title="Direct link to Example: Installation of the Bulk-ai-flow Plugin">​</a></h3>
 <p>Here is an example prompt you can use to add the adminforth bulk-ai-flow plugin:</p>
 <p><strong>Prompt:</strong><br>
-<code>Add adminforth bulk-ai-flow plugin to this file using only Context7 MCP</code></p>
+<code>Add adminforth bulk-ai-flow plugin to this file using Context7 MCP</code></p>
 <p><strong>Generated Code:</strong><br>
 <img decoding="async" loading="lazy" src="https://adminforth.dev/assets/images/image_6-5f8a8d74cdabfa0d8dfbdb8a91409899.png" width="1504" height="1114" class="img_ev3q"></p>
 <p><strong>Result:</strong><br>
 <img decoding="async" loading="lazy" src="https://adminforth.dev/assets/images/image_7-40ccac2a688dce138c72a7b0a8356cc8.png" width="2560" height="1351" class="img_ev3q"></p>
 <p>As we can see, the generation works really well.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="tips">Tips<a href="https://adminforth.dev/blog/context7-setup-vscode/#tips" class="hash-link" aria-label="Direct link to Tips" title="Direct link to Tips">​</a></h3>
-<p>If you don’t want to add <code>use context7</code> to every prompt, you can <a href="https://github.com/upstash/context7?tab=readme-ov-file#-tips" target="_blank" rel="noopener noreferrer">define a simple rule in your MCP client's rule section</a>.</p>]]></content:encoded>
+<p>If you don’t want to add <code>use context7</code> to every prompt, you can <a href="https://github.com/upstash/context7?tab=readme-ov-file#-tips" target="_blank" rel="noopener noreferrer">define a simple rule in your MCP client's rule section</a>.</p>
+<p>If you're using github copilot, you can:</p>
+<ol>
+<li>In the root of your repository, create the .github directory if it does not already exist.</li>
+<li>create a file named <code>.github/copilot-instructions.md</code></li>
+<li>Inside new file add:</li>
+</ol>
+<div class="language-txt codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-txt codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token plain">Always use context7 when I need code generation, setup or configuration steps, or</span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain">library/API documentation. This means you should automatically use the Context7 MCP</span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain">tools to resolve library id and get library docs without me having to explicitly ask.</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content:encoded>
             <category>context7</category>
             <category>MCP</category>
         </item>
