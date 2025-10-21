@@ -4,10 +4,61 @@
         <title>Vue &amp; Node admin panel framework Blog</title>
         <link>https://adminforth.dev/blog/</link>
         <description>Vue &amp; Node admin panel framework Blog</description>
-        <lastBuildDate>Thu, 10 Apr 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 21 Oct 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[How to set up Context7 MCP in Visual Studio Code]]></title>
+            <link>https://adminforth.dev/blog/context7-setup-vscode/</link>
+            <guid>https://adminforth.dev/blog/context7-setup-vscode/</guid>
+            <pubDate>Tue, 21 Oct 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Context7 MCP installation guide]]></description>
+            <content:encoded><![CDATA[<p>This guide shows how you can set up Context7 MCP in your Visual Studio Code IDE (VS Code)</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="preparation">Preparation<a href="https://adminforth.dev/blog/context7-setup-vscode/#preparation" class="hash-link" aria-label="Direct link to Preparation" title="Direct link to Preparation">​</a></h3>
+<p>First of all, you'll need to update VS Code to version 1.105.1 or higher. To check your version, go to <code>Help -&gt; About</code>.</p>
+<p>If you used a <code>.deb</code> file to install VS Code, just run these commands in the terminal to install updates:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token function" style="color:#e6db74">sudo</span><span class="token plain"> </span><span class="token function" style="color:#e6db74">apt</span><span class="token plain"> update </span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain"></span><span class="token function" style="color:#e6db74">sudo</span><span class="token plain"> </span><span class="token function" style="color:#e6db74">apt</span><span class="token plain"> </span><span class="token function" style="color:#e6db74">install</span><span class="token plain"> code</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Before opening VS Code, we need to get the Context7 API key. For this, go to <a href="https://context7.com/dashboard" target="_blank" rel="noopener noreferrer">https://context7.com/dashboard</a>, create a new account, and copy the API key.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="setup">Setup<a href="https://adminforth.dev/blog/context7-setup-vscode/#setup" class="hash-link" aria-label="Direct link to Setup" title="Direct link to Setup">​</a></h3>
+<p>Now we can proceed with the setup:</p>
+<ol>
+<li>
+<p>After opening VS Code, go to the extensions tab, where you'll see the new <code>MCP SERVERS</code> tab. Click on <code>Enable MCP Servers Marketplace</code>.
+<img decoding="async" loading="lazy" src="https://adminforth.dev/assets/images/image_1-7c5253ddb0b1e52349fe6499bfdf757d.png" width="640" height="896" class="img_ev3q"></p>
+</li>
+<li>
+<p>Find Context7 in the list and press <code>Install</code>:
+<img decoding="async" loading="lazy" src="https://adminforth.dev/assets/images/image_2-9f03015fcc9342f4d3999bbd1a216931.png" width="640" height="896" class="img_ev3q"></p>
+</li>
+<li>
+<p>Go to <code>Show Configuration JSON</code>:
+<img decoding="async" loading="lazy" src="https://adminforth.dev/assets/images/image_3-d47a1fd2ba1e36d8e7980946d4100878.png" width="559" height="585" class="img_ev3q"></p>
+</li>
+<li>
+<p>Click <code>Edit</code>:
+<img decoding="async" loading="lazy" src="https://adminforth.dev/assets/images/image_4-8d306951c3bad63c41ecf5fa4a405a28.png" width="1216" height="507" class="img_ev3q"></p>
+</li>
+<li>
+<p>Insert your API key:
+<img decoding="async" loading="lazy" src="https://adminforth.dev/assets/images/image_5-b42f0e4b4377c3021799292b22f804c8.png" width="1079" height="545" class="img_ev3q"></p>
+</li>
+</ol>
+<p>The installation is complete. You can now use it.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-installation-of-the-bulk-ai-flow-plugin">Example: Installation of the Bulk-ai-flow Plugin<a href="https://adminforth.dev/blog/context7-setup-vscode/#example-installation-of-the-bulk-ai-flow-plugin" class="hash-link" aria-label="Direct link to Example: Installation of the Bulk-ai-flow Plugin" title="Direct link to Example: Installation of the Bulk-ai-flow Plugin">​</a></h3>
+<p>Here is an example prompt you can use to add the adminforth bulk-ai-flow plugin:</p>
+<p><strong>Prompt:</strong><br>
+<code>Add adminforth bulk-ai-flow plugin to this file using only Context7 MCP</code></p>
+<p><strong>Generated Code:</strong><br>
+<img decoding="async" loading="lazy" src="https://adminforth.dev/assets/images/image_6-5f8a8d74cdabfa0d8dfbdb8a91409899.png" width="1504" height="1114" class="img_ev3q"></p>
+<p><strong>Result:</strong><br>
+<img decoding="async" loading="lazy" src="https://adminforth.dev/assets/images/image_7-40ccac2a688dce138c72a7b0a8356cc8.png" width="2560" height="1351" class="img_ev3q"></p>
+<p>As we can see, the generation works really well.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tips">Tips<a href="https://adminforth.dev/blog/context7-setup-vscode/#tips" class="hash-link" aria-label="Direct link to Tips" title="Direct link to Tips">​</a></h3>
+<p>If you don’t want to add <code>use context7</code> to every prompt, you can <a href="https://github.com/upstash/context7?tab=readme-ov-file#-tips" target="_blank" rel="noopener noreferrer">define a simple rule in your MCP client's rule section</a>.</p>]]></content:encoded>
+            <category>context7</category>
+            <category>MCP</category>
+        </item>
         <item>
             <title><![CDATA[How to translate dynamic strings in AdminForth API]]></title>
             <link>https://adminforth.dev/blog/dynamic-strings-translation/</link>
