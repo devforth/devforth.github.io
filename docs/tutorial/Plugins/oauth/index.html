@@ -16,7 +16,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Vue &amp; Node admin panel framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.ba19fe4b.css">
-<script src="/assets/js/runtime~main.20ea7ba6.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a0e5af68.js" defer="defer"></script>
 <script src="/assets/js/main.e541a2d0.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -155,6 +155,24 @@ Optionaly, you can also enable open signup for new users and assign some default
 <p>This field will be automatically filled with the name that the provider returns, if this field was empty.</p>
 <blockquote>
 <p>☝️Not all providers return full name or even if they do, there is no guarantee that they will be correct</p>
+</blockquote>
+<blockquote>
+<p>Google Adapter: returns fullName, but if there is no last name - it will return only first name</p>
+</blockquote>
+<blockquote>
+<p>Facebook: returns fullName</p>
+</blockquote>
+<blockquote>
+<p>Github: returns name or fullName (depends of what user added in name field)</p>
+</blockquote>
+<blockquote>
+<p>Keycloak: returns fullName</p>
+</blockquote>
+<blockquote>
+<p>Microsoft: returns fullName</p>
+</blockquote>
+<blockquote>
+<p>Twitch: return only users display name</p>
 </blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/tutorial/Plugins/i18n/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Internationalization (i18n)</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/tutorial/Plugins/inline-create/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Inline Create</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#installation" class="table-of-contents__link toc-highlight">Installation</a></li><li><a href="#configuration" class="table-of-contents__link toc-highlight">Configuration</a><ul><li><a href="#1-oauth-provider-setup-google-example" class="table-of-contents__link toc-highlight">1. OAuth Provider Setup (Google Example)</a></li><li><a href="#2-plugin-configuration" class="table-of-contents__link toc-highlight">2. Plugin Configuration</a></li><li><a href="#3-email-confirmation" class="table-of-contents__link toc-highlight">3. Email Confirmation</a></li><li><a href="#4-open-signup" class="table-of-contents__link toc-highlight">4. Open Signup</a></li><li><a href="#5-ui-customization" class="table-of-contents__link toc-highlight">5. UI Customization</a></li></ul></li><li><a href="#oauth2-providers" class="table-of-contents__link toc-highlight">OAuth2 Providers</a><ul><li><a href="#facebook-adapter" class="table-of-contents__link toc-highlight">Facebook Adapter</a></li><li><a href="#github-adapter" class="table-of-contents__link toc-highlight">GitHub Adapter</a></li><li><a href="#kaycloack-adapter" class="table-of-contents__link toc-highlight">Kaycloack Adapter</a></li><li><a href="#microsoft-adapter" class="table-of-contents__link toc-highlight">Microsoft Adapter</a></li><li><a href="#twitch-adapter" class="table-of-contents__link toc-highlight">Twitch Adapter</a></li><li><a href="#need-custom-provider" class="table-of-contents__link toc-highlight">Need custom provider?</a></li></ul></li><li><a href="#fill-user-full-name" class="table-of-contents__link toc-highlight">Fill user full name</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/tutorial/gettingStarted/">Tutorial</a></li><li class="footer__item"><a href="https://demo.adminforth.dev/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Live Demo</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/api/">API</a></li><li class="footer__item"><a class="footer__link-item" href="/blog/archive/">Blog Archive</a></li><li class="footer__item"><a class="footer__link-item" href="/search/">Find anything</a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://devforth.io" target="_blank" rel="noopener noreferrer" class="footer__link-item">DevForth.io<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://devforth.io/contact" target="_blank" rel="noopener noreferrer" class="footer__link-item">We can develop admin panel for your project<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/devforth/adminforth" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Devforth sp. z o.o.</div></div></div></footer></div>
 </body>
 </html>
