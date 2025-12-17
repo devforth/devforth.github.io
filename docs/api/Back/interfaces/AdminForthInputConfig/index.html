@@ -16,7 +16,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Vue &amp; Node admin panel framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.ba19fe4b.css">
-<script src="/assets/js/runtime~main.a0e5af68.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.c4219a9f.js" defer="defer"></script>
 <script src="/assets/js/main.e541a2d0.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -33,6 +33,15 @@
 <p><code>optional</code> <strong>adminUserAuthorize</strong>: <a href="/docs/api/Back/type-aliases/AdminUserAuthorizeFunction/"><code>AdminUserAuthorizeFunction</code></a> | <a href="/docs/api/Back/type-aliases/AdminUserAuthorizeFunction/"><code>AdminUserAuthorizeFunction</code></a>[]</p>
 </blockquote>
 <p>Array of functions which will be called before any request to AdminForth API.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="avatarurl">avatarUrl()?<a href="#avatarurl" class="hash-link" aria-label="Direct link to avatarUrl()?" title="Direct link to avatarUrl()?">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>avatarUrl</strong>: (<code>adminUser</code>) =&gt; <code>string</code> | <code>Promise</code>&lt;<code>string</code>&gt;</p>
+</blockquote>
+<p>Function to return avatar URL for user.</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="parameters">Parameters<a href="#parameters" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters">​</a></h5>
+<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>adminUser</code></td><td><a href="/docs/api/Common/interfaces/AdminUser/"><code>AdminUser</code></a></td></tr></tbody></table>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns">​</a></h5>
+<p><code>string</code> | <code>Promise</code>&lt;<code>string</code>&gt;</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="beforeloginconfirmation">beforeLoginConfirmation?<a href="#beforeloginconfirmation" class="hash-link" aria-label="Direct link to beforeLoginConfirmation?" title="Direct link to beforeLoginConfirmation?">​</a></h4>
 <blockquote>
 <p><code>optional</code> <strong>beforeLoginConfirmation</strong>: <a href="/docs/api/Back/type-aliases/BeforeLoginConfirmationFunction/"><code>BeforeLoginConfirmationFunction</code></a> | <a href="/docs/api/Back/type-aliases/BeforeLoginConfirmationFunction/"><code>BeforeLoginConfirmationFunction</code></a>[]</p>
@@ -126,18 +135,18 @@ In other words this setting is a reference to a table in database where users wi
 <p><code>optional</code> <strong>websocketSubscribed</strong>: (<code>topic</code>, <code>user</code>) =&gt; <code>void</code></p>
 </blockquote>
 <p>callback which will be called after user subscribes to websocket topic</p>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="parameters">Parameters<a href="#parameters" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters">​</a></h5>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="parameters-1">Parameters<a href="#parameters-1" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters">​</a></h5>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>topic</code></td><td><code>string</code></td><td>topic on which user subscribed</td></tr><tr><td><code>user</code></td><td><a href="/docs/api/Common/interfaces/AdminUser/"><code>AdminUser</code></a></td><td>user object</td></tr></tbody></table>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns">​</a></h5>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="returns-1">Returns<a href="#returns-1" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns">​</a></h5>
 <p><code>void</code></p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="websockettopicauth">websocketTopicAuth()?<a href="#websockettopicauth" class="hash-link" aria-label="Direct link to websocketTopicAuth()?" title="Direct link to websocketTopicAuth()?">​</a></h4>
 <blockquote>
 <p><code>optional</code> <strong>websocketTopicAuth</strong>: (<code>topic</code>, <code>user</code>) =&gt; <code>Promise</code>&lt;<code>boolean</code>&gt;</p>
 </blockquote>
 <p>Can be used to limit user access when subscribing from frontend to websocket topics.</p>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="parameters-1">Parameters<a href="#parameters-1" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters">​</a></h5>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="parameters-2">Parameters<a href="#parameters-2" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters">​</a></h5>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>topic</code></td><td><code>string</code></td><td>topic where user is trying to subscribe</td></tr><tr><td><code>user</code></td><td><a href="/docs/api/Common/interfaces/AdminUser/"><code>AdminUser</code></a></td><td>user object</td></tr></tbody></table>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="returns-1">Returns<a href="#returns-1" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns">​</a></h5>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="returns-2">Returns<a href="#returns-2" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns">​</a></h5>
 <p><code>Promise</code>&lt;<code>boolean</code>&gt;</p>
 <ul>
 <li>boolean, true if user is allowed to subscribe to this topic, false otherwise</li>

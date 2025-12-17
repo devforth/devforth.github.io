@@ -16,7 +16,7 @@
 <link rel="search" type="application/opensearchdescription+xml" title="Vue &amp; Node admin panel framework" href="/opensearch.xml">
 
 <script src="/scripts/adminforth.js"></script><link rel="stylesheet" href="/assets/css/styles.ba19fe4b.css">
-<script src="/assets/js/runtime~main.a0e5af68.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.c4219a9f.js" defer="defer"></script>
 <script src="/assets/js/main.e541a2d0.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -24,12 +24,12 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="methods">Methods<a href="#methods" class="hash-link" aria-label="Direct link to Methods" title="Direct link to Methods">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="processlogincallbacks">processLoginCallbacks()<a href="#processlogincallbacks" class="hash-link" aria-label="Direct link to processLoginCallbacks()" title="Direct link to processLoginCallbacks()">​</a></h3>
 <blockquote>
-<p><strong>processLoginCallbacks</strong>(<code>adminUser</code>, <code>toReturn</code>, <code>response</code>, <code>extra</code>): <code>Promise</code>&lt;<code>void</code>&gt;</p>
+<p><strong>processLoginCallbacks</strong>(<code>adminUser</code>, <code>toReturn</code>, <code>response</code>, <code>extra</code>, <code>rememberMeDays?</code>): <code>Promise</code>&lt;<code>void</code>&gt;</p>
 </blockquote>
 <p>Called by login endpoint to process login callbacks. Also might be called by plugins, to prevent action if user is not allowed to login.
 For example signup or login via google might want to check if user is allowed to login by calling this method.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="parameters">Parameters<a href="#parameters" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters">​</a></h4>
-<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>adminUser</code></td><td><a href="/docs/api/Common/interfaces/AdminUser/"><code>AdminUser</code></a></td><td>plugin/af pases current adminUser</td></tr><tr><td><code>toReturn</code></td><td>{ <code>allowedLogin</code>: <code>boolean</code>; <code>error?</code>: <code>string</code>; <code>redirectTo?</code>: <code>string</code>; }</td><td>this is an object which will get status of login process. If at least one callback returns error or redirectTo, login process will be stopped (future callbacks will not be called).</td></tr><tr><td><code>toReturn.allowedLogin</code></td><td><code>boolean</code></td><td>-</td></tr><tr><td><code>toReturn.error?</code></td><td><code>string</code></td><td>-</td></tr><tr><td><code>toReturn.redirectTo?</code></td><td><code>string</code></td><td>-</td></tr><tr><td><code>response</code></td><td><code>any</code></td><td>http response object</td></tr><tr><td><code>extra</code></td><td><a href="/docs/api/Back/interfaces/HttpExtra/"><code>HttpExtra</code></a></td><td>-</td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>adminUser</code></td><td><a href="/docs/api/Common/interfaces/AdminUser/"><code>AdminUser</code></a></td><td>plugin/af pases current adminUser</td></tr><tr><td><code>toReturn</code></td><td>{ <code>allowedLogin</code>: <code>boolean</code>; <code>error?</code>: <code>string</code>; <code>redirectTo?</code>: <code>string</code>; }</td><td>this is an object which will get status of login process. If at least one callback returns error or redirectTo, login process will be stopped (future callbacks will not be called).</td></tr><tr><td><code>toReturn.allowedLogin</code></td><td><code>boolean</code></td><td>-</td></tr><tr><td><code>toReturn.error?</code></td><td><code>string</code></td><td>-</td></tr><tr><td><code>toReturn.redirectTo?</code></td><td><code>string</code></td><td>-</td></tr><tr><td><code>response?</code></td><td><code>any</code></td><td>http response object</td></tr><tr><td><code>extra?</code></td><td><a href="/docs/api/Back/interfaces/HttpExtra/"><code>HttpExtra</code></a></td><td>-</td></tr><tr><td><code>rememberMeDays?</code></td><td><code>number</code></td><td>-</td></tr></tbody></table>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns">​</a></h4>
 <p><code>Promise</code>&lt;<code>void</code>&gt;</p>
 <hr>
