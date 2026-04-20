@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkadminforth=globalThis.webpackChunkadminforth||[]).push([[8913],{58913(h,a,i){i.r(a)}}]);
