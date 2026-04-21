@@ -18,7 +18,7 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.a57dc9c5.css">
-<script src="/assets/js/runtime~main.351d7b3a.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.3e665102.js" defer="defer"></script>
 <script src="/assets/js/main.8ee5eacc.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -135,6 +135,12 @@ Supported for AdminForthMenuTypes.RESOURCE only!</p>
 <blockquote>
 <p><code>optional</code> <strong>url</strong>: <code>string</code></p>
 </blockquote>
+<p>If set, menu item will be rendered as external link with this URL. Supported for AdminForthMenuTypes.PAGE and AdminForthMenuTypes.RESOURCE only!
+If URL starts with <code>http://</code> or <code>https://</code>, it will be treated as absolute URL. Otherwise, it will be treated as relative to admin panel base URL.
+Example of absolute URL:</p>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token plain">url</span><span class="token operator" style="color:#66d9ef">:</span><span class="token plain"> </span><span class="token string" style="color:#a6e22e">&#x27;https://google.com&#x27;</span><span class="token punctuation" style="color:#f8f8f2">,</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Example of relative URL:</p>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token plain">url</span><span class="token operator" style="color:#66d9ef">:</span><span class="token plain"> </span><span class="token string" style="color:#a6e22e">&#x27;/custom-page&#x27;</span><span class="token punctuation" style="color:#f8f8f2">,</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="visible">visible()?<a href="#visible" class="hash-link" aria-label="Direct link to visible()?" title="Direct link to visible()?">​</a></h3>
 <blockquote>
