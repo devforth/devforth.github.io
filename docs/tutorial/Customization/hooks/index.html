@@ -17,8 +17,8 @@
 
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
-<script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.d23c41aa.css">
-<script src="/assets/js/runtime~main.b6a8b39e.js" defer="defer"></script>
+<script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.d8c5f305.css">
+<script src="/assets/js/runtime~main.9fe32ea9.js" defer="defer"></script>
 <script src="/assets/js/main.d8ea58ce.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -55,9 +55,9 @@ For simplicity of course you can specify hook as scalar async function and not a
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="saving-data-on-edit-page">Saving data on edit page<a href="#saving-data-on-edit-page" class="hash-link" aria-label="Direct link to Saving data on edit page" title="Direct link to Saving data on edit page" translate="no">​</a></h2>
 <p>When user clicks the &quot;Save&quot; button on edit page, AdminForth makes a request to the backend to save the data.</p>
 <p><img decoding="async" loading="lazy" alt="Saving data on edit page" src="/assets/images/image-27-a518e352285420df9a5089f6de1c8910.png" width="2645" height="2362" class="img_ev3q"></p>
-<p>Practically you can use <code>edit.beforeSave</code> hook to modify the data or populate new fields before it is saved to the database.</p>
+<p>Practically you can use <code>hooks.edit.beforeSave</code> hook to modify the data or populate new fields before it is saved to the database.</p>
 <blockquote>
-<p>👆 Note: according to diagram you should understand that interrupting flow from <code>edit.afterSave</code> does not prevent data modification in DB</p>
+<p>👆 Note: according to diagram you should understand that interrupting flow from <code>hooks.edit.afterSave</code> does not prevent data modification in DB</p>
 </blockquote>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="saving-data-on-create-page">Saving data on create page<a href="#saving-data-on-create-page" class="hash-link" aria-label="Direct link to Saving data on create page" title="Direct link to Saving data on create page" translate="no">​</a></h2>
 <p>When user clicks the &quot;Save&quot; button from create page, AdminForth makes a request to the backend to create new record.</p>
