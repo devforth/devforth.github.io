@@ -1,0 +1,190 @@
+# Vue & Node admin panel framework
+
+> Launch robust back-office apps faster with AdminForth’s easy setup and customization
+
+This file contains links to documentation sections following the llmstxt.org standard.
+
+## Table of Contents
+
+- [Aggregates](https://adminforth.dev/docs/api/Back/classes/Aggregates.md): Helper to build aggregation rules for use with resource().aggregate()
+- [Filters](https://adminforth.dev/docs/api/Back/classes/Filters.md): > **new Filters**(): `Filters`
+- [GroupBy](https://adminforth.dev/docs/api/Back/classes/GroupBy.md): Helper to build grouping rules for use with resource().aggregate()
+- [Sorts](https://adminforth.dev/docs/api/Back/classes/Sorts.md): > **new Sorts**(): `Sorts`
+- [Back](https://adminforth.dev/docs/api/Back.md): | Class | Description |
+- [AdminForthActionInput](https://adminforth.dev/docs/api/Back/interfaces/AdminForthActionInput.md): > `optional` **action?**: (`params`) => `Promise`\<\{ `error?`: `string`; `message?`: `string`; `ok`: `boolean`; \}\>
+- [AdminForthBulkAction](https://adminforth.dev/docs/api/Back/interfaces/AdminForthBulkAction.md): - [`AdminForthBulkActionCommon`](../../Common/interfaces/AdminForthBulkActionCommon.md)
+- [AdminForthConfig](https://adminforth.dev/docs/api/Back/interfaces/AdminForthConfig.md): - `Omit`\<[`AdminForthInputConfig`](AdminForthInputConfig.md), `"customization"` \| `"resources"`\>
+- [AdminForthConfigCustomization](https://adminforth.dev/docs/api/Back/interfaces/AdminForthConfigCustomization.md): - `Omit`\<`AdminForthInputConfigCustomization`, `"loginPageInjections"` \| `"globalInjections"`\>
+- [AdminForthForeignResource](https://adminforth.dev/docs/api/Back/interfaces/AdminForthForeignResource.md): - [`AdminForthForeignResourceCommon`](../../Common/interfaces/AdminForthForeignResourceCommon.md)
+- [AdminForthInputConfig](https://adminforth.dev/docs/api/Back/interfaces/AdminForthInputConfig.md): Main configuration object for AdminForth
+- [AdminForthResource](https://adminforth.dev/docs/api/Back/interfaces/AdminForthResource.md): Resource describes one table or collection in database.
+- [AdminForthResourceColumn](https://adminforth.dev/docs/api/Back/interfaces/AdminForthResourceColumn.md): - `Omit`\<[`AdminForthResourceColumnCommon`](../../Common/interfaces/AdminForthResourceColumnCommon.md), `"showIn"` \| `"backendOnly"`\>
+- [AdminForthResourceColumnInput](https://adminforth.dev/docs/api/Back/interfaces/AdminForthResourceColumnInput.md): - `Omit`\<[`AdminForthResourceColumnInputCommon`](../../Common/interfaces/AdminForthResourceColumnInputCommon.md), `"showIn"` \| `"backendOnly"`\>
+- [AdminForthResourceInput](https://adminforth.dev/docs/api/Back/interfaces/AdminForthResourceInput.md): - `Omit`\<`NonNullable`\<[`AdminForthResourceInputCommon`](../../Common/interfaces/AdminForthResourceInputCommon.md)\>, `"columns"` \| `"hooks"` \|...
+- [HttpExtra](https://adminforth.dev/docs/api/Back/interfaces/HttpExtra.md): > **body**: `any`
+- [IAdminForth](https://adminforth.dev/docs/api/Back/interfaces/IAdminForth.md): > **activatedPlugins**: [`IAdminForthPlugin`](IAdminForthPlugin.md)[]
+- [IAdminForthAndOrFilter](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthAndOrFilter.md): > **operator**: [`AND`](../../Common/enumerations/AdminForthFilterOperators.md#enumeration-member-and) \| [`OR`](../../Common/enumerations/AdminFor...
+- [IAdminForthApiValidationError](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthApiValidationError.md): > **instancePath**: `string`
+- [IAdminForthApiValidationResult](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthApiValidationResult.md): > `optional` **errors?**: [`IAdminForthApiValidationError`](IAdminForthApiValidationError.md)[]
+- [IAdminForthAuth](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthAuth.md): > **getClientIp**(`headers`): `string`
+- [IAdminForthDataSourceConnector](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthDataSourceConnector.md): - [`IAdminForthDataSourceConnectorBase`](IAdminForthDataSourceConnectorBase.md)
+- [IAdminForthDataSourceConnectorBase](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthDataSourceConnectorBase.md): Interface that exposes methods to interact with AdminForth in standard way
+- [IAdminForthDataSourceConnectorConstructor](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthDataSourceConnectorConstructor.md): > **new IAdminForthDataSourceConnectorConstructor**(): [`IAdminForthDataSourceConnectorBase`](IAdminForthDataSourceConnectorBase.md)
+- [IAdminForthEndpointHandlerInput](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthEndpointHandlerInput.md): > **\_raw\_express\_req**: `Request`
+- [IAdminForthEndpointOptions](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthEndpointOptions.md): > `optional` **description?**: `string`
+- [IAdminForthExpressRouteSchema](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthExpressRouteSchema.md): > `optional` **description?**: `string`
+- [IAdminForthHttpResponse](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthHttpResponse.md): > **blobStream**: () => `Writable`
+- [IAdminForthPlugin](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthPlugin.md): > **activationOrder**: `number`
+- [IAdminForthRestAPI](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthRestAPI.md): > **processLoginCallbacks**(`adminUser`, `toReturn`, `response`, `extra`, `sessionDuration?`): `Promise`\<`void`\>
+- [IAdminForthSingleFilter](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthSingleFilter.md): > `optional` **field?**: `string`
+- [IAdminForthSort](https://adminforth.dev/docs/api/Back/interfaces/IAdminForthSort.md): > **direction**: [`AdminForthSortDirections`](../../Common/enumerations/AdminForthSortDirections.md)
+- [IAdminUserExpressRequest](https://adminforth.dev/docs/api/Back/interfaces/IAdminUserExpressRequest.md): - `Omit`\<`Request`, `"protocol"` \| `"param"` \| `"unshift"`\>
+- [IAggregationRule](https://adminforth.dev/docs/api/Back/interfaces/IAggregationRule.md): > `optional` **field?**: `string`
+- [ICodeInjector](https://adminforth.dev/docs/api/Back/interfaces/ICodeInjector.md): > **allComponentNames**: `Object`
+- [IConfigValidator](https://adminforth.dev/docs/api/Back/interfaces/IConfigValidator.md): > **postProcessAfterDiscover**(`resource`): `void`
+- [IExpressHttpServer](https://adminforth.dev/docs/api/Back/interfaces/IExpressHttpServer.md): Implement this interface to create custom HTTP server adapter for AdminForth.
+- [IGroupByDateTrunc](https://adminforth.dev/docs/api/Back/interfaces/IGroupByDateTrunc.md): > **field**: `string`
+- [IGroupByField](https://adminforth.dev/docs/api/Back/interfaces/IGroupByField.md): > **field**: `string`
+- [IHttpServer](https://adminforth.dev/docs/api/Back/interfaces/IHttpServer.md): Implement this interface to create custom HTTP server adapter for AdminForth.
+- [IOpenApiRegistry](https://adminforth.dev/docs/api/Back/interfaces/IOpenApiRegistry.md): > **registeredSchemas**: [`IRegisteredApiSchema`](IRegisteredApiSchema.md)[]
+- [IOperationalResource](https://adminforth.dev/docs/api/Back/interfaces/IOperationalResource.md): > **aggregate**: (`filter`, `aggregations`, `groupBy?`) => `Promise`\<`object`[]\>
+- [IRegisteredApiSchema](https://adminforth.dev/docs/api/Back/interfaces/IRegisteredApiSchema.md): > `optional` **description?**: `string`
+- [ITranslateExpressRequest](https://adminforth.dev/docs/api/Back/interfaces/ITranslateExpressRequest.md): - `Omit`\<`Request`, `"protocol"` \| `"param"` \| `"unshift"`\>
+- [ITranslateFunction()](https://adminforth.dev/docs/api/Back/interfaces/ITranslateFunction.md): > **ITranslateFunction**(`msg`, `category`, `params?`, `pluralizationNumber?`): `Promise`\<`string`\>
+- [IWebSocketBroker](https://adminforth.dev/docs/api/Back/interfaces/IWebSocketBroker.md): > **publish**: (`topic`, `data`, `filterUsers?`) => `void`
+- [IWebSocketClient](https://adminforth.dev/docs/api/Back/interfaces/IWebSocketClient.md): > **adminUser**: [`AdminUser`](../../Common/interfaces/AdminUser.md)
+- [PluginsCommonOptions](https://adminforth.dev/docs/api/Back/interfaces/PluginsCommonOptions.md): > `optional` **id?**: `string`
+- [ResourceOptions](https://adminforth.dev/docs/api/Back/interfaces/ResourceOptions.md): - `Omit`\<[`ResourceOptionsInput`](ResourceOptionsInput.md), `"allowedActions"`\>
+- [ResourceOptionsInput](https://adminforth.dev/docs/api/Back/interfaces/ResourceOptionsInput.md): General options for resource.
+- [AdminForthDataSource](https://adminforth.dev/docs/api/Back/type-aliases/AdminForthDataSource.md): > **AdminForthDataSource** = `object`
+- [AdminForthExpressSchemaInput](https://adminforth.dev/docs/api/Back/type-aliases/AdminForthExpressSchemaInput.md): > **AdminForthExpressSchemaInput** = `AnySchemaObject` \| `ZodType`
+- [AdminUserAuthorizeFunction](https://adminforth.dev/docs/api/Back/type-aliases/AdminUserAuthorizeFunction.md): > **AdminUserAuthorizeFunction** = (`params?`) => `Promise`\<\{ `allowed?`: `boolean`; `error?`: `string`; \}\>
+- [AfterCreateSaveFunction](https://adminforth.dev/docs/api/Back/type-aliases/AfterCreateSaveFunction.md): > **AfterCreateSaveFunction** = (`params`) => `Promise`\<\{ `error?`: `string`; `ok`: `boolean`; \}\>
+- [AfterDataSourceResponseFunction](https://adminforth.dev/docs/api/Back/type-aliases/AfterDataSourceResponseFunction.md): > **AfterDataSourceResponseFunction** = (`params`) => `Promise`\<\{ `error?`: `string`; `ok`: `boolean`; \}\>
+- [AfterDeleteSaveFunction](https://adminforth.dev/docs/api/Back/type-aliases/AfterDeleteSaveFunction.md): > **AfterDeleteSaveFunction** = (`params`) => `Promise`\<\{ `error?`: `string`; `ok`: `boolean`; \}\>
+- [AfterEditSaveFunction](https://adminforth.dev/docs/api/Back/type-aliases/AfterEditSaveFunction.md): > **AfterEditSaveFunction** = (`params`) => `Promise`\<\{ `error?`: `string`; `ok`: `boolean`; \}\>
+- [AllowedActionValue](https://adminforth.dev/docs/api/Back/type-aliases/AllowedActionValue.md): > **AllowedActionValue** = `boolean` \| ((`{adminUser, resource, meta, source, adminforth}`) => `Promise`\<`boolean` \| `string`\>)
+- [AllowedActions](https://adminforth.dev/docs/api/Back/type-aliases/AllowedActions.md): > **AllowedActions** = `{ [key in AllowedActionsEnum]: AllowedActionValue }`
+- [AllowedActionsInput](https://adminforth.dev/docs/api/Back/type-aliases/AllowedActionsInput.md): > **AllowedActionsInput** = `{ [key in AllowedActionsEnum]?: AllowedActionValue }` & `object`
+- [BackendOnlyInput](https://adminforth.dev/docs/api/Back/type-aliases/BackendOnlyInput.md): > **BackendOnlyInput** = `boolean` \| ((`p`) => `boolean` \| `Promise`\<`boolean`\>)
+- [BeforeCreateSaveFunction](https://adminforth.dev/docs/api/Back/type-aliases/BeforeCreateSaveFunction.md): > **BeforeCreateSaveFunction** = (`params`) => `Promise`\<\{ `error?`: `string` \| `null`; `newRecordId?`: `string`; `ok`: `boolean`; `redirectToRe...
+- [BeforeDataSourceRequestFunction](https://adminforth.dev/docs/api/Back/type-aliases/BeforeDataSourceRequestFunction.md): > **BeforeDataSourceRequestFunction** = (`params`) => `Promise`\<\{ `error?`: `string` \| `null`; `newRecordId?`: `string`; `ok`: `boolean`; `redir...
+- [BeforeDeleteSaveFunction](https://adminforth.dev/docs/api/Back/type-aliases/BeforeDeleteSaveFunction.md): > **BeforeDeleteSaveFunction** = (`params`) => `Promise`\<\{ `error?`: `string`; `ok`: `boolean`; \}\>
+- [BeforeEditSaveFunction](https://adminforth.dev/docs/api/Back/type-aliases/BeforeEditSaveFunction.md): > **BeforeEditSaveFunction** = (`params`) => `Promise`\<\{ `error?`: `string` \| `null`; `ok`: `boolean`; \}\>
+- [BeforeLoginConfirmationFunction](https://adminforth.dev/docs/api/Back/type-aliases/BeforeLoginConfirmationFunction.md): > **BeforeLoginConfirmationFunction** = (`params?`) => `Promise`\<\{ `body`: \{ `allowedLogin?`: `boolean`; `redirectTo?`: `string`; \}; `error?`: ...
+- [CreateResourceRecordParams](https://adminforth.dev/docs/api/Back/type-aliases/CreateResourceRecordParams.md): > **CreateResourceRecordParams** = `object`
+- [CreateResourceRecordResult](https://adminforth.dev/docs/api/Back/type-aliases/CreateResourceRecordResult.md): > **CreateResourceRecordResult** = `object`
+- [DeleteResourceRecordParams](https://adminforth.dev/docs/api/Back/type-aliases/DeleteResourceRecordParams.md): > **DeleteResourceRecordParams** = `object`
+- [DeleteResourceRecordResult](https://adminforth.dev/docs/api/Back/type-aliases/DeleteResourceRecordResult.md): > **DeleteResourceRecordResult** = `object`
+- [FDataFilter](https://adminforth.dev/docs/api/Back/type-aliases/FDataFilter.md): > **FDataFilter** = (`field`, `value`) => [`IAdminForthSingleFilter`](../interfaces/IAdminForthSingleFilter.md)
+- [FDataSort](https://adminforth.dev/docs/api/Back/type-aliases/FDataSort.md): > **FDataSort** = (`field`, `direction`) => [`IAdminForthSort`](../interfaces/IAdminForthSort.md)
+- [IGroupByRule](https://adminforth.dev/docs/api/Back/type-aliases/IGroupByRule.md): > **IGroupByRule** = [`IGroupByDateTrunc`](../interfaces/IGroupByDateTrunc.md) \| [`IGroupByField`](../interfaces/IGroupByField.md)
+- [ShowIn](https://adminforth.dev/docs/api/Back/type-aliases/ShowIn.md): > **ShowIn** = `{ [key in AdminForthResourcePages]: AllowedActionValue }`
+- [ShowInInput](https://adminforth.dev/docs/api/Back/type-aliases/ShowInInput.md): > **ShowInInput** = [`ShowInModernInput`](ShowInModernInput.md) \| [`ShowInLegacyInput`](ShowInLegacyInput.md)
+- [ShowInLegacyInput](https://adminforth.dev/docs/api/Back/type-aliases/ShowInLegacyInput.md): > **ShowInLegacyInput** = ([`AdminForthResourcePages`](../../Common/enumerations/AdminForthResourcePages.md) \| keyof *typeof* [`AdminForthResource...
+- [ShowInModernInput](https://adminforth.dev/docs/api/Back/type-aliases/ShowInModernInput.md): > **ShowInModernInput** = `{ [key in AdminForthResourcePages]?: AllowedActionValue }` & `object`
+- [UpdateResourceRecordParams](https://adminforth.dev/docs/api/Back/type-aliases/UpdateResourceRecordParams.md): > **UpdateResourceRecordParams** = \{ `adminUser`: [`AdminUser`](../../Common/interfaces/AdminUser.md); `extra?`: [`HttpExtra`](../interfaces/HttpE...
+- [UpdateResourceRecordResult](https://adminforth.dev/docs/api/Back/type-aliases/UpdateResourceRecordResult.md): > **UpdateResourceRecordResult** = `object`
+- [ActionCheckSource](https://adminforth.dev/docs/api/Common/enumerations/ActionCheckSource.md): | Enumeration Member | Value |
+- [AdminForthDataTypes](https://adminforth.dev/docs/api/Common/enumerations/AdminForthDataTypes.md): Types that are common for both frontend side (SPA) and backend side (server).
+- [AdminForthFilterOperators](https://adminforth.dev/docs/api/Common/enumerations/AdminForthFilterOperators.md): | Enumeration Member | Value |
+- [AdminForthMenuTypes](https://adminforth.dev/docs/api/Common/enumerations/AdminForthMenuTypes.md): | Enumeration Member | Value | Description |
+- [AdminForthResourcePages](https://adminforth.dev/docs/api/Common/enumerations/AdminForthResourcePages.md): | Enumeration Member | Value |
+- [AdminForthSortDirections](https://adminforth.dev/docs/api/Common/enumerations/AdminForthSortDirections.md): | Enumeration Member | Value |
+- [AllowedActionsEnum](https://adminforth.dev/docs/api/Common/enumerations/AllowedActionsEnum.md): | Enumeration Member | Value |
+- [Common](https://adminforth.dev/docs/api/Common.md): | Enumeration | Description |
+- [AdminForthActionFront](https://adminforth.dev/docs/api/Common/interfaces/AdminForthActionFront.md): - `Omit`\<[`AdminForthActionInput`](../../Back/interfaces/AdminForthActionInput.md), `"id"` \| `"bulkHandler"` \| `"action"` \| `"allowed"`\>
+- [AdminForthBulkActionCommon](https://adminforth.dev/docs/api/Common/interfaces/AdminForthBulkActionCommon.md): - [`AdminForthBulkAction`](../../Back/interfaces/AdminForthBulkAction.md)
+- [AdminForthBulkActionFront](https://adminforth.dev/docs/api/Common/interfaces/AdminForthBulkActionFront.md): - `Omit`\<[`AdminForthBulkActionCommon`](AdminForthBulkActionCommon.md), `"id"`\>
+- [AdminForthColumnEnumItem](https://adminforth.dev/docs/api/Common/interfaces/AdminForthColumnEnumItem.md): > **label**: `string`
+- [AdminForthComponentDeclarationFull](https://adminforth.dev/docs/api/Common/interfaces/AdminForthComponentDeclarationFull.md): > **file**: `string`
+- [AdminForthConfigForFrontend](https://adminforth.dev/docs/api/Common/interfaces/AdminForthConfigForFrontend.md): > `optional` **announcementBadge?**: [`AnnouncementBadgeResponse`](../type-aliases/AnnouncementBadgeResponse.md)
+- [AdminForthConfigMenuItem](https://adminforth.dev/docs/api/Common/interfaces/AdminForthConfigMenuItem.md): Menu item which displayed in the left sidebar of the admin panel.
+- [AdminForthFieldComponents](https://adminforth.dev/docs/api/Common/interfaces/AdminForthFieldComponents.md): > `optional` **create?**: [`AdminForthComponentDeclaration`](../type-aliases/AdminForthComponentDeclaration.md)
+- [AdminForthForeignResourceCommon](https://adminforth.dev/docs/api/Common/interfaces/AdminForthForeignResourceCommon.md): - [`AdminForthForeignResource`](../../Back/interfaces/AdminForthForeignResource.md)
+- [AdminForthOptionsForFrontend](https://adminforth.dev/docs/api/Common/interfaces/AdminForthOptionsForFrontend.md): - `Omit`\<`AdminforthOptionsCommon`, `"actions"` \| `"bulkActions"`\>
+- [AdminForthPolymorphicForeignResource](https://adminforth.dev/docs/api/Common/interfaces/AdminForthPolymorphicForeignResource.md): > **resourceId**: `string`
+- [AdminForthResourceColumnCommon](https://adminforth.dev/docs/api/Common/interfaces/AdminForthResourceColumnCommon.md): Column describes one field in the table or collection in database.
+- [AdminForthResourceColumnInputCommon](https://adminforth.dev/docs/api/Common/interfaces/AdminForthResourceColumnInputCommon.md): Column describes one field in the table or collection in database.
+- [AdminForthResourceCommon](https://adminforth.dev/docs/api/Common/interfaces/AdminForthResourceCommon.md): Resource describes one table or collection in database.
+- [AdminForthResourceFrontend](https://adminforth.dev/docs/api/Common/interfaces/AdminForthResourceFrontend.md): - `Omit`\<[`AdminForthResourceCommon`](AdminForthResourceCommon.md), `"options"` \| `"table"` \| `"dataSource"`\>
+- [AdminForthResourceInputCommon](https://adminforth.dev/docs/api/Common/interfaces/AdminForthResourceInputCommon.md): Resource describes one table or collection in database.
+- [AdminUser](https://adminforth.dev/docs/api/Common/interfaces/AdminUser.md): > **dbUser**: `any`
+- [ColumnMinMaxValue](https://adminforth.dev/docs/api/Common/interfaces/ColumnMinMaxValue.md): > \[`key`: `string`\]: `object`
+- [GetBaseConfigResponse](https://adminforth.dev/docs/api/Common/interfaces/GetBaseConfigResponse.md): > **adminUser**: [`AdminUser`](AdminUser.md)
+- [ResourceVeryShort](https://adminforth.dev/docs/api/Common/interfaces/ResourceVeryShort.md): > **label**: `string`
+- [UserData](https://adminforth.dev/docs/api/Common/interfaces/UserData.md): > \[`key`: `string`\]: `any`
+- [AdminForthComponentDeclaration](https://adminforth.dev/docs/api/Common/type-aliases/AdminForthComponentDeclaration.md): > **AdminForthComponentDeclaration** = [`AdminForthComponentDeclarationFull`](../interfaces/AdminForthComponentDeclarationFull.md) \| `string`
+- [AllowedActionsResolved](https://adminforth.dev/docs/api/Common/type-aliases/AllowedActionsResolved.md): > **AllowedActionsResolved** = `{ [key in AllowedActionsEnum]: boolean }`
+- [AnnouncementBadgeResponse](https://adminforth.dev/docs/api/Common/type-aliases/AnnouncementBadgeResponse.md): > **AnnouncementBadgeResponse** = `object`
+- [FieldGroup](https://adminforth.dev/docs/api/Common/type-aliases/FieldGroup.md): > **FieldGroup** = `object`
+- [FillOnCreateFunction](https://adminforth.dev/docs/api/Common/type-aliases/FillOnCreateFunction.md): > **FillOnCreateFunction** = (`params`) => `any`
+- [FilterParams](https://adminforth.dev/docs/api/Common/type-aliases/FilterParams.md): > **FilterParams** = `object`
+- [Predicate](https://adminforth.dev/docs/api/Common/type-aliases/Predicate.md): > **Predicate** = \{ `$and`: `Predicate`[]; \} \| \{ `$or`: `Predicate`[]; \} \| \{\[`key`: `string`\]: `any`; \}
+- [ShowInResolved](https://adminforth.dev/docs/api/Common/type-aliases/ShowInResolved.md): > **ShowInResolved** = `{ [key in AdminForthResourcePages]: boolean }`
+- [ValidationObject](https://adminforth.dev/docs/api/Common/type-aliases/ValidationObject.md): > **ValidationObject** = `object`
+- [suggestOnCreateFunction](https://adminforth.dev/docs/api/Common/type-aliases/suggestOnCreateFunction.md): > **suggestOnCreateFunction** = (`params`) => `string` \| `number` \| `boolean` \| `object`
+- [AlertVariant](https://adminforth.dev/docs/api/FrontendAPI/enumerations/AlertVariant.md): | Enumeration Member | Value |
+- [FrontendAPI](https://adminforth.dev/docs/api/FrontendAPI.md): | Enumeration | Description |
+- [FrontendAPIInterface](https://adminforth.dev/docs/api/FrontendAPI/interfaces/FrontendAPIInterface.md): > **list**: `object`
+- [AlertParams](https://adminforth.dev/docs/api/FrontendAPI/type-aliases/AlertParams.md): > **AlertParams** = `object`
+- [ConfirmParams](https://adminforth.dev/docs/api/FrontendAPI/type-aliases/ConfirmParams.md): > **ConfirmParams** = `object`
+- [TypeDoc API](https://adminforth.dev/docs/api.md): | Module | Description |
+- [Getting Started](https://adminforth.dev/docs/tutorial/gettingStarted.md): This page provides a step-by-step guide to quickly get started with AdminForth using the `adminforth` CLI.
+- [Hello world app without CLI](https://adminforth.dev/docs/tutorial/hello-world.md): While AdminForth CLI is the fastest way to create a new project, you can also create a new project manually.
+- [Glossary](https://adminforth.dev/docs/tutorial/glossary.md): A DataSource is a connection to one database. Datasources have id for references from resources and URL which follows the standard URI format. For ...
+- [Branding and Theming](https://adminforth.dev/docs/tutorial/Customization/branding.md): Learn how to customize the branding and theming of your AdminForth application.
+- [Custom record field rendering](https://adminforth.dev/docs/tutorial/Customization/customFieldRendering.md): Let's change how AdminForth renders the number of rooms in the 'list' and 'show' views.
+- [Virtual columns](https://adminforth.dev/docs/tutorial/Customization/virtualColumns.md): Sometimes you need to visualize custom columns which do not exist in database. 
+- [Hooks](https://adminforth.dev/docs/tutorial/Customization/hooks.md): Hooks are powerful tools to modify the data before it is saved to the database, execute something after data were saved or deleted, change the quer...
+- [Limiting actions access](https://adminforth.dev/docs/tutorial/Customization/limitingAccess.md): As you might have noticed in diagrams from [adminforth hooks](./04-hooks.md) section of this tutorial, AdminForth checks `options.allowedActions` b...
+- [Custom pages](https://adminforth.dev/docs/tutorial/Customization/customPages.md): Learn how to create custom pages in AdminForth.
+- [Alerts and confirmations](https://adminforth.dev/docs/tutorial/Customization/alert.md): When you are writing custom components or pages you might need to show alerts or confirmations to the user.
+- [Page Injections](https://adminforth.dev/docs/tutorial/Customization/pageInjections.md): In addition to ability to create custom pages and overwrite how fields are rendered, you can also inject custom components in standard AdminForth p...
+- [Actions](https://adminforth.dev/docs/tutorial/Customization/Actions.md): You might need to give admin users a feature to perform some action on a single record. Actions can be displayed as buttons in the list view and/or...
+- [Menu & Header](https://adminforth.dev/docs/tutorial/Customization/menuConfiguration.md): Adminforth uses [Iconify](https://iconify.design/) icons everywhere, including the menu.
+- [Data API](https://adminforth.dev/docs/tutorial/Customization/dataApi.md): AdminForth Data API is a minimal set of methods to manipulate the data in the database. 
+- [Security](https://adminforth.dev/docs/tutorial/Customization/security.md): Security and privacy if adminforth users is one of the most important aspects of AdminForth.
+- [Standard pages tuning](https://adminforth.dev/docs/tutorial/Customization/standardPagesTuning.md): In some cases, you may want to organize data fields into specific groups for better structure and clarity. For example, you could create a "Main In...
+- [AdminForth Components Library](https://adminforth.dev/docs/tutorial/Customization/afcl.md): AFCL is a set of components which you can use as build blocks in your AdminForth application. AFCL allows to keep the design consistent with minima...
+- [Websocket](https://adminforth.dev/docs/tutorial/Customization/websocket.md): AdminForth provide own build-in websocket interface which allows to stream some data to frontend from backend.
+- [Deploy in Docker](https://adminforth.dev/docs/tutorial/deploy.md): In general you can already run your `index.ts` file which we created in [Getting Started](/docs/tutorial/001-gettingStarted.md)
+- [Email Adapters](https://adminforth.dev/docs/tutorial/Adapters/email-adapters.md): Used to send emails.
+- [OAuth2 Adapters](https://adminforth.dev/docs/tutorial/Adapters/oauth2-adapters.md): Used to authenticate users via OAuth 2.0 providers.
+- [Image Generation Adapters](https://adminforth.dev/docs/tutorial/Adapters/image-generation-adapters.md): Used for image-generating AI tools.
+- [Storage Adapters](https://adminforth.dev/docs/tutorial/Adapters/storage-adapters.md): Used for storing files.
+- [AI Completion Adapters](https://adminforth.dev/docs/tutorial/Adapters/ai-completion-adapters.md): Used for AI-powered text completion.
+- [Image Analysis Adapters](https://adminforth.dev/docs/tutorial/Adapters/image-analysis-adapters.md): Used for AI-powered image analysis.
+- [Key-value Adapters](https://adminforth.dev/docs/tutorial/Adapters/key-value-adapters.md): Key-value adapters are used to store data in a key-value format. They provide a simple and efficient way to manage data where quick access to value...
+- [Captcha Adapters](https://adminforth.dev/docs/tutorial/Adapters/captcha-adapters.md): Used to add captcha to the login screen.
+- [CLI Commands](https://adminforth.dev/docs/tutorial/CLICommands.md): > **CLI Reference**: A list of all available CLI commands for AdminForth.
+- [Usage of the logger](https://adminforth.dev/docs/tutorial/UsageOfLogger.md): There are cases when you might want to debug an Adminforth app or add custom logs.
+- [Agent](https://adminforth.dev/docs/tutorial/Plugins/agent.md): > TODO: this plugin tutorial is in progress, some information might be missing, we are actively working on it now. If you have any questions regard...
+- [Two-Factor Authentication Plugin](https://adminforth.dev/docs/tutorial/08-Plugins/02-TwoFactorsAuth.md): The Two-Factor Authentication Plugin provides an additional layer of security to the application by requiring users to provide a second form of aut...
+- [Foreign Inline List](https://adminforth.dev/docs/tutorial/08-Plugins/03-ForeignInlineList.md): Foreign inline list plugin allows to display a list (table) of items from a foreign table in the show view.
+- [Audit Log](https://adminforth.dev/docs/tutorial/08-Plugins/04-AuditLog.md): AuditLog plugin allows to log all changes in the resources done from the admin panel. 
+- [Upload](https://adminforth.dev/docs/tutorial/08-Plugins/05-0-upload.md): This plugin allows you to upload files to Amazon S3 bucket.
+- [Upload API](https://adminforth.dev/docs/tutorial/08-Plugins/05-1-upload-api.md): The Upload plugin exposes an API for both backend-only uploads and direct browser uploads using presigned URLs. You can:
+- [Markdown](https://adminforth.dev/docs/tutorial/Plugins/markdown.md): The Markdown plugin enables Markdown support in AdminForth, allowing users to create and edit fields using Markdown syntax and save rich content in...
+- [Email Password Reset](https://adminforth.dev/docs/tutorial/Plugins/email-password-reset.md): Plugin allows to reset password for admin users who forgot their password by sending email with reset link signed with secured JWT token.
+- [Import Export](https://adminforth.dev/docs/tutorial/Plugins/import-export.md): Import-Export is a plugin that allows you to import and export data from and to a CSV file.
+- [Open Signup](https://adminforth.dev/docs/tutorial/Plugins/open-signup.md): Open Signup plugin allows users to register in adminforth by them-selfs without admin. 
+- [Internationalization (i18n)](https://adminforth.dev/docs/tutorial/Plugins/i18n.md): This plugin allows you translate your AdminForth application to multiple languages.
+- [OAuth Authentication](https://adminforth.dev/docs/tutorial/Plugins/oauth.md): The OAuth plugin enables OAuth2-based authentication in AdminForth, allowing users to sign in using their Google, GitHub, Facebook or other OAuth2 ...
+- [Inline Create](https://adminforth.dev/docs/tutorial/Plugins/inline-create.md): The Inline Create plugin enables inline create in AdminForth, allowing users to create records directly in the list view.
+- [List In-Place Edit](https://adminforth.dev/docs/tutorial/Plugins/list-in-place-edit.md): The List in Place Edit plugin allows you to edit records directly in the list view.
+- [Text Complete](https://adminforth.dev/docs/tutorial/Plugins/text-complete.md): This plugin allows you to auto-complete text and string fields using OpenAI GPT models via the Responses API.
+- [Foreign Inline Show](https://adminforth.dev/docs/tutorial/08-Plugins/15-ForeignInlineShow.md): Allows to add an inline show of connected foreign resource records on a adminforth show page.
+- [Email Invite](https://adminforth.dev/docs/tutorial/Plugins/email-invite.md): Email Invite plugin allows administrators to create users without setting passwords. Instead, the plugin sends an email invitation to the newly cre...
+- [Bulk AI Flow](https://adminforth.dev/docs/tutorial/Plugins/bulk-ai-flow.md): This plugin allows filling fields in multiple selected records based on data from other fields using LLM.
+- [Universal Search (Legacy)](https://adminforth.dev/docs/tutorial/08-Plugins/18-universal-filters.md): Ephemeral, debounced multi‑column search for List pages. A lightweight input (injected at `beforeActionButtons`) sends the term with each list requ...
+- [Login Captcha](https://adminforth.dev/docs/tutorial/Plugins/login-captcha.md): (this plugin experemental and not yet fully tested)
+- [User Soft Delete](https://adminforth.dev/docs/tutorial/Plugins/user-soft-delete.md): Allows to deactivate users accound without deleting it.
+- [Clone Row](https://adminforth.dev/docs/tutorial/Plugins/clone-row.md): Allows to create a copy of record quickly, by substituting default values to create form
+- [Many to Many](https://adminforth.dev/docs/tutorial/Plugins/many2many.md): This plugin lets you manage many-to-many relationships.
+- [Background Jobs](https://adminforth.dev/docs/tutorial/Plugins/background-jobs.md): First, install the plugin:
+- [Quick Filters](https://adminforth.dev/docs/tutorial/Plugins/quick-filters.md): First, install the plugin:
+- [Auto Remove Plugin](https://adminforth.dev/docs/tutorial/Plugins/auto-remove.md): This plugin removes records from resources based on **count-based** or **time-based** rules.
+- [Rich Editor](https://adminforth.dev/docs/tutorial/08-Plugins/26-RichEditor.md): Under the hood this plugin uses [Quill](https://quilljs.com/). Quill is a free, open source WYSIWYG editor built for the modern web.
+- [Plugin development guide](https://adminforth.dev/docs/tutorial/Advanced/plugin-development.md): Creating a plugin is a powerful way to extend AdminForth functionality.
+- [Working without direct database connection](https://adminforth.dev/docs/tutorial/Advanced/working-without-direct-database-connection.md): Out of the box, AdminForth connects directly to your database using one of the supported drivers (PostgreSQL, MySQL, ClickHouse, MongoDB) and execu...
