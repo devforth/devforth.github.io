@@ -1,0 +1,2103 @@
+# AdminForth Components Library
+
+> AFCL is a set of components which you can use as build blocks in your AdminForth application. AFCL allows to keep the design consistent with minimal efforts and build new pages faster. AFCL components follow styling standard and respect theme colors.
+
+# AdminForth Components Library
+
+AFCL is a set of components which you can use as build blocks in your AdminForth application. 
+AFCL allows to keep the design consistent with minimal efforts and build new pages faster.
+AFCL components follow styling standard and respect theme colors.
+
+Components set is always growing, so you can expect new components to be added in the future.
+
+## Button
+
+  
+```js
+import { Button } from '@/afcl'
+```
+
+```html
+<Button @click="doSmth" 
+    :loader="false" class="w-full">
+  Your button text
+</Button>
+
+<Button @click="doSmth" 
+    :loader="true" class="w-full mt-4">
+  Your button text
+</Button>
+```
+
+![AFCL Button](image-63.png)
+
+loader prop would show loader when it's true.
+
+## Button Group
+### With active button
+
+```ts
+import { IconGridSolid, IconUserCircleSolid } from '@iconify-prerendered/vue-flowbite';
+import { ButtonGroup } from '@/afcl'
+
+const activeButton = ref('')
+
+    ...
+
+<ButtonGroup v-model="activeButton">  
+  <template #button:Profile>
+    
+      <IconUserCircleSolid class="w-5 h-5 me-2"/>
+      Profile
+    
+  </template>
+  <template #button:Dashboard>
+    
+      <IconGridSolid class="w-5 h-5 me-2"/>
+      Board
+    
+  </template>
+</ButtonGroup>
+```
+
+![AFCL Button-group](ButtonGroup1.png)
+
+### With solid color
+
+```ts
+  import { ButtonGroup } from '@/afcl'
+  import { IconPlusOutline, IconCaretDownSolid } from '@iconify-prerendered/vue-flowbite';
+
+    ...
+
+    <ButtonGroup :solidColor="true">
+        <template #button:Profile>
+            
+                <IconPlusOutline class="w-5 h-5 me-2"/>
+                Add Local Passkey
+            
+        </template>
+        <template #button:Dropdown>
+            
+                <IconCaretDownSolid class="w-5 h-5"/>
+            
+        </template>
+    </ButtonGroup>
+
+```
+
+![AFCL Button-group](ButtonGroup2.png)
+
+## Link
+
+  
+
+```js
+import { Link } from '@/afcl'
+```
+
+```html
+<Link to="/login">Go to login</Link>
+```
+
+![AFCL Link](image-58.png)
+
+## LinkButton
+
+Looks like button but works like link. Uses `router-link` under the hood.
+
+  
+```js
+import { LinkButton } from '@/afcl'
+```
+
+```html
+<LinkButton to="/login">Go to login</LinkButton>
+```
+
+![AFCL LinkButton](image-59.png)
+
+## Select
+
+```js
+import { Select } from '@/afcl'
+
+const selected = ref(null)
+```
+
+### Single
+
+  
+```html
+<Select
+  class="w-full"
+  :options="[
+    {label: 'Last 7 days', value: '7'}, 
+    {label: 'Last 30 days', value: '30'}, 
+    {label: 'Last 90 days', value: '90'},
+    {label: 'None', value: null}
+  ]"
+  v-model="selected"
+></Select>
+```
+
+![AFCL Select](image-60.png)
+
+### Multiple
+
+  
+
+```js
+//diff-remove
+const selected = ref(null)
+//diff-add
+const selected = ref([])
+```
+
+```html
+<Select
+  class="w-full"
+  :options="[
+    {label: 'Last 7 days', value: '7'}, 
+    {label: 'Last 30 days', value: '30'}, 
+    {label: 'Last 90 days', value: '90'},
+    {label: 'None', value: null}
+  ]"
+  v-model="selected"
+//diff-add
+  multiple
+></Select>
+```
+  
+  
+  ![AFCL Select](image-61.png)
+  
+
+### Custom slots for item
+
+You can customize item and selected item using slots.
+
+  
+```html
+<Select
+  class="w-full"
+  :options="[
+    {label: 'Last 7 days', value: '7', records: 110},
+    {label: 'Last 30 days', value: '30', records: 320},
+    {label: 'Last 90 days', value: '90', records: 310},
+    {label: 'None', value: null}
+  ]"
+  v-model="selected"
+>
+//diff-add
+  <template #item="{option}">
+//diff-add
+    
+//diff-add
+      {{ option.label }}
+//diff-add
+      {{ option.records }} records
+//diff-add
+    
+//diff-add
+  </template>
+//diff-add
+  <template #selected-item="{option}">
+//diff-add
+    {{ option.label }} 💫
+//diff-add
+  </template>
+</Select>
+```
+  
+  
+    ![AFCL Select custom item](image-79.png)
+  
+
+### Extra item
+
+You might need to put some extra item at bottom of list
+
+  
+```html
+<Select
+  class="w-full"
+  :options="[
+    {label: 'Last 7 days', value: '7'}, 
+    {label: 'Last 30 days', value: '30'}, 
+    {label: 'Last 90 days', value: '90'},
+  ]"
+  v-model="selected"
+>
+//diff-add
+  <template #extra-item>
+//diff-add
+    <LinkButton to="/ranges">Manage ranges</LinkButton>
+//diff-add
+  </template>
+
+</Select>
+```
+  
+  
+   ![AFCL Select extra item](image-45.png)
+  
+
+### Add classes to the input directly
+
+You might need to put some extra item at bottom of list
+
+  
+```html
+<Select
+  class="w-full"
+  :options="[
+    {label: 'Last 7 days', value: '7'}, 
+    {label: 'Last 30 days', value: '30'}, 
+    {label: 'Last 90 days', value: '90'},
+  ]"
+  v-model="selected"
+  //diff-add
+  classesForInput="py-[4px] text-sm bg-white rounded"
+>
+
+</Select>
+```
+  
+  
+   ![AFCL Select](image-99.png)
+  
+
+## Input
+
+  
+```js
+import { Input } from '@/afcl'
+```
+
+```html
+<Input type="number" class="w-full">
+  <template #suffix>
+    USD
+  </template>
+</Input>
+```
+
+  
+  
+    ![AFCL Input](image-46.png)
+  
+
+  
+```js
+import { Input } from '@/afcl'
+import { IconSearchOutline } from '@iconify-prerendered/vue-flowbite'
+```
+
+```html
+<Input type="text" class="w-full">
+  <template #rightIcon>
+    <IconSearchOutline class="w-5 h-5 text-gray-400"/>
+  </template>
+</Input>
+```
+
+  
+  
+    ![AFCL Input](inputRightIcon.png)
+  
+
+## Textarea
+
+  
+```ts
+import { Textarea } from '@/afcl'
+```
+
+```ts
+    <Textarea
+      v-model="textAreaInput"
+      placeholder="Enter some text..."
+      class="w-64"
+    />
+```
+  
+  
+    ![AFCL Textarea](textarea.png)
+  
+
+## Tooltip
+  
+Wrap an element on which you would like to show a tooltip with the `Tooltip` component and add a `tooltip` slot to it.
+  
+
+  
+
+```js
+import { Tooltip } from '@/afcl'
+```
+
+```html
+<Tooltip>
+    
+        <IconCardSearch class="w-5 h-5 me-2"/>
+    
+
+    <template #tooltip>
+        Search for AdminForth
+    </template>
+</Tooltip>
+```
+  
+  
+    ![AFCL Tooltip](image-47.png)
+  
+
+## VerticalTabs
+
+Wrap each tab lable in tamplate with v-slot value `tab:TAB_ALIAS`. Wrap each tab content in tamplate with v-slot value `TAB_ALIAS`. `TAB_ALIAS` is a unique identifier for each tab here. Place all templates inside `VerticalTabs` component.
+
+```js
+import { VerticalTabs } from '@/afcl'
+import { IconGridSolid, IconUserCircleSolid } from '@iconify-prerendered/vue-flowbite';
+```
+
+  
+  ```html
+  <VerticalTabs>
+    <template #tab:Profile>
+      <IconUserCircleSolid class="w-5 h-5 me-2"/>
+      Profile
+    </template>
+    <template #tab:Dashboard>
+      <IconGridSolid class="w-5 h-5 me-2"/>
+      Board
+    </template>
+    <template #Profile>
+      Profile Tab
+      This is some placeholder content the Profile tab's associated content
+    </template>
+    <template #Dashboard>
+      Dashboard Tab Content 
+    </template>
+  </VerticalTabs>
+  ```
+  
+  
+  ![AFCL VerticalTabs](image-77.png)
+  
+
+## Checkbox
+
+  
+
+```ts
+import { Checkbox } from '@/afcl'
+const enable = ref(false)
+```
+
+```html
+<Checkbox v-model="enable">
+  Enable
+</Checkbox>
+```
+  
+  
+  ![AFCL Checkbox](image-62.png)
+  
+
+## Card 
+
+### Custom card
+If you need custom card, you can make it without 
+
+```ts
+<Card>
+  Total Profit
+  $100,000
+</Card>
+```
+
+![AFCL Checkbox](Card3.png)
+
+### Standart card
+
+```ts
+import { Card } from '@/afcl'
+
+  ...
+
+  <Card
+    title="This is a large card"
+    description="Description text for large card. This is a large card. Very nice card. Big one. You can put here any content you want."
+  >
+  </Card>
+
+  <Card
+    size="md"
+    title="This is a medium card"
+    description="Description text for medium card. This is a medium card. Very nice card. Big one. You can put here any content you want."
+  >
+  </Card>
+
+  <Card
+    size="sm"
+    title="This is a small card"
+    description="Description text for small card. This is a small card. Very nice card. Big one. You can put here any content you want."
+  >
+  </Card>
+```
+![AFCL Checkbox](Card2.png)
+
+## Toggle
+
+  
+
+```ts
+import Toggle from '@/afcl/Toggle.vue';
+```
+
+```html
+  <Toggle 
+    :disabled="false" 
+    @update:modelValue="toggleSwitchHandler"> 
+    Click me 
+  </Toggle>
+```
+  
+  
+  ![AFCL Checkbox](image-94.png)
+  
+
+## Dialog (Pop-up)
+
+  
+
+```ts
+import { Dialog } from '@/afcl';
+import { Button } from '@/afcl';
+```
+
+```html
+<Dialog class="w-96">
+  <template #trigger>
+    <Button>Dialog Toggle</Button>
+  </template>
+
+  
+    This is the first paragraph of dialog content.
+    And this is the second paragraph.
+  
+</Dialog>
+```
+  
+  
+  ![AFCL Dialog](image-87.png)
+  
+
+### Header
+You can add header to the dialog by using header prop.
+
+  
+
+```html
+//diff-remove
+<Dialog class="w-96">
+//diff-add
+<Dialog
+//diff-add
+  class="w-96"
+//diff-add
+  header="Dialog Header"
+//diff-add
+>
+  <template #trigger>
+    <Button>Dialog Toggle</Button>
+  </template>
+
+  
+    This is the first paragraph of dialog content.
+    And this is the second paragraph.
+  
+</Dialog>
+```
+  
+  
+  ![AFCL Dialog](image-88.png)
+  
+
+If you want to remove close button in header, you can add `:header-close-button="false"` prop to `<Dialog>`.
+
+### Buttons
+By default dialog will have just one "Close" button. If you want to change that, you can set `buttons` to a desirable array.
+
+  
+  
+```html
+<Dialog
+  class="w-96"
+  header="Dialog Header"
+//diff-add
+  :buttons="[
+//diff-add
+    { label: 'Save', onclick: (dialog) => { doSave(); dialog.hide(); } },
+//diff-add
+    { label: 'Close', onclick: (dialog) => dialog.hide() },
+//diff-add
+  ]"
+>
+  <template #trigger>
+    <Button>Dialog Toggle</Button>
+  </template>
+
+  
+    This is the first paragraph of dialog content.
+    And this is the second paragraph.
+  
+</Dialog>
+```
+  
+  
+  ![AFCL Dialog](image-89.png)
+  
+
+Dialog component will render each button using afcl `Button` component. You can pass any props to those buttons by adding `options` field to a button item.
+
+  
+  
+```html
+<Dialog
+  class="w-96"
+  header="Dialog Header"
+  :buttons="[
+//diff-remove
+    { label: 'Save', onclick: (dialog) => { doSave(); dialog.hide(); } },
+//diff-add
+    {
+//diff-add
+      label: 'Save',
+//diff-add
+      options: {
+//diff-add
+        disabled: savingIsAllowed,
+//diff-add
+      },
+//diff-add
+      onclick: (dialog) => { doSave(); dialog.hide(); },
+//diff-add
+    },
+    { label: 'Close', onclick: (dialog) => dialog.hide() },
+  ]"
+>
+  <template #trigger>
+    <Button>Dialog Toggle</Button>
+  </template>
+
+  
+    This is the first paragraph of dialog content.
+    And this is the second paragraph.
+  
+</Dialog>
+```
+  
+  
+  ![AFCL Dialog](image-90.png)
+  
+
+### Dialog persistence
+Default behavior of the Dialog component will allow user to close it by just clicking outside. You can prevent that by setting `clickToCloseOutside` to `false`.
+
+  
+  
+```html
+<Dialog
+  class="w-96"
+  header="Dialog Header"
+  :buttons="[
+    {
+      label: 'Save',
+      options: {
+        disabled: savingIsAllowed,
+      },
+      onclick: (dialog) => { doSave(); dialog.hide(); },
+    },
+    { label: 'Close', onclick: (dialog) => dialog.hide() },
+  ]"
+//diff-add
+  :click-to-close-outside="false"
+>
+  <template #trigger>
+    <Button>Dialog Toggle</Button>
+  </template>
+
+  
+    This is the first paragraph of dialog content.
+    And this is the second paragraph.
+  
+</Dialog>
+```
+  
+  
+  
+
+### Programatically open or close dialog
+
+If you want to control dialog programmatically, you can use `ref` to get a reference to the dialog component. 
+
+```html
+<Dialog ref="confirmDialog" class="w-96">
+  
+    The dialog content goes here.
+  
+</Dialog>
+```
+
+Now you can open and close dialog by calling `open` and `close` methods.
+
+```ts
+
+const confirmDialog = ref(null);
+
+const openDialog = () => {
+  confirmDialog.value.open();
+}
+
+const closeDialog = () => {
+  confirmDialog.value.close();
+}
+```
+
+### Before open/close dialog handlers
+If you want to run custom logic before the dialog opens or closes by passing callback props:
+
+```ts
+<Dialog 
+  class="w-96" 
+  :beforeCloseFunction="onBeforeOpen" 
+  :beforeOpenFunction="onBeforeClose"
+>
+  <template #trigger>
+    <Button>Dialog Toggle</Button>
+  </template>
+
+  
+    This is the first paragraph of dialog content.
+    And this is the second paragraph.
+  
+</Dialog>
+```
+Now you can pass before open/close functions:
+```ts
+const counter = ref(0);
+
+function onBeforeOpen() {
+  counter.value++;
+  console.log(`custom open function called ${counter.value}`);
+}
+
+function onBeforeClose() {
+  counter.value++;
+  console.log(`custom close function called ${counter.value}`);
+}
+```
+
+### Ask for extra confirmation before close
+
+If you want dialog to ask user for conformation when he tryes to close dialog, you can add: 
+
+```ts
+<Dialog 
+  ref="confirmDialog" 
+  class="w-96"
+  //diff-add
+  :closable="false"
+  //diff-add
+  :askForCloseConfirmation="true"
+  //diff-add
+  closeConfirmationText='Are you sure you want to close this dialog?',
+>
+  
+    The dialog content goes here.
+  
+</Dialog>
+```
+
+## Dropzone
+
+```ts
+import { Ref } from 'vue'
+import { Dropzone } from '@/afcl'
+
+const files: Ref<File[]> = ref([])
+
+watch(files, (files) => {
+  console.log('files selected', files);
+  setTimeout(() => {
+    // clear
+    files.length = 0;
+  }, 5000);
+})
+```
+
+  
+
+```html
+<Dropzone
+  :extensions="['.jpg', '.jpeg', '.png']"
+  :maxSizeBytes="1024 * 1024 * 2"
+  :multiple="false"
+  v-model="files"
+/>
+
+```
+  
+  
+    ![AFCL Dropzone](image-50.png)
+  
+
+## Table
+
+  
+
+```ts
+import { Table } from '@/afcl'
+```
+
+```html
+
+```
+  
+  
+    ![AFCL Table](image-51.png)
+  
+
+### No even highlights
+
+  
+
+```html
+
+```
+  
+  
+    ![AFCL Table withut even highlights](image-52.png)
+  
+
+### Custom cell
+
+```ts
+import { Table } from '@/afcl'
+const isoFlagToEmoji = (iso) => iso.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397))
+```
+
+  
+
+```html
+
+//diff-add
+  <template #cell:country="{item}">
+//diff-add
+    {{ isoFlagToEmoji(item.country) }}
+//diff-add
+  </template>
+
+```
+  
+  
+    ![AFCL Table with custom cell](image-78.png)
+  
+
+### Custom header
+
+  
+```html
+        
+//diff-add
+<template #header:country>
+//diff-add
+    🌍 Geo
+//diff-add
+</template>
+
+```
+  
+  
+    ![AFCL Table with custom header](image-55.png)
+  
+
+### Pagination
+
+Table provides front-end side pagination. You can set `pageSize` (default is 10) to set how many rows to show per page.
+If there is less then `pageSize` rows, pagination will not be shown.
+
+  
+
+```html
+
+```
+  
+  
+  ![AFCL Table with pagination](image-56.png)
+  
+
+### Server-side pagination
+
+To load pages dynamically, simply pass async callback to data:
+
+```ts
+async function loadPageData(data) {  
+  const { offset, limit } = data;
+  // in real app do await callAdminForthApi or await fetch to get date, use offset and limit value to slice data
+  return {
+    data: [
+      { name: 'John', age: offset, country: 'US' },
+      { name: 'Rick', age: offset+1, country: 'CA' },
+      { name: 'Alice', age: offset+2, country: 'BR' },
+    ],
+    total: 3 // should return total amount of records in database
+  }
+}
+
+ 
+
+```
+> 👆 The page size is used as the limit for pagination.
+
+### Sorting
+
+Table supports column sorting out of the box.
+
+- By default, columns are NOT sortable. Enable sorting per column with `sortable: true`.
+- Clicking a sortable header cycles sorting in a tri-state order:
+  - none → ascending → descending → none
+  - When it returns to "none", the sorting is cleared.
+
+Basic example (client-side sorting when `data` is an array):
+```html
+
+```
+
+You can also predefine a default sort:
+
+```html
+
+```
+
+Notes:
+- Client-side sorting supports nested field paths using dot-notation, e.g. `user.name`.
+- When a column is not currently sorted, a subtle double-arrow icon is shown; arrows switch up/down for ascending/descending.
+
+#### Nested field path sorting
+
+You can sort by nested properties of objects in rows using dot-notation in `fieldName`.
+
+Example:
+
+```html
+
+```
+
+Behavior details:
+- The path is split on dots and resolved step by step: `user.address.city`.
+- Missing or `null` nested values are pushed to the bottom for ascending order (and top for descending) because `null/undefined` are treated as greater than defined values in asc ordering.
+- Works the same for client-side sorting and for server-side loaders: when using an async loader the same `sortField` (e.g. `user.address.city`) is passed so you can implement equivalent ordering on the backend.
+- Date objects at nested paths are detected and compared chronologically.
+- Numeric comparison is stable for mixed numeric strings via Intl.Collator with numeric option.
+
+Edge cases to consider in your own data:
+- Deeply missing branches like `user.profile.settings.locale` simply result in `undefined` and will follow the null ordering logic above.
+- Arrays are not traversed; if you need array-specific sorting you should pre-normalize data into scalar fields before passing to the table.
+
+### Server-side sorting
+
+When you provide an async function to `data`, the table will pass the current sort along with pagination params.
+
+Signature of the loader receives:
+
+```ts
+type LoaderArgs = {
+  offset: number;
+  limit: number;
+  sortField?: string; // undefined when unsorted
+  sortDirection?: 'asc' | 'desc'; // only when sortField is set
+}
+```
+
+Example using `fetch`:
+
+```ts
+async function loadPageData({ offset, limit, sortField, sortDirection }) {
+  const url = new URL('/api/products', window.location.origin);
+  url.searchParams.set('offset', String(offset));
+  url.searchParams.set('limit', String(limit));
+  if (sortField) url.searchParams.set('sortField', sortField);
+  if (sortField && sortDirection) url.searchParams.set('sortDirection', sortDirection);
+
+  const { data, total } = callAdminForthApi('getProducts', {limit, offset, sortField, sortDirection});
+  return { data, total };
+}
+
+```
+
+Events you can listen to:
+
+```html
+ currentSortField = f"
+  @update:sortDirection="(d) => currentSortDirection = d"
+  @sort-change="({ field, direction }) => console.log('sort changed', field, direction)"
+/>
+```
+
+### Table loading states
+
+For tables where you load data externally and pass them to `data` prop as array (including case with front-end pagination) you might want to show skeleton loaders in table externaly using `isLoading` props.
+
+For tables with server-side paganation which use async function in data prop you can listen for `@update:tableLoading` to get table internal loading state, in other words this event will let you know when server side function started and finished execution, so you might use it e.g. to disable some external filter buttons and so on.
+
+```ts
+import { Table, Button } from "@/afcl"
+const isTableLoading = ref(false);
+const tableState = ref("loading");
+
+  ...
+
+   loading === true ? tableState = 'loading' : tableState = 'loaded'"
+  >
+  
+
+   Table state: {{ tableState }} 
+
+  <Button @click="isTableLoading.value=!isTableLoading.value"> Toggle loading state</Button>
+```
+  ![AFCL Table](TableLoading.png)
+
+### Making header and pagination sticky
+
+If you want to make table header or pagination, you can add `makeHeaderSticky`, `makePaginationSticky`
+
+```
+  
+```
+
+### Don't block pagination on loading
+
+Sometimes you might want to allow user switch between pages, even if old request wasn't finished. For these porpuses you can use `blockPaginationOnLoading` and `abortSignal` in data callback:
+```ts
+ 
+
+...
+
+async function loadPageData(data, abortSignal) {  
+  const { offset, limit } = data;
+  // in real app do await callAdminForthApi or await fetch to get date, use offset and limit value to slice data
+  await new Promise(resolve => setTimeout(resolve, offset === 500)) // simulate network delay
+  if (abortSignal.abort) return; // since result won't be displayed, we stop computing
+  
+  return {
+    data: [
+      { name: 'John', age: offset, country: 'US' },
+      { name: 'Rick', age: offset+1, country: 'CA' },
+      { name: 'Alice', age: offset+2, country: 'BR' },
+    ],
+    total: 30 // should return total amount of records in database
+  }
+}
+
+```
+
+## ProgressBar
+
+  
+  ```html
+   <ProgressBar
+    :currentValue="2600"
+    :minValue="0"
+    :maxValue="5000"
+    />
+  ```
+  
+  
+  ![ProgressBar](image-81.png)
+  
+
+### Custom labels
+
+Custom labels in the ProgressBar component allow you to customize the text displayed on the left and right sides of the progress bar. You can also customize the format of the value and the progress text.
+
+  
+  ```html
+  <ProgressBar
+    :currentValue="1070"
+    :minValue="0"
+    :maxValue="5000"
+    :leftLabel="'Level 2'"
+    :rightLabel="'Level 3'"
+    :formatter="(value: number) => `${value} points`"
+    :progressFormatter="(value: number, percentage: number) => `${value} done`"
+  />
+  ```
+  
+  
+  ![ProgressBar](image-80.png)
+  
+
+### Show progress animation
+
+  
+  ```html
+   <ProgressBar
+    :currentValue="2600"
+    :minValue="0"
+    :maxValue="5000"
+    showAnimation
+    />
+  ```
+  
+  
+  ![ProgressBar](image-96.png)
+  
+
+### Change height of the progress bar
+
+  
+  ```html
+   <ProgressBar
+    :currentValue="2600"
+    :minValue="0"
+    :maxValue="5000"
+    height='6'
+    />
+  ```
+  
+  
+  ![ProgressBar](image-97.png)
+  
+
+## Skeleton
+
+Skeleton component is used to display a loading state for a component. You can use prop `type` to set the type of the skeleton.
+
+  
+  ```html
+    
+      <Skeleton class="w-full h-4" />
+      <Skeleton class="w-full h-2" />
+      <Skeleton class="w-full h-2" />
+      <Skeleton class="w-full h-2" />
+      <Skeleton class="w-full h-2" />
+    
+  ```
+  
+  
+  ![Spinner](image-82.png)
+  
+
+### Skeleton image
+
+  
+  ```html
+  <Skeleton type="image" class="w-full h-full" />
+  ```
+  
+  
+  ![Skeleton type](image-83.png)
+  
+
+### Skeleton input
+
+  
+  ```html
+    
+      <Skeleton type="input" class="w-full h-4" />
+      <Skeleton type="input" class="w-full h-2" />
+      <Skeleton type="input" class="w-full h-2" />
+      <Skeleton type="input" class="w-full h-2" />
+      <Skeleton type="input" class="w-full h-2" />
+    
+  ```
+  
+  
+  ![Spinner](image-100.png)
+  
+
+### Skeleton video
+
+  
+  ```html
+  <Skeleton type="video" class="w-full h-full" />
+  ```
+  
+  
+  ![Skeleton type video](image-84.png)
+  
+
+### Skeleton avatar
+
+  
+  ```html
+  <Skeleton type="avatar" class="w-20 h-20" />
+  ```
+  
+  
+  ![Skeleton avatar](image-85.png)
+  
+
+## Spinner
+
+Spinner component is used to display a loading state for a component.
+
+  
+  ```html
+  <Spinner class="w-10 h-10" />
+  ```
+  
+  
+  ![Spinner](image-86.png)
+  
+
+## Country Flag
+
+The Country Flag component displays national flags using ISO 3166-1 alpha-2 country codes.
+
+  
+  ```html
+  <CountryFlag countryCode="ua" />
+  ```
+  
+  
+  ![Country Flag](image-92.png)
+  
+
+## Bar Chart
+
+Under the hood AdminForth uses MIT-licensed [ApexCharts](https://apexcharts.com/). It has very rich variety of options, you can pass
+any of native settings to `options` prop. Here we will only show some basics.
+
+  
+```html
+<BarChart
+  :data="[
+    { count: 1, x: '02 Jun 2025'}, 
+    { count: 5, x: '03 Jun 2025'}, 
+    { count: 3, x: '04 Jun 2025'}, 
+    { count: 4, x: '05 Jun 2025'}, 
+    { count: 2, x: '06 Jun 2025'}, 
+  ]"
+  :series="[{
+    name: $t('Added apartments'),
+    fieldName: 'count',
+    color: '#4E79A7',
+  }]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+  }"
+/>
+```
+  
+  
+    ![Bar chart](image-64.png)
+  
+
+### Y-axis labels
+
+  
+```html
+<BarChart
+  :data="[
+    { count: 1, x: '02 Jun 2025'}, 
+    { count: 5, x: '03 Jun 2025'}, 
+    { count: 3, x: '04 Jun 2025'}, 
+    { count: 4, x: '05 Jun 2025'}, 
+    { count: 2, x: '06 Jun 2025'}, 
+  ]"
+  :series="[{
+    name: $t('Added apartments'),
+    fieldName: 'count',
+    color: '#4E79A7',
+  }]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+//diff-add
+    yaxis: {
+//diff-add
+      stepSize: 1, // needed if your data is integer
+//diff-add
+      labels: {
+//diff-add
+        show: true,
+//diff-add
+        style: {
+//diff-add
+          fontFamily: 'Inter, sans-serif',
+//diff-add
+          cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+//diff-add
+        }
+//diff-add
+      }
+//diff-add
+    }
+  }"
+/>
+```
+  
+  
+  ![BarChart y Axis labels](image-65.png)
+  
+
+### X-axis labels and formatting labels
+
+  
+```html
+<BarChart
+  :data="[
+    { count: 1, x: '02 Jun 2025'}, 
+    { count: 5, x: '03 Jun 2025'}, 
+    { count: 3, x: '04 Jun 2025'}, 
+    { count: 4, x: '05 Jun 2025'}, 
+    { count: 2, x: '06 Jun 2025'}, 
+  ]"
+  :series="[{
+    name: $t('Added apartments'),
+    fieldName: 'count',
+    color: '#4E79A7',
+  }]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+//diff-add
+    xaxis: {
+//diff-add
+      labels: {
+//diff-add
+        show: true,
+//diff-add
+        formatter: function (value) {
+//diff-add
+          return dayjs(value).format('DD MMM');
+//diff-add
+        },
+//diff-add
+        style: {
+//diff-add
+          fontFamily: 'Inter, sans-serif',
+//diff-add
+          cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+//diff-add
+        }
+//diff-add
+      }
+//diff-add
+    }
+  }"
+/>
+```
+  
+  
+  ![BarChart x Axis labels](image-66.png)
+  
+
+### Grid
+
+  
+```html
+<BarChart
+  :data="[
+    { count: 1, x: '02 Jun 2025'}, 
+    { count: 5, x: '03 Jun 2025'}, 
+    { count: 3, x: '04 Jun 2025'}, 
+    { count: 4, x: '05 Jun 2025'}, 
+    { count: 2, x: '06 Jun 2025'}, 
+  ]"
+  :series="[{
+    name: $t('Added apartments'),
+    fieldName: 'count',
+    color: '#4E79A7',
+  }]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+//diff-add
+    grid: {
+//diff-add
+      show: true,
+//diff-add
+      borderColor: 'rgba(0, 0, 0, 0.1)',
+//diff-add
+      strokeDashArray: 4, 
+//diff-add
+      position: 'back',
+//diff-add
+      xaxis: {
+//diff-add
+        lines: {
+//diff-add
+          show: true
+//diff-add
+        }
+//diff-add
+      },
+//diff-add
+      yaxis: {  
+//diff-add
+        lines: {
+//diff-add
+          show: true
+//diff-add
+        }
+//diff-add
+      }
+//diff-add
+    }
+  }"
+/>
+```
+  
+  
+  ![BarChart grid](image-67.png)
+  
+
+### Data labels
+
+  
+```html
+<BarChart
+  :data="[
+    { count: 1, x: '02 Jun 2025'}, 
+    { count: 5, x: '03 Jun 2025'}, 
+    { count: 3, x: '04 Jun 2025'}, 
+    { count: 4, x: '05 Jun 2025'}, 
+    { count: 2, x: '06 Jun 2025'}, 
+  ]"
+  :series="[{
+    name: $t('Added apartments'),
+    fieldName: 'count',
+    color: '#4E79A7',
+  }]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+//diff-add
+    dataLabels: {
+//diff-add
+      formatter: function (value) {
+//diff-add
+        return `⬆️ ${value}`;
+//diff-add
+      },
+//diff-add
+      enabled: true,
+//diff-add
+      style: {
+//diff-add
+        fontSize: '12px',
+//diff-add
+        fontFamily: 'Inter, sans-serif',
+//diff-add
+      }
+//diff-add
+    }
+  }"
+/>
+```
+  
+  
+  ![BarChart data labels](image-36.png)
+  
+
+### Stacked bars and legend
+
+  
+```html
+<BarChart
+  :data="[
+    { countCars: 2, countBikes: 3, x: '02 Jun 2025'}, 
+    { countCars: 5, countBikes: 1, x: '03 Jun 2025'}, 
+    { countCars: 3, countBikes: 4, x: '04 Jun 2025'}, 
+    { countCars: 4, countBikes: 2, x: '05 Jun 2025'}, 
+    { countCars: 2, countBikes: 3, x: '06 Jun 2025'},
+  ]"
+  :series="[
+    {
+      name: $t('Cars'),
+      fieldName: 'countCars',
+      color: '#4E79A7',
+    },
+    {
+      name: $t('Bikes'),
+      fieldName: 'countBikes',
+      color: '#F28E2B',
+    }
+  ]"
+  :options="{
+    chart: {
+      height: 250,
+//diff-add
+      stacked: true,
+    },
+//diff-add
+    legend: {
+//diff-add
+      show: true,
+//diff-add
+    },
+  }"
+/>
+```
+  
+  
+  ![BarChart stacked bars](image-37.png)
+  
+
+### Horizontal bars
+
+  
+```html
+<BarChart
+  :data="[
+    { countCars: 2, countBikes: 3, x: '02 Jun 2025'}, 
+    { countCars: 5, countBikes: 1, x: '03 Jun 2025'}, 
+    { countCars: 3, countBikes: 4, x: '04 Jun 2025'}, 
+    { countCars: 4, countBikes: 2, x: '05 Jun 2025'}, 
+    { countCars: 2, countBikes: 3, x: '06 Jun 2025'},
+  ]"
+  :series="[
+    {
+      name: $t('Cars'),
+      fieldName: 'countCars',
+      color: '#4E79A7',
+    },
+    {
+      name: $t('Bikes'),
+      fieldName: 'countBikes',
+      color: '#F28E2B',
+    }
+  ]"
+  :options="{
+    chart: {
+      height: 250,
+      type: 'bar',
+    },
+//diff-add
+    plotOptions: {
+//diff-add
+      bar: {
+//diff-add
+        horizontal: true,
+//diff-add
+      }
+//diff-add
+    },
+    legend: {
+      show: true,
+    },
+  }"
+/>
+```
+  
+  
+![BarChart horizontal bars](image-38.png)
+  
+
+## Area Chart
+
+```ts
+import { AreaChart } from '@/afcl'
+```
+
+  
+```html
+<AreaChart
+  :data="[
+    { count: 1, x: '02 Jun 2025'}, 
+    { count: 5, x: '03 Jun 2025'}, 
+    { count: 3, x: '04 Jun 2025'}, 
+    { count: 4, x: '05 Jun 2025'}, 
+    { count: 2, x: '06 Jun 2025'}, 
+  ]"
+  :series="[{
+    name: $t('Added apartments'),
+    fieldName: 'count',
+    color: '#4E79A7',
+  }]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+  }"
+/>
+
+  
+  ![AreaChart](image-68.png)
+  
+
+### Multiple lines
+
+  
+```html
+<AreaChart
+  :data="[
+    { countCars: 2, countBikes: 3, x: '02 Jun 2025'}, 
+    { countCars: 5, countBikes: 1, x: '03 Jun 2025'}, 
+    { countCars: 3, countBikes: 4, x: '04 Jun 2025'}, 
+    { countCars: 4, countBikes: 2, x: '05 Jun 2025'}, 
+    { countCars: 2, countBikes: 3, x: '06 Jun 2025'},
+  ]"
+  :series="[
+    {
+      name: $t('Cars'),
+      fieldName: 'countCars',
+      color: '#4E79A7',
+    },
+    {
+      name: $t('Bikes'),
+      fieldName: 'countBikes',
+      color: '#F28E2B',
+    }
+  ]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+  }"
+/>
+```
+  
+  
+  ![AreaChart multiple lines](image-70.png)
+  
+
+### Stacked area
+
+  
+```html
+<AreaChart
+  :data="[
+    { countCars: 2, countBikes: 3, x: '02 Jun 2025'}, 
+    { countCars: 5, countBikes: 1, x: '03 Jun 2025'}, 
+    { countCars: 3, countBikes: 4, x: '04 Jun 2025'}, 
+    { countCars: 4, countBikes: 2, x: '05 Jun 2025'}, 
+    { countCars: 2, countBikes: 3, x: '06 Jun 2025'},
+  ]"
+  :series="[
+    {
+      name: $t('Cars'),
+      fieldName: 'countCars',
+      color: '#4E79A7',
+    },
+    {
+      name: $t('Bikes'),
+      fieldName: 'countBikes',
+      color: '#F28E2B',
+    }
+  ]"
+  :options="{
+    chart: {
+      height: 250,
+//diff-add
+      stacked: true,
+    },
+  }"
+/>
+```
+  
+  
+  ![AreaChart stacked area](image-69.png)
+  
+
+### Data labels
+
+  
+```html
+<AreaChart
+  :data="[
+    { count: 2, x: '02 Jun 2025'}, 
+    { count: 5, x: '03 Jun 2025'}, 
+    { count: 3, x: '04 Jun 2025'}, 
+    { count: 4, x: '05 Jun 2025'}, 
+    { count: 2, x: '06 Jun 2025'},
+  ]"
+  :series="[
+    {
+      name: $t('Cars'),
+      fieldName: 'count',
+      color: '#4E79A7',
+    },
+  ]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+    dataLabels: {
+      enabled: true,
+      style: {
+        fontSize: '12px',
+        fontFamily: 'Inter, sans-serif',
+      }
+    },
+    grid: {
+      padding: {
+        left: 10, // to fit the labels
+        right: 10,
+      },
+    },
+  }"
+/>
+```
+  
+  
+  ![Area Chart Data Lables](image-71.png)
+  
+
+### Grid, x-axis and y-axis labels
+
+See [Bar Chart](#bar-chart) for details, the config is the same.
+
+## Pie Chart
+
+```ts
+import { PieChart } from '@/afcl'
+```
+
+### Basic
+
+  
+```html
+<PieChart
+  :data="[
+    { amount: 5, label: 'Cars'},
+    { amount: 3, label: 'Bikes'},
+    { amount: 2, label: 'Trucks'},
+    { amount: 1, label: 'Boats'},
+  ]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+  }"
+/>
+```
+  
+  
+  ![Pie Chart](image-75.png)
+  
+
+### Pie with data labels
+
+  
+```html
+<PieChart
+  :data="[
+    { amount: 5, label: 'Cars'},
+    { amount: 3, label: 'Bikes'},
+    { amount: 2, label: 'Trucks'},
+    { amount: 1, label: 'Boats'},
+  ]"
+  :options="{
+    chart: {
+      height: 250,
+    },
+//diff-add
+    dataLabels: {
+//diff-add
+      enabled: true,
+//diff-add
+    },
+//diff-add
+    plotOptions: {
+//diff-add
+      pie: {
+//diff-add
+        dataLabels: {
+//diff-add
+          offset: -10, // Moves labels closer to or further from the slices
+//diff-add
+          minAngleToShowLabel: 10, // Ensures that small slices don't show labels
+//diff-add
+        },
+//diff-add
+        expandOnClick: true,
+// diff-add
+      },
+// diff-add
+    },
+  }"
+/>
+```
+  
+  
+  ![Pie Chart with data labels](image-76.png)
+  
+
+### Donut Chart
+
+  
+```html
+<PieChart
+  :data="[
+    { amount: 5, label: 'Cars'},
+    { amount: 3, label: 'Bikes'},
+    { amount: 2, label: 'Trucks'},
+    { amount: 1, label: 'Boats'},
+  ]"
+  :options="{
+    chart: {
+      height: 250,
+  //diff-add
+      type: 'donut',
+    },
+  }"
+/>
+```
+  
+  
+  ![Donut Chart](image-72.png)
+  
+
+### Fill donut with total info
+
+  
+```html
+<PieChart
+  :data="[
+    { amount: 5, label: 'Cars'},
+    { amount: 3, label: 'Bikes'},
+    { amount: 2, label: 'Trucks'},
+    { amount: 1, label: 'Boats'},
+  ]"
+  :options="{
+    chart: {
+      height: 250,
+      type: 'donut',
+    },
+//diff-add
+    plotOptions: {
+//diff-add
+      pie: {
+//diff-add
+        donut: {
+//diff-add
+          labels: {
+//diff-add
+            total: {
+//diff-add
+              show: true,
+//diff-add
+              label: $t('Total wheels'),
+//diff-add
+              formatter: () => `11`,
+//diff-add
+            },
+//diff-add
+          },
+//diff-add
+        },
+//diff-add
+      },
+    },
+  }"
+/>
+```
+  
+  
+  ![Donut Chart with total](image-73.png)
+  
+
+### Radial bar chart
+
+  
+```html
+  <PieChart
+  :data="[
+    { amount: 80, label: 'Cars'},
+    { amount: 50, label: 'Bikes'},
+    { amount: 30, label: 'Trucks'},
+    { amount: 70, label: 'Boats'},
+  ]"
+  :options="{
+    chart: {
+//diff-add
+      height: '300px',
+//diff-add
+      width: '100%',
+//diff-add
+      type: 'radialBar',
+//diff-add
+      sparkline: {
+//diff-add
+        enabled: true,
+//diff-add
+      },
+//diff-add
+    },
+//diff-add
+    plotOptions: {
+//diff-add
+      radialBar: {
+//diff-add
+        track: {
+//diff-add
+          background: '#E5E7EB',
+//diff-add
+        },
+//diff-add
+        dataLabels: {
+//diff-add
+          name: {
+//diff-add
+            offsetY: -10
+//diff-add
+          },
+//diff-add
+          value: {
+//diff-add
+            offsetY: 2,
+//diff-add
+          }
+//diff-add
+        },
+//diff-add
+        hollow: {
+//diff-add
+          margin: 0,
+//diff-add
+          size: '32%',
+//diff-add
+        }
+//diff-add
+      },
+//diff-add
+    },
+//diff-add
+    legend: {
+//diff-add
+      show: true,
+//diff-add
+      position: 'bottom',
+//diff-add
+    },
+    
+  }"
+/>
+```
+  
+  
+  ![Radial Chart](image-74.png)
+  
+
+## Treemap Chart
+
+This example is based on the ApexCharts treemap demo “color range”.
+
+  
+
+```ts
+import { TreeMapChart } from '@/afcl'
+
+const deltaToColor = (delta: number) => {
+  if (delta < -10) return '#B91C1C' // bright red
+  if (delta < 0) return '#EF4444'   // red
+  if (delta <= 10) return '#22C55E' // green
+  return '#15803D'                 // very green
+}
+
+const formatDelta = (delta: number) => (delta > 0 ? `+${delta}%` : `${delta}%`)
+
+const data = [
+  { x: 'New Delhi', value: 218, delta: 12 },
+  { x: 'Kolkata', value: 149, delta: -4 },
+  { x: 'Mumbai', value: 184, delta: -14 },
+  { x: 'Ahmedabad', value: 55, delta: 6 },
+  { x: 'Bangalore', value: 84, delta: 9 },
+  { x: 'Pune', value: 31, delta: -2 },
+  { x: 'Chennai', value: 70, delta: 0 }
+]
+
+// Optional: precompute per-point color using delta
+const dataWithColors = data.map((item) => ({
+  ...item,
+  fillColor: deltaToColor(item.delta),
+}))
+
+const series = [
+  { name: 'Desktops', fieldName: 'value' },
+]
+```
+
+```html
+<TreeMapChart
+  :data="dataWithColors"
+  :series="series"
+  :options="{
+    chart: { height: 350 },
+    dataLabels: {
+      formatter: (text, { seriesIndex, dataPointIndex, w }) => {
+        const point = w?.config?.series?.[seriesIndex]?.data?.[dataPointIndex]
+        if (!point) return text
+        return `${text} ${formatDelta(point.delta)}`
+      },
+    },
+    plotOptions: {
+      treemap: {
+        distributed: false,
+        enableShades: false,
+      },
+    },
+    tooltip: {
+      y: {
+        formatter: (value, { seriesIndex, dataPointIndex, w }) => {
+          const point = w?.config?.series?.[seriesIndex]?.data?.[dataPointIndex]
+          if (!point) return value
+          return `${point.value} (${formatDelta(point.delta)})`
+        },
+      },
+    },
+  }"
+/>
+```
+
+  
+  
+  ![Treemap Chart](image-28.png)
+  
+
+## Mixed Chart
+
+```ts
+import { MixedChart } from '@/afcl'
+```
+
+### Basic
+
+  
+  ```html
+  <MixedChart
+    :data="[
+      { x: '02 Jun 2025', avgPrice: 100, listedPrice: 100, unlistedPrice: 100},
+      { x: '03 Jun 2025', avgPrice: 280, listedPrice: 130, unlistedPrice: 200},
+      { x: '04 Jun 2025', avgPrice: 150, listedPrice: 90, unlistedPrice: 60},
+      { x: '05 Jun 2025', avgPrice: 100, listedPrice: 100, unlistedPrice: 100},
+      { x: '06 Jun 2025', avgPrice: 200, listedPrice: 290, unlistedPrice: 180},
+      { x: '07 Jun 2025', avgPrice: 100, listedPrice: 100, unlistedPrice: 100},
+    ]"
+    :series="[
+      { name: $t('Avg Price'), fieldName: 'avgPrice', type: 'line', color: COLORS[0] },
+      { name: $t('Listed Price'), fieldName: 'listedPrice', type: 'column', color: COLORS[1] },
+      { name: $t('Unlisted Price'), fieldName: 'unlistedPrice', type: 'area', color: COLORS[2] },
+      
+    ]"
+    :options="{
+      chart: {
+        height: 350,
+      },
+      stroke: {
+        width: [6, 0, 6],  // Line: 6px, Column: 0px (no border), Area: 6px
+      },
+      fill: {
+        opacity: [1, 0.85, 0.25], // Line: 1, Column: 0.85, Area: 0.25
+      },
+    }"
+  />
+  ```
+
+  
+    ![Mixed Chart](image-91.png)
+  
+
+## Json Viewer
+
+```ts
+import { JsonViewer } from '@/afcl'
+```
+
+### Basic
+
+  
+  ```html
+      <JsonViewer 
+      :value="[
+        {
+          id: 1,
+          name: 'Alice',
+          meta: {
+            age: 30,
+            hobbies: ['reading', 'biking'],
+          }
+        },
+        {
+          id: 2,
+          name: 'Bob',
+        }
+      ]" 
+      :expandDepth="2" 
+    />
+  ```
+
+  
+    ![JSON Viewer](image-93.png)
+  
+
+## Modal
+
+  
+
+```ts
+import { Modal, Button } from '@/afcl';
+```
+
+```html
+  <Modal class="w-96" :closeByClickOutside="true" :closeByEsc="true" askForCloseConfirmation >
+    <template #trigger>
+      <Button>Modal Toggle</Button>
+    </template>
+
+    
+      This is the first paragraph of modal content.
+      And this is the second paragraph.
+    
+  </Modal>
+```
+  
+  
+  ![AFCL Dialog](image-98.png)
+  
+
+### Props: 
+```ts
+  closeByClickOutside?: boolean  // Close on click outside of modal (default is true)
+  closeByEsc?: boolean // Close on Esc button click (default is true)
+  beforeCloseFunction?: (() => void | Promise<void>) | null // Callback, that will be executed before open
+  beforeOpenFunction?: (() => void | Promise<void>) | null // Callback, that will be executed before close
+  askForCloseConfirmation?: boolean // Show extra popup to confirm close ( to avoid close by accident)
+  closeConfirmationText?: string // Text that will be shown on close confirmation popup
+  removeFromDomOnClose?: boolean // Remove modal from DOM on close ( default is false )
+  backgroundCustomClasses?: string // allows to add custom classes to the gray background of modal (e.g. you can have bg-pink-500/60)
+  modalCustomClasses?: string // allows to add custom classes to modal popup
+```
+
+## Date picker
+
+```ts
+import { DatePicker } from '@/afcl';
+const datePickerValue = ref()
+```
+
+### Basic
+
+```html
+<DatePicker
+  v-model:valueStart="datePickerValue"
+  :column="{ type: 'datetime' }"
+  label="Pick start"
+/>
+```
+
+  
+    ![Date Picker](image-95.png)
