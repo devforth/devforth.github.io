@@ -1,6 +1,6 @@
 # Login Captcha
 
-> (this plugin experemental and not yet fully tested)
+> Guide to the Login Captcha plugin, including adapter setup, login form protection, and captcha-verified authentication flow.
 
 # Login Captcha
 

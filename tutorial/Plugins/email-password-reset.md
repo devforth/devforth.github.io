@@ -1,6 +1,6 @@
 # Email Password Reset
 
-> Plugin allows to reset password for admin users who forgot their password by sending email with reset link signed with secured JWT token.
+> Guide to the Email Password Reset plugin, including SES or Mailgun setup, reset-flow wiring, and password reset page customization.
 
 # Email password reset
 

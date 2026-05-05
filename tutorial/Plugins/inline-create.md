@@ -1,6 +1,6 @@
 # Inline Create
 
-> The Inline Create plugin enables inline create in AdminForth, allowing users to create records directly in the list view.
+> Guide to the Inline Create plugin, which lets users create records directly from the list page and configure which resources use the inline form.
 
 # Inline Create
 

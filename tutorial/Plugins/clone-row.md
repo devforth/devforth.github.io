@@ -1,6 +1,6 @@
 # Clone Row
 
-> Allows to create a copy of record quickly, by substituting default values to create form
+> Guide to the Clone Row plugin, which opens the create flow with values copied from an existing record so users can duplicate rows quickly.
 
 # Clone row
 

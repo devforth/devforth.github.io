@@ -1,6 +1,6 @@
 # Hello world app without CLI
 
-> While AdminForth CLI is the fastest way to create a new project, you can also create a new project manually.
+> Manual code way walkthrough (alternative to CLI) for building a minimal AdminForth app without the CLI, including project setup, resources, authentication, and server configuration.
 
 # Hello world app without CLI
 

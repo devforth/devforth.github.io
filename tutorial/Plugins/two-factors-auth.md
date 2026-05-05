@@ -1,6 +1,6 @@
 # Two-Factor Authentication Plugin
 
-> The Two-Factor Authentication Plugin provides an additional layer of security to the application by requiring users to provide a second form of authentication in addition to their password. This plugin supports  authenticator apps.
+> Guide to the Two-Factor Authentication plugin, including installation, TOTP or passkey setup, rollout rules, and per-user exceptions for stronger admin login security.
 
 # Two-Factor Authentication Plugin
 

@@ -1,6 +1,6 @@
 # Working without direct database connection
 
-> Out of the box, AdminForth connects directly to your database using one of the supported drivers (PostgreSQL, MySQL, ClickHouse, MongoDB) and executes queries against it.
+> Guide to using AdminForth without a direct database connection by exposing resources through custom connectors or API-backed data access.
 
 # Working without direct database connection
 

@@ -1,7 +1,6 @@
 # Open Signup
 
-> Open Signup plugin allows users to register in adminforth by them-selfs without admin. 
-This is useful when you want to allow anyone to sign up and assign some low-level permissions to them.
+> Guide to the Open Signup plugin, including public registration flow, installation, basic setup, and optional email verification.
 
 # Open Signup
 

@@ -1,6 +1,6 @@
 # Websocket
 
-> AdminForth provide own build-in websocket interface which allows to stream some data to frontend from backend.
+> Guide to AdminForth WebSocket usage, including client subscriptions, publish authorization, initial loading, and real-time updates for custom pages or components.
 
 # Websocket
 

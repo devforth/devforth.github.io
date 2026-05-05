@@ -1,6 +1,6 @@
 # Foreign Inline List
 
-> Foreign inline list plugin allows to display a list (table) of items from a foreign table in the show view.
+> Guide to the Foreign Inline List plugin, which embeds related resource lists inside a show page with filters, foreign-key setup, and cascade-delete options.
 
 Foreign inline list plugin allows to display a list (table) of items from a foreign table in the show view.
 

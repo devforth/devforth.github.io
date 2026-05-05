@@ -1,6 +1,6 @@
 # List In-Place Edit
 
-> The List in Place Edit plugin allows you to edit records directly in the list view.
+> Guide to the List In-Place Edit plugin, which makes selected list fields editable directly in the table without opening the edit page.
 
 # List in place edit
 

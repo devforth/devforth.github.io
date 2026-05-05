@@ -1,6 +1,6 @@
 # Limiting actions access
 
-> As you might have noticed in diagrams from [adminforth hooks](./04-hooks.md) section of this tutorial, AdminForth checks `options.allowedActions` before executing any action. In this section we will show real-code examples of how to limit access to actions based on user role or record values.
+> Guide to AdminForth access control with allowed actions, role-based rules, field visibility, and resource-specific restrictions based on users or record values.
 
 # Limiting actions access
 

@@ -1,6 +1,6 @@
 # Rich Editor
 
-> Under the hood this plugin uses [Quill](https://quilljs.com/). Quill is a free, open source WYSIWYG editor built for the modern web.
+> Guide to the Rich Editor plugin, including editor setup, multiple editors in one resource, completion features, and image handling in rich-text fields.
 
 # Rich editor
 

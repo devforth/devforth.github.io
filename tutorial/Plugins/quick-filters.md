@@ -1,10 +1,6 @@
 # Quick Filters
 
-> First, install the plugin:
-```bash
-pnpm i @adminforth/quick-filters
-```
-Then add it to yours resource:
+> Guide to the Quick Filters plugin, which adds one-click predefined filters or search inputs to list pages for faster navigation across common record subsets.
 
 # Quick filters
 Allows you to add search input or select with preseted filters at the list view

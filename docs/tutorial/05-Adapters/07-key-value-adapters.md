@@ -1,6 +1,6 @@
 # Key-value Adapters
 
-> Key-value adapters are used to store data in a key-value format. They provide a simple and efficient way to manage data where quick access to values based on unique keys is required.
+> Reference page for AdminForth key-value adapters, including RAM, Redis, and LevelDB backends for temporary state, caching, and plugin storage.
 
 # Key-value Adapters
 

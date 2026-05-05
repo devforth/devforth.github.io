@@ -1,6 +1,6 @@
 # Branding and Theming
 
-> Learn how to customize the branding and theming of your AdminForth application.
+> Guide to customizing AdminForth branding and theming, including logos, titles, sidebar presentation, colors, fonts, and single-theme setups.
 
 # Branding and Theming
 

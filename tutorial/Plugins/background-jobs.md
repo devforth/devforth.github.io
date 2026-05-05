@@ -1,9 +1,6 @@
 # Background Jobs
 
-> First, install the plugin:
-```bash
-pnpm i @adminforth/background-jobs
-```
+> Guide to the Background Jobs plugin, including job setup, execution, UI monitoring, custom state rendering, and frontend APIs for job details.
 
 # Background jobs
 BackgroundJobsPlugin adds a durable background-job system to AdminForth. Jobs are stored in your data store (via a resource), executed by registered handlers, and automatically resumed after server restarts.

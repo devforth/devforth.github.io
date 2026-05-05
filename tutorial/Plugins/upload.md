@@ -1,6 +1,6 @@
 # Upload
 
-> This plugin allows you to upload files to Amazon S3 bucket.
+> Guide to the Upload plugin, including storage adapter setup, file and image fields, previews, transformations, and image generation integration.
 
 # Upload
 

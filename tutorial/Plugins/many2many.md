@@ -1,6 +1,6 @@
 # Many to Many
 
-> This plugin lets you manage many-to-many relationships.
+> Guide to the Many2Many plugin, including junction-table setup, editable relationships on both resources, and cleanup behavior for related records.
 
 # Many2Many
 

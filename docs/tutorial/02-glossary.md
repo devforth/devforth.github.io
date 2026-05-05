@@ -1,7 +1,6 @@
 # Glossary
 
-> A DataSource is a connection to one database. Datasources have id for references from resources and URL which follows the standard URI format. For example `mysql://user:password@localhost:3306/database`.
-It used to:
+> Reference page defining core AdminForth terms such as data sources, resources, columns, records, actions, views, and other concepts used throughout the docs.
 
 # Glossary
 

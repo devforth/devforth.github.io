@@ -1,7 +1,6 @@
 # Virtual columns
 
-> Sometimes you need to visualize custom columns which do not exist in database. 
-For doing this you can use `virtual` columns.
+> Guide to defining virtual columns for list, show, filter, edit, and create flows, including raw SQL and raw NoSQL query examples.
 
 # Virtual columns
 

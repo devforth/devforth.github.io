@@ -1,6 +1,6 @@
 # Actions
 
-> You might need to give admin users a feature to perform some action on a single record. Actions can be displayed as buttons in the list view and/or in the three-dots menu.
+> Guide to defining AdminForth actions for single records and bulk flows, including UI options, handlers, confirmation dialogs, and custom execution logic.
 
 # Actions
 

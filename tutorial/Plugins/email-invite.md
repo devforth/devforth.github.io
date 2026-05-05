@@ -1,6 +1,6 @@
 # Email Invite
 
-> Email Invite plugin allows administrators to create users without setting passwords. Instead, the plugin sends an email invitation to the newly created user, asking them to set their own password. This is more secure and user-friendly than having administrators set passwords for users.
+> Guide to the Email Invite plugin, including SES or Mailgun setup, invitation sending flows, email confirmation handling, and basic usage.
 
 # Email Invite
 

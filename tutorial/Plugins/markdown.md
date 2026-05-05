@@ -1,6 +1,6 @@
 # Markdown
 
-> The Markdown plugin enables Markdown support in AdminForth, allowing users to create and edit fields using Markdown syntax and save rich content in Markdown syntax.
+> Guide to the Markdown plugin, including editor setup, image handling, top-panel customization, and show-page rendering options.
 
 # Markdown
 

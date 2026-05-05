@@ -1,8 +1,6 @@
 # Audit Log
 
-> AuditLog plugin allows to log all changes in the resources done from the admin panel. 
-It will allow you to figure out who and when made changes in the data. 
-Requires separate table in the database to store logs.
+> Guide to the Audit Log plugin, including installation, log table setup, resource wiring, and tracking of admin changes, custom actions, and client metadata.
 
 AuditLog plugin allows to log all changes in the resources done from the admin panel. 
 It will allow you to figure out who and when made changes in the data. 

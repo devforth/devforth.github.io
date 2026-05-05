@@ -1,6 +1,6 @@
 # Custom pages
 
-> Learn how to create custom pages in AdminForth.
+> Guide to adding custom AdminForth pages, custom APIs, public or protected routes, menu entries, and page metadata for custom Vue pages.
 
 # Custom pages
 

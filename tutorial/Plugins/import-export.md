@@ -1,6 +1,6 @@
 # Import Export
 
-> Import-Export is a plugin that allows you to import and export data from and to a CSV file.
+> Guide to the Import-Export plugin for CSV-based data transfer, including installation, import flow, export flow, and resource-level usage.
 
 # Import-Export
 

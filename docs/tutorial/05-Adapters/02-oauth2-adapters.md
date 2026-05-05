@@ -1,6 +1,6 @@
 # OAuth2 Adapters
 
-> Used to authenticate users via OAuth 2.0 providers.
+> Reference page for AdminForth OAuth2 adapters, including provider setup for Google, GitHub, Facebook, Keycloak, Microsoft, and Twitch sign-in flows.
 
 # OAuth2 Adapters
 

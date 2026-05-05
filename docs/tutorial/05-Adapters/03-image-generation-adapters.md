@@ -1,6 +1,6 @@
 # Image Generation Adapters
 
-> Used for image-generating AI tools.
+> Reference page for AdminForth image generation adapters, including OpenAI and Gemini integrations used by plugins that create images from prompts.
 
 # Image Generation Adapters
 

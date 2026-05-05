@@ -1,6 +1,6 @@
 # Text Complete
 
-> This plugin allows you to auto-complete text and string fields using OpenAI GPT models via the Responses API.
+> Guide to the Text Complete plugin, including LLM adapter setup, prompt configuration, and AI-assisted text generation for resource fields.
 
 # Text Complete
 

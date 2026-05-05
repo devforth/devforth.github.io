@@ -1,6 +1,6 @@
 # Page Injections
 
-> In addition to ability to create custom pages and overwrite how fields are rendered, you can also inject custom components in standard AdminForth page.
+> Guide to injecting custom Vue UI into AdminForth login, list, show, edit, and create pages, including dropdown items, custom action icons, and row replacements.
 
 # Page Injections
 

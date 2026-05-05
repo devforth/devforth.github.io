@@ -1,7 +1,6 @@
 # Custom record field rendering
 
-> Let's change how AdminForth renders the number of rooms in the 'list' and 'show' views.
-We will render '🟨' for each room and then we will print `square_meter` at the same cells.
+> Guide to replacing default field rendering with custom Vue components for list, show, create, edit, and filter views, including props and third-party packages.
 
 # Custom record field rendering
 

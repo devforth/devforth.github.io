@@ -1,6 +1,6 @@
 # Alerts and confirmations
 
-> When you are writing custom components or pages you might need to show alerts or confirmations to the user.
+> Guide to using the Frontend API for alerts, confirmations, and announcement banners inside custom AdminForth pages and Vue components.
 
 # Alerts and confirmations
 

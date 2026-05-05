@@ -1,6 +1,6 @@
 # Menu & Header
 
-> Adminforth uses [Iconify](https://iconify.design/) icons everywhere, including the menu.
+> Guide to configuring the AdminForth sidebar and header, including icons, grouping, visibility rules, gaps, dividers, and custom links.
 
 # Menu & Header
 

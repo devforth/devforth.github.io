@@ -1,6 +1,6 @@
 # AI Completion Adapters
 
-> Used for AI-powered text completion.
+> Reference page for AdminForth AI completion adapters, including the shared completion interface, structured output, streaming, reasoning events, and provider-specific setup.
 
 # AI Completion Adapters
 

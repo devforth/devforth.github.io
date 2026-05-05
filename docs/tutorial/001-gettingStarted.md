@@ -1,7 +1,6 @@
 # Getting Started
 
-> This page provides a step-by-step guide to quickly get started with AdminForth using the `adminforth` CLI.
-You will learn how to set up a new project using the `adminforth create-app` command and explore AdminForth’s fundamentals.
+> Step-by-step guide to creating an AdminForth app with the CLI (bootstrapping), understanding the generated project structure, running migrations, and starting the server.
 
 # Getting Started
 

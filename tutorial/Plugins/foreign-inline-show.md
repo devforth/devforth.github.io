@@ -1,6 +1,6 @@
 # Foreign Inline Show
 
-> Allows to add an inline show of connected foreign resource records on a adminforth show page.
+> Guide to the Foreign Inline Show plugin, which embeds a related record show view inside another resource's show page using foreign-key relationships.
 
 Allows to add an inline show of connected foreign resource records on a adminforth show page.
 

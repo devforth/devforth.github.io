@@ -1,7 +1,6 @@
 # Bulk AI Flow
 
-> This plugin allows filling fields in multiple selected records based on data from other fields using LLM.
-This also supports vision tasks so you can ask it to e.g. detect dominant color on image or describe what is on the image. Plugin supports classification to enum options automatically.
+> Guide to the Bulk AI Flow plugin, including text and vision modes, prompt configuration, per-record context, editable prompts, and batch content generation.
 
 # Bulk AI Flow
 

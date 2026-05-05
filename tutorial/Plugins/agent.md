@@ -1,6 +1,6 @@
 # Agent
 
-> > TODO: this plugin tutorial is in progress, some information might be missing, we are actively working on it now. If you have any questions regarding this plugin, please reach out to us in GitHub issues
+> Guide to the AdminForth Agent plugin, including installation, model and mode configuration, self-hosted usage, session storage, skills, and custom tools.
 
 > TODO: this plugin tutorial is in progress, some information might be missing, we are actively working on it now. If you have any questions regarding this plugin, please reach out to us in GitHub issues
 

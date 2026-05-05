@@ -1,6 +1,6 @@
 # Storage Adapters
 
-> Used for storing files.
+> Reference page for AdminForth storage adapters, covering Amazon S3 and local file storage backends used by upload and media workflows.
 
 # Storage Adapters
 

@@ -1,6 +1,6 @@
 # User Soft Delete
 
-> Allows to deactivate users accound without deleting it.
+> Guide to the User Soft Delete plugin, including schema changes, setup, and deactivating admin users without permanently deleting their accounts.
 
 # User soft delete
 

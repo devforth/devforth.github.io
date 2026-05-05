@@ -1,6 +1,6 @@
 # Universal Search (Legacy)
 
-> Ephemeral, debounced multi‑column search for List pages. A lightweight input (injected at `beforeActionButtons`) sends the term with each list request; a hook expands it server‑side into a single `OR` filter group over your configured columns. The term never enters the standard filter store, so:
+> Guide to the legacy Universal Search plugin, including installation, options, debounce behavior, and how it searches across configured fields.
 
 # Universal Search (legacy)
 > **Deprecated:** Prefer the [**Quick Filters**](/docs/tutorial/Plugins/quick-filters) plugin. It provides the same functionality and more.

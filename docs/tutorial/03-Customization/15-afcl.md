@@ -1,6 +1,6 @@
 # AdminForth Components Library
 
-> AFCL is a set of components which you can use as build blocks in your AdminForth application. AFCL allows to keep the design consistent with minimal efforts and build new pages faster. AFCL components follow styling standard and respect theme colors.
+> Reference page for the AdminForth Components Library, covering reusable UI components such as buttons, links, badges, inputs, tables, and other building blocks.
 
 # AdminForth Components Library
 
