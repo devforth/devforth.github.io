@@ -280,6 +280,216 @@ Each item in `modes` defines a user-selectable preset in the chat UI. The select
 
 The plugin adds a chat surface to the admin UI, keeps session history per admin user, and shows a mode picker when `modes` are configured.
 
+## Debugging agent turns
+
+Agent debug traces are optional and are intended for auditability and debugging. When enabled, they let you reconstruct why an agent produced a response or made a change by storing the full execution sequence for the turn: LLM steps, tool calls, tool inputs and outputs, token usage, and cache information.
+
+By default, only the user prompt and agent response are persisted. Full debug traces are not stored unless you configure a `debugField`, because they can be large and may significantly increase database size.
+
+Add a `debug` JSON column to the turns resource:
+
+```ts title="./resources/agent_resources/turns.ts"
+import AdminForth, { AdminForthDataTypes } from 'adminforth';
+import type { AdminForthResourceInput, AdminUser } from 'adminforth';
+import { randomUUID } from 'crypto';
+
+async function allowedForSuperAdmins({ adminUser }: { adminUser: AdminUser }): Promise<boolean> {
+  return adminUser.dbUser.role === 'superadmin';
+}
+
+export default {
+  dataSource: 'maindb',
+  table: 'turns',
+  resourceId: 'turns',
+  label: 'Turns',
+  columns: [
+    {
+      name: 'id',
+      primaryKey: true,
+      type: AdminForthDataTypes.STRING,
+      fillOnCreate: () => randomUUID(),
+      showIn: {
+        edit: false,
+        create: false,
+      },
+    },
+    {
+      name: 'session_id',
+      type: AdminForthDataTypes.STRING,
+    },
+    {
+      name: 'created_at',
+      type: AdminForthDataTypes.DATETIME,
+      fillOnCreate: () => (new Date()).toISOString(),
+      showIn: {
+        edit: false,
+        create: false,
+      },
+    },
+    {
+      name: 'prompt',
+      type: AdminForthDataTypes.TEXT,
+    },
+    {
+      name: 'response',
+      type: AdminForthDataTypes.TEXT,
+    },
+    //diff-add
+    {
+      //diff-add
+      name: 'debug',
+      //diff-add
+      type: AdminForthDataTypes.JSON,
+      //diff-add
+      components: {
+        //diff-add
+        show: {
+          //diff-add
+          file: '@@/TurnDebugShow.vue',
+        //diff-add
+        },
+      //diff-add
+      },
+      //diff-add
+      showIn: {
+        //diff-add
+        list: false,
+        //diff-add
+        show: true,
+        //diff-add
+        edit: false,
+        //diff-add
+        create: false,
+        //diff-add
+        filter: false,
+      //diff-add
+      },
+    //diff-add
+    },
+  ],
+  options: {
+    allowedActions: {
+      list: allowedForSuperAdmins,
+      show: allowedForSuperAdmins,
+      create: false,
+      edit: false,
+      delete: false,
+    },
+  },
+} as AdminForthResourceInput;
+```
+
+Add the matching field to your schema:
+
+```prisma title="./schema.prisma"
+model turns {
+  id         String   @id
+  session_id String
+  created_at DateTime
+  prompt     String?
+  response   String?
+  debug      Json? //diff-add
+}
+```
+
+If you use SQLite with Prisma, store the same field as text:
+
+```prisma title="./schema.prisma"
+model turns {
+  id         String   @id
+  session_id String
+  created_at DateTime
+  prompt     String?
+  response   String?
+  debug      String? //diff-add
+}
+```
+
+AdminForth should still define this resource column as `AdminForthDataTypes.JSON`; the SQLite connector serializes it into the text column and parses it back for the renderer.
+
+Run migration:
+
+```bash
+pnpm makemigration --name add-adminforth-agent-turn-debug ; pnpm migrate:local
+```
+
+Tell the plugin where to store debug data:
+
+```ts title="./resources/adminuser.ts"
+new AdminForthAgent({
+  modes: [
+    ...
+  ],
+  sessionResource: {
+    resourceId: 'sessions',
+    idField: 'id',
+    titleField: 'title',
+    turnsField: 'turns',
+    askerIdField: 'asker_id',
+    createdAtField: 'created_at',
+  },
+  turnResource: {
+    resourceId: 'turns',
+    idField: 'id',
+    sessionIdField: 'session_id',
+    createdAtField: 'created_at',
+    promptField: 'prompt',
+    responseField: 'response',
+    //diff-add
+    debugField: 'debug',
+  },
+})
+```
+
+The `debugField` value must match the turns resource column name. You can use another column name, but then use the same name in the resource, database schema, and `debugField`.
+
+Create a renderer in your app custom folder:
+
+```vue title="./custom/TurnDebugShow.vue"
+<template>
+  
+    
+      Agent Debug
+      
+        {{ debugSequences.length }} sequences,
+        {{ totalToolCalls }} tool calls,
+        {{ totalCachedTokens.toLocaleString() }} cached prompt tokens
+      
+    
+
+    <JsonViewer :value="debugSequences" :expandDepth="2" />
+  
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue';
+import { JsonViewer } from '@/afcl';
+import type { AdminForthResourceColumnCommon } from '@/types/Common';
+
+type DebugToolCall = {
+  toolName: string;
+};
+
+type DebugSequence = {
+  cachedTokens: number;
+  toolCalls: DebugToolCall[];
+};
+
+const props = defineProps<{
+  column: AdminForthResourceColumnCommon;
+  record: Record<string, DebugSequence[]>;
+}>();
+
+const debugSequences = computed(() => props.record[props.column.name] ?? []);
+const totalToolCalls = computed(() =>
+  debugSequences.value.reduce((sum, sequence) => sum + sequence.toolCalls.length, 0),
+);
+const totalCachedTokens = computed(() =>
+  debugSequences.value.reduce((sum, sequence) => sum + sequence.cachedTokens, 0),
+);
+</script>
+```
+
 # Using with self-hosted models
 
 `CompletionAdapterOpenAIResponses` when works with agent plugin, under the hood uses the LangChain internal proxy called `OpenAIChat` (in LangChain they call it "provider"). This proxy is capable with a fresh versions of OpenAI-compatible Responses APIs, for example [self-hosted latest versions of vLLM installations](https://devforth.io/insights/self-hosted-gpt-real-response-time-token-throughput-and-cost-on-l4-l40s-and-h100-for-gpt-oss-20b/)
@@ -307,6 +517,41 @@ completionAdapter: new CompletionAdapterOpenAIResponses({
 ```
 
 OVH AI Endpoints still does not fully support the OpenAI `responses` API, so `useComplitionApi: false` may work unstably there.
+
+## Turn on audio chat support
+If you want to have an ability to talk with agent usng voice, you can setup it:
+
+1) Install audio adapter:
+
+```bash
+pnpm add @adminforth/audio-adapter-openai
+```
+
+2) Import it in your users resource and add to the plugin config
+
+```ts title="./resources/adminuser.ts"
+  //diff-add
+  import OpenAIAudioAdapter from '@adminforth/audio-adapter-openai'
+
+  ...
+
+  new AdminForthAgent({
+    ...
+    //diff-add
+    audioAdapter: new OpenAIAudioAdapter({
+      //diff-add
+      apiKey: process.env.OPENAI_API_KEY as string,,
+      //diff-add
+      defaultVoice: 'alloy',
+      //diff-add
+      defaultSpeed: 1.25,
+    //diff-add
+    }),
+    ...
+  }),
+  ...
+
+```
 
 ## Writing own skills
 
@@ -690,9 +935,9 @@ If your existing checkpoint table already uses different column names, keep your
 
 ## Reverse proxy and CDN configuration for streaming
 
-The agent streams responses from `<baseURL>/adminapi/v1/agent/response` using server-sent events, where `<baseURL>` is your AdminForth base path or an empty string when deployed at the domain root. If your proxy buffers responses, the UI will receive the answer only after generation is finished.
+The agent streams responses from `<baseURL>/adminapi/v1/agent/response` using server-sent events, where `<baseURL>` is your AdminForth base path or an empty string when deployed at the domain root. Voice mode also streams from `<baseURL>/adminapi/v1/agent/speech-response` after uploading the recorded audio. If your proxy buffers responses, the UI will receive the answer only after generation is finished.
 
-For Nginx, disable response buffering on this endpoint. The critical line is `proxy_buffering off;`.
+For Nginx, disable response buffering on both endpoints. The critical line is `proxy_buffering off;`.
 
 ```nginx
 location <baseURL>/adminapi/v1/agent/response {
@@ -704,9 +949,19 @@ location <baseURL>/adminapi/v1/agent/response {
   proxy_buffering off;  # required for streaming
   proxy_pass http://127.0.0.1:3500;
 }
+
+location <baseURL>/adminapi/v1/agent/speech-response {
+  proxy_http_version 1.1;
+  proxy_read_timeout 600s;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header Host $http_host;
+  proxy_set_header Connection "";
+  proxy_buffering off;  # required for streaming voice responses
+  proxy_pass http://127.0.0.1:3500;
+}
 ```
 
-Traefik forwards streaming responses immediately by default. The line that must stay off this route is any buffering middleware attachment such as `traefik.http.routers.adminforth-agent.middlewares=buffering@docker`. If your main router uses extra middlewares, create a dedicated router for the agent stream endpoint and do not attach buffering to it:
+Traefik forwards streaming responses immediately by default. The line that must stay off these routes is any buffering middleware attachment such as `traefik.http.routers.adminforth-agent.middlewares=buffering@docker`. If your main router uses extra middlewares, create a dedicated router for the agent stream endpoints and do not attach buffering to it:
 
 ```yaml title='./compose.yml'
 services:
@@ -720,7 +975,7 @@ services:
       - "traefik.http.routers.adminforth.tls.certresolver=myresolver"
       - "traefik.http.routers.adminforth.middlewares=secure-headers,buffering@docker"
 
-      - "traefik.http.routers.adminforth-agent.rule=Path(`<baseURL>/adminapi/v1/agent/response`)"
+      - "traefik.http.routers.adminforth-agent.rule=Path(`<baseURL>/adminapi/v1/agent/response`) || Path(`<baseURL>/adminapi/v1/agent/speech-response`)"
       - "traefik.http.routers.adminforth-agent.priority=100"
       - "traefik.http.routers.adminforth-agent.service=adminforth"
       - "traefik.http.routers.adminforth-agent.tls=true"
@@ -730,10 +985,12 @@ services:
       # - "traefik.http.routers.adminforth-agent.middlewares=buffering@docker"
 ```
 
-  Replace `<baseURL>` with the same base path you use for AdminForth. For example, when `ADMIN_BASE_URL = '/admin/'`, the endpoint becomes `/admin/adminapi/v1/agent/response`.
+  Replace `<baseURL>` with the same base path you use for AdminForth. For example, when `ADMIN_BASE_URL = '/admin/'`, the endpoints become `/admin/adminapi/v1/agent/response` and `/admin/adminapi/v1/agent/speech-response`.
 
 ### CDN
 
-  Cloudflare by default buffers responses, which breaks streaming. To fix it, create a page rule for your domain with a "Response Body Buffering" setting turned off for the agent stream endpoint (`<baseURL>/adminapi/v1/agent/response`).
+  Cloudflare by default buffers responses, which breaks streaming. To fix it, create a page rule for your domain with a "Response Body Buffering" setting turned off for the agent stream endpoints (`<baseURL>/adminapi/v1/agent/response` and `<baseURL>/adminapi/v1/agent/speech-response`).
+
+  If Cloudflare returns a 403 response with `cf-mitigated: challenge` for `<baseURL>/adminapi/v1/agent/speech-response`, the request was blocked before it reached AdminForth. Create a WAF or bot rule exception for authenticated requests to this endpoint, because browser `fetch` calls with `multipart/form-data` cannot complete an HTML challenge page.
 
 ![alt text](image-6.png)
