@@ -19,7 +19,7 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.d8c5f305.css">
-<script src="/assets/js/runtime~main.50698b90.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.2d69638b.js" defer="defer"></script>
 <script src="/assets/js/main.afdf9d5b.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -136,12 +136,19 @@ default is false</p>
 <p><code>optional</code> <strong>listPageSize?</strong>: <code>number</code></p>
 </blockquote>
 <p>Page size for list view</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="listpagesizeoptions">listPageSizeOptions?<a href="#listpagesizeoptions" class="hash-link" aria-label="Direct link to listPageSizeOptions?" title="Direct link to listPageSizeOptions?" translate="no">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>listPageSizeOptions?</strong>: <code>number</code>[] | ((<code>args</code>) =&gt; <code>number</code>[] | <code>Promise</code>&lt;<code>number</code>[]&gt;)</p>
+</blockquote>
+<p>Available page size options for list view, provided as an array of page sizes
+or a function returning them. When set together with <code>listPageSize</code>, the page
+size should be one of the values returned here.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="listrowsautorefreshseconds">listRowsAutoRefreshSeconds?<a href="#listrowsautorefreshseconds" class="hash-link" aria-label="Direct link to listRowsAutoRefreshSeconds?" title="Direct link to listRowsAutoRefreshSeconds?" translate="no">​</a></h4>
 <blockquote>
 <p><code>optional</code> <strong>listRowsAutoRefreshSeconds?</strong>: <code>number</code></p>
 </blockquote>
 <p>Whether to refresh existing list rows automatically every N seconds.</p>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="listtableclickurl">listTableClickUrl?<a href="#listtableclickurl" class="hash-link" aria-label="Direct link to listTableClickUrl?" title="Direct link to listTableClickUrl?" translate="no"> ​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="listtableclickurl">listTableClickUrl?<a href="#listtableclickurl" class="hash-link" aria-label="Direct link to listTableClickUrl?" title="Direct link to listTableClickUrl?" translate="no">​</a></h4>
 <blockquote>
 <p><code>optional</code> <strong>listTableClickUrl?</strong>: (<code>record</code>, <code>adminUser</code>, <code>resource</code>) =&gt; <code>Promise</code>&lt;<code>string</code>&gt;</p>
 </blockquote>
