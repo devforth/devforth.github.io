@@ -19,7 +19,7 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.d8c5f305.css">
-<script src="/assets/js/runtime~main.7c5f1fe9.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.0fe41ac5.js" defer="defer"></script>
 <script src="/assets/js/main.18e52b9d.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -64,7 +64,7 @@ Any 3rd-party API providers might have next reasones of pure <code>responses</co
 <li class="">If they use vLLM open-source software under the hood they might have outdated version</li>
 <li class="">Custom non-vLLM implmentation might have reliable chat API implementation while give less priority to responses API as it is more complex and new.</li>
 </ol>
-<p>We recommend you to try responses API first because it gives rich features sets, including summarization and better structured outputs.</p>
+<p>We recommend you to try responses API first by setting <code>false</code> in <code>useComplitionApi</code> because it gives rich features set, including summarization and better structured outputs, and if it does not work for your provider, then set it to <code>true</code> to have less features but working implementation.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="google-gemini-completion-adapter">Google Gemini Completion Adapter<a href="#google-gemini-completion-adapter" class="hash-link" aria-label="Direct link to Google Gemini Completion Adapter" title="Direct link to Google Gemini Completion Adapter" translate="no">​</a></h2>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token function" style="color:#e6db74">pnpm</span><span class="token plain"> i @adminforth/completion-adapter-google-gemini</span><br></span></code></pre></div></div>
 <p>Integrates AdminForth with Google Gemini models to provide AI-powered completion and conversational features.</p>
