@@ -1,6 +1,6 @@
-# Vue & Node admin panel framework
+# Agent-first open-source admin panel framework
 
-> Launch robust back-office apps faster with AdminForth’s easy setup and customization
+> Build robust and powerful agentic back-office panels for your projects while maintaining full control over the code.
 
 This file contains links to documentation sections following the llmstxt.org standard.
 
