@@ -10,7 +10,7 @@ For Telegram you need both adapters:
 
 ```bash
 pnpm i @adminforth/chat-surface-adapter-telegram
-pnpm i @adminforth/telegram-oauth-adapter
+pnpm i @adminforth/oauth-adapter-telegram
 ```
 
 Create a Telegram bot with BotFather and add the token to `.env`:
@@ -56,7 +56,7 @@ Configure the OAuth plugin with Telegram OAuth:
 
 ```ts title="./resources/adminuser.ts"
 import OAuthPlugin from '@adminforth/oauth';
-import TelegramOauthAdapter from '@adminforth/telegram-oauth-adapter';
+import TelegramOauthAdapter from '@adminforth/oauth-adapter-telegram';
 
 new OAuthPlugin({
   emailField: 'email',
