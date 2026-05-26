@@ -24,7 +24,7 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.340f8907.css">
-<script src="/assets/js/runtime~main.2fd4d835.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ecbc2992.js" defer="defer"></script>
 <script src="/assets/js/main.5511b0ba.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -35,7 +35,14 @@
 <p>Chat surface adapters connect external chat products to the <a class="" href="/docs/tutorial/Plugins/agent/">Agent plugin</a>. They only receive and send chat messages. User linking is handled through OAuth connected accounts.</p>
 <p>For Telegram you need both adapters:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token function" style="color:#e6db74">pnpm</span><span class="token plain"> i @adminforth/chat-surface-adapter-telegram</span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain"></span><span class="token function" style="color:#e6db74">pnpm</span><span class="token plain"> i @adminforth/oauth-adapter-telegram</span><br></span></code></pre></div></div>
-<p>Create a Telegram bot with BotFather and add the token to <code>.env</code>:</p>
+<p>Create a Telegram bot with BotFather and copy the token:</p>
+<ol>
+<li class="">Open <a href="https://t.me/BotFather" target="_blank" rel="noopener noreferrer" class="">BotFather</a>.</li>
+<li class="">Click <strong>Open</strong> and open it in the Telegram app.</li>
+<li class="">Select or Create your bot.</li>
+<li class="">Copy the bot token shown at the top.</li>
+</ol>
+<p>Add the token to <code>.env</code>:</p>
 <div class="language-env codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockTitle_OeMC">.env</div><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-env codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token plain">TELEGRAM_BOT_TOKEN=your_bot_token</span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain">TELEGRAM_BOT_USERNAME=your_bot_username_without_at</span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain">TELEGRAM_WEBHOOK_SECRET=your_random_secret</span><br></span></code></pre></div></div>
 <p>The webhook secret confirms that the request came through Telegram.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="external-identity-externaluserid">External identity <code>externalUserId</code><a href="#external-identity-externaluserid" class="hash-link" aria-label="Direct link to external-identity-externaluserid" title="Direct link to external-identity-externaluserid" translate="no">​</a></h2>

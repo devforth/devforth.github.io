@@ -24,7 +24,7 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.340f8907.css">
-<script src="/assets/js/runtime~main.2fd4d835.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ecbc2992.js" defer="defer"></script>
 <script src="/assets/js/main.5511b0ba.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -131,6 +131,16 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="telegram-adapter">Telegram Adapter<a href="#telegram-adapter" class="hash-link" aria-label="Direct link to Telegram Adapter" title="Direct link to Telegram Adapter" translate="no">​</a></h3>
 <p>Install Adapter:</p>
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token plain">pnpm install @adminforth/oauth-adapter-telegram --save</span><br></span></code></pre></div></div>
+<p>Create Telegram OpenID Connect credentials in BotFather:</p>
+<ol>
+<li class="">Open <a href="https://t.me/BotFather" target="_blank" rel="noopener noreferrer" class="">BotFather</a>.</li>
+<li class="">Click <strong>Open</strong> and open it in the Telegram app.</li>
+<li class="">Select or Create your bot.</li>
+<li class="">Open <strong>Login Widget</strong>.</li>
+<li class="">Click <strong>Switch to OpenID Connect Login</strong>.</li>
+<li class="">Copy the client ID and client secret shown at the top.</li>
+<li class="">Set <strong>Redirect URI</strong> to <code>https://example.com/oauth/callback</code>.</li>
+</ol>
 <p>Add the credentials to your <code>.env</code> file:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token assign-left variable" style="color:#f8f8f2">TELEGRAM_CLIENT_ID</span><span class="token operator" style="color:#66d9ef">=</span><span class="token plain">your_telegram_client_id</span><br></span><span class="token-line" style="color:#f8f8f2"><span class="token plain"></span><span class="token assign-left variable" style="color:#f8f8f2">TELEGRAM_CLIENT_SECRET</span><span class="token operator" style="color:#66d9ef">=</span><span class="token plain">your_telegram_client_secret</span><br></span></code></pre></div></div>
 <p>Add the adapter to your plugin configuration:</p>
