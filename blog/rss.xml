@@ -13,8 +13,9 @@
             <link>https://adminforth.dev/blog/open-source-agent-existing-database/</link>
             <guid>https://adminforth.dev/blog/open-source-agent-existing-database/</guid>
             <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[<iframe]]></description>
-            <content:encoded><![CDATA[<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin-bottom:2rem"><iframe src="https://www.youtube.com/embed/4tB8uzY__uk" title="AdminForth video demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+            <description><![CDATA[<img]]></description>
+            <content:encoded><![CDATA[<a href="https://www.producthunt.com/products/adminforth/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-adminforth" target="_blank" rel="noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=598095&amp;theme=light" alt="AdminForth - Agentic Open-Source TypeScript Admin Panel framework | Product Hunt" style="width:250px;height:54px" width="250" height="54"></a>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin-bottom:2rem"><iframe src="https://www.youtube.com/embed/4tB8uzY__uk" title="AdminForth video demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
 <p>Your data is already there.
 Your database is already breathing.
 But your back office is still buried under weeks of repetitive work.</p>
