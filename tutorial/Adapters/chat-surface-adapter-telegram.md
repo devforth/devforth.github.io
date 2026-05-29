@@ -1,4 +1,4 @@
-# Telegram Chat Surface Adapter (WIP)
+# Telegram Chat Surface Adapter
 
 > Reference page for AdminForth Agent chat surface adapters, including Telegram bot setup and webhook configuration.
 
