@@ -129,8 +129,8 @@ because if you don't, the DNS entries will remain and you'll have to delete them
             <category>Helm</category>
             <category>Helmfile</category>
             <category>k3s</category>
-            <category>cloudflare</category>
-            <category>github actions</category>
+            <category>Cloudflare</category>
+            <category>GitHub Actions</category>
         </item>
         <item>
             <title><![CDATA[Your Database Already Breathes: Connect an Open-Source Agent to It]]></title>

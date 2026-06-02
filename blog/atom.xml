@@ -132,8 +132,8 @@ because if you don't, the DNS entries will remain and you'll have to delete them
         <category label="Helm" term="Helm"/>
         <category label="Helmfile" term="Helmfile"/>
         <category label="k3s" term="k3s"/>
-        <category label="cloudflare" term="cloudflare"/>
-        <category label="github actions" term="github actions"/>
+        <category label="Cloudflare" term="Cloudflare"/>
+        <category label="GitHub Actions" term="GitHub Actions"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Your Database Already Breathes: Connect an Open-Source Agent to It]]></title>
