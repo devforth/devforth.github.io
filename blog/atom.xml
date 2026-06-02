@@ -33,10 +33,10 @@ The implementation described in this post covers the automatic creation of an is
 </ul>
 <p>Also you need to have installed:</p>
 <ul>
-<li class="">Terraform</li>
-<li class="">Helm</li>
-<li class="">Helmfile</li>
-<li class="">kubectl</li>
+<li class=""><a href="https://developer.hashicorp.com/terraform/install" target="_blank" rel="noopener noreferrer" class="">Terraform</a></li>
+<li class=""><a href="https://helm.sh/docs/intro/install/" target="_blank" rel="noopener noreferrer" class="">Helm</a></li>
+<li class=""><a href="https://helmfile.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer" class="">Helmfile</a></li>
+<li class=""><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/" target="_blank" rel="noopener noreferrer" class="">kubectl</a></li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="github-secrets-configuration">GitHub Secrets Configuration<a href="https://adminforth.dev/blog/branch-sandboxing-k3s/#github-secrets-configuration" class="hash-link" aria-label="Direct link to GitHub Secrets Configuration" title="Direct link to GitHub Secrets Configuration" translate="no">​</a></h2>
 <p>In your GitHub repository settings, configure the following secrets:</p>
