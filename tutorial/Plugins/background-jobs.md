@@ -3,7 +3,7 @@
 > Guide to the Background Jobs plugin, including job setup, execution, UI monitoring, custom state rendering, and frontend APIs for job details.
 
 # Background jobs
-BackgroundJobsPlugin adds a durable background-job system to AdminForth. Jobs are stored in your data store (via a resource), executed by registered handlers, and automatically resumed after server restarts.
+BackgroundJobsPlugin adds a durable background job system to AdminForth. Jobs are stored in your data store through a resource, executed by registered handlers, and automatically resumed after server restarts.
 
 ## Setup
 
@@ -12,7 +12,7 @@ First, install the plugin:
 pnpm i @adminforth/background-jobs
 ```
 
-and create a resource for jobs:
+Then create a resource for jobs:
 
 ```ts title="./resources/jobs.ts"
 import AdminForth, { AdminForthDataTypes } from 'adminforth';
@@ -125,7 +125,7 @@ export default {
 } as AdminForthResourceInput;
 ```
 
-Then make add table schema:
+Then add the table schema:
 
 ```
 model jobs {
@@ -141,10 +141,10 @@ model jobs {
 }
 ```
 
-and make migration
+Then create a migration.
 
 ## Usage
-The plugin saves tasks and keeps executing them even after a server restart, so you should register job task handlers at the start of the AdminForth application.
+The plugin saves tasks and keeps executing them after a server restart, so you should register job task handlers when the AdminForth application starts.
 
 ```ts title="./index.ts"
   //diff-add
@@ -207,7 +207,7 @@ The plugin saves tasks and keeps executing them even after a server restart, so 
       //diff-add
     },
     //diff-add
-    //limit of tasks, that are running in parallel
+    // limit of tasks that are running in parallel
     //diff-add
     parallelLimit: 1
     //diff-add
@@ -301,7 +301,7 @@ If you need to react when the whole job is finished, pass `onAllTasksDone` to `r
 ```
 
 ## Custom job state renderer
-There may be cases when you need to display the state of job tasks. For this, you can register a custom component.
+There may be cases where you need to display the state of job tasks. For this, you can register a custom component.
 
 ```ts title="./custom/JobCustomComponent.vue"
 <template>
@@ -309,6 +309,7 @@ There may be cases when you need to display the state of job tasks. For this, yo
     <Button class="h-10" @click="loadTasks">
       Get Job Tasks
     </Button>
+    {{ props.job.state.statusMessage }}
     {{ tasks }}
   
 </template>
@@ -316,17 +317,21 @@ There may be cases when you need to display the state of job tasks. For this, yo
 <script setup lang="ts">
 import { Button, JsonViewer } from '@/afcl';
 import { onMounted, onUnmounted, ref } from 'vue';
-import websocket from '@/websocket';
 import type { AdminForthComponentDeclarationFull } from 'adminforth';
 
 const tasks = ref<{state: Record<string, any>, status: string}[]>([]);
+let unsubscribeJobStateFields: (() => void) | null = null;
+let unsubscribeTaskFields: (() => void) | null = null;
 
 const props = defineProps<{
   meta: any;
   getJobTasks: (limit?: number, offset?: number) => Promise<{state: Record<string, any>, status: string}[]>;
+  subscribeToJobStateFields: (fieldNames: string[]) => () => void;
+  subscribeToJobTaskFields: (fieldNames: string[]) => () => void;
   job: {
     id: string;
     name: string;
+    state: Record<string, any>;
     status: 'IN_PROGRESS' | 'DONE' | 'DONE_WITH_ERRORS' | 'CANCELLED';
     progress: number; // 0 to 100
     createdAt: Date;
@@ -342,22 +347,13 @@ const loadTasks = async () => {
 
 onMounted(async () => {
   loadTasks();
-  websocket.subscribe(`/background-jobs-task-update/${props.job.id}`, (data: { taskIndex: number, status?: string, state?: Record<string, any> }) => {
-    console.log('Received WebSocket message for job:', data.status);
-    
-    if (data.state) {
-      tasks.value[data.taskIndex].state = data.state;
-    }
-    if (data.status) {
-      tasks.value[data.taskIndex].status = data.status;
-    }
-
-  });
+  unsubscribeJobStateFields = props.subscribeToJobStateFields(['statusMessage']);
+  unsubscribeTaskFields = props.subscribeToJobTaskFields(['step', 'result']);
 });
 
 onUnmounted(() => {
-  console.log('Unsubscribing from WebSocket for job:', props.job.id);
-  websocket.unsubscribe(`/background-jobs-task-update/${props.job.id}`);
+  unsubscribeJobStateFields?.();
+  unsubscribeTaskFields?.();
 });
 
 </script>
@@ -438,9 +434,23 @@ Finally, register this component alongside the job task handler:
 
 ```
 
+### Reactive updates for job state and task state
+
+You can activate automatic reactive updates for task state and job state on the frontend when you call backend state mutation methods like `setJobField` and `setTaskStateField`.
+
+To avoid unnecessary high-volume backend updates for data that might not be needed on the frontend, all reactive updates are disabled by default, and you need to specify which fields to subscribe to.
+
+Use `subscribeToJobStateFields(['fieldName1', 'fieldName2'])` for specific job state fields and
+`subscribeToJobTaskFields(['fieldName1', 'fieldName2'])` for specific task state fields.
+
+The plugin applies incoming updates to the reactive `job` prop and to the task objects returned by
+`getJobTasks()`. Task field subscriptions receive updates for that field from every task
+in the open job. Both helpers return an unsubscribe function, though the plugin also automatically unsubscribes from
+remaining field subscriptions when the job dialog closes.
+
 ## Frontend API
 ### Job info popup
-If you want to imedeatelly open job info popup, you shoul return job id from you API, that creates job:
+If you want to immediately open the job info popup, return the job ID from the API that creates the job:
 
 For example:
 
@@ -472,9 +482,9 @@ For example:
 
 ```
 
-## Backend api
+## Backend API
 
-Pluging provides some handy methods, that can be used in different situations:
+The plugin provides some handy methods that can be used in different situations:
 
 ```ts
 //set key:value to the job state in the DB
@@ -485,16 +495,17 @@ getJobField(jobId: string, key: string)
 getJobState(jobId: string)
 /**
  * 
- * executes code atomically, if you have many task, that can update task state, 
- * better use this method to avoid cases, when in the task state writes invalid data.
+ * executes code atomically. If you have many tasks that can update task state,
+ * use this method to avoid invalid task state writes.
  * 
  **/
 updateJobFieldsAtomically(jobId: string, updateFunction: () => Promise<void>) 
 
 //for example
 backgroundJobsPlugin.updateJobFieldsAtomically(jobId, async () => {
-  // do all set / get fields in this function to make state update atomic and there is no conflicts when 2 tasks in parallel do get before set.
-  // don't do long awaits in this callback, since it has exclusive lock.
+  // Do all set / get field operations in this function to make the state update atomic and avoid conflicts
+  // when two parallel tasks get the same value before setting it.
+  // Don't do long awaits in this callback, since it has an exclusive lock.
   let totalUsedTokens = await backgroundJobsPlugin.getJobField(jobId, 'totalUsedTokens');
   totalUsedTokens += promptCost;
   await backgroundJobsPlugin.setJobField(jobId, 'totalUsedTokens', totalUsedTokens);
