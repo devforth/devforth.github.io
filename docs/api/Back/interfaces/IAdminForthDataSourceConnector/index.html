@@ -25,8 +25,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.340f8907.css">
-<script src="/assets/js/runtime~main.5d733811.js" defer="defer"></script>
-<script src="/assets/js/main.d7d847af.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.d689fc78.js" defer="defer"></script>
+<script src="/assets/js/main.c9ac6910.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -202,11 +202,11 @@ filter by primary key.</p>
 <hr>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="setupclient">setupClient()<a href="#setupclient" class="hash-link" aria-label="Direct link to setupClient()" title="Direct link to setupClient()" translate="no">​</a></h3>
 <blockquote>
-<p><strong>setupClient</strong>(<code>url</code>): <code>Promise</code>&lt;<code>void</code>&gt;</p>
+<p><strong>setupClient</strong>(<code>url</code>, <code>options?</code>): <code>Promise</code>&lt;<code>void</code>&gt;</p>
 </blockquote>
 <p>Function to setup client connection to database.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-11">Parameters<a href="#parameters-11" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
-<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>url</code></td><td><code>string</code></td><td>URL to database. Examples: clickhouse://demo<!-- -->:demo<!-- -->@localhost:8125/demo</td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>url</code></td><td><code>string</code></td><td>URL to database. Examples: clickhouse://demo<!-- -->:demo<!-- -->@localhost:8125/demo</td></tr><tr><td><code>options?</code></td><td>{ <code>recovery?</code>: <code>boolean</code>; }</td><td>Optional connection options. <code>recovery</code> mirrors the dataSource <code>connectionRecovery</code> flag (defaults to true when omitted).</td></tr><tr><td><code>options.recovery?</code></td><td><code>boolean</code></td><td>-</td></tr></tbody></table>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-12">Returns<a href="#returns-12" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
 <p><code>Promise</code>&lt;<code>void</code>&gt;</p>
 <hr>
