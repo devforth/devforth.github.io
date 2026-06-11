@@ -10007,7 +10007,7 @@ new CompletionAdapterOpenAIResponses({
 
 You can specify any GPT model you need. The default is `gpt-5-nano` as it is cheapest though may behave weakly.
 
-By default, this adapter uses the OpenAI `responses` API (`v1/responses`) unless `useComplitionApi` is set to `true`. If `useComplitionApi` is `true`, it uses the older Chat Completions API (`v1/chat/completions`). 
+By default, this adapter uses the OpenAI `responses` API (`v1/responses`) unless `useCompletionApi` is set to `true`. If `useCompletionApi` is `true`, it uses the older Chat Completions API (`v1/chat/completions`). 
 
 ### Using with OpenAI-compatible API providers (for example based on self-hosted vLLM docker images)
 
@@ -10018,25 +10018,25 @@ new CompletionAdapterOpenAIResponses({
   openAiApiKey: process.env.OVH_AI_ENDPOINTS_ACCESS_TOKEN as string,
   baseUrl: 'https://oai.endpoints.kepler.ai.cloud.ovh.net/v1',
   model: 'gpt-oss-20b',
-  useComplitionApi: true,
+  useCompletionApi: true,
   extraRequestBodyParameters: {
     store: false,
   },
 }),
 ```
 
-If `useComplitionApi` is omitted, the adapter keeps the current default behavior:
+If `useCompletionApi` is omitted, the adapter keeps the current default behavior:
 
 - official OpenAI uses the `responses` API
 - custom `baseUrl` providers use the Chat Completions API. 
 
-This is because many OpenAI-compatible providers do not yet support the `responses` API or support it unstably (for example OVH AI Endpoints still - Apr 2026 does not fully support the `responses`, so `useComplitionApi: false` may work unstably there, though you can re-test it by manually enabling it by setting `useComplitionApi: true` and checking if it works).
+This is because many OpenAI-compatible providers do not yet support the `responses` API or support it unstably (for example OVH AI Endpoints still - Apr 2026 does not fully support the `responses`, so `useCompletionApi: false` may work unstably there, though you can re-test it by manually enabling it by setting `useCompletionApi: true` and checking if it works).
 Any 3rd-party API providers might have next reasones of pure `responses` API compatibility:
 
 1) If they use vLLM open-source software under the hood they might have outdated version
 2) Custom non-vLLM implmentation might have reliable chat API implementation while give less priority to responses API as it is more complex and new.
 
-We recommend you to try responses API first by setting `false` in `useComplitionApi` because it gives rich features set, including summarization and better structured outputs, and if it does not work for your provider, then set it to `true` to have less features but working implementation.
+We recommend you to try responses API first by setting `false` in `useCompletionApi` because it gives rich features set, including summarization and better structured outputs, and if it does not work for your provider, then set it to `true` to have less features but working implementation.
 
 ## Google Gemini Completion Adapter
 
@@ -11306,18 +11306,18 @@ completionAdapter: new CompletionAdapterOpenAIResponses({
 
 However some of 3rd party providers might serve outdated vLLM and still don't fully support the Responses API needed for langchain internal implmentation, for example [OVH AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/) in Responses mode still don't play well with langchain proxy (25 Apr 2026)
 
-In that case you can try to use the OpenAI Complition API mode of the plugin, which is less efficient but more compatible with older APIs, you can force Chat Completions API mode with `useComplitionApi: true`:
+In that case you can try to use the OpenAI Chat Completions API mode of the plugin, which is less efficient but more compatible with older APIs, you can force Chat Completions API mode with `useCompletionApi: true`:
 
 ```ts
 completionAdapter: new CompletionAdapterOpenAIResponses({
   openAiApiKey: process.env.OVH_AI_ENDPOINTS_ACCESS_TOKEN as string,
   baseUrl: 'https://oai.endpoints.kepler.ai.cloud.ovh.net/v1',
   model: 'gpt-oss-120b',
-  useComplitionApi: true,
+  useCompletionApi: true,
 })
 ```
 
-OVH AI Endpoints still does not fully support the OpenAI `responses` API, so `useComplitionApi: false` may work unstably there.
+OVH AI Endpoints still does not fully support the OpenAI `responses` API, so `useCompletionApi: false` may work unstably there.
 
 ## Turn on audio chat support
 If you want to have an ability to talk with agent usng voice, you can setup it:
@@ -11380,6 +11380,29 @@ To define a custom tool, register an API endpoint with `admin.express.endpoint`.
 
 By default, `admin.express.endpoint` applies AdminForth authorization. The endpoint handler receives `adminUser` from the user who is controlling the agent. In other words, all permissions and access rights of the agent are defined by that admin user. At the same time, actions done by the agent are automatically attributed in the audit log to the admin user who is controlling the agent.
 
+If a tool is risky, you can attach AdminForth agent metadata directly to the endpoint with the `agent` field.
+
+```ts
+type AgentRiskLevel = 'safe' | 'danger';
+
+type AgentToolMeta = {
+  riskLevel?: AgentRiskLevel;
+  confirmation?: {
+    title?: string;
+    message?: string;
+    confirmLabel?: string;
+  };
+};
+```
+
+Use it in `.endpoint(...)` like this:
+
+- `riskLevel: 'safe'` marks the tool as low-risk.
+- `riskLevel: 'danger'` marks the tool as dangerous.
+- `confirmation` customizes the confirmation dialog shown before the tool is executed.
+
+This metadata is rendered into the generated OpenAPI document, so the agent can understand that a tool is dangerous and requires an explicit confirmation UI before execution.
+
 This example uses the same email adapter pattern shown in the Email Invite and Email Password Reset plugins. The transport below uses Mailgun only to keep the snippet short; you can replace it with SES or any other adapter from [List of adapters](/docs/tutorial/ListOfAdapters/).
 
 ```ts title="./api.ts"
@@ -11416,6 +11439,14 @@ export function initApi(app: Express, admin: IAdminForth) {
     method: 'POST',
     path: '/send_email_to_user',
     description: 'Send an email to one AdminForth user by id. Use this after the user row is resolved.',
+    agent: {
+      riskLevel: 'danger',
+      confirmation: {
+        title: 'Send email to user',
+        message: 'This action will send a real email to the selected user.',
+        confirmLabel: 'Send email',
+      },
+    },
     request_schema: {
       type: 'object',
       additionalProperties: false,
@@ -19329,7 +19360,7 @@ query:
 
 ### Chart With Multiple Sources
 
-Use `query.steps` when funnel steps come from different resources. Each step returns one row with `name` and the metric alias.
+Use `query.source: steps` when chart data comes from different resources. Each step returns one row with `name`, `resource`, and the selected aggregate aliases.
 
 ```yaml
 label: Sales Funnel
@@ -19340,27 +19371,68 @@ chart:
   type: funnel
   title: Sales funnel
 query:
+  source: steps
   steps:
     - name: Leads
       resource: leads
-      metric:
-        agg: count
-        as: value
+      select:
+        - agg: count
+          as: value
     - name: Qualified
       resource: leads
-      metric:
-        agg: count
-        as: value
+      select:
+        - agg: count
+          as: value
       filters:
         and:
           - field: status
             eq: qualified
     - name: Customers
       resource: orders
-      metric:
-        agg: count_distinct
-        field: customer_id
-        as: value
+      select:
+        - agg: count_distinct
+          field: customer_id
+          as: value
+```
+
+For the same numeric buckets across multiple resources, add `query.bucket` and render the result as a stacked bar chart. The dashboard runs every step once per bucket and returns rows with `label`, `name`, `resource`, and the aggregate aliases:
+
+```yaml
+label: Cars by Price Range and Database
+target: chart
+size: wide
+height: 360
+chart:
+  type: stacked_bar
+  x:
+    field: label
+  y:
+    field: count
+  series:
+    field: name
+query:
+  source: steps
+  bucket:
+    field: price
+    buckets:
+      - label: Budget
+        max: 3500
+      - label: Mid-range
+        min: 3500
+        max: 7000
+      - label: Premium
+        min: 7000
+  steps:
+    - name: SQLite
+      resource: cars_sl
+      select:
+        - agg: count
+          as: count
+    - name: MySQL
+      resource: cars_mysql
+      select:
+        - agg: count
+          as: count
 ```
 
 ### KPI Card
