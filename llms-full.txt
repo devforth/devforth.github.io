@@ -5868,7 +5868,7 @@ Also you can add custom rules. For example to prevent popular words:
   ],
 ```
 
-All rules defined in password column will be also delivered to [password reset plugin](../08-Plugins/07-email-password-reset.md) if you are using it to ensure that password reset will also respect same rules.
+All rules defined in password column will be also delivered to [password reset plugin](../09-Plugins/07-email-password-reset.md) if you are using it to ensure that password reset will also respect same rules.
 
 ## Trusting client IP addresses
 
@@ -6218,25 +6218,6 @@ export default {
 ```
 
 >⚠️ Please note that sticky columns can only be applied to one column per resource.
-
-### Custom list column class
-
-You can add a custom CSS class to any list column with `listCssClass`. AdminForth applies it to both the header cell and the data cells for that column.
-Static Tailwind utility classes used here are collected into the generated Tailwind safelist during bundling, so you can use normal utility strings in the resource config.
-
-```typescript title="./resources/apartments.ts"
-export default {
-  resourceId: 'aparts',
-  ...
-  columns: [
-    {
-      name: "price",
-      listCssClass: "text-right font-semibold min-w-10",
-    },
-    ...
-  ]
-}
-```
 
 ### Conditional display
 You can conditionally display columns in forms and views based on the values of other fields in the current record using the `showIf` property. This enables dynamic layouts that automatically adapt to user input, creating more intuitive and context-aware interfaces.
@@ -9565,6 +9546,61 @@ admin.websocket.publish(topic, { type: 'message', totalCost }, async (adminUser:
 ```
 
 In this case during publish call it will check all users who subscribed to the topic and do actual publish to only those who are allowed to receive the message. This method requires more CPU resources and generally is not recommended.
+
+---
+
+## Connectors
+
+
+## General logic
+The connectors is distributed as a separate package and loaded by AdminForth automatically.
+You do not need to instantiate or import the connector manually in your app config.
+
+AdminForth resolves connectors by datasource URL scheme, so when it sees `sqlite://...` it tries to load `@adminforth/connector-sqlite`.
+
+## Setup
+### SQLite
+```bash
+pnpm add @adminforth/connector-sqlite
+```
+
+That is enough for connector wiring because connectors are integrated through the peer dependency system.
+
+### Postgres
+```bash
+pnpm add @adminforth/connector-postgres
+```
+
+### MySQL
+```bash
+pnpm add @adminforth/connector-mysql
+```
+### Clickhouse
+```bash
+pnpm add @adminforth/connector-Clickhouse
+```
+
+### Mongo
+```bash
+pnpm add @adminforth/connector-Mongo
+```
+
+### Qdrant
+```bash
+pnpm add @adminforth/connector-qdrant
+```
+
+## How peer dependency loading works
+
+AdminForth keeps connectors optional and attempts to import only the connector that matches your datasource type.
+
+For SQLite this means:
+
+1. You set datasource URL to `sqlite://...`
+2. AdminForth attempts to import `@adminforth/connector-sqlite`
+3. Connector is used automatically for schema discovery and CRUD operations
+
+No extra connector registration is required in the usual setup.
 
 ---
 
