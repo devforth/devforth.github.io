@@ -2,6 +2,9 @@
 
 > Guide to the Two-Factor Authentication plugin, including installation, TOTP or passkey setup, rollout rules, and per-user exceptions for stronger admin login security.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Two-Factor Authentication Plugin
 
 The Two-Factor Authentication Plugin provides an additional layer of security to the application by requiring users to provide a second form of authentication in addition to their password. This plugin supports  authenticator apps.
@@ -658,27 +661,97 @@ If you want to have custom label prefix for some reason:
 If you want to use both passkeys and TOTP simultaneously, you can set them up as follows:
 
 First, you need to create a passkeys table in your schema.prisma file:
+<Tabs
+  defaultValue="sqlite"
+  values={[
+    {label: 'SQlite', value: 'sqlite'},
+    {label: 'Postgres', value: 'postgres'},
+    {label: 'MySql', value: 'mysql'},
+    {label: 'Clickhouse', value: 'clickhouse'},
+  ]}>
+  <TabItem value="sqlite">
+    ```ts title='./schema.prisma'
+      //diff-add
+      model passkeys {
+        //diff-add
+        id                      String @id
+        //diff-add
+        credential_id           String  
+        //diff-add
+        user_id                 String
+        //diff-add
+        meta                    String
+        //diff-add
+        @@index([user_id])
+        //diff-add
+        @@index([credential_id])
+        //diff-add
+      }
+    ```
+  </TabItem>
+  <TabItem value="postgres">
+    ```ts title='./schema.prisma'
+      //diff-add
+      model passkeys {
+        //diff-add
+        id                      String @id
+        //diff-add
+        credential_id           String  
+        //diff-add
+        user_id                 String
+        //diff-add
+        meta                    Json
+        //diff-add
+        @@index([user_id])
+        //diff-add
+        @@index([credential_id])
+        //diff-add
+      }
+    ```
+  </TabItem>
+  <TabItem value="mysql">
+    ```ts title='./schema.prisma'
+      //diff-add
+      model passkeys {
+        //diff-add
+        id                      String @id
+        //diff-add
+        credential_id           String  
+        //diff-add
+        user_id                 String
+        //diff-add
+        meta                    Json
+        //diff-add
+        @@index([user_id])
+        //diff-add
+        @@index([credential_id])
+        //diff-add
+      }
+    ```
+  </TabItem>
+  <TabItem value="clickhouse">
+    ```ts title='./schema.prisma'
+      //diff-add
+      model passkeys {
+        //diff-add
+        id                      String @id
+        //diff-add
+        credential_id           String  
+        //diff-add
+        user_id                 String
+        //diff-add
+        meta                    Json
+        //diff-add
+        @@index([user_id])
+        //diff-add
+        @@index([credential_id])
+        //diff-add
+      }
+    ```
+  </TabItem>
+</Tabs>
 
-```ts title='./schema.prisma'
-  //diff-add
-  model passkeys {
-    //diff-add
-    id                      String @id
-    //diff-add
-    credential_id           String  
-    //diff-add
-    user_id                 String
-    //diff-add
-    meta                    String
-    //diff-add
-    @@index([user_id])
-    //diff-add
-    @@index([credential_id])
-    //diff-add
-  }
-```
->☝️Use string data type for credential_id and meta fields
-
+>☝️Use Json data type, if it's possible for the meta field
 And make migration:
 
 ```bash
