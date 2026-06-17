@@ -578,6 +578,28 @@ list: '@/renderers/ZeroStylesRichText.vue',
 
 `ZeroStyleRichText` fits well for tasks like email templates preview fields.
 
+### Sensitive data blur
+
+For fields containing sensitive data (like passwords, API keys, tokens, or other confidential values), use the `SensitiveBlurCell` renderer. It blurs the value by default and reveals it on click.
+
+```ts title='./resources/anyResource.ts'
+  columns: [
+    ...
+    {
+      name: 'api_key',
+  //diff-add
+      components: {
+  //diff-add
+        show: '@/renderers/SensitiveBlurCell.vue',
+  //diff-add
+        list: '@/renderers/SensitiveBlurCell.vue',
+  //diff-add
+      },
+    ...
+```
+
+The renderer wraps the standard value output and adds a click-to-reveal blur effect. Clicking again hides the value.
+
 ### Custom filter component for square meters
 
 Sometimes standard filters are not enough, and you want to make a convenient UI for selecting a range of apartment areas. For example, buttons with options for “Small (&lt;25 m²)”, “Medium (25–90 m²)” and “Large (&gt;90 m²)”.
