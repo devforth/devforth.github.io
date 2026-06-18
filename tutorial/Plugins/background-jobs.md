@@ -6,7 +6,7 @@
 BackgroundJobsPlugin adds a durable background job system to AdminForth. Jobs are stored in your data store through a resource, executed by registered handlers, and automatically resumed after server restarts.
 
 ## Setup
-
+> ‼️ Note, that before deploying this plugin, you should create volume for the level db and pass is as `levelDbPath` param, so background jobs will be saved between redeploys
 First, install the plugin:
 ```bash
 pnpm i @adminforth/background-jobs
@@ -120,6 +120,7 @@ export default {
       statusField: 'status',
       nameField: 'name',
       jobHandlerField: 'job_handler_name',
+      levelDbPath: process.env.NODE_ENV === production ? '/stores/background_job_plugin' : './background_jobs',
     })
   ]
 } as AdminForthResourceInput;
