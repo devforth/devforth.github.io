@@ -25,8 +25,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.c8f65c70.css">
-<script src="/assets/js/runtime~main.c7471258.js" defer="defer"></script>
-<script src="/assets/js/main.4460c8ad.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.1bfddc26.js" defer="defer"></script>
+<script src="/assets/js/main.63e83113.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -296,6 +296,13 @@ Can be also array to render multiple injections one after another.</p>
 <blockquote>
 <p><code>optional</code> <strong>showFieldGroups?</strong>: <a class="" href="/docs/api/Common/type-aliases/FieldGroup/"><code>FieldGroup</code></a>[]</p>
 </blockquote>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="shownextbutton">showNextButton?<a href="#shownextbutton" class="hash-link" aria-label="Direct link to showNextButton?" title="Direct link to showNextButton?" translate="no">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>showNextButton?</strong>: <code>boolean</code></p>
+</blockquote>
+<p>Whether to show the &quot;Next&quot; navigation button on the show page.
+Allows cycling through records respecting current list filters and sorting.
+Defaults to <code>true</code>.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="inherited-from-1">Inherited from<a href="#inherited-from-1" class="hash-link" aria-label="Direct link to Inherited from" title="Direct link to Inherited from" translate="no">​</a></h4>
 <p><a class="" href="/docs/api/Common/interfaces/AdminForthResourceInputCommon/"><code>AdminForthResourceInputCommon</code></a>.<a class="" href="/docs/api/Common/interfaces/AdminForthResourceInputCommon/#options"><code>options</code></a></p>
 <hr>
@@ -306,7 +313,7 @@ Can be also array to render multiple injections one after another.</p>
 <p>Hook which allow you to modify record label</p>
 <p>Example:</p>
 <div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#f8f8f2"><span class="token function-variable function" style="color:#e6db74">recordLabel</span><span class="token operator" style="color:#66d9ef">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#f8f8f2">(</span><span class="token plain">record</span><span class="token punctuation" style="color:#f8f8f2">)</span><span class="token plain"> </span><span class="token operator" style="color:#66d9ef">=&gt;</span><span class="token plain"> </span><span class="token template-string template-punctuation string" style="color:#a6e22e">`</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#f8f8f2">${</span><span class="token template-string interpolation">record</span><span class="token template-string interpolation punctuation" style="color:#f8f8f2">.</span><span class="token template-string interpolation">name</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#f8f8f2">}</span><span class="token template-string string" style="color:#a6e22e"> - </span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#f8f8f2">${</span><span class="token template-string interpolation">record</span><span class="token template-string interpolation punctuation" style="color:#f8f8f2">.</span><span class="token template-string interpolation">id</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#f8f8f2">}</span><span class="token template-string template-punctuation string" style="color:#a6e22e">`</span><span class="token punctuation" style="color:#f8f8f2">,</span><br></span></code></pre></div></div>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-1">Parameters<a href="#parameters-1" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-1">Parameters<a href="#parameters-1" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">  ​</a></h4>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>item</code></td><td><code>any</code></td></tr></tbody></table>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-1">Returns<a href="#returns-1" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
 <p><code>string</code></p>
