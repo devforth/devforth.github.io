@@ -1,6 +1,6 @@
 # Key-value Adapters
 
-> Reference page for AdminForth key-value adapters, including RAM, Redis, and LevelDB backends for temporary state, caching, and plugin storage.
+> Reference page for prebuilt key-value adapters created by AdminForth team, including simplest RAM Adapter (in-memory, no dependencies but ephemeral), Redis-based adapter, LevelDB - based (requires a mounted volume DevOps), Resource-based (Works on top of a resource persistable with your native SQL/NoSQL database)
 
 # Key-value Adapters
 
