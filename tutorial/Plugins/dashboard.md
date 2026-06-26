@@ -2,29 +2,66 @@
 
 > Documentation for the Dashboard plugin.
 
-# Dashboard (WIP)
+# Dashboard Plugin
 
-The Dashboard plugin adds configurable dashboards to AdminForth.
+The **Dashboard Plugin** adds dynamic, configurable dashboards to AdminForth. This page is a practical guide / reference demonstrating how to build and manage your dashboards using the **[Agent Plugin](/docs/tutorial/Plugins/agent)**.
 
-Each dashboard is stored as a record in your database. The plugin renders every dashboard under `/dashboard/:slug`, adds a **Dashboards** group to the sidebar, and lets superadmins configure groups and widgets directly from the UI.
+While manual configuration is supported, the plugin is primarily designed to be managed via conversational prompts using the AI Agent. This is the fastest, easiest, and recommended way to create and modify your dashboards.
 
-Supported widgets:
+### Quick Start: Conversation Prompts
+If you have the Agent Plugin active, you can interact with it right away using these prompts in the chat interface:
+* *"Create a new dashboard named 'Sales Overview'"*
+* *"Add a pie chart showing cars by body type to the Sales Overview dashboard"*
+* *"Add a KPI card showing the average price of cars"*
 
-- **Table**
-- **Chart**: line, bar, stacked bar, pie, funnel, histogram
-- **KPI Card**
-- **Gauge Card**
-- **Pivot Table**
+---
 
-## Installation
+## Using the Dashboard with the Agent
+
+Once the Dashboard plugin is installed, the AI Agent has full capability to manage it. You do not need to construct YAML configurations yourself; the agent handles all database record updates and layout adjustments.
+
+### End-to-End Prompt Examples
+Here are interactive examples you can test immediately in the demo application generated via the AdminForth CLI:
+
+#### 1. KPI Cards for Basic Metrics
+* **Initial Prompt:**
+  > *"Create a new dashboard group named 'Sales Stats' and add two KPI cards inside it: one for 'Total Cars' (count of all cars) and another for 'Average Price' (average car price)."*
+* **Expected Result:**
+  The agent creates a new group named "Sales Stats" containing two cards. One card displays the count of all records in the `cars` resource (e.g., `24`), and the second displays the average price formatted with a dollar sign (e.g., `$12,450`).
+* **Follow-up Prompt:**
+  > *"Change the background color of the Average Price card to blue and adjust its width to match the other card."*
+
+#### 2. Visualizing Categories with a Bar Chart
+* **Initial Prompt:**
+  > *"Add a bar chart named 'Cars by Body Type' to the 'Sales Stats' group. Group it by body_type and sort by the number of cars from high to low."*
+* **Expected Result:**
+  A bar chart is created. It queries the `cars` resource, groups by `body_type`, and orders the bars so the body type with the most cars appears first.
+* **Follow-up Prompt:**
+  > *"Change the chart type to a pie chart and set its size to medium."*
+
+#### 3. Data Table with Filters and Limits
+* **Initial Prompt:**
+  > *"Add a wide table widget named 'Top 5 Most Expensive Listed Cars' to my dashboard. Show the model, price, and production_year columns. Only include listed cars, and sort them by price descending."*
+* **Expected Result:**
+  A data table widget is added. It displays columns for model, price, and production year, filtered to only show cars where `listed` is true, limited to the top 5 most expensive.
+* **Follow-up Prompt:**
+  > *"Add the color column to this table, and rename the widget to 'Top 5 Premium Cars'."*
+
+---
+
+## Installation & Setup
+
+Before using the dashboard, you need to perform the initial package installation and register the database tables:
+
+### 1. Install Package
 
 ```bash
 pnpm install @adminforth/dashboard --save
 ```
 
-### Create Dashboard Configs Table
+### 2. Create Dashboard Configs Table
 
-The plugin needs one resource to store dashboard definitions. For Prisma-based projects, add the table to your schema:
+The plugin needs one database resource to store dashboard definitions. For Prisma-based projects, add the table to your schema:
 
 ```prisma title="./schema.prisma"
 model dashboard_configs {
@@ -62,7 +99,7 @@ CREATE INDEX "dashboard_configs_slug_idx" ON "dashboard_configs"("slug");
 
 Use the JSON column type supported by your database connector. For example, PostgreSQL migrations might use `JSONB`, while SQLite migrations can use `JSON`.
 
-### Create Resource
+### 3. Create Resource
 
 Create a resource that points to the `dashboard_configs` table:
 
@@ -134,7 +171,7 @@ export const admin = new AdminForth({
 });
 ```
 
-### Configure Plugin
+### 4. Configure Plugin
 
 Attach the plugin to one of your resources, usually the users resource:
 
@@ -163,19 +200,21 @@ groups:
 widgets: []
 ```
 
-## Usage
+---
 
-Open the **Dashboards** group in the sidebar and choose a dashboard page.
+## Manual Configuration
 
-Superadmins can:
+If you need to configure dashboards without using the AI Agent, you can do so manually via the AdminForth interface:
 
-- add, rename, reorder, and remove groups
-- add, configure, reorder, and remove widgets
-- edit widget and group configs from the dashboard UI
+1. **Access Dashboards**: Open the **Dashboards** group in the sidebar and choose a dashboard page.
+2. **Interactive UI Editor**: Superadmins can add, rename, reorder, and remove groups or widgets directly from the user interface.
+3. **YAML Configuration Editor**: The dashboard builder has built-in code editors. When editing a widget or a group manually, you write configurations using a YAML-based DSL.
 
-The dashboard editors use YAML syntax, so the configuration snippets below are shown in YAML even though the data is stored in a JSON column.
+For the complete schema specifications of queries, formulas, custom variables, layout fields, and advanced chart configurations, see the **[Dashboard Query Reference](/docs/tutorial/Plugins/dashboard-reference)**.
 
-Dashboard pages are generated from records in `dashboard_configs`. To add another dashboard, create a new record:
+### Adding new dashboard pages manually
+
+To create a new dashboard page manually, add a new record to your dashboard configs resource (e.g. `dashboard_configs` table in the database):
 
 ```yaml title="dashboard_configs.config"
 version: 1
@@ -187,308 +226,3 @@ widgets: []
 ```
 
 Use a unique `slug`, for example `sales`. The plugin will expose it as `/dashboard/sales` and add it to the **Dashboards** sidebar group.
-
-## Widget Queries
-
-Widgets load data through `query`. The same query shape supports raw rows, grouped aggregate rows, per-measure filters, ordering, and calculated fields.
-
-```yaml
-query:
-  resource: cars
-  select:
-    - field: body_type
-      as: body_type
-    - agg: count
-      as: total_cars
-    - agg: avg
-      field: price
-      as: avg_price
-  group_by:
-    - body_type
-  order_by:
-    - field: total_cars
-      direction: desc
-```
-
-Step-based charts use a `steps` query when each step needs its own resource, metric, and filters. Funnel charts always use this query shape.
-
-Depending on the widget, `query` can also use `limit`, `offset`, `calcs`, `time_series`, `period`, `bucket`, and `formatting`.
-
-Widget-scoped constants can be defined with `variables`. They are available inside `query.calcs` through `lookup($variables.path, field, default)`.
-
-```yaml
-label: Average Car Price by Database
-target: chart
-variables:
-  price_multipliers:
-    cars_sl: 0.84
-    cars_mysql: 1.12
-chart:
-  type: bar
-  x:
-    field: name
-  y:
-    field: adjusted_value
-query:
-  steps:
-    - name: SQLite
-      resource: cars_sl
-      metric:
-        agg: avg
-        field: price
-        as: value
-    - name: MySQL
-      resource: cars_mysql
-      metric:
-        agg: avg
-        field: price
-        as: value
-  calcs:
-    - calc: value * lookup($variables.price_multipliers, resource, 1)
-      as: adjusted_value
-```
-
-Define `variables` on each widget config. Dashboard root variables are not merged into widget data queries.
-
-## Widget Examples
-
-The examples below are widget configs as they appear in the dashboard widget editor. When you edit the whole `dashboard_configs.config` record directly, every widget also needs its persisted `id`, `group_id`, and `order` fields.
-
-### Table
-
-```yaml
-label: Latest Cars
-target: table
-size: wide
-height: 360
-table:
-  columns:
-    - model
-    - price
-    - body_type
-    - production_year
-  page_size: 10
-query:
-  resource: cars
-  select:
-    - field: model
-    - field: price
-    - field: body_type
-    - field: production_year
-  order_by:
-    - field: production_year
-      direction: desc
-```
-
-Table widgets use pagination by default. Set `table.page_size` to choose how many rows each request loads, or `table.pagination` to `false` to request all rows at once.
-
-### Pie Chart
-
-```yaml
-label: Cars by Body Type
-target: chart
-size: medium
-height: 360
-chart:
-  type: pie
-  label:
-    field: body_type
-  value:
-    field: value
-query:
-  resource: cars
-  select:
-    - field: body_type
-    - agg: count
-      as: value
-  group_by:
-    - body_type
-```
-
-### Bar Chart
-
-```yaml
-label: Cars by Production Year
-target: chart
-size: wide
-height: 360
-chart:
-  type: bar
-  x:
-    field: production_year
-  y:
-    field: value
-query:
-  resource: cars
-  select:
-    - field: production_year
-    - agg: count
-      as: value
-  group_by:
-    - production_year
-```
-
-### Chart With Multiple Sources
-
-Use `query.source: steps` when chart data comes from different resources. Each step returns one row with `name`, `resource`, and the selected aggregate aliases.
-
-```yaml
-label: Sales Funnel
-target: chart
-size: large
-height: 360
-chart:
-  type: funnel
-  title: Sales funnel
-query:
-  source: steps
-  steps:
-    - name: Leads
-      resource: leads
-      select:
-        - agg: count
-          as: value
-    - name: Qualified
-      resource: leads
-      select:
-        - agg: count
-          as: value
-      filters:
-        and:
-          - field: status
-            eq: qualified
-    - name: Customers
-      resource: orders
-      select:
-        - agg: count_distinct
-          field: customer_id
-          as: value
-```
-
-For the same numeric buckets across multiple resources, add `query.bucket` and render the result as a stacked bar chart. The dashboard runs every step once per bucket and returns rows with `label`, `name`, `resource`, and the aggregate aliases:
-
-```yaml
-label: Cars by Price Range and Database
-target: chart
-size: wide
-height: 360
-chart:
-  type: stacked_bar
-  x:
-    field: label
-  y:
-    field: count
-  series:
-    field: name
-query:
-  source: steps
-  bucket:
-    field: price
-    buckets:
-      - label: Budget
-        max: 3500
-      - label: Mid-range
-        min: 3500
-        max: 7000
-      - label: Premium
-        min: 7000
-  steps:
-    - name: SQLite
-      resource: cars_sl
-      select:
-        - agg: count
-          as: count
-    - name: MySQL
-      resource: cars_mysql
-      select:
-        - agg: count
-          as: count
-```
-
-### KPI Card
-
-```yaml
-label: Average Car Price
-target: kpi_card
-size: small
-card:
-  value:
-    field: value
-    prefix: $
-query:
-  resource: cars
-  select:
-    - agg: avg
-      field: price
-      as: value
-```
-
-### Gauge Card
-
-```yaml
-label: Average Car Price
-target: gauge_card
-size: small
-card:
-  value:
-    field: value
-    suffix: $
-  target:
-    field: max
-  color: '#2563eb'
-query:
-  resource: cars
-  select:
-    - agg: avg
-      field: price
-      as: value
-    - agg: max
-      field: price
-      as: max
-```
-
-### Pivot Table
-
-```yaml
-label: Cars Summary by Body Type
-target: pivot_table
-size: full
-height: 420
-pivot:
-  rows:
-    - body_type
-  values:
-    - field: total_cars
-    - field: avg_price
-query:
-  resource: cars
-  select:
-    - field: body_type
-    - agg: count
-      as: total_cars
-    - agg: avg
-      field: price
-      as: avg_price
-  group_by:
-    - body_type
-```
-
-Aggregation aliases such as `total_cars` and `avg_price` become table columns.
-
-## Layout
-
-Widgets support these layout fields:
-
-```yaml
-size: small
-width: 320
-height: 360
-min_width: 240
-max_width: 640
-```
-
-`size` can be `small`, `medium`, `large`, `wide`, or `full`. Explicit `width`, `height`, `min_width`, and `max_width` can be used when a widget needs more precise sizing.
-
-## Agent Plugin Integration
-
-When `@adminforth/agent` is installed in the same app, the agent can work with dashboard configs too. You can ask it to create dashboard groups, add widgets, or adjust widget settings, and it will update the Dashboard plugin configuration through AdminForth resources and dashboard endpoints.

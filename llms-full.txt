@@ -2003,6 +2003,30 @@ For fields containing sensitive data (like passwords, API keys, tokens, or other
 
 The renderer wraps the standard value output and adds a click-to-reveal blur effect. Clicking again hides the value.
 
+For long values (like API keys) you can enable compact mode by passing `compact: true` via `meta`. When set, the value is shortened the same way as the `CompactUUID` renderer (first 4 + `...` + last 4 characters). In compact mode you can additionally pass `copy: true` to render a copy-to-clipboard button next to the value:
+
+```ts title='./resources/anyResource.ts'
+  columns: [
+    ...
+    {
+      name: 'api_key',
+      components: {
+        show: {
+  //diff-add
+          file: '@/renderers/SensitiveBlurCell.vue',
+  //diff-add
+          meta: { compact: true, copy: true },
+        },
+        list: {
+  //diff-add
+          file: '@/renderers/SensitiveBlurCell.vue',
+  //diff-add
+          meta: { compact: true, copy: true },
+        },
+      },
+    ...
+```
+
 ### Custom filter component for square meters
 
 Sometimes standard filters are not enough, and you want to make a convenient UI for selecting a range of apartment areas. For example, buttons with options for “Small (&lt;25 m²)”, “Medium (25–90 m²)” and “Large (&gt;90 m²)”.
@@ -16452,7 +16476,7 @@ plugins: [
 4. Create credentials for OAuth 2.0 client IDs.
 5. Select application type: "Web application".
 6. Add your application's name and redirect URI.
-7. In "Authorized redirect URIs", add `https://your-domain/oauth/callback` and `http://localhost:3500/oauth/callback`. Include `baseUrl` when your AdminForth app uses it, for example `https://your-domain/base/oauth/callback`.
+7. In "Authorized redirect URIs", add `https://your-domain/oauth/callback` (for production) and `http://localhost:3500/oauth/callback`(for local, where 3500 - is your app port). Include `baseUrl` when your AdminForth app uses it, for example `https://your-domain/base/oauth/callback`.
 8. Add the credentials to your `.env` file:
 
 ```bash
@@ -19745,29 +19769,66 @@ new RichEditorPlugin({
 
 ## Dashboard plugin
 
-# Dashboard (WIP)
+# Dashboard Plugin
 
-The Dashboard plugin adds configurable dashboards to AdminForth.
+The **Dashboard Plugin** adds dynamic, configurable dashboards to AdminForth. This page is a practical guide / reference demonstrating how to build and manage your dashboards using the **[Agent Plugin](/docs/tutorial/Plugins/agent)**.
 
-Each dashboard is stored as a record in your database. The plugin renders every dashboard under `/dashboard/:slug`, adds a **Dashboards** group to the sidebar, and lets superadmins configure groups and widgets directly from the UI.
+While manual configuration is supported, the plugin is primarily designed to be managed via conversational prompts using the AI Agent. This is the fastest, easiest, and recommended way to create and modify your dashboards.
 
-Supported widgets:
+### Quick Start: Conversation Prompts
+If you have the Agent Plugin active, you can interact with it right away using these prompts in the chat interface:
+* *"Create a new dashboard named 'Sales Overview'"*
+* *"Add a pie chart showing cars by body type to the Sales Overview dashboard"*
+* *"Add a KPI card showing the average price of cars"*
 
-- **Table**
-- **Chart**: line, bar, stacked bar, pie, funnel, histogram
-- **KPI Card**
-- **Gauge Card**
-- **Pivot Table**
+---
 
-## Installation
+## Using the Dashboard with the Agent
+
+Once the Dashboard plugin is installed, the AI Agent has full capability to manage it. You do not need to construct YAML configurations yourself; the agent handles all database record updates and layout adjustments.
+
+### End-to-End Prompt Examples
+Here are interactive examples you can test immediately in the demo application generated via the AdminForth CLI:
+
+#### 1. KPI Cards for Basic Metrics
+* **Initial Prompt:**
+  > *"Create a new dashboard group named 'Sales Stats' and add two KPI cards inside it: one for 'Total Cars' (count of all cars) and another for 'Average Price' (average car price)."*
+* **Expected Result:**
+  The agent creates a new group named "Sales Stats" containing two cards. One card displays the count of all records in the `cars` resource (e.g., `24`), and the second displays the average price formatted with a dollar sign (e.g., `$12,450`).
+* **Follow-up Prompt:**
+  > *"Change the background color of the Average Price card to blue and adjust its width to match the other card."*
+
+#### 2. Visualizing Categories with a Bar Chart
+* **Initial Prompt:**
+  > *"Add a bar chart named 'Cars by Body Type' to the 'Sales Stats' group. Group it by body_type and sort by the number of cars from high to low."*
+* **Expected Result:**
+  A bar chart is created. It queries the `cars` resource, groups by `body_type`, and orders the bars so the body type with the most cars appears first.
+* **Follow-up Prompt:**
+  > *"Change the chart type to a pie chart and set its size to medium."*
+
+#### 3. Data Table with Filters and Limits
+* **Initial Prompt:**
+  > *"Add a wide table widget named 'Top 5 Most Expensive Listed Cars' to my dashboard. Show the model, price, and production_year columns. Only include listed cars, and sort them by price descending."*
+* **Expected Result:**
+  A data table widget is added. It displays columns for model, price, and production year, filtered to only show cars where `listed` is true, limited to the top 5 most expensive.
+* **Follow-up Prompt:**
+  > *"Add the color column to this table, and rename the widget to 'Top 5 Premium Cars'."*
+
+---
+
+## Installation & Setup
+
+Before using the dashboard, you need to perform the initial package installation and register the database tables:
+
+### 1. Install Package
 
 ```bash
 pnpm install @adminforth/dashboard --save
 ```
 
-### Create Dashboard Configs Table
+### 2. Create Dashboard Configs Table
 
-The plugin needs one resource to store dashboard definitions. For Prisma-based projects, add the table to your schema:
+The plugin needs one database resource to store dashboard definitions. For Prisma-based projects, add the table to your schema:
 
 ```prisma title="./schema.prisma"
 model dashboard_configs {
@@ -19805,7 +19866,7 @@ CREATE INDEX "dashboard_configs_slug_idx" ON "dashboard_configs"("slug");
 
 Use the JSON column type supported by your database connector. For example, PostgreSQL migrations might use `JSONB`, while SQLite migrations can use `JSON`.
 
-### Create Resource
+### 3. Create Resource
 
 Create a resource that points to the `dashboard_configs` table:
 
@@ -19877,7 +19938,7 @@ export const admin = new AdminForth({
 });
 ```
 
-### Configure Plugin
+### 4. Configure Plugin
 
 Attach the plugin to one of your resources, usually the users resource:
 
@@ -19906,19 +19967,21 @@ groups:
 widgets: []
 ```
 
-## Usage
+---
 
-Open the **Dashboards** group in the sidebar and choose a dashboard page.
+## Manual Configuration
 
-Superadmins can:
+If you need to configure dashboards without using the AI Agent, you can do so manually via the AdminForth interface:
 
-- add, rename, reorder, and remove groups
-- add, configure, reorder, and remove widgets
-- edit widget and group configs from the dashboard UI
+1. **Access Dashboards**: Open the **Dashboards** group in the sidebar and choose a dashboard page.
+2. **Interactive UI Editor**: Superadmins can add, rename, reorder, and remove groups or widgets directly from the user interface.
+3. **YAML Configuration Editor**: The dashboard builder has built-in code editors. When editing a widget or a group manually, you write configurations using a YAML-based DSL.
 
-The dashboard editors use YAML syntax, so the configuration snippets below are shown in YAML even though the data is stored in a JSON column.
+For the complete schema specifications of queries, formulas, custom variables, layout fields, and advanced chart configurations, see the **[Dashboard Query Reference](/docs/tutorial/Plugins/dashboard-reference)**.
 
-Dashboard pages are generated from records in `dashboard_configs`. To add another dashboard, create a new record:
+### Adding new dashboard pages manually
+
+To create a new dashboard page manually, add a new record to your dashboard configs resource (e.g. `dashboard_configs` table in the database):
 
 ```yaml title="dashboard_configs.config"
 version: 1
@@ -19930,6 +19993,13 @@ widgets: []
 ```
 
 Use a unique `slug`, for example `sales`. The plugin will expose it as `/dashboard/sales` and add it to the **Dashboards** sidebar group.
+
+---
+
+## Dashboard Query Reference
+
+
+This reference guide details the YAML configuration syntax (DSL) used for widget queries, layout sizing, and calculations in the Dashboard plugin.
 
 ## Widget Queries
 
@@ -20231,10 +20301,6 @@ max_width: 640
 ```
 
 `size` can be `small`, `medium`, `large`, `wide`, or `full`. Explicit `width`, `height`, `min_width`, and `max_width` can be used when a widget needs more precise sizing.
-
-## Agent Plugin Integration
-
-When `@adminforth/agent` is installed in the same app, the agent can work with dashboard configs too. You can ask it to create dashboard groups, add widgets, or adjust widget settings, and it will update the Dashboard plugin configuration through AdminForth resources and dashboard endpoints.
 
 ---
 
@@ -20768,6 +20834,69 @@ Approve and reject controls are shown only for requests with `status = 1`.
 ### Reviewers cannot open the approval resource
 
 Check `options.allowedActions` on the approval resource. The examples above allow only users with `superadmin` or `reviewer` role to show and filter approval requests.
+
+---
+
+## JSON Editor
+
+
+The JSON Editor plugin replaces the default text input for JSON columns with a structured key-value editor. Users can add, edit, and delete individual pairs without writing raw JSON.
+
+Values support all standard JSON types: strings, numbers, booleans, `null`, arrays, and nested objects.
+
+## Installation
+
+```bash
+pnpm install @adminforth/json-editor --save
+```
+
+## Setting up
+
+Import and attach the plugin to an existing column in your resource:
+
+```ts title="./resources/apartments.ts"
+//diff-add
+import JsonEditorPlugin from '@adminforth/json-editor';
+
+export default {
+  ...
+  plugins: [
+    ...
+//diff-add
+    new JsonEditorPlugin({
+//diff-add
+      fieldName: 'description',
+//diff-add
+    }),
+  ],
+}
+```
+
+> The plugin works on columns with type `json`, `string`, or `text`. The stored value must be a JSON object (`{}`). Top-level arrays and primitives are not supported.
+
+![alt text](json-plugin-example.png)
+
+## Value types
+
+Values are entered in JSON notation:
+
+| Input | Saved as |
+|---|---|
+| `"hello"` | string |
+| `42` | number |
+| `true` / `false` | boolean |
+| `null` | null |
+| `[1, "x", true]` | array |
+| `{"key": 1}` | nested object |
+
+## Validation
+
+Saving is blocked when:
+
+- **Duplicate keys** - two rows share the same key name.
+- **Invalid JSON value** - the value field is not valid JSON (e.g. `hello` without quotes). The error identifies the row: `Row 2: value is not valid JSON`.
+
+An empty value field is allowed and saved as an empty string `""`.
 
 ---
 
