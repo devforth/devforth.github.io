@@ -135,6 +135,17 @@ export default {
       name: 'response',
       type: AdminForthDataTypes.TEXT,
     },
+    {
+      name: 'checkpoint_id',
+      type: AdminForthDataTypes.STRING,
+      showIn: {
+        list: false,
+        show: true,
+        edit: false,
+        create: false,
+        filter: false,
+      },
+    },
   ],
   options: {
     allowedActions: {
@@ -148,7 +159,7 @@ export default {
 } as AdminForthResourceInput;
 ```
 
-`asker_id` must store the current admin user's primary key, and `created_at` should be filled automatically because the plugin sorts sessions and turns by it. The `turns` field can stay nullable, but the plugin configuration still expects it.
+`asker_id` must store the current admin user's primary key, and `created_at` should be filled automatically because the plugin sorts sessions and turns by it. The `turns` field can stay nullable, but the plugin configuration still expects it. The optional `checkpoint_id` field stores the checkpoint attached to each visible turn and enables editing or forking old messages when `checkpointResource` is configured.
 
 Add matching tables to your schema:
 
@@ -162,11 +173,12 @@ model sessions {
 }
 
 model turns {
-  id         String   @id
-  session_id String
-  created_at DateTime
-  prompt     String?
-  response   String?
+  id            String   @id
+  session_id    String
+  created_at    DateTime
+  prompt        String?
+  response      String?
+  checkpoint_id String?
 }
 ```
 
@@ -269,6 +281,7 @@ globalPlugins: [
       responseField: 'response',
       // optional
       // debugField: 'debug',
+      checkpointIdField: 'checkpoint_id',
     },
     // optional, see the "Persistent checkpointer" section below
     // checkpointResource: { ... },
@@ -861,9 +874,9 @@ import type { AdminForthResourceInput } from 'adminforth';
 
 export default {
   dataSource: 'maindb',
-  table: 'checkpoints',
-  resourceId: 'checkpoints',
-  label: 'Checkpoints',
+  table: 'agent_checkpoints',
+  resourceId: 'agent_checkpoints',
+  label: 'Agent Checkpoints',
   recordLabel: (record) => record.id,
   options: {
     allowedActions: {
@@ -886,7 +899,7 @@ export default {
       type: AdminForthDataTypes.STRING,
     },
     {
-      name: 'checkpoint_ns',
+      name: 'checkpoint_namespace',
       type: AdminForthDataTypes.STRING,
     },
     {
@@ -910,7 +923,7 @@ export default {
       type: AdminForthDataTypes.STRING,
     },
     {
-      name: 'seq',
+      name: 'sequence',
       type: AdminForthDataTypes.INTEGER,
     },
     {
@@ -953,26 +966,26 @@ export default {
 Add a matching table to your schema:
 
 ```prisma title='./schema.prisma'
-model checkpoints {
+model agent_checkpoints {
   id                   String   @id
   thread_id            String
-  checkpoint_ns        String
+  checkpoint_namespace String
   checkpoint_id        String
   parent_checkpoint_id String?
   row_kind             String
   task_id              String?
-  seq                  Int
+  sequence             Int
   created_at           DateTime
   checkpoint_payload   String?
   metadata_payload     String?
   writes_payload       String?
   schema_version       Int
 
-  @@index([thread_id, checkpoint_ns, checkpoint_id])
+  @@index([thread_id, checkpoint_namespace, checkpoint_id])
 }
 ```
 
-The payload fields can be stored as strings. The plugin serializes and deserializes checkpoint JSON on its own. The composite index on `(thread_id, checkpoint_ns, checkpoint_id)` is recommended because the checkpointer filters rows by these columns.
+The payload fields can be stored as strings. The plugin serializes and deserializes checkpoint JSON on its own. The composite index on `(thread_id, checkpoint_namespace, checkpoint_id)` is recommended because the checkpointer filters rows by these columns.
 
 Run migration:
 
@@ -1021,17 +1034,18 @@ new AdminForthAgent({
     createdAtField: 'created_at',
     promptField: 'prompt',
     responseField: 'response',
+    checkpointIdField: 'checkpoint_id',
   },
   checkpointResource: {
-    resourceId: 'checkpoints',
+    resourceId: 'agent_checkpoints',
     idField: 'id',
     threadIdField: 'thread_id',
-    checkpointNamespaceField: 'checkpoint_ns',
+    checkpointNamespaceField: 'checkpoint_namespace',
     checkpointIdField: 'checkpoint_id',
     parentCheckpointIdField: 'parent_checkpoint_id',
     rowKindField: 'row_kind',
     taskIdField: 'task_id',
-    sequenceField: 'seq',
+    sequenceField: 'sequence',
     createdAtField: 'created_at',
     checkpointPayloadField: 'checkpoint_payload',
     metadataPayloadField: 'metadata_payload',
