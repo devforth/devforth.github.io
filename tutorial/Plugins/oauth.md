@@ -17,15 +17,15 @@ Using OAuth without `externalIdentityResource` is deprecated. Configure an exter
 Install the plugin and at least one OAuth adapter:
 
 ```bash
-pnpm install @adminforth/oauth --save
-pnpm install @adminforth/oauth-adapter-google --save
+pnpm add @adminforth/oauth --save
+pnpm add @adminforth/oauth-adapter-google --save
 ```
 
 If you want Agent chat surfaces, install the OAuth adapter for the same provider as the chat surface. For example, Telegram chat surface support requires both:
 
 ```bash
-pnpm install @adminforth/chat-surface-adapter-telegram --save
-pnpm install @adminforth/oauth-adapter-telegram --save
+pnpm add @adminforth/chat-surface-adapter-telegram --save
+pnpm add @adminforth/oauth-adapter-telegram --save
 ```
 
 ## External Identities Resource
@@ -243,7 +243,7 @@ new OAuthPlugin({
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-facebook --save
+pnpm add @adminforth/oauth-adapter-facebook --save
 ```
 
 1. Go to the [Facebook Developers](https://developers.facebook.com/)
@@ -283,7 +283,7 @@ plugins: [
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-github --save
+pnpm add @adminforth/oauth-adapter-github --save
 ```
 
 1. Go to the [GitHub Apps](https://github.com/settings/apps)
@@ -321,7 +321,7 @@ plugins: [
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-telegram --save
+pnpm add @adminforth/oauth-adapter-telegram --save
 ```
 
 Create Telegram OpenID Connect credentials in BotFather:
@@ -371,7 +371,7 @@ If you use `@adminforth/chat-surface-adapter-telegram`, users must connect Teleg
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-keycloak --save
+pnpm add @adminforth/oauth-adapter-keycloak --save
 ```
 
 If you need a basic Keycloak setup which tested with AdminForth, you can follow [this minimal KeyClock setup example](/blog/keycloak-setup-example).
@@ -413,7 +413,7 @@ plugins: [
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-microsoft --save
+pnpm add @adminforth/oauth-adapter-microsoft --save
 ```
 
 1. In the Microsoft [Azure Portal](https://portal.azure.com/), search for and click [App registrations](https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade), then `New registration`.
@@ -455,7 +455,7 @@ plugins: [
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-twitch --save
+pnpm add @adminforth/oauth-adapter-twitch --save
 ```
 
 1. Go to the [Twitch dashboard](https://dev.twitch.tv/console/)
@@ -493,7 +493,7 @@ plugins: [
 Install Adapter:
 
 ```bash
-pnpm install @adminforth/oauth-adapter-clerk --save
+pnpm add @adminforth/oauth-adapter-clerk --save
 ```
 
 1. Go to the [Clerk Dashboard](https://dashboard.clerk.com) and open your application.

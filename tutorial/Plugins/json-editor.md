@@ -11,7 +11,7 @@ Values support all standard JSON types: strings, numbers, booleans, `null`, arra
 ## Installation
 
 ```bash
-pnpm install @adminforth/json-editor --save
+pnpm add @adminforth/json-editor --save
 ```
 
 ## Setting up

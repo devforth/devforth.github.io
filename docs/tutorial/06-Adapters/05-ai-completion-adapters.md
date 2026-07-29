@@ -103,7 +103,7 @@ Then output will be like:
 ## OpenAI Responses Completion Adapter
 
 ```bash
-pnpm i @adminforth/completion-adapter-openai-responses
+pnpm add @adminforth/completion-adapter-openai-responses
 ```
 
 Integrates AdminForth with OpenAI's Responses API to provide AI-powered completion and conversational features.
@@ -161,7 +161,7 @@ We recommend you to try responses API first by setting `false` in `useCompletion
 ## Google Gemini Completion Adapter
 
 ```bash
-pnpm i @adminforth/completion-adapter-google-gemini
+pnpm add @adminforth/completion-adapter-google-gemini
 ```
 
 Integrates AdminForth with Google Gemini models to provide AI-powered completion and conversational features.

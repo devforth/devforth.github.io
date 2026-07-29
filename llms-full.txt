@@ -10164,7 +10164,7 @@ Used to send emails.
 ## AWS SES Email Adapter
 
 ```bash
-pnpm i @adminforth/email-adapter-aws-ses
+pnpm add @adminforth/email-adapter-aws-ses
 ```
 
 Enables email delivery via [Amazon Simple Email Service (SES)](https://aws.amazon.com/ses/), suitable for high-volume, programmatic email sending.
@@ -10172,7 +10172,7 @@ Enables email delivery via [Amazon Simple Email Service (SES)](https://aws.amazo
 ## Mailgun Email Adapter
 
 ```bash
-pnpm i @adminforth/email-adapter-mailgun
+pnpm add @adminforth/email-adapter-mailgun
 ```
 
 Allows sending transactional or marketing emails using [Mailgun](https://www.mailgun.com/), a developer-friendly email service.
@@ -10189,7 +10189,7 @@ Used to authenticate users via OAuth 2.0 providers.
 ## Google OAuth Adapter
 
 ```bash
-pnpm i @adminforth/oauth-adapter-google
+pnpm add @adminforth/oauth-adapter-google
 ```
 
 Supports Google sign-in to allow users to authenticate using their Google or Google Workspaces accounts.
@@ -10197,7 +10197,7 @@ Supports Google sign-in to allow users to authenticate using their Google or Goo
 ## GitHub OAuth Adapter
 
 ```bash
-pnpm i @adminforth/oauth-adapter-github
+pnpm add @adminforth/oauth-adapter-github
 ```
 
 Enables authentication via GitHub accounts, useful for developer tools and open-source apps.
@@ -10205,7 +10205,7 @@ Enables authentication via GitHub accounts, useful for developer tools and open-
 ## Facebook OAuth Adapter
 
 ```bash
-pnpm i @adminforth/oauth-adapter-facebook
+pnpm add @adminforth/oauth-adapter-facebook
 ```
 
 Allows users to log in with Facebook credentials. Facebook OAuth is commonly used for social media integrations.
@@ -10213,7 +10213,7 @@ Allows users to log in with Facebook credentials. Facebook OAuth is commonly use
 ## Keycloak OAuth Adapter
 
 ```bash
-pnpm i @adminforth/oauth-adapter-keycloak
+pnpm add @adminforth/oauth-adapter-keycloak
 ```
 
 Connects AdminForth to an open-source [Keycloak](https://www.keycloak.org/) identity provider for enterprise-grade SSO (Single Sign-On).
@@ -10221,7 +10221,7 @@ Connects AdminForth to an open-source [Keycloak](https://www.keycloak.org/) iden
 ## Microsoft OAuth Adapter
 
 ```bash
-pnpm i @adminforth/oauth-adapter-microsoft
+pnpm add @adminforth/oauth-adapter-microsoft
 ```
 
 Supports login through Microsoft accounts including Azure AD, Office365, and Outlook.com.
@@ -10229,7 +10229,7 @@ Supports login through Microsoft accounts including Azure AD, Office365, and Out
 ## Twitch OAuth Adapter
 
 ```bash
-pnpm i @adminforth/oauth-adapter-twitch
+pnpm add @adminforth/oauth-adapter-twitch
 ```
 
 Adds support for Twitch authentication, useful for streaming or creator-oriented platforms.
@@ -10237,7 +10237,7 @@ Adds support for Twitch authentication, useful for streaming or creator-oriented
 ## Clerk OAuth Adapter
 
 ```bash
-pnpm i @adminforth/oauth-adapter-clerk
+pnpm add @adminforth/oauth-adapter-clerk
 ```
 
 Enables sign-in via [Clerk](https://clerk.com/) — a hosted authentication platform with built-in user management, MFA, and social logins.
@@ -10254,7 +10254,7 @@ Used for image-generating AI tools.
 ## OpenAI Image Generation Adapter
 
 ```bash
-pnpm i @adminforth/image-generation-adapter-openai
+pnpm add @adminforth/image-generation-adapter-openai
 ```
 
 Uses OpenAI image generation models such as DALL·E, `gpt-image-1`, and `gpt-image-1.5` to generate images from text prompts.
@@ -10264,7 +10264,7 @@ Up to the winter 2026 OpenAI models are one of the most powerful image generatio
 ## Gemini (Nano Banana) Image Generation Adapter
 
 ```bash
-pnpm i @adminforth/image-generation-adapter-nano-banana
+pnpm add @adminforth/image-generation-adapter-nano-banana
 ```
 
 Uses the latest `gemini-3.1-flash-image-preview` model for instant image generation with text descriptions.
@@ -10517,7 +10517,7 @@ Then output will be like:
 ## OpenAI Responses Completion Adapter
 
 ```bash
-pnpm i @adminforth/completion-adapter-openai-responses
+pnpm add @adminforth/completion-adapter-openai-responses
 ```
 
 Integrates AdminForth with OpenAI's Responses API to provide AI-powered completion and conversational features.
@@ -10575,7 +10575,7 @@ We recommend you to try responses API first by setting `false` in `useCompletion
 ## Google Gemini Completion Adapter
 
 ```bash
-pnpm i @adminforth/completion-adapter-google-gemini
+pnpm add @adminforth/completion-adapter-google-gemini
 ```
 
 Integrates AdminForth with Google Gemini models to provide AI-powered completion and conversational features.
@@ -10625,7 +10625,7 @@ These adapters can analyze image content, extract text from images, identify obj
 ## OpenAI Vision Adapter
 
 ```bash
-pnpm install @adminforth/image-vision-adapter-openai --save
+pnpm add @adminforth/image-vision-adapter-openai --save
 ```
 
 Integrates AdminForth with OpenAI to provide advanced AI-powered image analysis. It can describe image content, read and extract text from images, identify objects and people, and provide detailed visual insights.
@@ -10809,13 +10809,13 @@ Used to add captcha to the login screen.
 ## Cloudflare Adapter
 
 ```bash
-pnpm i @adminforth/login-captcha-adapter-cloudflare
+pnpm add @adminforth/login-captcha-adapter-cloudflare
 ```
 
 ## reCaptcha Adapter
 
 ```bash
-pnpm i @adminforth/login-captcha-adapter-recaptcha
+pnpm add @adminforth/login-captcha-adapter-recaptcha
 ```
 
 ---
@@ -10828,8 +10828,8 @@ Chat surface adapters connect external chat products to the [Agent plugin](/docs
 For Telegram you need both adapters:
 
 ```bash
-pnpm i @adminforth/chat-surface-adapter-telegram
-pnpm i @adminforth/oauth-adapter-telegram
+pnpm add @adminforth/chat-surface-adapter-telegram
+pnpm add @adminforth/oauth-adapter-telegram
 ```
 
 Create a Telegram bot with BotFather and copy the token:
@@ -12550,7 +12550,7 @@ Also it supports both:
 ## Installation
 
 ``` bash
-pnpm i @adminforth/two-factors-auth --save
+pnpm add @adminforth/two-factors-auth --save
 ```
 
 To import:
@@ -13368,7 +13368,7 @@ Add the new resource to index.ts:
 ```
 To use passkey you need to use Key-Value adapter. For example:
 ```bash
-pnpm i @adminforth/key-value-adapter-ram
+pnpm add @adminforth/key-value-adapter-ram
 ```
 
 Now, update the settings of the Two-Factor Authentication plugin:
@@ -13485,7 +13485,7 @@ Foreign inline list plugin allows to display a list (table) of items from a fore
 Import plugin:
 
 ```bash
-pnpm i @adminforth/foreign-inline-list --save
+pnpm add @adminforth/foreign-inline-list --save
 ```
 
 ```ts title="./resources/adminuser.ts"
@@ -13704,7 +13704,7 @@ Requires separate table in the database to store logs.
 ## Installation
 
 ```bash
-pnpm i @adminforth/audit-log --save
+pnpm add @adminforth/audit-log --save
 ```
 
 Create `auditLogs.ts` in `resources` folder:
@@ -14054,7 +14054,7 @@ This plugin allows you to upload files to Amazon S3 bucket.
 ## Installation
 
 ```
-pnpm i @adminforth/upload --save
+pnpm add @adminforth/upload --save
 ```
 
 Plugin needs some storage adapter to store files and serve them for preview.
@@ -14064,7 +14064,7 @@ Plugin needs some storage adapter to store files and serve them for preview.
 Amazon S3 is probably the most popular storage service.
 
 ```
-pnpm i @adminforth/storage-adapter-amazon-s3 --save
+pnpm add @adminforth/storage-adapter-amazon-s3 --save
 ```
 
 1. Go to https://aws.amazon.com and login.
@@ -14325,7 +14325,7 @@ Also you will have to enable static website hosting in your bucket settings and 
 The local storage adapter saves files directly on the server’s filesystem and serves them through Express routes. It supports both public and private modes (with presigned URLs).
 
 ```
-pnpm i @adminforth/storage-adapter-local --save
+pnpm add @adminforth/storage-adapter-local --save
 ```
 
 ```ts title="./index.ts"
@@ -14353,7 +14353,7 @@ Upload plugin supports AI generation for images. Yo use it you need to install i
 For example for OpenAI models like `gpt-image-1.5` (or old `DALL-E` models):
 
 ```bash
-pnpm i @adminforth/image-generation-adapter-openai
+pnpm add @adminforth/image-generation-adapter-openai
 ```
 
 ```ts title="./index.ts"
@@ -15148,7 +15148,7 @@ Also, it allows previewing of Markdown fields in the show page.
 To install the plugin:
 
 ```bash
-pnpm install @adminforth/markdown --save
+pnpm add @adminforth/markdown --save
 ```
 
 ### Usage
@@ -15193,8 +15193,8 @@ pnpm makemigration --name add_description_image ; pnpm migrate:local
 ```
 
 ```bash
-pnpm i @adminforth/upload --save
-pnpm i @adminforth/storage-adapter-local --save
+pnpm add @adminforth/upload --save
+pnpm add @adminforth/storage-adapter-local --save
 ```
 
 ```typescript title="./resources/description_images.ts"
@@ -15531,30 +15531,39 @@ If you want create custom header, or want to add some data under input, you can 
 
 # Import-Export
 
-Import-Export is a plugin that allows you to import and export data from and to a CSV file. 
+Import-Export is a plugin that allows you to import data from and export data to a CSV file.
 
-This plugin is mostly useful for next use cases:
+This plugin is mostly useful for the following use cases:
 
 * Move data from one environment to another (e.g. from development to production)
 * Export data for various purposes (e.g. backup, analysis)
+
+There are two export modes:
+- Classic (REST)
+- Upload
+
+If you are exporting light datasets (less than 5 MiB), you can use classic mode. It returns the data in JSON format in the API response.
+You can increase the maximum dataset size with the `classicalUploadLimitMiB` param (5 MiB is the default). But if you set a big limit, the export can consume all the RAM of your server and crash it.
+
+So if you want to export big databases, use the `exportViaUpload` param. It uses the Background Jobs plugin and AWS S3 multipart upload, so it does not overload the server.
 
 ## Installation
 
 To install the plugin:
 
 ```bash
-pnpm install @adminforth/import-export --save
+pnpm add @adminforth/import-export --save
 ```
 
-## Usage
+## Setup
 
-To use the plugin, you need to import it and call the `importExport` function:
+To use the plugin, you need to import it and instantiate the `ImportExport` class:
 
 ```typescript
-import importExport from '@adminforth/import-export';
+import ImportExport from '@adminforth/import-export';
 ```
 
-Add plugin instantiation to the `plugins` array of resource where you want to use it:
+Add the plugin instantiation to the `plugins` array of the resource where you want to use it:
 
 ```typescript
 
@@ -15562,7 +15571,49 @@ export default {
   resourceId: 'aparts',
   plugins: [
     ...
-    new importExport({}),
+    new ImportExport({}),
+  ],
+  ...
+}
+  
+```
+
+## Upload export
+
+1) First, set up the Background Jobs plugin: go to the [Background Jobs Plugin page](/docs/tutorial/Plugins/background-jobs) and complete the setup.
+
+2) Install the AWS S3 adapter:
+
+```bash
+pnpm add @adminforth/storage-adapter-amazon-s3
+```
+
+3) Update the plugin setup:
+
+```typescript
+import ImportExport from '@adminforth/import-export';
+import AdminForthAdapterS3Storage from '@adminforth/storage-adapter-amazon-s3'
+```
+
+Add the plugin instantiation to the `plugins` array of the resource where you want to use it:
+
+```typescript
+
+export default {
+  resourceId: 'aparts',
+  plugins: [
+    ...
+    new ImportExport({
+      exportViaUpload: {
+        storageAdapter: new AdminForthAdapterS3Storage({
+          bucket: process.env.AWS_BUCKET_NAME as string,
+          region: process.env.AWS_REGION as string,
+          accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
+          s3ACL: "public-read"
+        })
+      }
+    }),
   ],
   ...
 }
@@ -15582,7 +15633,7 @@ This is useful when you want to allow anyone to sign up and assign some low-leve
 To install the plugin:
 
 ```bash
-pnpm install @adminforth/open-signup --save
+pnpm add @adminforth/open-signup --save
 ```
 
 ## Usage
@@ -15630,7 +15681,7 @@ pnpm makemigration --name add-email-confirmed-to-adminuser ; pnpm migrate:local
 Next, install the `@adminforth/email-adapter-aws-ses` package:
 
 ```bash
-pnpm i @adminforth/email-adapter-aws-ses --save
+pnpm add @adminforth/email-adapter-aws-ses --save
 ```
 
 Also, update the resource configuration in `./resources/adminuser.ts`:
@@ -15706,8 +15757,8 @@ Under the hood it uses vue-i18n library and provides several additional faciliti
 To install the plugin:
 
 ```bash
-pnpm install @adminforth/i18n --save
-pnpm install @adminforth/completion-adapter-openai-responses --save
+pnpm add @adminforth/i18n --save
+pnpm add @adminforth/completion-adapter-openai-responses --save
 ```
 
 For example lets add translations to next 4 languages: Ukrainian, Japanese, French, Spanish. Also we will support basic translation for English.
@@ -16514,15 +16565,15 @@ Using OAuth without `externalIdentityResource` is deprecated. Configure an exter
 Install the plugin and at least one OAuth adapter:
 
 ```bash
-pnpm install @adminforth/oauth --save
-pnpm install @adminforth/oauth-adapter-google --save
+pnpm add @adminforth/oauth --save
+pnpm add @adminforth/oauth-adapter-google --save
 ```
 
 If you want Agent chat surfaces, install the OAuth adapter for the same provider as the chat surface. For example, Telegram chat surface support requires both:
 
 ```bash
-pnpm install @adminforth/chat-surface-adapter-telegram --save
-pnpm install @adminforth/oauth-adapter-telegram --save
+pnpm add @adminforth/chat-surface-adapter-telegram --save
+pnpm add @adminforth/oauth-adapter-telegram --save
 ```
 
 ## External Identities Resource
@@ -16740,7 +16791,7 @@ new OAuthPlugin({
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-facebook --save
+pnpm add @adminforth/oauth-adapter-facebook --save
 ```
 
 1. Go to the [Facebook Developers](https://developers.facebook.com/)
@@ -16780,7 +16831,7 @@ plugins: [
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-github --save
+pnpm add @adminforth/oauth-adapter-github --save
 ```
 
 1. Go to the [GitHub Apps](https://github.com/settings/apps)
@@ -16818,7 +16869,7 @@ plugins: [
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-telegram --save
+pnpm add @adminforth/oauth-adapter-telegram --save
 ```
 
 Create Telegram OpenID Connect credentials in BotFather:
@@ -16868,7 +16919,7 @@ If you use `@adminforth/chat-surface-adapter-telegram`, users must connect Teleg
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-keycloak --save
+pnpm add @adminforth/oauth-adapter-keycloak --save
 ```
 
 If you need a basic Keycloak setup which tested with AdminForth, you can follow [this minimal KeyClock setup example](/blog/keycloak-setup-example).
@@ -16910,7 +16961,7 @@ plugins: [
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-microsoft --save
+pnpm add @adminforth/oauth-adapter-microsoft --save
 ```
 
 1. In the Microsoft [Azure Portal](https://portal.azure.com/), search for and click [App registrations](https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade), then `New registration`.
@@ -16952,7 +17003,7 @@ plugins: [
 Install Adapter:
 
 ```
-pnpm install @adminforth/oauth-adapter-twitch --save
+pnpm add @adminforth/oauth-adapter-twitch --save
 ```
 
 1. Go to the [Twitch dashboard](https://dev.twitch.tv/console/)
@@ -16990,7 +17041,7 @@ plugins: [
 Install Adapter:
 
 ```bash
-pnpm install @adminforth/oauth-adapter-clerk --save
+pnpm add @adminforth/oauth-adapter-clerk --save
 ```
 
 1. Go to the [Clerk Dashboard](https://dashboard.clerk.com) and open your application.
@@ -17296,7 +17347,7 @@ The Inline Create plugin enables inline create in AdminForth, allowing users to 
 To install the plugin:
 
 ```bash
-pnpm install @adminforth/inline-create --save
+pnpm add @adminforth/inline-create --save
 ```
 
 ### Usage
@@ -17330,7 +17381,7 @@ The List in Place Edit plugin allows you to edit records directly in the list vi
 First, install the plugin:
 
 ```bash
-pnpm i @adminforth/list-in-place-edit --save
+pnpm add @adminforth/list-in-place-edit --save
 ```
 
 Import plugin:
@@ -17367,8 +17418,8 @@ This plugin allows you to auto-complete text and string fields using OpenAI GPT 
 ## Installation
 
 ```
-pnpm i @adminforth/text-complete --save
-pnpm i @adminforth/completion-adapter-openai-responses --save
+pnpm add @adminforth/text-complete --save
+pnpm add @adminforth/completion-adapter-openai-responses --save
 ```
 
 Go to https://platform.openai.com/, open `Dashboard` -> `API keys` -> `Create new secret key`. Paste value in your `.env` file:
@@ -17486,7 +17537,7 @@ Foreign inline show plugin allows to display a show of items from a foreign tabl
 Import plugin:
 
 ```bash
-pnpm i @adminforth/foreign-inline-show --save
+pnpm add @adminforth/foreign-inline-show --save
 ```
 
 ```ts title="./resources/apartments.ts"
@@ -17554,13 +17605,13 @@ Email Invite plugin allows administrators to create users without setting passwo
 To install the plugin:
 
 ```bash
-pnpm install @adminforth/email-invite --save
+pnpm add @adminforth/email-invite --save
 ```
 
 You'll also need an email adapter. For AWS SES:
 
 ```bash
-pnpm install @adminforth/email-adapter-aws-ses --save
+pnpm add @adminforth/email-adapter-aws-ses --save
 ```
 
 ## SES
@@ -17725,7 +17776,7 @@ export default {
 If you want to use this plugin with Mailgun, first install it:
 
 ```bash
-pnpm install @adminforth/email-adapter-mailgun
+pnpm add @adminforth/email-adapter-mailgun
 ```
 
 Then, in the adapter options, add:
@@ -17769,13 +17820,13 @@ This also supports vision tasks so you can ask it to e.g. detect dominant color 
 To install the plugin:
 
 ```bash
-pnpm install @adminforth/bulk-ai-flow --save
+pnpm add @adminforth/bulk-ai-flow --save
 ```
 
 You'll also need an image vision adapter:
 
 ```bash
-pnpm install @adminforth/image-vision-adapter-openai --save
+pnpm add @adminforth/image-vision-adapter-openai --save
 ```
 
 ## Vision mode
@@ -18259,7 +18310,7 @@ Ideal for quick, multi‑field lookup without opening the filter panel.
 ## Installation
 
 ```bash
-pnpm i @adminforth/universal-search --save
+pnpm add @adminforth/universal-search --save
 ```
 
 ## Basic Usage
@@ -18389,13 +18440,13 @@ This plugin provides a captcha for the login page to enhance security.
 To install the plugin, run the following command:
 
 ```bash
-pnpm i @adminforth/login-captcha
+pnpm add @adminforth/login-captcha
 ```
 
 You will also need to install a captcha adapter. For example, to use the Cloudflare adapter, run:
 
 ```bash
-pnpm i @adminforth/login-captcha-adapter-cloudflare
+pnpm add @adminforth/login-captcha-adapter-cloudflare
 ```
 
 ## Usage
@@ -18425,7 +18476,7 @@ plugins: [
 A captcha token stays valid at the provider for a short period, which means the same token could be replayed for several logins. To prevent this, pass an optional [key-value adapter](/docs/tutorial/Adapters/key-value-adapters) via `keyValueAdapter`. Each token is recorded once it has been used for a successful login, and any later attempt with the same token is rejected.
 
 ```bash
-pnpm i @adminforth/key-value-adapter-ram
+pnpm add @adminforth/key-value-adapter-ram
 ```
 
 ```ts title="./resources/adminuser.ts"
@@ -18472,7 +18523,7 @@ Allows to deactivate users accound without deleting it.
 To install the plugin:
 
 ```bash
-pnpm install @adminforth/user-soft-delete --save
+pnpm add @adminforth/user-soft-delete --save
 ```
 
 ## Setting up
@@ -18591,7 +18642,7 @@ Allows to create a copy of record quickly, by substituting default values to cre
 To install the plugin:
 
 ```bash
-pnpm install @adminforth/clone-row --save
+pnpm add @adminforth/clone-row --save
 ```
 
 ## Setting up
@@ -18638,7 +18689,7 @@ This plugin lets you manage many-to-many relationships.
 Install the plugin:
 
 ```bash
-pnpm i @adminforth/many2many
+pnpm add @adminforth/many2many
 ```
 
 ## Setting up
@@ -18947,7 +18998,7 @@ BackgroundJobsPlugin adds a durable background job system to AdminForth. Jobs ar
 > ‼️ Note, that before deploying this plugin, you should create volume for the level db and pass is as `levelDbPath` param, so background jobs will be saved between redeploys
 First, install the plugin:
 ```bash
-pnpm i @adminforth/background-jobs
+pnpm add @adminforth/background-jobs
 ```
 
 Then create a resource for jobs:
@@ -19555,7 +19606,7 @@ Allows you to add search input or select with preseted filters at the list view
 
 First, install the plugin:
 ```bash
-pnpm i @adminforth/quick-filters
+pnpm add @adminforth/quick-filters
 ```
 Then add it to yours resource:
 
@@ -19727,7 +19778,7 @@ This plugin allows you to use Quill editor in your AdminForth application.
 First, install the plugin:
 
 ```bash
-pnpm i @adminforth/rich-editor --save
+pnpm add @adminforth/rich-editor --save
 ```
 
 Import plugin:
@@ -19824,7 +19875,7 @@ If you need multiple fields in one resource which happens rarely, just add multi
 First, install the completion adapter:
 
 ```bash
-pnpm i @adminforth/completion-adapter-openai-responses --save
+pnpm add @adminforth/completion-adapter-openai-responses --save
 ```
 
 To get completion suggestions for the text in the editor, you can use the `completion` option. This option is an object with the following properties:
@@ -19881,8 +19932,8 @@ pnpm makemigration --name add_description_image ; pnpm migrate:local
 ```
 
 ```bash
-pnpm i @adminforth/upload --save
-pnpm i @adminforth/storage-adapter-local --save
+pnpm add @adminforth/upload --save
+pnpm add @adminforth/storage-adapter-local --save
 ```
 
 ```typescript title="./resources/description_images.ts"
@@ -20039,7 +20090,7 @@ Before using the dashboard, you need to perform the initial package installation
 ### 1. Install Package
 
 ```bash
-pnpm install @adminforth/dashboard --save
+pnpm add @adminforth/dashboard --save
 ```
 
 ### 2. Create Dashboard Configs Table
@@ -20536,7 +20587,7 @@ The plugin stores approval requests in a separate resource. Each request contain
 Install the plugin:
 
 ```bash
-pnpm i @adminforth/crud-approve-plugin --save
+pnpm add @adminforth/crud-approve-plugin --save
 ```
 
 To import:
@@ -21063,7 +21114,7 @@ Values support all standard JSON types: strings, numbers, booleans, `null`, arra
 ## Installation
 
 ```bash
-pnpm install @adminforth/json-editor --save
+pnpm add @adminforth/json-editor --save
 ```
 
 ## Setting up

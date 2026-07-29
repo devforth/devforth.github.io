@@ -9,7 +9,7 @@ Requires separate table in the database to store logs.
 ## Installation
 
 ```bash
-pnpm i @adminforth/audit-log --save
+pnpm add @adminforth/audit-log --save
 ```
 
 Create `auditLogs.ts` in `resources` folder:
