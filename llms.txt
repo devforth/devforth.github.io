@@ -67,7 +67,6 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Dashboard plugin](https://adminforth.dev/tutorial/Plugins/dashboard.md): Documentation for the Dashboard plugin.
 - [Dashboard Query Reference](https://adminforth.dev/tutorial/Plugins/dashboard-reference.md): Reference for Dashboard widget queries, calculations, custom filters, and configuration DSL.
 - [CRUD Approve Plugin](https://adminforth.dev/tutorial/Plugins/CRUDApprove.md): Guide to the CRUD Approve plugin, including installation, approval storage resource setup, wiring protected resources, approval flow, reviewer acce...
-- [JSON Editor](https://adminforth.dev/tutorial/Plugins/json-editor.md): Guide to the JSON Editor plugin — add, edit and delete key-value pairs stored as a JSON object in a database column.
 - [JSON Form](https://adminforth.dev/tutorial/Plugins/json-form.md): Guide to the JSON Form plugin — render a rich, schema-driven form for a JSON column instead of a raw text area, using a JSON Schema extended with x...
 - [Plugin development guide](https://adminforth.dev/docs/tutorial/10-Advanced/01-plugin-development.md): Guide to developing AdminForth plugins, including plugin concepts, boilerplate, implementation structure, installation, and activation order.
 - [Working without direct database connection](https://adminforth.dev/docs/tutorial/10-Advanced/02-working-without-direct-database-connection.md): Guide to using AdminForth without a direct database connection by exposing resources through custom connectors or API-backed data access.
