@@ -20381,6 +20381,19 @@ export const globalPlugins = [
 ];
 ```
 
+#### Control Dashboard Editing Permissions
+
+By default, only users with the `superadmin` role can edit dashboards (add, rename, reorder, and remove groups or widgets). Use the `editRoles` option to grant editing to other roles:
+
+```ts title="./globalPlugins.ts"
+new DashboardPlugin({
+  dashboardConfigsResourceId: 'dashboard_configs',
+  editRoles: ['superadmin', 'admin'], // allow 'admin' users to edit dashboards too
+});
+```
+
+Users whose role is not listed in `editRoles` can view dashboards but are not shown the editing controls and cannot modify dashboards, groups, or widgets through the API.
+
 Then pass it to the AdminForth configuration:
 
 ```ts title="./index.ts"
@@ -20410,7 +20423,7 @@ widgets: []
 If you need to configure dashboards without using the AI Agent, you can do so manually via the AdminForth interface:
 
 1. **Access Dashboards**: Open the **Dashboards** group in the sidebar and choose a dashboard page.
-2. **Interactive UI Editor**: Superadmins can add, rename, reorder, and remove groups or widgets directly from the user interface.
+2. **Interactive UI Editor**: Users with a role listed in the plugin's `editRoles` option (defaults to `superadmin`) can add, rename, reorder, and remove groups or widgets directly from the user interface.
 3. **YAML Configuration Editor**: The dashboard builder has built-in code editors. When editing a widget or a group manually, you write configurations using a YAML-based DSL.
 
 For the complete schema specifications of queries, formulas, custom variables, layout fields, and advanced chart configurations, see the **[Dashboard Query Reference](/docs/tutorial/Plugins/dashboard-reference)**.
@@ -20459,9 +20472,9 @@ query:
       direction: desc
 ```
 
-Step-based charts use a `steps` query when each step needs its own resource, metric, and filters. Funnel charts always use this query shape.
+Step-based charts use a `steps` query when each step needs its own resource, measure, and filters. Funnel charts can also use this query shape; like every other chart, they accept a single-resource query as well.
 
-Depending on the widget, `query` can also use `limit`, `offset`, `calcs`, `time_series`, `period`, `bucket`, and `formatting`.
+Depending on the widget, `query` can also use `limit`, `offset`, `calcs`, `bucket`, and `formatting`.
 
 Widget-scoped constants can be defined with `variables`. They are available inside `query.calcs` through `lookup($variables.path, field, default)`.
 
@@ -20479,19 +20492,20 @@ chart:
   y:
     field: adjusted_value
 query:
+  source: steps
   steps:
     - name: SQLite
       resource: cars_sl
-      metric:
-        agg: avg
-        field: price
-        as: value
+      select:
+        - agg: avg
+          field: price
+          as: value
     - name: MySQL
       resource: cars_mysql
-      metric:
-        agg: avg
-        field: price
-        as: value
+      select:
+        - agg: avg
+          field: price
+          as: value
   calcs:
     - calc: value * lookup($variables.price_multipliers, resource, 1)
       as: adjusted_value
