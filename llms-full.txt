@@ -6942,6 +6942,33 @@ A difference between `fillOnCreate` and `suggestOnCreate`:
 * `fillOnCreate` should be used when `showIn.create` is a `false` value because if it is `true`, the input will be shown in the create form but then(during actual save to db) it will be overwritten by the value returned by `fillOnCreate`.
 * `suggestOnCreate` should be used with `showIn.create` set to true because if it is not set, the input will not be shown in the create form and default suggestion will not make sense.
 
+### Normalize values before saving
+
+Use the column-level `normalize` callback when a value must always be stored in a canonical form. For example, you can trim an email address and make it lowercase:
+
+```typescript title="./resources/adminuser.ts"
+export default {
+  resourceId: 'adminuser',
+  columns: [
+    // ...
+    {
+      name: 'email',
+      required: true,
+      isUnique: true,
+      type: AdminForthDataTypes.STRING,
+//diff-add
+      normalize: (value: string) => value.trim().toLowerCase(),
+    },
+  ],
+};
+```
+
+AdminForth applies `normalize` on the backend whenever the column is present in a create or update payload. This includes records saved from the admin UI and records written with the [Data API](/docs/tutorial/Customization/dataApi). Normalization happens before backend validation and `beforeSave` hooks, so both receive the normalized value.
+
+When `normalize` is configured on the column selected by `auth.usernameField`, AdminForth also normalizes the submitted username before looking up the user. The [Email Password Reset plugin](/docs/tutorial/Plugins/email-password-reset) applies the normalizer configured on its `emailField` throughout the reset flow as well. In the example above, a user saved as `admin@example.com` can therefore sign in or request a password reset with `  ADMIN@EXAMPLE.COM  `.
+
+`normalize` does not transform existing database records or general filter/search values. Migrate existing data first if it is not already stored in the same canonical form.
+
 ### Link to create form with preset values
 
 Sometimes you might need to create a link that will open the create form with some fields pre-filled. For example, you might want to create a link that will open the create form with the realtor_id field pre-filled with the current user's ID.
@@ -15454,6 +15481,21 @@ Plugin allows to reset password for admin users who forgot their password by sen
 
 > ⚠️ If user with email does not exist, plugin will still show to user success message to prevent email enumeration.
 
+## Email normalization
+
+The plugin applies the column's [`normalize`](/docs/tutorial/Customization/standardPagesTuning/#normalize-values-before-saving) callback before validating and looking up the submitted email. It uses the normalized value in the reset token, for token confirmation, and as the email delivery address.
+
+For example, configure the email column to make password reset and login insensitive to surrounding whitespace and letter case:
+
+```typescript title="./resources/adminuser.ts"
+{
+  name: 'email',
+  required: true,
+  isUnique: true,
+  normalize: (value: string) => value.trim().toLowerCase(),
+}
+```
+
 Installation:
 
 ```bash
@@ -15594,7 +15636,7 @@ If you want create custom header, or want to add some data under input, you can 
 
 # Import-Export
 
-Import-Export is a plugin that allows you to import data from and export data to a CSV file.
+Import Export is a plugin that allows you to import and export resource data as CSV or Excel (`.xlsx`) files.
 
 This plugin is mostly useful for the following use cases:
 
@@ -15638,8 +15680,40 @@ export default {
   ],
   ...
 }
-  
 ```
+
+CSV import and export are enabled by default.
+
+## File format
+
+Set `fileFormat` on each plugin instance to choose the format used by both import and export:
+
+```typescript
+new ImportExport({
+  fileFormat: 'xlsx',
+})
+```
+
+Supported values are:
+
+- `'csv'` (default)
+- `'xlsx'`
+
+For XLSX imports, the first row of each non-empty worksheet is treated as the column header. Rows from multiple worksheets are combined, but all non-empty worksheets must have the same columns in the same order.
+
+Both classic and upload export support XLSX. A background XLSX export that exceeds Excel's limit of 1,048,575 data rows per worksheet is automatically split into multiple worksheets, with the header repeated on each worksheet.
+
+## Export-only mode
+
+Import is enabled by default. To expose only the export action, set `importEnabled` to `false`:
+
+```typescript
+new ImportExport({
+  importEnabled: false,
+})
+```
+
+This removes the import action from the resource UI and does not register the import endpoints. Export remains available in the selected `fileFormat`.
 
 ## Upload export
 
@@ -15667,6 +15741,7 @@ export default {
   plugins: [
     ...
     new ImportExport({
+      fileFormat: 'xlsx', // optional; defaults to 'csv'
       exportViaUpload: {
         storageAdapter: new AdminForthAdapterS3Storage({
           bucket: process.env.AWS_BUCKET_NAME as string,
@@ -15680,7 +15755,18 @@ export default {
   ],
   ...
 }
-  
+```
+
+The upload mode supports the same `fileFormat` values as classic export. You can also tune memory usage and database read size:
+
+```typescript
+new ImportExport({
+  exportViaUpload: {
+    storageAdapter,
+    bufferSizeMb: 10, // defaults to 5 MiB; minimum is 5 MiB
+    readChunkSize: 500, // defaults to 100 records
+  },
+})
 ```
 
 ---
@@ -20379,9 +20465,9 @@ export const globalPlugins = [
 ];
 ```
 
-#### Control Dashboard Editing Permissions
+#### Control Dashboard Access and Editing Permissions
 
-By default, only users with the `superadmin` role can edit dashboards (add, rename, reorder, and remove groups or widgets). Use the `editRoles` option to grant editing to other roles:
+By default, only users with the `superadmin` role can access dashboards. Use the `editRoles` option to grant dashboard access and editing to other roles:
 
 ```ts title="./globalPlugins.ts"
 new DashboardPlugin({
@@ -20390,7 +20476,11 @@ new DashboardPlugin({
 });
 ```
 
-Users whose role is not listed in `editRoles` can view dashboards but are not shown the editing controls and cannot modify dashboards, groups, or widgets through the API.
+Users whose role is not listed in `editRoles` do not see the **Dashboards** sidebar group and receive a `403` response from dashboard configuration and widget-data endpoints. The same role check protects all dashboard mutations on the backend.
+
+Dashboard widget queries also respect the target resource's list access rules. Before loading data, the plugin checks `allowedActions.list`, runs the resource's `list.beforeDatasourceRequest` hooks, and applies any filters added by those hooks. A widget cannot query a column that is `backendOnly` or hidden from the current user with `showIn.list`.
+
+When a query omits `select`, it implicitly requests every column. If the resource contains restricted columns, specify an explicit `select` containing only columns the dashboard users may list. These checks also apply to fields used only for filters, grouping, ordering, buckets, or sparklines.
 
 Then pass it to the AdminForth configuration:
 
@@ -20424,6 +20514,22 @@ If you need to configure dashboards without using the AI Agent, you can do so ma
 2. **Interactive UI Editor**: Users with a role listed in the plugin's `editRoles` option (defaults to `superadmin`) can add, rename, reorder, and remove groups or widgets directly from the user interface.
 3. **YAML Configuration Editor**: The dashboard builder has built-in code editors. When editing a widget or a group manually, you write configurations using a YAML-based DSL.
 
+### Editing dashboard settings
+
+Click the tools icon in the dashboard header to edit the dashboard itself. The YAML editor accepts these fields:
+
+```yaml
+label: Sales Overview
+slug: sales-overview
+icon: flowbite:chart-pie-solid
+```
+
+- `label` is the page title and sidebar label.
+- `slug` defines the URL at `/dashboard/<slug>`. It must contain only lowercase letters, numbers, and hyphens, and must be unique.
+- `icon` is an optional [Iconify](https://icon-sets.iconify.design/) icon name used in the sidebar. Remove the field to use the default dashboard icon.
+
+Saving a changed slug redirects the browser to the new dashboard URL.
+
 For the complete schema specifications of queries, formulas, custom variables, layout fields, and advanced chart configurations, see the **[Dashboard Query Reference](/docs/tutorial/Plugins/dashboard-reference)**.
 
 ### Adding new dashboard pages manually
@@ -20432,6 +20538,7 @@ To create a new dashboard page manually, add a new record to your dashboard conf
 
 ```yaml title="dashboard_configs.config"
 version: 1
+icon: flowbite:chart-pie-solid
 groups:
   - id: sales
     label: Sales
