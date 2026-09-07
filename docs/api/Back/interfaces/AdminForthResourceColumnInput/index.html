@@ -25,8 +25,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.e5bdffa0.css">
-<script src="/assets/js/runtime~main.6733cb4d.js" defer="defer"></script>
-<script src="/assets/js/main.4049765a.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.26f06a25.js" defer="defer"></script>
+<script src="/assets/js/main.8a3661eb.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -297,7 +297,9 @@ Use it for renaming columns. Defaulted to column name with Uppercased first lett
 <blockquote>
 <p><code>optional</code> <strong>normalize?</strong>: (<code>value</code>) =&gt; <code>any</code></p>
 </blockquote>
-<p>Normalizes a column value before it is saved or used as the username during login.</p>
+<p>Normalizes a column value before AdminForth CRUD create and update operations and, when this column
+is configured as <code>auth.usernameField</code>, before the password-login lookup.</p>
+<p>Does not normalize filter values or existing stored records.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters">Parameters<a href="#parameters" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>value</code></td><td><code>any</code></td></tr></tbody></table>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
