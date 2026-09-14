@@ -4063,6 +4063,26 @@ Now create file `CustomLoginHeader.vue` in the `custom` folder of your project:
 </template>
 ```
 
+### Reacting to rejected login attempts
+
+Components injected into `underInputs` and `underLoginButton` get a `failedLoginAttempts` prop, which is incremented every time
+the login endpoint answers with an error. Use it when your injection has to be refreshed for the next attempt, e.g. a captcha widget
+has to issue a new token. Such injections can also disable the login button until they are ready, by emitting `update:disableLoginButton`:
+
+```html title="./custom/CustomLoginFooter.vue"
+<script setup lang="ts">
+import { watch } from 'vue';
+
+const props = defineProps<{ failedLoginAttempts?: number }>();
+const emit = defineEmits(['update:disableLoginButton']);
+
+watch(() => props.failedLoginAttempts, () => {
+  emit('update:disableLoginButton', true);
+  // prepare the injection for the next attempt, then enable the button back
+});
+</script>
+```
+
 ## List view page injections shrinking: thin enough to shrink?
 
 When none of `bottom`, `beforeBreadcrumbs`, `beforeActionButtons`, `afterBreadcrumbs` injections are set in list table, the table tries to shrink into viewport for better UX. In other words, in this default mode it moves scroll from body to the table itself:
@@ -6308,9 +6328,9 @@ export const admin = new AdminForth({
 
   auth: {
     beforeLoginAttempt: [
-      async ({ username, adminforth, extra }) => {
+      async ({ username, adminforth, extra, tr }) => {
         if (!await captchaIsValid(extra)) {
-          return { ok: false, error: "Captcha verification failed" };
+          return { ok: false, error: await tr("Captcha verification failed", "errors") };
         }
         return { ok: true };
       }
@@ -18816,7 +18836,7 @@ plugins: [
 
 ## Preventing token reuse
 
-A captcha token stays valid at the provider for a short period, which means the same token could be replayed for several logins. To prevent this, pass an optional [key-value adapter](/docs/tutorial/Adapters/key-value-adapters) via `keyValueAdapter`. Each token is recorded once it has been used for a successful login, and any later attempt with the same token is rejected.
+A captcha token stays valid at the provider for a short period, which means the same token could be replayed for several login attempts. To prevent this, pass an optional [key-value adapter](/docs/tutorial/Adapters/key-value-adapters) via `keyValueAdapter`. Each token is recorded once it has been used for a login attempt, and any later attempt with the same token is rejected.
 
 ```bash
 pnpm add @adminforth/key-value-adapter-ram
@@ -18836,9 +18856,9 @@ plugins: [
         siteKey: "YOUR_SITE_KEY", // Replace with your site key
         secretKey: "YOUR_SECRET_KEY", // Replace with your secret key
       }),
-      // Store used tokens to prevent them from being replayed
+      // Store spent tokens to prevent them from being replayed
       keyValueAdapter: new RamKeyValueAdapter(),
-      // Optional: how long (in seconds) a used token is remembered. Should be at least as long
+      // Optional: how long (in seconds) a spent token is remembered. Should be at least as long
       // as the captcha provider keeps the token valid. Defaults to 300 (5 minutes).
       tokenTimeToLiveSeconds: 300,
     }),

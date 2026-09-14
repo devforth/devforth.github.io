@@ -231,6 +231,26 @@ Now create file `CustomLoginHeader.vue` in the `custom` folder of your project:
 </template>
 ```
 
+### Reacting to rejected login attempts
+
+Components injected into `underInputs` and `underLoginButton` get a `failedLoginAttempts` prop, which is incremented every time
+the login endpoint answers with an error. Use it when your injection has to be refreshed for the next attempt, e.g. a captcha widget
+has to issue a new token. Such injections can also disable the login button until they are ready, by emitting `update:disableLoginButton`:
+
+```html title="./custom/CustomLoginFooter.vue"
+<script setup lang="ts">
+import { watch } from 'vue';
+
+const props = defineProps<{ failedLoginAttempts?: number }>();
+const emit = defineEmits(['update:disableLoginButton']);
+
+watch(() => props.failedLoginAttempts, () => {
+  emit('update:disableLoginButton', true);
+  // prepare the injection for the next attempt, then enable the button back
+});
+</script>
+```
+
 ## List view page injections shrinking: thin enough to shrink?
 
 When none of `bottom`, `beforeBreadcrumbs`, `beforeActionButtons`, `afterBreadcrumbs` injections are set in list table, the table tries to shrink into viewport for better UX. In other words, in this default mode it moves scroll from body to the table itself:
