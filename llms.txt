@@ -1,6 +1,6 @@
 # Agent-first open-source admin panel framework
 
-> Build robust and powerful agentic back-office panels for your projects while maintaining full control over the code.
+> A back-office framework for developers who build with agents, and admins who work with agents inside the panel.
 
 This file contains links to documentation sections following the llmstxt.org standard.
 
@@ -67,7 +67,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 - [Rich Editor](https://adminforth.dev/tutorial/Plugins/rich-editor.md): Guide to the Rich Editor plugin, including editor setup, multiple editors in one resource, completion features, and image handling in rich-text fie...
 - [Dashboard plugin](https://adminforth.dev/tutorial/Plugins/dashboard.md): Documentation for the Dashboard plugin.
 - [Dashboard Query Reference](https://adminforth.dev/tutorial/Plugins/dashboard-reference.md): Reference for Dashboard widget queries, calculations, custom filters, and configuration DSL.
-- [CRUD Approve Plugin](https://adminforth.dev/tutorial/Plugins/CRUDApprove.md): Guide to the CRUD Approve plugin, including installation, approval storage resource setup, wiring protected resources, approval flow, reviewer acce...
+- [CRUD Approve Plugin](https://adminforth.dev/tutorial/Plugins/CRUDApprove.md): Unsupported reference for the CRUD Approve plugin. Approval flows should be implemented in your own code.
 - [JSON Form](https://adminforth.dev/tutorial/Plugins/json-form.md): Guide to the JSON Form plugin — render a rich, schema-driven form for a JSON column instead of a raw text area, using a JSON Schema extended with x...
 - [MCP Server](https://adminforth.dev/tutorial/Plugins/mcp.md): Expose AdminForth resources and actions to Codex, Claude Code, Gemini, and other MCP clients with per-user revocable auth secrets.
 - [Plugin development guide](https://adminforth.dev/docs/tutorial/10-Advanced/01-plugin-development.md): Guide to developing AdminForth plugins, including plugin concepts, boilerplate, implementation structure, installation, and activation order.
