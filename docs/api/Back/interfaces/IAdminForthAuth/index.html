@@ -26,8 +26,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.55f62380.css">
-<script src="/assets/js/runtime~main.6008623f.js" defer="defer"></script>
-<script src="/assets/js/main.e0732b62.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.31f6ef3e.js" defer="defer"></script>
+<script src="/assets/js/main.5ef67ffb.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -112,12 +112,14 @@
 <hr>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="setauthcookie">setAuthCookie()<a href="#setauthcookie" class="hash-link" aria-label="Direct link to setAuthCookie()" title="Direct link to setAuthCookie()" translate="no">​</a></h3>
 <blockquote>
-<p><strong>setAuthCookie</strong>(<code>__namedParameters</code>): <code>void</code></p>
+<p><strong>setAuthCookie</strong>(<code>__namedParameters</code>): <code>string</code></p>
 </blockquote>
+<p>Issues auth jwt and sets it as auth cookie. Returns session id which is put into the token,
+generated one if <code>sessionId</code> was not passed.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-8">Parameters<a href="#parameters-8" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
-<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>__namedParameters</code></td><td>{ <code>expireInDuration?</code>: <code>string</code>; <code>pk</code>: <code>string</code>; <code>response</code>: <code>any</code>; <code>username</code>: <code>string</code>; }</td></tr><tr><td><code>__namedParameters.expireInDuration?</code></td><td><code>string</code></td></tr><tr><td><code>__namedParameters.pk</code></td><td><code>string</code></td></tr><tr><td><code>__namedParameters.response</code></td><td><code>any</code></td></tr><tr><td><code>__namedParameters.username</code></td><td><code>string</code></td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>__namedParameters</code></td><td>{ <code>expireInDuration?</code>: <code>string</code>; <code>pk</code>: <code>string</code>; <code>response</code>: <code>any</code>; <code>sessionId?</code>: <code>string</code>; <code>username</code>: <code>string</code>; }</td></tr><tr><td><code>__namedParameters.expireInDuration?</code></td><td><code>string</code></td></tr><tr><td><code>__namedParameters.pk</code></td><td><code>string</code></td></tr><tr><td><code>__namedParameters.response</code></td><td><code>any</code></td></tr><tr><td><code>__namedParameters.sessionId?</code></td><td><code>string</code></td></tr><tr><td><code>__namedParameters.username</code></td><td><code>string</code></td></tr></tbody></table>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-8">Returns<a href="#returns-8" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
-<p><code>void</code></p>
+<p><code>string</code></p>
 <hr>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="setcustomcookie">setCustomCookie()<a href="#setcustomcookie" class="hash-link" aria-label="Direct link to setCustomCookie()" title="Direct link to setCustomCookie()" translate="no">​</a></h3>
 <blockquote>
