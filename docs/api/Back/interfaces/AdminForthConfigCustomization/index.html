@@ -27,8 +27,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.55f62380.css">
-<script src="/assets/js/runtime~main.853cafb1.js" defer="defer"></script>
-<script src="/assets/js/main.0eb35a42.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.9bc5d8fa.js" defer="defer"></script>
+<script src="/assets/js/main.61c41b3a.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -252,8 +252,8 @@ default is true</p>
 <p>Relative or absolute path to directory where AdminForth prepares SPA sources, installs SPA dependencies and builds SPA.
 AdminForth creates <code>spa_tmp</code> folder inside of it.
 By default equals <code>&lt;os.tmpdir()&gt;/adminforth/&lt;brandNameSlug&gt;</code>.</p>
-<p>Keep it available at runtime as well: on start <code>bundleNow()</code> prepares sources here to compare them with build in <code>spaServeDir</code>,
-so if this directory is lost, SPA dependencies are installed again during startup.</p>
+<p>Keep it writable at runtime as well: on start <code>bundleNow()</code> prepares sources here to compare them with build in <code>spaServeDir</code>.
+It may be empty at runtime: SPA dependencies are installed here only when build in <code>spaServeDir</code> is outdated.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="inherited-from-9">Inherited from<a href="#inherited-from-9" class="hash-link" aria-label="Direct link to Inherited from" title="Direct link to Inherited from" translate="no">​</a></h4>
 <p><code>Omit.spaBuildDir</code></p>
 <hr>
