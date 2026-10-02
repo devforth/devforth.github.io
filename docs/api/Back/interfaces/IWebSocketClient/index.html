@@ -27,8 +27,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.55f62380.css">
-<script src="/assets/js/runtime~main.c297e876.js" defer="defer"></script>
-<script src="/assets/js/main.212bce98.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.f08531b3.js" defer="defer"></script>
+<script src="/assets/js/main.a32ba1c5.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -41,6 +41,15 @@
 <p><strong>adminUser</strong>: <a class="" href="/docs/api/Common/interfaces/AdminUser/"><code>AdminUser</code></a></p>
 </blockquote>
 <hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="authorize">authorize<a href="#authorize" class="hash-link" aria-label="Direct link to authorize" title="Direct link to authorize" translate="no">​</a></h3>
+<blockquote>
+<p><strong>authorize</strong>: () =&gt; <code>Promise</code>&lt;<a class="" href="/docs/api/Back/type-aliases/AdminUserAuthorizationResult/"><code>AdminUserAuthorizationResult</code></a>&gt;</p>
+</blockquote>
+<p>Authorizes handshake request of this connection again: verifies its auth jwt and runs <code>adminUserAuthorize</code> hooks,
+so access which was revoked after connection was established is noticed.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a class="" href="/docs/api/Back/type-aliases/AdminUserAuthorizationResult/"><code>AdminUserAuthorizationResult</code></a>&gt;</p>
+<hr>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="clientid">clientId?<a href="#clientid" class="hash-link" aria-label="Direct link to clientId?" title="Direct link to clientId?" translate="no">​</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>clientId?</strong>: <code>string</code></p>
@@ -50,7 +59,7 @@
 <blockquote>
 <p><strong>close</strong>: () =&gt; <code>void</code></p>
 </blockquote>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-1">Returns<a href="#returns-1" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
 <p><code>void</code></p>
 <hr>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="id">id<a href="#id" class="hash-link" aria-label="Direct link to id" title="Direct link to id" translate="no">​</a></h3>
@@ -69,7 +78,7 @@
 </blockquote>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters">Parameters<a href="#parameters" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>handler</code></td><td>() =&gt; <code>void</code></td></tr></tbody></table>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-1">Returns<a href="#returns-1" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-2">Returns<a href="#returns-2" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
 <p><code>void</code></p>
 <hr>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="onmessage">onMessage<a href="#onmessage" class="hash-link" aria-label="Direct link to onMessage" title="Direct link to onMessage" translate="no">​</a></h3>
@@ -78,7 +87,7 @@
 </blockquote>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-1">Parameters<a href="#parameters-1" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>handler</code></td><td>(<code>message</code>) =&gt; <code>void</code></td></tr></tbody></table>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-2">Returns<a href="#returns-2" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-3">Returns<a href="#returns-3" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
 <p><code>void</code></p>
 <hr>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="send">send<a href="#send" class="hash-link" aria-label="Direct link to send" title="Direct link to send" translate="no">​</a></h3>
@@ -87,12 +96,12 @@
 </blockquote>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-2">Parameters<a href="#parameters-2" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>message</code></td><td><code>string</code></td></tr></tbody></table>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-3">Returns<a href="#returns-3" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-4">Returns<a href="#returns-4" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
 <p><code>void</code></p>
 <hr>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="topics">topics<a href="#topics" class="hash-link" aria-label="Direct link to topics" title="Direct link to topics" translate="no">​</a></h3>
 <blockquote>
 <p><strong>topics</strong>: <code>Set</code>&lt;<code>string</code>&gt;</p>
-</blockquote></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/api/Back/interfaces/IWebSocketBroker/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">IWebSocketBroker</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/api/Back/interfaces/PluginsCommonOptions/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">PluginsCommonOptions</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#adminuser" class="table-of-contents__link toc-highlight">adminUser</a></li><li><a href="#clientid" class="table-of-contents__link toc-highlight">clientId?</a></li><li><a href="#close" class="table-of-contents__link toc-highlight">close</a></li><li><a href="#id" class="table-of-contents__link toc-highlight">id</a></li><li><a href="#lastping" class="table-of-contents__link toc-highlight">lastPing</a></li><li><a href="#onclose" class="table-of-contents__link toc-highlight">onClose</a></li><li><a href="#onmessage" class="table-of-contents__link toc-highlight">onMessage</a></li><li><a href="#send" class="table-of-contents__link toc-highlight">send</a></li><li><a href="#topics" class="table-of-contents__link toc-highlight">topics</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/tutorial/gettingStarted/">Tutorial</a></li><li class="footer__item"><a href="https://demo.adminforth.dev/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Live Demo</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/api/">API</a></li><li class="footer__item"><a class="footer__link-item" href="/blog/archive/">Blog Archive</a></li><li class="footer__item"><a class="footer__link-item" href="/search/">Find anything</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://devforth.io" target="_blank" rel="noopener noreferrer" class="footer__link-item">DevForth.io<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://devforth.io/contact" target="_blank" rel="noopener noreferrer" class="footer__link-item">We can develop admin panel for your project<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/devforth/adminforth" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Devforth sp. z o.o.</div></div></div></footer></div>
+</blockquote></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/api/Back/interfaces/IWebSocketBroker/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">IWebSocketBroker</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/api/Back/interfaces/PluginsCommonOptions/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">PluginsCommonOptions</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#adminuser" class="table-of-contents__link toc-highlight">adminUser</a></li><li><a href="#authorize" class="table-of-contents__link toc-highlight">authorize</a></li><li><a href="#clientid" class="table-of-contents__link toc-highlight">clientId?</a></li><li><a href="#close" class="table-of-contents__link toc-highlight">close</a></li><li><a href="#id" class="table-of-contents__link toc-highlight">id</a></li><li><a href="#lastping" class="table-of-contents__link toc-highlight">lastPing</a></li><li><a href="#onclose" class="table-of-contents__link toc-highlight">onClose</a></li><li><a href="#onmessage" class="table-of-contents__link toc-highlight">onMessage</a></li><li><a href="#send" class="table-of-contents__link toc-highlight">send</a></li><li><a href="#topics" class="table-of-contents__link toc-highlight">topics</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/tutorial/gettingStarted/">Tutorial</a></li><li class="footer__item"><a href="https://demo.adminforth.dev/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Live Demo</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/api/">API</a></li><li class="footer__item"><a class="footer__link-item" href="/blog/archive/">Blog Archive</a></li><li class="footer__item"><a class="footer__link-item" href="/search/">Find anything</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://devforth.io" target="_blank" rel="noopener noreferrer" class="footer__link-item">DevForth.io<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://devforth.io/contact" target="_blank" rel="noopener noreferrer" class="footer__link-item">We can develop admin panel for your project<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/devforth/adminforth" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Devforth sp. z o.o.</div></div></div></footer></div>
 </body>
 </html>
