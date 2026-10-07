@@ -371,7 +371,7 @@ type JobTask = {
     task_number: number;
     task_counter: number;
   };
-  status: 'SCHEDULED' | 'IN_PROGRESS' | 'DONE' | 'FAILED';
+  status: 'SCHEDULED' | 'IN_PROGRESS' | 'DONE' | 'FAILED' | 'DELETED';
 };
 
 const tasks = ref<JobTask[]>([]);
@@ -390,6 +390,7 @@ const taskStatusLabels: Record<JobTask['status'], string> = {
   IN_PROGRESS: 'running',
   DONE: 'done',
   FAILED: 'failed',
+  DELETED: 'deleted',
 };
 
 const props = defineProps<{
@@ -680,7 +681,7 @@ getJobStateField(jobId: string, key: string)
 getJobState(jobId: string)
 //add task to the running job
 addNewTasksToExistingJob(jobId: string, tasks: taskType[])
-//delete task from the running job (if not started yet)
+//delete task from the running job (if not started yet). The task is not removed, it gets the DELETED status and keeps its index
 deleteTasksFromExistingJob(jobId: string, taskIndex: number)
 /**
  * 
