@@ -12712,28 +12712,19 @@ To define a custom tool, register an API endpoint with `admin.express.endpoint`.
 
 By default, `admin.express.endpoint` applies AdminForth authorization. The endpoint handler receives `adminUser` from the user who is controlling the agent. In other words, all permissions and access rights of the agent are defined by that admin user. At the same time, actions done by the agent are automatically attributed in the audit log to the admin user who is controlling the agent.
 
-If a tool is risky, you can attach AdminForth agent metadata directly to the endpoint with the `agent` field.
+You can attach AdminForth agent metadata directly to the endpoint with the `agent` field.
 
 ```ts
-type AgentRiskLevel = 'safe' | 'danger';
-
 type AgentToolMeta = {
-  riskLevel?: AgentRiskLevel;
-  confirmation?: {
-    title?: string;
-    message?: string;
-    confirmLabel?: string;
-  };
+  requiresHumanApproval?: boolean;
+  hiddenFromAgents?: boolean;
+  onlyReadsData?: boolean;
 };
 ```
 
-Use it in `.endpoint(...)` like this:
-
-- `riskLevel: 'safe'` marks the tool as low-risk.
-- `riskLevel: 'danger'` marks the tool as dangerous.
-- `confirmation` customizes the confirmation dialog shown before the tool is executed.
-
-This metadata is rendered into the generated OpenAPI document, so the agent can understand that a tool is dangerous and requires an explicit confirmation UI before execution.
+- `requiresHumanApproval: true` makes the agent ask the user for approval before it runs the tool. MCP clients receive the `destructiveHint` annotation.
+- `hiddenFromAgents: true` keeps the endpoint out of agent tools, both in the agent and in the [MCP server](/docs/tutorial/Plugins/mcp/). Use it for endpoints that serve your admin panel UI and must not be called by agents.
+- `onlyReadsData: true` declares that the endpoint does not change any data. MCP clients receive the `readOnlyHint` annotation, and a [read-only MCP server](/docs/tutorial/Plugins/mcp/#read-only-mode) exposes only such endpoints.
 
 This example uses the same email adapter pattern shown in the Email Invite and Email Password Reset plugins. The transport below uses Mailgun only to keep the snippet short; you can replace it with SES or any other adapter from [List of adapters](/docs/tutorial/ListOfAdapters/).
 
@@ -12772,12 +12763,7 @@ export function initApi(app: Express, admin: IAdminForth) {
     path: '/send_email_to_user',
     description: 'Send an email to one AdminForth user by id. Use this after the user row is resolved.',
     agent: {
-      riskLevel: 'danger',
-      confirmation: {
-        title: 'Send email to user',
-        message: 'This action will send a real email to the selected user.',
-        confirmLabel: 'Send email',
-      },
+      requiresHumanApproval: true,
     },
     request_schema: {
       type: 'object',
@@ -22284,6 +22270,8 @@ The value cell holds the regular editor for whatever `additionalProperties` desc
 
 The MCP plugin exposes AdminForth API methods as remote MCP tools. Every request runs as the AdminForth user who created the auth secret, so the same resource permissions, validation, and hooks apply.
 
+Endpoints marked with `agent: { hiddenFromAgents: true }` are not exposed. AdminForth and its plugins mark the endpoints the admin panel uses internally, such as login, two-factor authentication, passkeys, and agent chat. Mark your own endpoints the same way to keep them away from agents.
+
 ## Installation
 
 ```bash
@@ -22303,6 +22291,7 @@ model mcp_auth_secrets {
   created_at         DateTime
   last_used_at       DateTime?
   last_used_by_agent String?
+  read_only          Boolean   @default(false)
 
   @@index([user_id])
 }
@@ -22334,6 +22323,7 @@ export default {
     { name: 'created_at', type: AdminForthDataTypes.DATETIME },
     { name: 'last_used_at', type: AdminForthDataTypes.DATETIME, required: false },
     { name: 'last_used_by_agent', type: AdminForthDataTypes.STRING, required: false },
+    { name: 'read_only', type: AdminForthDataTypes.BOOLEAN },
   ],
   options: {
     allowedActions: {
@@ -22370,6 +22360,7 @@ new AdminForth({
         createdAtField: 'created_at',
         lastUsedAtField: 'last_used_at',
         lastUsedByAgentField: 'last_used_by_agent',
+        readOnlyField: 'read_only',
       },
     }),
   ],
@@ -22393,6 +22384,21 @@ Authorization: Bearer afmcp_...
 ```
 
 `last_used_at` and `last_used_by_agent` are updated in the background without running resource hooks. Client identity comes from per-request `io.modelcontextprotocol/clientInfo` metadata in MCP `2026-07-28`, with legacy `initialize` and `User-Agent` fallbacks.
+
+## Read-only mode
+
+A read-only auth secret lets an agent only read data. Check **Read only** when you create the auth secret in **MCP Settings**. The mode is stored in `read_only` and cannot be changed later: create a new auth secret instead.
+
+To make every auth secret read-only, set `readOnly: true` in the plugin options. The **Read only** checkbox is then hidden, and new auth secrets are stored as read-only, so they stay read-only if you remove the option later:
+
+```ts
+new AdminForthMcpPlugin({
+  readOnly: true,
+  // ...
+}),
+```
+
+In read-only mode the server exposes only endpoints marked with `agent: { onlyReadsData: true }`, such as `get_resource`, `get_resource_data`, and `aggregate`. Creating, updating, and deleting records and running actions are not available. To make your own endpoint available in read-only mode, mark it with `onlyReadsData: true`.
 
 ## Audit attribution
 
