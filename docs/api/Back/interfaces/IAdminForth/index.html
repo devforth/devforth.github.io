@@ -27,8 +27,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.55f62380.css">
-<script src="/assets/js/runtime~main.0e54a620.js" defer="defer"></script>
-<script src="/assets/js/main.fb8bd24b.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.47cfb041.js" defer="defer"></script>
+<script src="/assets/js/main.d8198df1.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -230,10 +230,13 @@ Should be used for plugins which might have multiple instances with the same cla
 <hr>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="registermenucontributionprovider">registerMenuContributionProvider()<a href="#registermenucontributionprovider" class="hash-link" aria-label="Direct link to registerMenuContributionProvider()" title="Direct link to registerMenuContributionProvider()" translate="no">​</a></h3>
 <blockquote>
-<p><strong>registerMenuContributionProvider</strong>(<code>provider</code>): <code>void</code></p>
+<p><strong>registerMenuContributionProvider</strong>(<code>provider</code>, <code>options?</code>): <code>void</code></p>
 </blockquote>
+<p>Registers a provider which is called every time the menu is fetched.</p>
+<p>AdminForth bundles menu icons when it builds the SPA, and providers are called there without <code>adminUser</code>,
+so list in <code>options.icons</code> every icon the provider can return, otherwise it renders empty.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-10">Parameters<a href="#parameters-10" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
-<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>provider</code></td><td><a class="" href="/docs/api/Back/type-aliases/AdminForthMenuContributionProvider/"><code>AdminForthMenuContributionProvider</code></a></td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>provider</code></td><td><a class="" href="/docs/api/Back/type-aliases/AdminForthMenuContributionProvider/"><code>AdminForthMenuContributionProvider</code></a></td></tr><tr><td><code>options?</code></td><td>{ <code>icons?</code>: <code>string</code>[]; }</td></tr><tr><td><code>options.icons?</code></td><td><code>string</code>[]</td></tr></tbody></table>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-13">Returns<a href="#returns-13" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
 <p><code>void</code></p>
 <hr>

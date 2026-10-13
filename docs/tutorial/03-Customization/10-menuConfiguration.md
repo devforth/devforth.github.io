@@ -152,9 +152,13 @@ async modifyResourceConfig(adminforth, resourceConfig) {
         placement: { position: 'first' },
       },
     ];
+  }, {
+    icons: ['flowbite:chart-pie-solid'],
   });
 }
 ```
+
+AdminForth bundles menu icons when it builds the SPA. Providers are called during the build too, but without `adminUser`, so items they return only at runtime are not visible there. List every icon the provider can return in the `icons` option, otherwise it renders empty.
 
 After the plugin changes the state used by the provider, call `refreshMenu` on the backend:
 
@@ -516,9 +520,13 @@ async modifyResourceConfig(adminforth, resourceConfig) {
         placement: { position: 'first' },
       },
     ];
+  }, {
+    icons: ['flowbite:chart-pie-solid'],
   });
 }
 ```
+
+AdminForth bundles menu icons when it builds the SPA. Providers are called during the build too, but without `adminUser`, so items they return only at runtime are not visible there. List every icon the provider can return in the `icons` option, otherwise it renders empty.
 
 After the plugin changes the state used by the provider, call `refreshMenu` on the backend:
 
