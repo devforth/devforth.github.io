@@ -1,1 +1,0 @@
-import{$ as e,W as t,X as n,Y as r,dt as i,et as a,k as o,ot as s,pt as c,tt as l}from"./index-CLZrTzji.js";var u={href:`https://google.com?q=adminforth`,target:`_blank`},d=l({__name:`tooltip`,setup(l){return(l,d)=>(s(),n(c(o),null,{tooltip:i(()=>[...d[0]||=[e(` Search for AdminForth `,-1)]]),default:i(()=>[r(`a`,u,[a(c(t),{class:`w-5 h-5`})])]),_:1}))}});export{d as default};

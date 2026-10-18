@@ -1,1 +1,0 @@
-import{X as e,_ as t,ot as n,pt as r,tt as i}from"./index-CLZrTzji.js";var a=i({__name:`progress-bar`,setup(i){return(i,a)=>(n(),e(r(t),{currentValue:2600,minValue:0,maxValue:5e3}))}});export{a as default};

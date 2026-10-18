@@ -1,0 +1,1 @@
+import{X as e,lt as t,ot as n,v as r}from"./index-Dc3a-Q0y.js";var i={};function a(r,i){let a=t(`Skeleton`);return n(),e(a,{type:`video`,class:`w-full h-40`})}var o=r(i,[[`render`,a]]);export{o as default};

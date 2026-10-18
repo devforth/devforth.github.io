@@ -1,1 +1,0 @@
-import{X as e,g as t,ot as n,pt as r,tt as i}from"./index-CLZrTzji.js";var a=i({__name:`spinner`,setup(i){return(i,a)=>(n(),e(r(t),{class:`w-10 h-10`}))}});export{a as default};

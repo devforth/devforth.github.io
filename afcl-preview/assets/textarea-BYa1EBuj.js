@@ -1,0 +1,1 @@
+import{X as e,c as t,ft as n,ot as r,pt as i,tt as a}from"./index-Dc3a-Q0y.js";var o=a({__name:`textarea`,setup(a){let o=n(``);return(n,a)=>(r(),e(i(t),{modelValue:o.value,"onUpdate:modelValue":a[0]||=e=>o.value=e,placeholder:`Enter some text...`,class:`w-64`},null,8,[`modelValue`]))}});export{o as default};
