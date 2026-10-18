@@ -1,0 +1,94 @@
+# Usage of the logger
+
+> Guide to the AdminForth logger, including custom log messages, log levels, and SPA debugging for frontend troubleshooting.
+
+There are cases when you might want to debug an Adminforth app or add custom logs.
+
+## Adding custom logs
+
+> These logs are used only on the backend.
+
+> ❗️Do not combine them with `console.log()` because it can cause an unpredictable order of logs.
+
+To add a custom log, import the logger and use the desired level:
+
+```ts
+import { logger } from 'adminforth';
+
+logger.trace("This is trace log");
+logger.debug("This is debug log");
+logger.info("This is info log");
+logger.warn("This is warn log");
+logger.error("This is error log");
+```
+
+Depending on the active log level, some messages will be filtered out.
+
+## Changing logging level and debugging the Adminforth SPA
+
+There are three types of logs: user logs, Adminforth logs, and database logs.
+Use separate environment variables to control each type.
+
+Logger has 5 debug levels:
+
+```ts
+"trace"
+"debug"
+"info"
+"warn"
+"error"
+```
+
+By default, the logger uses the `info` level.
+
+To change it, set the environment variable for the logger you want to see:
+
+- `DEBUG_LEVEL=trace` - user logs at `trace` level
+- `AF_DEBUG_LEVEL=debug` - Adminforth logs at `debug` level
+- `DB_DEBUG_LEVEL=trace` - database logs at `trace` level
+
+Or run the Adminforth app like this:
+
+```bash
+DB_DEBUG_LEVEL=trace pnpm start
+```
+
+And the logs will be visible as well.
+
+## Single-line logs
+
+By default, log records that contain additional data objects are printed across multiple lines (pretty-printed).
+If you prefer each log record to be printed on a single line (for example, to make logs easier to grep or to fit
+log collectors), set the `AF_LOG_SINGLE_LINE` environment variable:
+
+```bash
+AF_LOG_SINGLE_LINE=true pnpm start
+```
+
+Accepted truthy values are `true` and `1`. When unset, logs use the default multi-line pretty format.
+
+## Catching unhandled API handler errors (work only with express v4)
+
+Express 4.x.x doen't have build-in error handler, so adminforth comes with build-in one. When an unhandled error is thrown inside an AdminForth API endpoint handler (built-in or custom), AdminForth logs the
+error and responds with `500 Internal server error`. If you also want to forward these errors somewhere — for example
+to report them to an external error-tracking service like [Sentry](https://sentry.io/), or to do your own custom
+logging — set the `expressErrorCallback` option in your AdminForth config:
+
+```ts
+import AdminForth from 'adminforth';
+import * as Sentry from '@sentry/node';
+
+export const admin = new AdminForth({
+  // ...rest of your config
+  expressErrorCallback: ({ error, extra, adminforth }) => {
+    Sentry.captureException(error, {
+      extra: {
+        requestUrl: extra.requestUrl,
+        query: extra.query,
+      },
+    });
+  },
+});
+```
+
+>In express 5.x.x errors are handled automatically and this param is not supported

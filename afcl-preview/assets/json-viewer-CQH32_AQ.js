@@ -1,0 +1,1 @@
+import{Q as e,d as t,q as n,rt as r,ut as i}from"./index-hR87WfQv.js";var a=e({__name:`json-viewer`,setup(e){return(e,a)=>(r(),n(i(t),{value:[{id:1,name:`Alice`,meta:{age:30,hobbies:[`reading`,`biking`]}},{id:2,name:`Bob`}],expandDepth:2}))}});export{a as default};

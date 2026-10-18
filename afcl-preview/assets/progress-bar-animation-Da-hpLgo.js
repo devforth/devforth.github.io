@@ -1,0 +1,1 @@
+import{ot as e,q as t,rt as n,v as r}from"./index-hR87WfQv.js";var i={};function a(r,i){let a=e(`ProgressBar`);return n(),t(a,{currentValue:2600,minValue:0,maxValue:5e3,showAnimation:``})}var o=r(i,[[`render`,a]]);export{o as default};

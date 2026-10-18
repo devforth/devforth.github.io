@@ -1,0 +1,1 @@
+import{Q as e,V as t,Z as n,ct as r,k as i,q as a,rt as o,ut as s}from"./index-hR87WfQv.js";var c=e({__name:`input-right-icon`,setup(e){return(e,c)=>(o(),a(s(i),{type:`text`,class:`w-full`},{rightIcon:r(()=>[n(s(t),{class:`w-4 h-4 text-lightInputIconColor dark:text-darkInputIconColor`})]),_:1}))}});export{c as default};

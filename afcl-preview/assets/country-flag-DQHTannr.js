@@ -1,0 +1,1 @@
+import{Q as e,f as t,q as n,rt as r,ut as i}from"./index-hR87WfQv.js";var a=e({__name:`country-flag`,setup(e){return(e,a)=>(r(),n(i(t),{countryCode:`ua`}))}});export{a as default};

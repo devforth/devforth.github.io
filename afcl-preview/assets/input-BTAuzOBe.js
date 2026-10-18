@@ -1,0 +1,1 @@
+import{Q as e,X as t,ct as n,k as r,q as i,rt as a,ut as o}from"./index-hR87WfQv.js";var s=e({__name:`input`,setup(e){return(e,s)=>(a(),i(o(r),{type:`number`,class:`w-full`},{suffix:n(()=>[...s[0]||=[t(` USD `,-1)]]),_:1}))}});export{s as default};

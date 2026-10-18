@@ -1,0 +1,1 @@
+import{ot as e,q as t,rt as n,v as r}from"./index-hR87WfQv.js";var i={};function a(r,i){let a=e(`Skeleton`);return n(),t(a,{type:`video`,class:`w-full h-40`})}var o=r(i,[[`render`,a]]);export{o as default};

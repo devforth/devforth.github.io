@@ -1,0 +1,1 @@
+import{Q as e,c as t,lt as n,q as r,rt as i,ut as a}from"./index-hR87WfQv.js";var o=e({__name:`date-picker`,setup(e){let o=n();return(e,n)=>(i(),r(a(t),{valueStart:o.value,"onUpdate:valueStart":n[0]||=e=>o.value=e,column:{type:`datetime`},label:`Pick start`},null,8,[`valueStart`]))}});export{o as default};

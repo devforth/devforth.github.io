@@ -2,8 +2,6 @@
 
 > Manual code way walkthrough (alternative to CLI) for building a minimal AdminForth app without the CLI, including project setup, resources, authentication, and server configuration.
 
-# Hello world app without CLI
-
 While AdminForth CLI is the fastest way to create a new project, you can also create a new project manually.
 
 This might help you better understand how AdminForth project is structured and how to customize it.
@@ -147,7 +145,7 @@ export const admin = new AdminForth({
     loginPromptHTML: async () => { 
       const adminforthUserExists = await admin.resource("adminuser").count(Filters.EQ('email', 'adminforth')) > 0;
       if (adminforthUserExists) {
-        return "Please use adminforth as username and adminforth as password"
+        return "Please use <b>adminforth</b> as username and <b>adminforth</b> as password"
       }
     },
   },

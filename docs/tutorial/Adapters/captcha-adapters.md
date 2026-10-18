@@ -1,0 +1,19 @@
+# Captcha Adapters
+
+> Reference page for AdminForth captcha adapters, including Cloudflare Turnstile and Google reCAPTCHA setup for login protection flows.
+
+Used to add captcha to the login screen.
+
+[Captcha adapter source class](https://github.com/devforth/adminforth/blob/65153408a119314dad339f452700e0937952034a/adminforth/types/adapters/CaptchaAdapter.ts#L5)
+
+## Cloudflare Adapter
+
+```bash
+pnpm add @adminforth/login-captcha-adapter-cloudflare
+```
+
+## reCaptcha Adapter
+
+```bash
+pnpm add @adminforth/login-captcha-adapter-recaptcha
+```

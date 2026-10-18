@@ -1,0 +1,1 @@
+import{ot as e,q as t,rt as n,v as r}from"./index-hR87WfQv.js";var i={};function a(r,i){let a=e(`PieChart`);return n(),t(a,{data:[{amount:5,label:`Cars`},{amount:3,label:`Bikes`},{amount:2,label:`Trucks`},{amount:1,label:`Boats`}],options:{chart:{height:250,type:`donut`}}})}var o=r(i,[[`render`,a]]);export{o as default};
