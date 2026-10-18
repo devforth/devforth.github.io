@@ -1,0 +1,1 @@
+import{Q as e,lt as t,q as n,rt as r,s as i,ut as a}from"./index-PFRzyENS.js";var o=e({__name:`textarea`,setup(e){let o=t(``);return(e,t)=>(r(),n(a(i),{modelValue:o.value,"onUpdate:modelValue":t[0]||=e=>o.value=e,placeholder:`Enter some text...`,class:`w-64`},null,8,[`modelValue`]))}});export{o as default};

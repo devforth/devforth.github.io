@@ -1,0 +1,1 @@
+import{Q as e,Y as t,Z as n,rt as r,ut as i,y as a}from"./index-PFRzyENS.js";var o={class:`flex flex-col gap-2`},s=e({__name:`skeleton`,setup(e){return(e,s)=>(r(),t(`div`,o,[n(i(a),{class:`w-full h-4`}),n(i(a),{class:`w-full h-2`}),n(i(a),{class:`w-full h-2`}),n(i(a),{class:`w-full h-2`}),n(i(a),{class:`w-full h-2`})]))}});export{s as default};

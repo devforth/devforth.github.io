@@ -1,0 +1,1 @@
+import{_ as e,ot as t,q as n,rt as r}from"./index-PFRzyENS.js";var i={};function a(e,i){let a=t(`ProgressBar`);return r(),n(a,{currentValue:2600,minValue:0,maxValue:5e3,height:6})}var o=e(i,[[`render`,a]]);export{o as default};

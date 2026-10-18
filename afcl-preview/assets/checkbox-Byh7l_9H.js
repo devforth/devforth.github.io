@@ -1,1 +1,0 @@
-import{Q as e,T as t,X as n,ct as r,lt as i,q as a,rt as o,ut as s}from"./index-hR87WfQv.js";var c=e({__name:`checkbox`,setup(e){let c=i(!1);return(e,i)=>(o(),a(s(t),{modelValue:c.value,"onUpdate:modelValue":i[0]||=e=>c.value=e},{default:r(()=>[...i[1]||=[n(` Enable `,-1)]]),_:1},8,[`modelValue`]))}});export{c as default};

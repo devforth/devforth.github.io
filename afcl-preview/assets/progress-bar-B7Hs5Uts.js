@@ -1,0 +1,1 @@
+import{Q as e,g as t,q as n,rt as r,ut as i}from"./index-PFRzyENS.js";var a=e({__name:`progress-bar`,setup(e){return(e,a)=>(r(),n(i(t),{currentValue:2600,minValue:0,maxValue:5e3}))}});export{a as default};
