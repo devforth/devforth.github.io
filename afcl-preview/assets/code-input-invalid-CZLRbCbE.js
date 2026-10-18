@@ -1,1 +1,0 @@
-import{X as e,lt as t,ot as n,v as r}from"./index-Dc3a-Q0y.js";var i={};function a(r,i){let a=t(`CodeInput`);return n(),e(a,{modelValue:`1234`,groupSize:3,invalid:``})}var o=r(i,[[`render`,a]]);export{o as default};

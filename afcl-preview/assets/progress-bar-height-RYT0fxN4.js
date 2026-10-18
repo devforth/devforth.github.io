@@ -1,1 +1,0 @@
-import{X as e,lt as t,ot as n,v as r}from"./index-Dc3a-Q0y.js";var i={};function a(r,i){let a=t(`ProgressBar`);return n(),e(a,{currentValue:2600,minValue:0,maxValue:5e3,height:6})}var o=r(i,[[`render`,a]]);export{o as default};

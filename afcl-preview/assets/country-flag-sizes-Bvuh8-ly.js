@@ -1,1 +1,0 @@
-import{$ as e,Q as t,Y as n,et as r,lt as i,ot as a,v as o}from"./index-Dc3a-Q0y.js";var s={},c={class:`flex items-center gap-4`},l={class:`flex items-center gap-2 text-sm`};function u(o,s){let u=i(`CountryFlag`);return a(),t(`div`,c,[n(`span`,l,[r(u,{countryCode:`jp`,size:`sm`}),s[0]||=e(`日本語`,-1)]),r(u,{countryCode:`jp`})])}var d=o(s,[[`render`,u]]);export{d as default};

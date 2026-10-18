@@ -1,0 +1,1 @@
+import{$ as e,X as t,dt as n,j as r,ot as i,pt as a,tt as o}from"./index-BL9w9UbX.js";var s=o({__name:`input`,setup(o){return(o,s)=>(i(),t(a(r),{type:`number`,class:`w-full`},{suffix:n(()=>[...s[0]||=[e(` USD `,-1)]]),_:1}))}});export{s as default};

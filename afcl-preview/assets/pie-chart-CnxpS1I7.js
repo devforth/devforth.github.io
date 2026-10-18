@@ -1,0 +1,1 @@
+import{S as e,X as t,ot as n,pt as r,tt as i}from"./index-BL9w9UbX.js";var a=i({__name:`pie-chart`,setup(i){return(i,a)=>(n(),t(r(e),{data:[{amount:5,label:`Cars`},{amount:3,label:`Bikes`},{amount:2,label:`Trucks`},{amount:1,label:`Boats`}],options:{chart:{height:250}}}))}});export{a as default};
