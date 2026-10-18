@@ -1,0 +1,1 @@
+import{A as e,Q as t,Y as n,at as r,et as i,ft as a,ut as o}from"./index-Dfm0PgFI.js";var s=i({__name:`input`,setup(i){return(i,s)=>(r(),n(a(e),{type:`number`,class:`w-full`},{suffix:o(()=>[...s[0]||=[t(` USD `,-1)]]),_:1}))}});export{s as default};

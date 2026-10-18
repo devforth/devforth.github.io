@@ -1,1 +1,0 @@
-import{M as e,Q as t,Y as n,at as r,et as i,ft as a,ut as o}from"./index-BXv7z5S8.js";var s=i({__name:`link`,setup(i){return(i,s)=>(r(),n(a(e),{to:`/login`},{default:o(()=>[...s[0]||=[t(`Go to login`,-1)]]),_:1}))}});export{s as default};
