@@ -1,0 +1,1 @@
+import{$ as e,O as t,X as n,dt as r,ot as i,pt as a,tt as o}from"./index-B4uTep_6.js";var s=o({__name:`link-button`,setup(o){return(o,s)=>(i(),n(a(t),{to:`/login`},{default:r(()=>[...s[0]||=[e(`Go to login`,-1)]]),_:1}))}});export{s as default};

@@ -1,1 +1,0 @@
-import{Q as e,b as t,et as n,ot as r,pt as i,tt as a}from"./index-BL9w9UbX.js";var o={class:`flex flex-col gap-2`},s=a({__name:`skeleton`,setup(a){return(a,s)=>(r(),e(`div`,o,[n(i(t),{class:`w-full h-4`}),n(i(t),{class:`w-full h-2`}),n(i(t),{class:`w-full h-2`}),n(i(t),{class:`w-full h-2`}),n(i(t),{class:`w-full h-2`})]))}});export{s as default};

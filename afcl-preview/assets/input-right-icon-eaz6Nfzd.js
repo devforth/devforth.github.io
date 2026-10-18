@@ -1,1 +1,0 @@
-import{W as e,X as t,dt as n,et as r,j as i,ot as a,pt as o,tt as s}from"./index-BL9w9UbX.js";var c=s({__name:`input-right-icon`,setup(s){return(s,c)=>(a(),t(o(i),{type:`text`,class:`w-full`},{rightIcon:n(()=>[r(o(e),{class:`w-4 h-4 text-lightInputIconColor dark:text-darkInputIconColor`})]),_:1}))}});export{c as default};

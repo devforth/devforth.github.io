@@ -1,0 +1,1 @@
+import{X as e,Y as t,d as n,dt as r,ft as i,ot as a,pt as o,tt as s}from"./index-B4uTep_6.js";var c=s({__name:`toggle`,setup(s){let c=i(!1);return(i,s)=>(a(),e(o(n),{modelValue:c.value,"onUpdate:modelValue":s[0]||=e=>c.value=e,disabled:!1},{default:r(()=>[...s[1]||=[t(`p`,null,`Click me`,-1)]]),_:1},8,[`modelValue`]))}});export{c as default};
