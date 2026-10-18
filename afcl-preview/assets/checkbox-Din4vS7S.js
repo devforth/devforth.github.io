@@ -1,1 +1,0 @@
-import{$ as e,E as t,X as n,dt as r,ft as i,ot as a,pt as o,tt as s}from"./index-B4uTep_6.js";var c=s({__name:`checkbox`,setup(s){let c=i(!1);return(i,s)=>(a(),n(o(t),{modelValue:c.value,"onUpdate:modelValue":s[0]||=e=>c.value=e},{default:r(()=>[...s[1]||=[e(` Enable `,-1)]]),_:1},8,[`modelValue`]))}});export{c as default};

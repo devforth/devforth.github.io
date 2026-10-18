@@ -1,0 +1,1 @@
+var e=`#2a78d6.#eb6834.#1baf7a.#eda100.#e87ba4.#008300.#6250d6.#e34948.#4E79A7.#F28E2B.#E15759.#76B7B2.#59A14F.#EDC949.#B07AA1.#FF9DA6.#9C755F.#BAB0AC.#2B8A86.#CC4D58.#F7941D.#F9C232.#729B33.#497288.#16578D.#5F4D99.#F9F871.#F9F871`.split(`.`);function t(e,n){for(let r in n)typeof n[r]==`object`&&!Array.isArray(n[r])?(e[r]={...e[r]},t(e[r],n[r])):e[r]=n[r]}export{t as n,e as t};

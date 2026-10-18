@@ -7907,19 +7907,13 @@ This way, multiselect field displayed on filter page will be replaced with a def
 
 ---
 
-## AdminForth Components Library
+## Buttons and Inputs
 
 import AfclPreview from '@site/src/components/AfclPreview';
 
 
 
-AFCL is a set of components which you can use as build blocks in your AdminForth application. 
-AFCL allows to keep the design consistent with minimal efforts and build new pages faster.
-AFCL components follow styling standard and respect theme colors.
-
-Components set is always growing, so you can expect new components to be added in the future.
-
-Examples on this page are live: each of them renders the code below it with real AFCL components and the default theme.
+Buttons, links and form inputs. Import the components from `@/afcl`, see [AdminForth Components Library](./index.md).
 
 ### Button
 
@@ -7943,6 +7937,10 @@ loader prop would show loader when it's true.
 #### Variant
 
 The `variant` prop controls the button style. Possible values are `primary` (default), `secondary`, `danger`, `danger-soft` and `ghost`. `danger-soft` is a quieter destructive action with a red outline, e.g. Remove on a card next to secondary buttons. A `ghost` button has no border and no background until hover, use it for quiet actions like icons in table rows.
+
+```js
+import { Button } from '@/afcl'
+```
 
 ```html
 <div class="flex flex-wrap gap-3">
@@ -7970,6 +7968,10 @@ The `variant` prop controls the button style. Possible values are `primary` (def
 
 The `size` prop is `md` (default, 34px high) or `sm` (28px high).
 
+```js
+import { Button } from '@/afcl'
+```
+
 ```html
 <div class="flex flex-wrap items-center gap-3">
   <Button variant="secondary">
@@ -7986,6 +7988,7 @@ The `size` prop is `md` (default, 34px high) or `sm` (28px high).
 `iconOnly` makes a square button for one icon from the slot and sizes the icon to 16px. With `loader` the spinner takes the place of the icon.
 
 ```js
+import { Button } from '@/afcl'
 import { IconCheck, IconX, IconPencil, IconTrash2 } from '@iconify-prerendered/vue-lucide'
 ```
 
@@ -8112,6 +8115,7 @@ const selected = ref(null)
 #### Multiple
 
 ```ts
+import { Select } from '@/afcl'
 import { ref } from 'vue'
 
 //diff-remove
@@ -8140,6 +8144,7 @@ const selected = ref([])
 You can customize item and selected item using slots.
 
 ```ts
+import { Select } from '@/afcl'
 import { ref } from 'vue'
 
 const selected = ref(null)
@@ -8182,6 +8187,7 @@ const selected = ref(null)
 You might need to put some extra item at bottom of list
 
 ```ts
+import { Select, LinkButton } from '@/afcl'
 import { ref } from 'vue'
 
 const selected = ref(null)
@@ -8211,6 +8217,7 @@ const selected = ref(null)
 Pass `classesForInput` to style the input of the select.
 
 ```ts
+import { Select } from '@/afcl'
 import { ref } from 'vue'
 
 const selected = ref(null)
@@ -8257,6 +8264,19 @@ import { IconSearch } from '@iconify-prerendered/vue-lucide'
 </Input>
 ```
 
+`passwordToggle` adds a button which shows and hides the value of a `type="password"` input, `invalid` paints the border red:
+
+```js
+import { Input } from '@/afcl'
+```
+
+```html
+<div class="flex flex-col gap-3">
+  <Input type="password" passwordToggle fullWidth modelValue="correct horse" />
+  <Input type="password" passwordToggle invalid fullWidth modelValue="short" />
+</div>
+```
+
 ### Code Input
 
 An input for one-time codes, e.g. a 6-digit code from an authenticator app. It is one real field drawn as cells, so password managers and the browser fill the whole code at once, a pasted code with spaces or a dash (`123 456`) is cleaned, and screen readers read one field. Only digits are kept, `complete` is emitted when the last digit is entered.
@@ -8277,6 +8297,10 @@ const checked = ref('')
 ```
 
 `invalid` paints the cells red, e.g. after a wrong code:
+
+```js
+import { CodeInput } from '@/afcl'
+```
 
 ```html
 <CodeInput modelValue="1234" :groupSize="3" invalid />
@@ -8314,26 +8338,86 @@ const textAreaInput = ref('')
 />
 ```
 
-### Tooltip
+### Checkbox
 
-Wrap an element on which you would like to show a tooltip with the `Tooltip` component and add a `tooltip` slot to it.
+```ts
+import { ref } from 'vue'
+import { Checkbox } from '@/afcl'
 
-```js
-import { Tooltip } from '@/afcl'
-import { IconSearch } from '@iconify-prerendered/vue-lucide'
+const enable = ref(false)
 ```
 
 ```html
-<Tooltip>
-  <a :href="`https://google.com?q=adminforth`" target="_blank">
-    <IconSearch class="w-5 h-5" />
-  </a>
-
-  <template #tooltip>
-    Search for AdminForth
-  </template>
-</Tooltip>
+<Checkbox v-model="enable">
+  Enable
+</Checkbox>
 ```
+
+### Toggle
+
+```ts
+import { ref } from 'vue'
+import { Toggle } from '@/afcl'
+
+const enabled = ref(false)
+```
+
+```html
+<Toggle v-model="enabled" :disabled="false">
+  <p>Click me</p>
+</Toggle>
+```
+
+### Date picker
+
+#### Basic
+
+```ts
+import { ref } from 'vue'
+import { DatePicker } from '@/afcl';
+
+const datePickerValue = ref()
+```
+
+```html
+<DatePicker
+  v-model:valueStart="datePickerValue"
+  :column="{ type: 'datetime' }"
+  label="Pick start"
+/>
+```
+
+### Dropzone
+
+```ts
+import { ref, watch } from 'vue'
+import { Dropzone } from '@/afcl'
+
+const files = ref<File[]>([])
+
+watch(files, (files) => {
+  console.log('files selected', files);
+})
+```
+
+```html
+<Dropzone
+  :extensions="['.jpg', '.jpeg', '.png']"
+  :maxSizeBytes="1024 * 1024 * 2"
+  :multiple="false"
+  v-model="files"
+/>
+```
+
+---
+
+## Layout and Overlays
+
+import AfclPreview from '@site/src/components/AfclPreview';
+
+
+
+Blocks which lay out a page, and tooltips, menus and dialogs which open over it. Import the components from `@/afcl`, see [AdminForth Components Library](./index.md).
 
 ### VerticalTabs
 
@@ -8399,21 +8483,6 @@ import { IconLink, IconMonitorSmartphone } from '@iconify-prerendered/vue-lucide
 </VerticalTabs>
 ```
 
-### Checkbox
-
-```ts
-import { ref } from 'vue'
-import { Checkbox } from '@/afcl'
-
-const enable = ref(false)
-```
-
-```html
-<Checkbox v-model="enable">
-  Enable
-</Checkbox>
-```
-
 ### Card 
 
 Card is a static hairline surface (`afcl-card`) which fills the width of its container, put it into a grid to build dashboards. Classes passed to it override the default ones, e.g. `class="p-2"` replaces the padding.
@@ -8434,6 +8503,10 @@ import { Card } from '@/afcl'
 ```
 
 #### Standard card
+
+```js
+import { Card } from '@/afcl'
+```
 
 ```html
 <div class="flex flex-col gap-4">
@@ -8482,19 +8555,25 @@ import { IconPlus } from '@iconify-prerendered/vue-lucide'
 </PageHeader>
 ```
 
-### Toggle
+### Tooltip
 
-```ts
-import { ref } from 'vue'
-import { Toggle } from '@/afcl'
+Wrap an element on which you would like to show a tooltip with the `Tooltip` component and add a `tooltip` slot to it.
 
-const enabled = ref(false)
+```js
+import { Tooltip } from '@/afcl'
+import { IconSearch } from '@iconify-prerendered/vue-lucide'
 ```
 
 ```html
-<Toggle v-model="enabled" :disabled="false">
-  <p>Click me</p>
-</Toggle>
+<Tooltip>
+  <a :href="`https://google.com?q=adminforth`" target="_blank">
+    <IconSearch class="w-5 h-5" />
+  </a>
+
+  <template #tooltip>
+    Search for AdminForth
+  </template>
+</Tooltip>
 ```
 
 ### Dialog (Pop-up)
@@ -8521,6 +8600,10 @@ On screens narrower than 640px the dialog docks to the bottom edge as a sheet: i
 #### Header
 
 You can add header to the dialog by using header prop.
+
+```js
+import { Dialog, Button } from '@/afcl'
+```
 
 ```html
 //diff-remove
@@ -8551,6 +8634,7 @@ If you want to remove close button in header, you can add `:header-close-button=
 By default dialog will have just one "Close" button. If you want to change that, you can set `buttons` to a desirable array.
 
 ```ts
+import { Dialog, Button } from '@/afcl'
 function doSave() {
   console.log('saved');
 }
@@ -8583,6 +8667,7 @@ function doSave() {
 Dialog component will render each button using afcl `Button` component. You can pass any props to those buttons by adding `options` field to a button item.
 
 ```ts
+import { Dialog, Button } from '@/afcl'
 import { ref } from 'vue'
 
 const savingIsAllowed = ref(false)
@@ -8634,6 +8719,10 @@ function doSave() {
 
 Default behavior of the Dialog component will allow user to close it by just clicking outside. You can prevent that by setting `closeByClickOutside` to `false`.
 
+```js
+import { Dialog, Button } from '@/afcl'
+```
+
 ```html
 <Dialog
   class="w-96"
@@ -8657,6 +8746,7 @@ Default behavior of the Dialog component will allow user to close it by just cli
 If you want to control dialog programmatically, you can use `ref` to get a reference to the dialog component and call its `open` and `close` methods.
 
 ```ts
+import { Button, Dialog } from '@/afcl'
 import { ref } from 'vue'
 
 const confirmDialog = ref(null);
@@ -8700,6 +8790,9 @@ If you want to run custom logic before the dialog opens or closes by passing cal
 Now you can pass before open/close functions:
 
 ```ts
+import { Dialog, Button } from '@/afcl'
+import { ref } from 'vue'
+
 const counter = ref(0);
 
 function onBeforeOpen() {
@@ -8716,6 +8809,10 @@ function onBeforeClose() {
 #### Ask for extra confirmation before close
 
 If you want dialog to ask user for conformation when he tryes to close dialog, you can add: 
+
+```js
+import { Dialog, Button } from '@/afcl'
+```
 
 ```html
 <Dialog 
@@ -8734,6 +8831,51 @@ If you want dialog to ask user for conformation when he tryes to close dialog, y
   </div>
 </Dialog>
 ```
+
+### Dialog Panel
+
+The panel of a dialog drawn right on the page: login, two-factor, password reset and other screens which can't be closed. It has the header, the body and the footer band of a dialog, but no backdrop, and it is drawn like other surfaces, with a hairline border and a light shadow. A panel shown over the page in your own overlay takes `class="shadow-popover dark:shadow-darkPopover"`.
+
+```js
+import { DialogPanel, Input, Button } from '@/afcl'
+import { IconLock } from '@iconify-prerendered/vue-lucide'
+```
+
+```html
+<DialogPanel title="Reset password" subtitle="We will send a link to your email">
+  <template #icon><IconLock /></template>
+  <Input type="email" fullWidth placeholder="name@company.com" />
+  <template #footer>
+    <Button variant="secondary">Back to login</Button>
+    <Button>Send reset link</Button>
+  </template>
+</DialogPanel>
+```
+
+`error` shows a message under the body:
+
+```js
+import { DialogPanel, Input } from '@/afcl'
+```
+
+```html
+<DialogPanel title="Set new password" error="Passwords do not match">
+  <Input type="password" passwordToggle invalid fullWidth modelValue="secret" />
+</DialogPanel>
+```
+
+Props:
+
+```ts
+  title?: string
+  subtitle?: string
+  error?: string | null
+  closable?: boolean // a close button in the header which emits close
+  // extra classes for the parts: header, icon, titleWrap, title, subtitle, close, body, error, footer
+  classes?: Partial<Record<DialogPanelPart, ClassNameValue>>
+```
+
+Slots: `icon` for the tile left of the title, `title` to replace the title and the subtitle with your own content, the default slot for the body and `footer` for the actions. The main action goes last, so it ends up on the right.
 
 ### Dropdown Menu
 
@@ -8791,6 +8933,7 @@ A `DropdownMenu` rendered inside an item of another menu works as a submenu: a c
 Bind `v-model:open` to read or change the open state, or call `open()`, `close()` and `toggle()` on a template ref. The `trigger` slot gets `open`, the default slot gets the `close` function:
 
 ```ts
+import { DropdownMenu, Button } from '@/afcl'
 import { ref } from 'vue'
 import { IconChevronDown } from '@iconify-prerendered/vue-lucide'
 
@@ -8866,27 +9009,76 @@ import { IconMonitor, IconLink } from '@iconify-prerendered/vue-lucide'
 
 `DropdownMenuItem` has the `keepMenuOpen` prop for other rows which must not close the menu on click.
 
-### Dropzone
+### Modal
 
 ```ts
-import { ref, watch } from 'vue'
-import { Dropzone } from '@/afcl'
-
-const files = ref<File[]>([])
-
-watch(files, (files) => {
-  console.log('files selected', files);
-})
+import { Modal, Button } from '@/afcl';
 ```
 
 ```html
-<Dropzone
-  :extensions="['.jpg', '.jpeg', '.png']"
-  :maxSizeBytes="1024 * 1024 * 2"
-  :multiple="false"
-  v-model="files"
-/>
+<Modal class="w-96" :closeByClickOutside="true" :closeByEsc="true" askForCloseConfirmation>
+  <template #trigger>
+    <Button>Modal Toggle</Button>
+  </template>
+
+  <div class="space-y-4 p-4">
+    <p>This is the first paragraph of modal content.</p>
+    <p>And this is the second paragraph.</p>
+  </div>
+</Modal>
 ```
+
+Like Dialog, the modal docks to the bottom edge as a full-width sheet on screens narrower than 640px.
+
+#### Open state
+
+Bind `v-model:open` to open or close the modal from code, for example to show progress while a request is running:
+
+```ts
+import { ref } from 'vue'
+import { Modal, Button, Spinner } from '@/afcl';
+
+const isSaving = ref(false)
+
+function save() {
+  isSaving.value = true
+  setTimeout(() => { isSaving.value = false }, 2000) // a request instead in real app
+}
+```
+
+```html
+<Button @click="save">Save</Button>
+
+<Modal v-model:open="isSaving" :closeByClickOutside="false" :closeByEsc="false">
+  <div class="flex items-center gap-3 px-5 py-4">
+    <Spinner class="w-5 h-5" />
+    Saving...
+  </div>
+</Modal>
+```
+
+#### Props: 
+```ts
+  closeByClickOutside?: boolean  // Close on click outside of modal (default is true)
+  closeByEsc?: boolean // Close on Esc button click (default is true)
+  beforeCloseFunction?: (() => void | Promise<void>) | null // Callback, that will be executed before open
+  beforeOpenFunction?: (() => void | Promise<void>) | null // Callback, that will be executed before close
+  askForCloseConfirmation?: boolean // Show extra popup to confirm close ( to avoid close by accident)
+  closeConfirmationText?: string // Text that will be shown on close confirmation popup
+  removeFromDomOnClose?: boolean // Remove modal from DOM on close ( default is false )
+  backgroundCustomClasses?: string // allows to add custom classes to the gray background of modal (e.g. you can have bg-pink-500/60)
+  modalCustomClasses?: string // allows to add custom classes to modal popup
+```
+
+---
+
+## Data Display and Loading
+
+import AfclPreview from '@site/src/components/AfclPreview';
+
+
+
+Tables and other views of data, and indicators of loading and progress. Import the components from `@/afcl`, see [AdminForth Components Library](./index.md).
 
 ### Table
 
@@ -8912,6 +9104,10 @@ import { Table } from '@/afcl'
 
 #### No even highlights
 
+```js
+import { Table } from '@/afcl'
+```
+
 ```html
 <Table
   :columns="[
@@ -8933,6 +9129,7 @@ import { Table } from '@/afcl'
 #### Custom cell
 
 ```ts
+import { Table } from '@/afcl'
 const isoFlagToEmoji = (iso) => iso.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397))
 ```
 
@@ -8960,6 +9157,10 @@ const isoFlagToEmoji = (iso) => iso.toUpperCase().replace(/./g, char => String.f
 ```
 
 #### Custom header
+
+```js
+import { Table } from '@/afcl'
+```
 
 ```html
 <Table
@@ -8989,6 +9190,10 @@ const isoFlagToEmoji = (iso) => iso.toUpperCase().replace(/./g, char => String.f
 Table provides front-end side pagination. You can set `pageSize` (default is 5) to set how many rows to show per page.
 If there is less then `pageSize` rows, pagination will not be shown.
 
+```js
+import { Table } from '@/afcl'
+```
+
 ```html
 <Table
   :columns="[
@@ -9013,6 +9218,7 @@ If there is less then `pageSize` rows, pagination will not be shown.
 To load pages dynamically, simply pass async callback to data:
 
 ```ts
+import { Table } from '@/afcl'
 async function loadPageData(data) {  
   const { offset, limit } = data;
   // in real app do await callAdminForthApi or await fetch to get date, use offset and limit value to slice data
@@ -9053,6 +9259,10 @@ Table supports column sorting out of the box.
 
 Basic example (client-side sorting when `data` is an array):
 
+```js
+import { Table } from '@/afcl'
+```
+
 ```html
 <Table
   :columns="[
@@ -9074,6 +9284,7 @@ Basic example (client-side sorting when `data` is an array):
 You can also predefine a default sort:
 
 ```ts
+import { Table } from '@/afcl'
 const rows = [
   { name: 'John', age: 30, country: 'US' },
   { name: 'Rick', age: 25, country: 'CA' },
@@ -9104,6 +9315,10 @@ You can sort by nested properties of objects in rows using dot-notation in `fiel
 
 Example:
 
+```js
+import { Table } from '@/afcl'
+```
+
 ```html
 <Table
   :columns="[
@@ -9125,7 +9340,7 @@ Example:
 
 Behavior details:
 - The path is split on dots and resolved step by step: `user.address.city`.
-- Missing or `null` nested values are pushed to the bottom for ascending order (and top for descending) because `null/undefined` are treated as greater than defined values in asc ordering.
+- Missing or `null` nested values always go to the bottom, for ascending and descending order alike.
 - Works the same for client-side sorting and for server-side loaders: when using an async loader the same `sortField` (e.g. `user.address.city`) is passed so you can implement equivalent ordering on the backend.
 - Date objects at nested paths are detected and compared chronologically.
 - Numeric comparison is stable for mixed numeric strings via Intl.Collator with numeric option.
@@ -9152,6 +9367,8 @@ type LoaderArgs = {
 Example using `fetch`:
 
 ```ts
+import { Table } from '@/afcl'
+
 async function loadPageData({ offset, limit, sortField, sortDirection }) {
   const url = new URL('/api/products', window.location.origin);
   url.searchParams.set('offset', String(offset));
@@ -9237,6 +9454,10 @@ async function loadPageData({ offset }) {
 
 If you want to make table header or pagination sticky, you can add `makeHeaderSticky`, `makePaginationSticky`
 
+```js
+import { Table } from '@/afcl'
+```
+
 ```html
 <Table
   class="min-h-[200px] max-h-[250px]"
@@ -9263,6 +9484,7 @@ If you want to make table header or pagination sticky, you can add `makeHeaderSt
 Sometimes you might want to allow user switch between pages, even if old request wasn't finished. For these porpuses you can use `blockPaginationOnLoading` and `abortSignal` in data callback:
 
 ```ts
+import { Table } from '@/afcl'
 async function loadPageData(data, abortSignal) {  
   const { offset, limit } = data;
   // in real app do await callAdminForthApi or await fetch to get date, use offset and limit value to slice data
@@ -9294,6 +9516,59 @@ async function loadPageData(data, abortSignal) {
 </Table>
 ```
 
+### Json Viewer
+
+#### Basic
+
+```js
+import { JsonViewer } from '@/afcl'
+```
+
+```html
+<JsonViewer 
+  :value="[
+    {
+      id: 1,
+      name: 'Alice',
+      meta: {
+        age: 30,
+        hobbies: ['reading', 'biking'],
+      }
+    },
+    {
+      id: 2,
+      name: 'Bob',
+    }
+  ]" 
+  :expandDepth="2" 
+/>
+```
+
+### Country Flag
+
+The Country Flag component displays national flags using ISO 3166-1 alpha-2 country codes. A flag has a hairline edge, so white stripes stay visible on a white page. Only the SVG of a shown flag is downloaded.
+
+```js
+import { CountryFlag } from '@/afcl'
+```
+
+```html
+<CountryFlag countryCode="ua" />
+```
+
+`size` is `md` (default, 32×24) or `sm` (16×12) for menus, selects and lists:
+
+```js
+import { CountryFlag } from '@/afcl'
+```
+
+```html
+<div class="flex items-center gap-4">
+  <span class="flex items-center gap-2 text-sm"><CountryFlag countryCode="jp" size="sm" />日本語</span>
+  <CountryFlag countryCode="jp" />
+</div>
+```
+
 ### ProgressBar
 
 ```js
@@ -9312,6 +9587,10 @@ import { ProgressBar } from '@/afcl'
 
 Custom labels in the ProgressBar component allow you to customize the text displayed on the left and right sides of the progress bar. You can also customize the format of the value and the progress text.
 
+```js
+import { ProgressBar } from '@/afcl'
+```
+
 ```html
 <ProgressBar
   :currentValue="1070"
@@ -9326,6 +9605,10 @@ Custom labels in the ProgressBar component allow you to customize the text displ
 
 #### Show progress animation
 
+```js
+import { ProgressBar } from '@/afcl'
+```
+
 ```html
 <ProgressBar
   :currentValue="2600"
@@ -9336,6 +9619,10 @@ Custom labels in the ProgressBar component allow you to customize the text displ
 ```
 
 #### Change height of the progress bar
+
+```js
+import { ProgressBar } from '@/afcl'
+```
 
 ```html
 <ProgressBar
@@ -9366,11 +9653,19 @@ import { Skeleton } from '@/afcl'
 
 #### Skeleton image
 
+```js
+import { Skeleton } from '@/afcl'
+```
+
 ```html
 <Skeleton type="image" class="w-full h-40" />
 ```
 
 #### Skeleton input
+
+```js
+import { Skeleton } from '@/afcl'
+```
 
 ```html
 <div class="flex flex-col gap-2">
@@ -9384,11 +9679,19 @@ import { Skeleton } from '@/afcl'
 
 #### Skeleton video
 
+```js
+import { Skeleton } from '@/afcl'
+```
+
 ```html
 <Skeleton type="video" class="w-full h-40" />
 ```
 
 #### Skeleton avatar
+
+```js
+import { Skeleton } from '@/afcl'
+```
 
 ```html
 <Skeleton type="avatar" class="w-20 h-20" />
@@ -9406,26 +9709,15 @@ import { Spinner } from '@/afcl'
 <Spinner class="w-10 h-10" />
 ```
 
-### Country Flag
+---
 
-The Country Flag component displays national flags using ISO 3166-1 alpha-2 country codes. A flag has a hairline edge, so white stripes stay visible on a white page. Only the SVG of a shown flag is downloaded.
+## Charts
 
-```js
-import { CountryFlag } from '@/afcl'
-```
+import AfclPreview from '@site/src/components/AfclPreview';
 
-```html
-<CountryFlag countryCode="ua" />
-```
 
-`size` is `md` (default, 32×24) or `sm` (16×12) for menus, selects and lists:
 
-```html
-<div class="flex items-center gap-4">
-  <span class="flex items-center gap-2 text-sm"><CountryFlag countryCode="jp" size="sm" />日本語</span>
-  <CountryFlag countryCode="jp" />
-</div>
-```
+Charts drawn with ApexCharts. Import the components from `@/afcl`, see [AdminForth Components Library](./index.md).
 
 ### Bar Chart
 
@@ -9461,6 +9753,10 @@ import { BarChart } from '@/afcl'
 ```
 
 #### Y-axis labels
+
+```js
+import { BarChart } from '@/afcl'
+```
 
 ```html
 <BarChart
@@ -9507,6 +9803,7 @@ import { BarChart } from '@/afcl'
 #### X-axis labels and formatting labels
 
 ```ts
+import { BarChart } from '@/afcl'
 import dayjs from 'dayjs'
 ```
 
@@ -9557,6 +9854,10 @@ import dayjs from 'dayjs'
 ```
 
 #### Grid
+
+```js
+import { BarChart } from '@/afcl'
+```
 
 ```html
 <BarChart
@@ -9614,6 +9915,10 @@ import dayjs from 'dayjs'
 
 #### Data labels
 
+```js
+import { BarChart } from '@/afcl'
+```
+
 ```html
 <BarChart
   :data="[
@@ -9658,6 +9963,10 @@ import dayjs from 'dayjs'
 
 #### Stacked bars and legend
 
+```js
+import { BarChart } from '@/afcl'
+```
+
 ```html
 <BarChart
   :data="[
@@ -9696,6 +10005,10 @@ import dayjs from 'dayjs'
 ```
 
 #### Horizontal bars
+
+```js
+import { BarChart } from '@/afcl'
+```
 
 ```html
 <BarChart
@@ -9770,6 +10083,10 @@ import { AreaChart } from '@/afcl'
 
 #### Multiple lines
 
+```js
+import { AreaChart } from '@/afcl'
+```
+
 ```html
 <AreaChart
   :data="[
@@ -9800,6 +10117,10 @@ import { AreaChart } from '@/afcl'
 ```
 
 #### Stacked area
+
+```js
+import { AreaChart } from '@/afcl'
+```
 
 ```html
 <AreaChart
@@ -9833,6 +10154,10 @@ import { AreaChart } from '@/afcl'
 ```
 
 #### Data labels
+
+```js
+import { AreaChart } from '@/afcl'
+```
 
 ```html
 <AreaChart
@@ -9901,6 +10226,10 @@ import { PieChart } from '@/afcl'
 
 #### Pie with data labels
 
+```js
+import { PieChart } from '@/afcl'
+```
+
 ```html
 <PieChart
   :data="[
@@ -9943,6 +10272,10 @@ import { PieChart } from '@/afcl'
 
 #### Donut Chart
 
+```js
+import { PieChart } from '@/afcl'
+```
+
 ```html
 <PieChart
   :data="[
@@ -9962,6 +10295,10 @@ import { PieChart } from '@/afcl'
 ```
 
 #### Fill donut with total info
+
+```js
+import { PieChart } from '@/afcl'
+```
 
 ```html
 <PieChart
@@ -10007,6 +10344,10 @@ import { PieChart } from '@/afcl'
 ```
 
 #### Radial bar chart
+
+```js
+import { PieChart } from '@/afcl'
+```
 
 ```html
 <PieChart
@@ -10187,113 +10528,28 @@ import { MixedChart } from '@/afcl'
 />
 ```
 
-### Json Viewer
+---
 
-#### Basic
+## AdminForth Components Library
+
+AFCL is a set of components which you can use as build blocks in your AdminForth application. 
+AFCL allows to keep the design consistent with minimal efforts and build new pages faster.
+AFCL components follow styling standard and respect theme colors.
+
+Components set is always growing, so you can expect new components to be added in the future.
+
+Import the components you need from `@/afcl` in your custom pages and components:
 
 ```js
-import { JsonViewer } from '@/afcl'
+import { Button, Table } from '@/afcl'
 ```
 
-```html
-<JsonViewer 
-  :value="[
-    {
-      id: 1,
-      name: 'Alice',
-      meta: {
-        age: 30,
-        hobbies: ['reading', 'biking'],
-      }
-    },
-    {
-      id: 2,
-      name: 'Bob',
-    }
-  ]" 
-  :expandDepth="2" 
-/>
-```
+Examples are live: each of them renders the code below it with real AFCL components and the default theme.
 
-### Modal
-
-```ts
-import { Modal, Button } from '@/afcl';
-```
-
-```html
-<Modal class="w-96" :closeByClickOutside="true" :closeByEsc="true" askForCloseConfirmation>
-  <template #trigger>
-    <Button>Modal Toggle</Button>
-  </template>
-
-  <div class="space-y-4 p-4">
-    <p>This is the first paragraph of modal content.</p>
-    <p>And this is the second paragraph.</p>
-  </div>
-</Modal>
-```
-
-Like Dialog, the modal docks to the bottom edge as a full-width sheet on screens narrower than 640px.
-
-#### Open state
-
-Bind `v-model:open` to open or close the modal from code, for example to show progress while a request is running:
-
-```ts
-import { ref } from 'vue'
-import { Modal, Button, Spinner } from '@/afcl';
-
-const isSaving = ref(false)
-
-function save() {
-  isSaving.value = true
-  setTimeout(() => { isSaving.value = false }, 2000) // a request instead in real app
-}
-```
-
-```html
-<Button @click="save">Save</Button>
-
-<Modal v-model:open="isSaving" :closeByClickOutside="false" :closeByEsc="false">
-  <div class="flex items-center gap-3 px-5 py-4">
-    <Spinner class="w-5 h-5" />
-    Saving...
-  </div>
-</Modal>
-```
-
-#### Props: 
-```ts
-  closeByClickOutside?: boolean  // Close on click outside of modal (default is true)
-  closeByEsc?: boolean // Close on Esc button click (default is true)
-  beforeCloseFunction?: (() => void | Promise<void>) | null // Callback, that will be executed before open
-  beforeOpenFunction?: (() => void | Promise<void>) | null // Callback, that will be executed before close
-  askForCloseConfirmation?: boolean // Show extra popup to confirm close ( to avoid close by accident)
-  closeConfirmationText?: string // Text that will be shown on close confirmation popup
-  removeFromDomOnClose?: boolean // Remove modal from DOM on close ( default is false )
-  backgroundCustomClasses?: string // allows to add custom classes to the gray background of modal (e.g. you can have bg-pink-500/60)
-  modalCustomClasses?: string // allows to add custom classes to modal popup
-```
-
-### Date picker
-
-#### Basic
-
-```ts
-import { ref } from 'vue'
-import { DatePicker } from '@/afcl';
-
-const datePickerValue = ref()
-```
-
-```html
-<DatePicker
-  v-model:valueStart="datePickerValue"
-  :column="{ type: 'datetime' }"
-  label="Pick start"
-/>
-```
+- [Buttons and Inputs](./01-buttonsAndInputs.md): [Button](./01-buttonsAndInputs.md#button), [Button Group](./01-buttonsAndInputs.md#button-group), [Link](./01-buttonsAndInputs.md#link), [LinkButton](./01-buttonsAndInputs.md#linkbutton), [Select](./01-buttonsAndInputs.md#select), [Input](./01-buttonsAndInputs.md#input), [Code Input](./01-buttonsAndInputs.md#code-input), [Textarea](./01-buttonsAndInputs.md#textarea), [Checkbox](./01-buttonsAndInputs.md#checkbox), [Toggle](./01-buttonsAndInputs.md#toggle), [Date picker](./01-buttonsAndInputs.md#date-picker), [Dropzone](./01-buttonsAndInputs.md#dropzone)
+- [Layout and Overlays](./02-layoutAndOverlays.md): [VerticalTabs](./02-layoutAndOverlays.md#verticaltabs), [Card](./02-layoutAndOverlays.md#card), [Page Header](./02-layoutAndOverlays.md#page-header), [Tooltip](./02-layoutAndOverlays.md#tooltip), [Dialog](./02-layoutAndOverlays.md#dialog-pop-up), [Dialog Panel](./02-layoutAndOverlays.md#dialog-panel), [Dropdown Menu](./02-layoutAndOverlays.md#dropdown-menu), [Modal](./02-layoutAndOverlays.md#modal)
+- [Data Display and Loading](./03-dataDisplay.md): [Table](./03-dataDisplay.md#table), [Json Viewer](./03-dataDisplay.md#json-viewer), [Country Flag](./03-dataDisplay.md#country-flag), [ProgressBar](./03-dataDisplay.md#progressbar), [Skeleton](./03-dataDisplay.md#skeleton), [Spinner](./03-dataDisplay.md#spinner)
+- [Charts](./04-charts.md): [Bar Chart](./04-charts.md#bar-chart), [Area Chart](./04-charts.md#area-chart), [Pie Chart](./04-charts.md#pie-chart), [Treemap Chart](./04-charts.md#treemap-chart), [Mixed Chart](./04-charts.md#mixed-chart)
 
 ---
 

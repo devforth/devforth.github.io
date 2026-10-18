@@ -1,0 +1,1 @@
+import{M as e,S as t,h as n}from"./index-DA4EPm1B.js";import{t as r}from"./Skeleton-Cpk7RseO.js";var i=t({__name:`skeleton-video`,setup(t){return(t,i)=>(e(),n(r,{type:`video`,class:`w-full h-40`}))}});export{i as default};

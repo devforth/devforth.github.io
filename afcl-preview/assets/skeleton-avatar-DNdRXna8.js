@@ -1,1 +1,0 @@
-import{X as e,lt as t,ot as n,v as r}from"./index-B4uTep_6.js";var i={};function a(r,i){let a=t(`Skeleton`);return n(),e(a,{type:`avatar`,class:`w-20 h-20`})}var o=r(i,[[`render`,a]]);export{o as default};

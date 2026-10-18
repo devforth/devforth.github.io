@@ -1,0 +1,1 @@
+import{M as e,S as t,h as n}from"./index-DA4EPm1B.js";import{t as r}from"./CodeInput-DVAUwguK.js";var i=t({__name:`code-input-invalid`,setup(t){return(t,i)=>(e(),n(r,{modelValue:`1234`,groupSize:3,invalid:``}))}});export{i as default};

@@ -1,0 +1,1 @@
+import{M as e,S as t,h as n}from"./index-DA4EPm1B.js";import{t as r}from"./PieChart-DA6noF9S.js";var i=t({__name:`pie-chart`,setup(t){return(t,i)=>(e(),n(r,{data:[{amount:5,label:`Cars`},{amount:3,label:`Bikes`},{amount:2,label:`Trucks`},{amount:1,label:`Boats`}],options:{chart:{height:250}}}))}});export{i as default};

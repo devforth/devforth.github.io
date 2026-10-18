@@ -1,0 +1,1 @@
+.progress-bar[data-v-b546059c]{position:relative;overflow:hidden}.progress-bar[data-v-b546059c]:after{content:"";background:linear-gradient(-45deg,#0000 35%,#fff6,#0000 65%);width:100%;animation:2s linear infinite progress-slide-b546059c;position:absolute;inset:0;transform:translate(-100%)}@keyframes progress-slide-b546059c{to{transform:translate(100%)}}
