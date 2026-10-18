@@ -1,0 +1,1 @@
+import{Y as e,_ as t,at as n,et as r,ft as i}from"./index-9n-0dDz2.js";var a=r({__name:`progress-bar`,setup(r){return(r,a)=>(n(),e(i(t),{currentValue:2600,minValue:0,maxValue:5e3}))}});export{a as default};

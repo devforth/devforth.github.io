@@ -1,0 +1,1 @@
+import{$ as e,A as t,U as n,Y as r,at as i,et as a,ft as o,ut as s}from"./index-9n-0dDz2.js";var c=a({__name:`input-right-icon`,setup(a){return(a,c)=>(i(),r(o(t),{type:`text`,class:`w-full`},{rightIcon:s(()=>[e(o(n),{class:`w-4 h-4 text-lightInputIconColor dark:text-darkInputIconColor`})]),_:1}))}});export{c as default};

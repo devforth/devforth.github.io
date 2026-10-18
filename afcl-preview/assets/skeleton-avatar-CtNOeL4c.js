@@ -1,1 +1,0 @@
-import{Y as e,at as t,ct as n,v as r}from"./index-Dfm0PgFI.js";var i={};function a(r,i){let a=n(`Skeleton`);return t(),e(a,{type:`avatar`,class:`w-20 h-20`})}var o=r(i,[[`render`,a]]);export{o as default};

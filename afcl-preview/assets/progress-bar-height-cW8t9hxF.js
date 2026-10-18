@@ -1,0 +1,1 @@
+import{Y as e,at as t,ct as n,v as r}from"./index-9n-0dDz2.js";var i={};function a(r,i){let a=n(`ProgressBar`);return t(),e(a,{currentValue:2600,minValue:0,maxValue:5e3,height:6})}var o=r(i,[[`render`,a]]);export{o as default};
