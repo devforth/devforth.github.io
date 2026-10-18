@@ -1,1 +1,0 @@
-import{Y as e,at as t,ct as n,v as r}from"./index-9n-0dDz2.js";var i={};function a(r,i){let a=n(`PieChart`);return t(),e(a,{data:[{amount:5,label:`Cars`},{amount:3,label:`Bikes`},{amount:2,label:`Trucks`},{amount:1,label:`Boats`}],options:{chart:{height:250,type:`donut`}}})}var o=r(i,[[`render`,a]]);export{o as default};

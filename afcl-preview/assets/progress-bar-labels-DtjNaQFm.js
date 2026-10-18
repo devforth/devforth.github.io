@@ -1,0 +1,1 @@
+import{Y as e,at as t,ct as n,v as r}from"./index-B8aV5uVu.js";var i={};function a(r,i){let a=n(`ProgressBar`);return t(),e(a,{currentValue:1070,minValue:0,maxValue:5e3,leftLabel:`Level 2`,rightLabel:`Level 3`,formatter:e=>`${e} points`,progressFormatter:(e,t)=>`${e} done`},null,8,[`formatter`,`progressFormatter`])}var o=r(i,[[`render`,a]]);export{o as default};

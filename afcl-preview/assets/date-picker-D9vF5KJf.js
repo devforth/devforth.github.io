@@ -1,1 +1,0 @@
-import{Y as e,at as t,dt as n,et as r,ft as i,l as a}from"./index-9n-0dDz2.js";var o=r({__name:`date-picker`,setup(r){let o=n();return(n,r)=>(t(),e(i(a),{valueStart:o.value,"onUpdate:valueStart":r[0]||=e=>o.value=e,column:{type:`datetime`},label:`Pick start`},null,8,[`valueStart`]))}});export{o as default};
