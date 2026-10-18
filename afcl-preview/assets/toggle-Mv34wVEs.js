@@ -1,1 +1,0 @@
-import{J as e,Y as t,at as n,d as r,dt as i,et as a,ft as o,ut as s}from"./index-B8aV5uVu.js";var c=a({__name:`toggle`,setup(a){let c=i(!1);return(i,a)=>(n(),t(o(r),{modelValue:c.value,"onUpdate:modelValue":a[0]||=e=>c.value=e,disabled:!1},{default:s(()=>[...a[1]||=[e(`p`,null,`Click me`,-1)]]),_:1},8,[`modelValue`]))}});export{c as default};

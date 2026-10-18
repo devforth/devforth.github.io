@@ -1,0 +1,1 @@
+import{T as e,X as t,ft as n,ot as r,pt as i,tt as a,ut as o}from"./index-CLZrTzji.js";var s=a({__name:`dropzone`,setup(a){let s=n([]);return o(s,e=>{console.log(`files selected`,e)}),(n,a)=>(r(),t(i(e),{extensions:[`.jpg`,`.jpeg`,`.png`],maxSizeBytes:2097152,multiple:!1,modelValue:s.value,"onUpdate:modelValue":a[0]||=e=>s.value=e},null,8,[`modelValue`]))}});export{s as default};
