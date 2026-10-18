@@ -325,7 +325,7 @@ options: {
   actions: [
     {
       name: 'Auto submit',
-      icon: 'flowbite:play-solid',
+      icon: 'lucide:play',
       allowed: () => true,
       action: async ({ recordId, adminUser, adminforth, response, extra }) => {
         //diff-add

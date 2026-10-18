@@ -488,7 +488,7 @@ export const admin = new AdminForth({
 //diff-add
       label: 'Core',
 //diff-add
-      icon: 'flowbite:brain-solid',
+      icon: 'lucide:brain',
 //diff-add
       open: true,
 //diff-add
@@ -500,7 +500,7 @@ export const admin = new AdminForth({
 //diff-add
           label: 'Apartments',
 //diff-add
-          icon: 'flowbite:home-solid',
+          icon: 'lucide:house',
 //diff-add
           resourceId: 'aparts',
 //diff-add
@@ -519,12 +519,12 @@ export const admin = new AdminForth({
     },
     {
       label: 'Users',
-      icon: 'flowbite:user-solid',
+      icon: 'lucide:user',
       resourceId: 'adminuser'
     },
     {
       label: "Apartments",
-      icon: "flowbite:user-solid",
+      icon: "lucide:user",
       //diff-remove
       resourceId: "apartments",
       //diff-add
@@ -785,7 +785,7 @@ export const admin = new AdminForth({
     { type: 'heading', label: 'SYSTEM' },
     {
       label: 'Users',
-      icon: 'flowbite:user-solid',
+      icon: 'lucide:user',
       resourceId: 'adminuser'
     }
   ],
@@ -3246,28 +3246,28 @@ menu: [
 //diff-add
       homepage: true,
 //diff-add
-      icon: 'flowbite:chart-pie-solid',
+      icon: 'lucide:chart-pie',
 //diff-add
       component: '@@/Dashboard.vue',
 //diff-add
     },
     {
       label: 'Core',
-      icon: 'flowbite:brain-solid',
+      icon: 'lucide:brain',
       open: true,
       children: [
         {
 //diff-remove
           homepage: true,  
           label: 'Apartments',
-          icon: 'flowbite:home-solid',
+          icon: 'lucide:house',
           resourceId: 'aparts',
         },
       ]
     },
 ```
 
-> ☝️ To find icon go to https://icon-sets.iconify.design/flowbite/?query=chart, click on icon you like and copy name:
+> ☝️ To find icon go to https://icon-sets.iconify.design/lucide/?query=chart, click on icon you like and copy name:
 ![Iconify icon select](image-icon-select.png)
 
 You might notice that in mounted hook page fetches custom endpoint '/api/dashboard-stats'. 
@@ -3555,7 +3555,7 @@ export const admin = new AdminForth({
         //diff-add
         slug: "users-settings",
         //diff-add
-        icon:"flowbite:user-solid"
+        icon:"lucide:user"
         //diff-add
       },
       //diff-add
@@ -3565,7 +3565,7 @@ export const admin = new AdminForth({
         //diff-add
         component: "@@/MySecrets.vue",
         //diff-add
-        icon: "flowbite:lock-solid"
+        icon: "lucide:lock"
         //diff-add
       }
       //diff-add
@@ -3759,7 +3759,7 @@ menu: [
 //diff-add
     label: 'Alerts',
 //diff-add
-    icon: 'flowbite:bell-active-alt-solid',
+    icon: 'lucide:bell-ring',
 //diff-add
     component: '@@/Alerts.vue',
 //diff-add
@@ -4809,7 +4809,7 @@ Here's how to add a custom action:
     actions: [
       {
         name: 'Auto submit',  // Display name of the action
-        icon: 'flowbite:play-solid',  // Icon to display (using Flowbite icons)
+        icon: 'lucide:play',  // Icon to display (using Lucide icons)
         
         // Control who can see/use this action
         allowed: ({ adminUser, standardAllowedActions }) => {
@@ -4841,7 +4841,7 @@ Here's how to add a custom action:
 #### Action Configuration Options
 
 - `name`: Display name of the action
-- `icon`: Icon to show (using Flowbite icon set)
+- `icon`: Icon to show (using Lucide icon set)
 - `allowed`: Function to control access to the action
 - `action`: Handler function that executes when action is triggered for a **single** record
 - `bulkHandler`: Handler function that executes when the action is triggered for **multiple** records at once (see [Dedicated bulk handler](#dedicated-bulk-handler))
@@ -4917,7 +4917,7 @@ For operations that only apply to multiple selected records, use `options.bulkAc
     bulkActions: [
       {
         label: 'Send Invitation',
-        icon: 'flowbite:envelope-solid',
+        icon: 'lucide:mail',
         confirm: 'Are you sure you want to send invitation emails?',
         allowed: async ({ adminUser }) => adminUser.dbUser.role === 'superadmin',
         action: async ({ selectedIds }) => {
@@ -4995,7 +4995,7 @@ Instead of defining an `action` handler, you can specify a `url` that the user w
 ```ts title="./resources/apartments.ts"
 {
   name: 'View details',
-  icon: 'flowbite:eye-solid',
+  icon: 'lucide:eye',
   url: '/resource/aparts',  // URL to redirect to
   showIn: {
     list: true,
@@ -5018,7 +5018,7 @@ To open the URL in a new tab, append `target=_blank` as a query parameter. If th
 ```ts
 {
   name: 'View on Google',
-  icon: 'flowbite:external-link-solid',
+  icon: 'lucide:external-link',
   url: 'https://google.com/search?q=apartment&target=_blank',
   showIn: {
     list: true,
@@ -5032,7 +5032,7 @@ Example to generate dynamic URL:
 ```ts
 {
   name: 'View on Google',
-  icon: 'flowbite:external-link-solid',
+  icon: 'lucide:external-link',
   url: async ({record, recordId, adminUser, resource }) => `https://google.com/search?q=Apartment ${record.title}`,
   showIn: {
     list: true,
@@ -5052,7 +5052,7 @@ However, rearely you might also like to decide whether to redirect only after pe
 ```ts
 {
   name: 'View on Google',
-  icon: 'flowbite:external-link-solid',
+  icon: 'lucide:external-link',
   action: async ({ recordId }) => {
     if (await testSomething(recordId)) {
         return { ok: true, redirectUrl: 'https://google.com/search?q=apartment' };
@@ -5080,7 +5080,7 @@ Below we wrap a "Mark as listed" action.
     actions: [
       {
         name: 'Mark as listed',
-        icon: 'flowbite:eye-solid',
+        icon: 'lucide:eye',
         // UI wrapper for the built-in action button
         //diff-add
         customComponent: {
@@ -5176,7 +5176,7 @@ Backend handler: read the payload via `extra`.
     actions: [
       {
         name: 'Toggle listed',
-        icon: 'flowbite:eye-solid',
+        icon: 'lucide:eye',
         showIn: { list: false, listThreeDotsMenu: false, showButton: true, showThreeDotsMenu: true },
         // The payload from emit('callAction', { asListed: true|false }) arrives here as `extra`
         customComponent: {
@@ -5207,7 +5207,7 @@ actions: [
   //diff-add
   id: 'testToggle listedAction',
   name: 'Toggle listed',
-  icon: 'flowbite:eye-solid',
+  icon: 'lucide:eye',
   ...  
   }
 ]
@@ -5250,7 +5250,7 @@ Adminforth uses [Iconify](https://iconify.design/) icons everywhere, including t
 
 You can set an icon for each menu item using the `icon` field.
 
-You can use any icon from the [Iconify Gallery](https://icon-sets.iconify.design/) in the format `<setname>:<icon>`. For example, `flowbite:brain-solid`.
+You can use any icon from the [Iconify Gallery](https://icon-sets.iconify.design/) in the format `<setname>:<icon>`. For example, `lucide:brain`. AdminForth itself uses [Lucide](https://icon-sets.iconify.design/lucide/) icons, so they match the rest of the admin panel.
 
 ![Icons for AdminForth](image-14.png)
 
@@ -5268,24 +5268,24 @@ E.g. create group "Blog" with Items who link to resource "posts" and "categories
     menu: [
       {
         label: 'Blog',
-        icon: 'flowbite:brain-solid',
+        icon: 'lucide:brain',
         open: true,
         children: [
           {
             label: 'Posts',
-            icon: 'flowbite:book-open-outline',
+            icon: 'lucide:book-open',
             resourceId: 'posts',
           },
           {
             label: 'Categories',
-            icon: 'flowbite:folder-duplicate-outline',
+            icon: 'lucide:folders',
             resourceId: 'categories',
           },
         ],
       },
       {
         label: 'Users',
-        icon: 'flowbite:folder-duplicate-outline',
+        icon: 'lucide:folders',
         resourceId: 'adminuser',
       },
     ],
@@ -5310,7 +5310,7 @@ async modifyResourceConfig(adminforth, resourceConfig) {
       itemId: 'dashboard',
       type: 'page',
       label: 'Dashboard',
-      icon: 'flowbite:chart-pie-solid',
+      icon: 'lucide:chart-pie',
       path: '/dashboard',
       component: this.componentPath('Dashboard.vue'),
     },
@@ -5381,7 +5381,7 @@ async modifyResourceConfig(adminforth, resourceConfig) {
           itemId: 'dashboardsMenu',
           type: 'group',
           label: 'Dashboards',
-          icon: 'flowbite:chart-pie-solid',
+          icon: 'lucide:chart-pie',
           children: dashboards.map((dashboard) => ({
             itemId: `dashboard-${dashboard.id}`,
             type: 'page',
@@ -5393,7 +5393,7 @@ async modifyResourceConfig(adminforth, resourceConfig) {
       },
     ];
   }, {
-    icons: ['flowbite:chart-pie-solid'],
+    icons: ['lucide:chart-pie'],
   });
 }
 ```
@@ -5436,7 +5436,7 @@ To do it use `visible` field in the menu item configuration:
   menu: [
     {
       label: 'Categories',
-      icon: 'flowbite:folder-duplicate-outline',
+      icon: 'lucide:folders',
       resourceId: 'categories',
 //diff-add
       visible: adminUser => adminUser.dbUser.role === 'admin'
@@ -5459,7 +5459,7 @@ You can put one or several gaps between menu items:
   menu: [
     {
       label: 'Posts',
-      icon: 'flowbite:book-open-outline',
+      icon: 'lucide:book-open',
       resourceId: 'posts',
     },
     {
@@ -5470,7 +5470,7 @@ You can put one or several gaps between menu items:
     },
     {
       label: 'Categories',
-      icon: 'flowbite:folder-duplicate-outline',
+      icon: 'lucide:folders',
       resourceId: 'categories',
     },
   ],
@@ -5488,7 +5488,7 @@ To split menu items with a line you can use a divider:
   menu: [
     {
       label: 'Posts',
-      icon: 'flowbite:book-open-outline',
+      icon: 'lucide:book-open',
       resourceId: 'posts',
     },
     {
@@ -5496,7 +5496,7 @@ To split menu items with a line you can use a divider:
     },
     {
       label: 'Categories',
-      icon: 'flowbite:folder-duplicate-outline',
+      icon: 'lucide:folders',
       resourceId: 'categories',
     },
   ]
@@ -5518,12 +5518,12 @@ You can add a heading to the menu:
     },
     {
       label: 'Posts',
-      icon: 'flowbite:book-open-outline',
+      icon: 'lucide:book-open',
       resourceId: 'posts',
     },
     {
       label: 'Categories',
-      icon: 'flowbite:folder-duplicate-outline',
+      icon: 'lucide:folders',
       resourceId: 'categories',
     },
   ],
@@ -5541,7 +5541,7 @@ You can add a badge near the menu item title (e.g. to get count of unread messag
   menu: [
     {
       label: 'Posts',
-      icon: 'flowbite:book-open-outline',
+      icon: 'lucide:book-open',
       resourceId: 'posts',
       badge: async (adminUser: AdminUser) => {
         return 10
@@ -5568,7 +5568,7 @@ Most times you need to refresh the badge from some backend API or hook. To do th
   menu: [
     {
       label: 'Posts',
-      icon: 'flowbite:book-open-outline',
+      icon: 'lucide:book-open',
       resourceId: 'posts',
 //diff-add
       itemId: 'postsMenuItem',
@@ -5651,7 +5651,7 @@ You can use the url property to override default navigation. This is useful for 
 menu: [
     {
       label: 'Posts',
-      icon: 'flowbite:book-open-outline',
+      icon: 'lucide:book-open',
       resourceId: 'posts',
       //diff-add
       url: '/resource/aparts?filter__country__in=["DE"]',  
@@ -5678,7 +5678,7 @@ async modifyResourceConfig(adminforth, resourceConfig) {
       itemId: 'dashboard',
       type: 'page',
       label: 'Dashboard',
-      icon: 'flowbite:chart-pie-solid',
+      icon: 'lucide:chart-pie',
       path: '/dashboard',
       component: this.componentPath('Dashboard.vue'),
     },
@@ -5749,7 +5749,7 @@ async modifyResourceConfig(adminforth, resourceConfig) {
           itemId: 'dashboardsMenu',
           type: 'group',
           label: 'Dashboards',
-          icon: 'flowbite:chart-pie-solid',
+          icon: 'lucide:chart-pie',
           children: dashboards.map((dashboard) => ({
             itemId: `dashboard-${dashboard.id}`,
             type: 'page',
@@ -5761,7 +5761,7 @@ async modifyResourceConfig(adminforth, resourceConfig) {
       },
     ];
   }, {
-    icons: ['flowbite:chart-pie-solid'],
+    icons: ['lucide:chart-pie'],
   });
 }
 ```
@@ -10270,7 +10270,7 @@ Create a component `PropertyCost.vue`:
         <template #tooltip>
           <div class="text-sm">Your total property cost</div>
         </template>
-        <IconDollarOutline class="text-2xl opacity-50" />
+        <IconDollarSign class="text-2xl opacity-50" />
         <div class="text-2xl text-gray-900 dark:text-white"> {{totalCost}}</div>
       </Tooltip>
   </div>
@@ -10280,7 +10280,7 @@ Create a component `PropertyCost.vue`:
 import { onMounted, onUnmounted, Ref } from 'vue';
 import { ref } from 'vue';
 import websocket from '@/websocket';
-import { IconDollarOutline } from '@iconify-prerendered/vue-flowbite';
+import { IconDollarSign } from '@iconify-prerendered/vue-lucide';
 import { Tooltip } from '@/afcl';
 
 import type { AdminUser } from '@/types/Common';
@@ -13672,7 +13672,7 @@ options: {
   actions: [
     {
       name: 'Auto submit',
-      icon: 'flowbite:play-solid',
+      icon: 'lucide:play',
       allowed: () => true,
       action: async ({ recordId, adminUser, adminforth, response, extra }) => {
         //diff-add
@@ -14673,7 +14673,7 @@ menu: [
 //diff-add
       label: 'Audit Logs',
 //diff-add
-      icon: 'flowbite:search-outline',
+      icon: 'lucide:search',
 //diff-add
       resourceId: 'audit_logs',
 //diff-add
@@ -17320,7 +17320,7 @@ Let's rework the bulk action from the [Actions example](/docs/tutorial/Customiza
 ```ts title="./resources/apartments.ts"
 {
   name: 'Mark as listed',
-  icon: 'flowbite:eye-solid',
+  icon: 'lucide:eye',
   showIn: {
     showThreeDotsMenu: true,
     bulkButton: true,
@@ -21976,7 +21976,7 @@ export const admin = new AdminForth({
     //diff-add
       label: 'Approvals',
     //diff-add
-      icon: 'flowbite:clipboard-check-solid',
+      icon: 'lucide:clipboard-check',
     //diff-add
       resourceId: 'crud_manual_approve',
     //diff-add
@@ -24383,9 +24383,9 @@ export const admin = new AdminForth({
   ],
   menu: [
 //diff-add
-    { label: 'Customers', icon: 'flowbite:users-solid', resourceId: 'customers' },
+    { label: 'Customers', icon: 'lucide:users', resourceId: 'customers' },
 //diff-add
-    { label: 'Orders', icon: 'flowbite:cart-solid', resourceId: 'orders' },
+    { label: 'Orders', icon: 'lucide:shopping-cart', resourceId: 'orders' },
     { type: 'heading', label: 'SYSTEM' },
     ...
   ],

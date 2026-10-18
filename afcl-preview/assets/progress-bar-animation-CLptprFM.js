@@ -1,1 +1,0 @@
-import{Y as e,at as t,ct as n,v as r}from"./index-m6Z__l_u.js";var i={};function a(r,i){let a=n(`ProgressBar`);return t(),e(a,{currentValue:2600,minValue:0,maxValue:5e3,showAnimation:``})}var o=r(i,[[`render`,a]]);export{o as default};

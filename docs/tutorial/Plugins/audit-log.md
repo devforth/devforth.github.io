@@ -138,7 +138,7 @@ menu: [
 //diff-add
       label: 'Audit Logs',
 //diff-add
-      icon: 'flowbite:search-outline',
+      icon: 'lucide:search',
 //diff-add
       resourceId: 'audit_logs',
 //diff-add

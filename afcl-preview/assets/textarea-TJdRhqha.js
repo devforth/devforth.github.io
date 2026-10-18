@@ -1,1 +1,0 @@
-import{Y as e,at as t,c as n,dt as r,et as i,ft as a}from"./index-m6Z__l_u.js";var o=i({__name:`textarea`,setup(i){let o=r(``);return(r,i)=>(t(),e(a(n),{modelValue:o.value,"onUpdate:modelValue":i[0]||=e=>o.value=e,placeholder:`Enter some text...`,class:`w-64`},null,8,[`modelValue`]))}});export{o as default};

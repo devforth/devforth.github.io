@@ -484,7 +484,7 @@ export const admin = new AdminForth({
 //diff-add
       label: 'Core',
 //diff-add
-      icon: 'flowbite:brain-solid',
+      icon: 'lucide:brain',
 //diff-add
       open: true,
 //diff-add
@@ -496,7 +496,7 @@ export const admin = new AdminForth({
 //diff-add
           label: 'Apartments',
 //diff-add
-          icon: 'flowbite:home-solid',
+          icon: 'lucide:house',
 //diff-add
           resourceId: 'aparts',
 //diff-add
@@ -515,12 +515,12 @@ export const admin = new AdminForth({
     },
     {
       label: 'Users',
-      icon: 'flowbite:user-solid',
+      icon: 'lucide:user',
       resourceId: 'adminuser'
     },
     {
       label: "Apartments",
-      icon: "flowbite:user-solid",
+      icon: "lucide:user",
       //diff-remove
       resourceId: "apartments",
       //diff-add
