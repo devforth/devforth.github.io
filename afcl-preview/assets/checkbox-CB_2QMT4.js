@@ -1,0 +1,1 @@
+import{E as e,Q as t,Y as n,at as r,dt as i,et as a,ft as o,ut as s}from"./index-m6Z__l_u.js";var c=a({__name:`checkbox`,setup(a){let c=i(!1);return(i,a)=>(r(),n(o(e),{modelValue:c.value,"onUpdate:modelValue":a[0]||=e=>c.value=e},{default:s(()=>[...a[1]||=[t(` Enable `,-1)]]),_:1},8,[`modelValue`]))}});export{c as default};

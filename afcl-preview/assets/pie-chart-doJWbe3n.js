@@ -1,0 +1,1 @@
+import{S as e,Y as t,at as n,et as r,ft as i}from"./index-m6Z__l_u.js";var a=r({__name:`pie-chart`,setup(r){return(r,a)=>(n(),t(i(e),{data:[{amount:5,label:`Cars`},{amount:3,label:`Bikes`},{amount:2,label:`Trucks`},{amount:1,label:`Boats`}],options:{chart:{height:250}}}))}});export{a as default};

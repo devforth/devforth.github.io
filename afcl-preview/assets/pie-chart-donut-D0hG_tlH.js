@@ -1,1 +1,0 @@
-import{_ as e,ot as t,q as n,rt as r}from"./index-PFRzyENS.js";var i={};function a(e,i){let a=t(`PieChart`);return r(),n(a,{data:[{amount:5,label:`Cars`},{amount:3,label:`Bikes`},{amount:2,label:`Trucks`},{amount:1,label:`Boats`}],options:{chart:{height:250,type:`donut`}}})}var o=e(i,[[`render`,a]]);export{o as default};

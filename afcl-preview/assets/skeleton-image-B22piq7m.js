@@ -1,1 +1,0 @@
-import{_ as e,ot as t,q as n,rt as r}from"./index-PFRzyENS.js";var i={};function a(e,i){let a=t(`Skeleton`);return r(),n(a,{type:`image`,class:`w-full h-40`})}var o=e(i,[[`render`,a]]);export{o as default};
