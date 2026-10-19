@@ -1,1 +1,0 @@
-import{M as e,S as t,h as n}from"./index-DA4EPm1B.js";import{t as r}from"./Skeleton-Cpk7RseO.js";var i=t({__name:`skeleton-avatar`,setup(t){return(t,i)=>(e(),n(r,{type:`avatar`,class:`w-20 h-20`}))}});export{i as default};

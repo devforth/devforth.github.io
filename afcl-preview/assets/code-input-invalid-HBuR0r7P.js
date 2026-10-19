@@ -1,0 +1,1 @@
+import{D as e,_ as t,l as n}from"./runtime-core.esm-bundler-B3W2HlGA.js";import{t as r}from"./CodeInput-D-vCIDp_.js";var i=t({__name:`code-input-invalid`,setup(t){return(t,i)=>(e(),n(r,{modelValue:`1234`,groupSize:3,invalid:``}))}});export{i as default};

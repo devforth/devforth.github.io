@@ -1,0 +1,1 @@
+import{D as e,_ as t,l as n}from"./runtime-core.esm-bundler-B3W2HlGA.js";import{t as r}from"./Skeleton-jlV-wIS1.js";var i=t({__name:`skeleton-image`,setup(t){return(t,i)=>(e(),n(r,{type:`image`,class:`w-full h-40`}))}});export{i as default};

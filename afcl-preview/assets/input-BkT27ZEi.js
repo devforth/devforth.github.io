@@ -1,1 +1,0 @@
-import{M as e,S as t,W as n,h as r,y as i}from"./index-DA4EPm1B.js";import{t as a}from"./Input-DdZHGC4y.js";var o=t({__name:`input`,setup(t){return(t,o)=>(e(),r(a,{type:`number`,class:`w-full`},{suffix:n(()=>[...o[0]||=[i(` USD `,-1)]]),_:1}))}});export{o as default};

@@ -1,1 +1,0 @@
-import{M as e,S as t,h as n}from"./index-DA4EPm1B.js";import{t as r}from"./CountryFlag-tULHZtML.js";var i=t({__name:`country-flag`,setup(t){return(t,i)=>(e(),n(r,{countryCode:`ua`}))}});export{i as default};
