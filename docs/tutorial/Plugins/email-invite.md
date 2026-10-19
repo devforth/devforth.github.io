@@ -42,7 +42,7 @@ export default {
   columns: [
     { name: 'id', primaryKey: true },
     { name: 'email', required: true },
-    { name: 'password_hash', showIn: [] }, // Hide from UI
+    { name: 'password_hash', showIn: { all: false } }, // Hide from UI
 
     { name: 'role' },
 
@@ -157,7 +157,7 @@ export default {
   columns: [
     { name: 'id', primaryKey: true },
     { name: 'email', required: true },
-    { name: 'password_hash', showIn: [] },
+    { name: 'password_hash', showIn: { all: false } },
     { name: 'role' },
     //diff-add
     { name: 'email_confirmed', type: AdminForthDataTypes.BOOLEAN },

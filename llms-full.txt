@@ -3864,10 +3864,10 @@ Now create file `ApartsPie.vue` in the `custom` folder of your project:
               dataPointSelection: function (event, chartContext, config) {
                 if (config.selectedDataPoints[0].length) {
                   const selectedRoomsCount = data[config.dataPointIndex].rooms;
-                  adminforth.list.updateFilter({field: 'number_of_rooms', operator: 'eq', value: selectedRoomsCount});
+                  adminforth.list.setFilter({field: 'number_of_rooms', operator: 'eq', value: selectedRoomsCount});
                 } else {
                   // clear filter
-                  adminforth.list.updateFilter({field: 'number_of_rooms', value: undefined});
+                  adminforth.list.setFilter({field: 'number_of_rooms', operator: 'eq', value: undefined});
                 }
               }
             }
@@ -3978,7 +3978,7 @@ import * as z from 'zod';
 
 Install and import Zod before using this pattern: `pnpm add zod` or `npm install zod`, then `import * as z from 'zod';`. `admin.express.withSchema(...)` will convert the Zod schema to OpenAPI for you.
 
-> ☝️ Please note that we are using [Frontend API](/docs/api/FrontendAPI/interfaces/FrontendAPIInterface/) `adminforth.list.updateFilter({field: 'number_of_rooms', operator: 'eq', value: selectedRoomsCount});` to set filter when we are located on apartments list page
+> ☝️ Please note that we are using [Frontend API](/docs/api/FrontendAPI/interfaces/FrontendAPIInterface/) `adminforth.list.setFilter({field: 'number_of_rooms', operator: 'eq', value: selectedRoomsCount});` to set filter when we are located on apartments list page
 
 > ☝️ The outer `admin.express.withSchema(...)` wrapper makes this custom Express route appear in `/api/v1/openapi.json` and `/api-docs`.
 
@@ -4934,53 +4934,6 @@ If your operation can be expressed more efficiently as a single batched query (e
 | `bulkConfirmationMessage` | `string` | Confirmation dialog text shown before the bulk action executes. |
 | `bulkSuccessMessage` | `string` | Success message shown after the bulk operation. Defaults to `"N out of M items processed successfully"`. |
 
-### Standalone Bulk Actions
-
-For operations that only apply to multiple selected records, use `options.bulkActions`. The built-in **Delete checked** action is a good reference.
-
-```ts title="./resources/apartments.ts"
-{
-  resourceId: 'aparts',
-  options: {
-    bulkActions: [
-      {
-        label: 'Send Invitation',
-        icon: 'lucide:mail',
-        confirm: 'Are you sure you want to send invitation emails?',
-        allowed: async ({ adminUser }) => adminUser.dbUser.role === 'superadmin',
-        action: async ({ selectedIds }) => {
-          await sendBulkInvitations(selectedIds);
-          return { ok: true, successMessage: `Sent to ${selectedIds.length} users` };
-        },
-      },
-    ],
-  },
-}
-```
-
-#### Confirmation dialog
-
-Pass `confirm` to show a dialog before the action runs.
-
-**String** — shown as the dialog title, no secondary message:
-
-```ts
-confirm: 'Are you sure you want to send invitation emails?',
-```
-
-**Object** — full control over the dialog. `{count}` in `message` is replaced with the number of selected records; `|` separates singular and plural forms:
-
-```ts
-confirm: {
-  title: 'Are you sure you want to archive the selected items?',
-  message: 'Archiving {count} item. This process is irreversible. | Archiving {count} items. This process is irreversible.',
-  yes: 'Archive',
-  no: 'Cancel',
-},
-```
-
-Omit `confirm` entirely to skip the dialog and run the action immediately.
-
 #### Access Control
 
 You can control who can use an action through the `allowed` function. This function receives:
@@ -5624,7 +5577,7 @@ Most times you need to refresh the badge from some backend API or hook. To do th
   hooks: {
     edit: {
       //diff-add
-      afterSave: async ({ record, adminUser, resource, adminforth }) => {
+      afterSave: async ({ adminUser, adminforth }) => {
         //diff-add
         adminforth.refreshMenuBadge('postsMenuItem', adminUser);
         //diff-add
@@ -7419,7 +7372,7 @@ Sometimes you might need to create a link that will open the create form with so
         resourceId: 'aparts',
       },
       query: {
-        values: atob_function(JSON.stringify({
+        values: btoa_function(JSON.stringify({
           realtor_id: coreStore?.adminUser.dbUser.id 
         })),
       },
@@ -7451,11 +7404,11 @@ ALso if you want to disable ability to change such fields (but keep them as read
         resourceId: 'aparts',
       },
       query: {
-        values: (JSON.stringify({
+        values: btoa_function(JSON.stringify({
           realtor_id: coreStore?.adminUser.dbUser.id 
         })),
         //diff-add
-        readonlyColumns: (JSON.stringify(['realtor_id'])),
+        readonlyColumns: btoa_function(JSON.stringify(['realtor_id'])),
       },
     }"
   >
@@ -10669,17 +10622,17 @@ hooks: {
 //diff-add
   edit: {
 //diff-add
-    afterSave: async ({ record, adminUser, resource, adminforth }) => {
+    afterSave: async ({ updates, adminUser, resource, adminforth }) => {
 //diff-add
       //  if realtor id is set, recalculate total cost of all apartments
 //diff-add
-      if (record.realtor_id) {
+      if (updates.realtor_id) {
 //diff-add
-        const totalCost = (await adminforth.resource('aparts').list(Filters.EQ('realtor_id', record.realtor_id)))
+        const totalCost = (await adminforth.resource('aparts').list(Filters.EQ('realtor_id', updates.realtor_id)))
 //diff-add
           .map((r) => r.price).reduce((a, b) => a + b, 0);
 //diff-add
-        adminforth.websocket.publish(`/property-cost/${record.realtor_id}`, { type: 'message', totalCost });
+        adminforth.websocket.publish(`/property-cost/${updates.realtor_id}`, { type: 'message', totalCost });
 //diff-add
       }
 //diff-add
@@ -14135,7 +14088,7 @@ Backend (resource hook verification):
 // Inside resource config
 hooks: {
   edit: {
-    beforeSave: async ({ adminUser, adminforth, response, extra }) => {
+    beforeSave: async ({ adminUser, adminforth, extra }) => {
       const t2fa = adminforth.getPluginByClassName('TwoFactorsAuthPlugin');
       if (!t2fa) {
         return { ok: false, error: 'TwoFactorsAuthPlugin is not configured' };
@@ -14158,7 +14111,7 @@ hooks: {
     },
   },
   create: {
-    beforeSave: async ({ adminUser, adminforth, response, extra }) => {
+    beforeSave: async ({ adminUser, adminforth, extra }) => {
       const t2fa = adminforth.getPluginByClassName('TwoFactorsAuthPlugin');
       if (!t2fa) {
         return { ok: false, error: 'TwoFactorsAuthPlugin is not configured' };
@@ -15821,7 +15774,7 @@ columns: [
     //diff-add
     type: AdminForthDataTypes.STRING,
     //diff-add
-    showIn: ["show", "edit", "create" ],
+    showIn: { all: false, show: true, edit: true, create: true },
     //diff-add
   },
 
@@ -19025,7 +18978,7 @@ export default {
   columns: [
     { name: 'id', primaryKey: true },
     { name: 'email', required: true },
-    { name: 'password_hash', showIn: [] }, // Hide from UI
+    { name: 'password_hash', showIn: { all: false } }, // Hide from UI
 
     { name: 'role' },
 
@@ -19140,7 +19093,7 @@ export default {
   columns: [
     { name: 'id', primaryKey: true },
     { name: 'email', required: true },
-    { name: 'password_hash', showIn: [] },
+    { name: 'password_hash', showIn: { all: false } },
     { name: 'role' },
     //diff-add
     { name: 'email_confirmed', type: AdminForthDataTypes.BOOLEAN },

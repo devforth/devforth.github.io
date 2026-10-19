@@ -568,7 +568,7 @@ columns: [
     //diff-add
     type: AdminForthDataTypes.STRING,
     //diff-add
-    showIn: ["show", "edit", "create" ],
+    showIn: { all: false, show: true, edit: true, create: true },
     //diff-add
   },
 
