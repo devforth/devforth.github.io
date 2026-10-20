@@ -1,1 +1,0 @@
-import{D as e,_ as t,l as n,m as r,z as i}from"./runtime-core.esm-bundler-B3W2HlGA.js";import{t as a}from"./LinkButton-DdDKEnJz.js";var o=t({__name:`link-button`,setup(t){return(t,o)=>(e(),n(a,{to:`/login`},{default:i(()=>[...o[0]||=[r(`Go to login`,-1)]]),_:1}))}});export{o as default};

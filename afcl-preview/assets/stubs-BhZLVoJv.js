@@ -1,1 +1,0 @@
-import{G as e}from"./runtime-core.esm-bundler-B3W2HlGA.js";var t=e({theme:`light`,isIos:/iPad|iPhone|iPod/.test(navigator.userAgent)||navigator.userAgent.includes(`Mac`)&&`ontouchend`in document});function n(){return t}function r(){return{alert:({message:e})=>window.alert(e)}}export{r as n,n as r,t};

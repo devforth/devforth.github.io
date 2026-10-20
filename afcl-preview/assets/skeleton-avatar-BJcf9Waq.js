@@ -1,1 +1,0 @@
-import{D as e,_ as t,l as n}from"./runtime-core.esm-bundler-B3W2HlGA.js";import{t as r}from"./Skeleton-jlV-wIS1.js";var i=t({__name:`skeleton-avatar`,setup(t){return(t,i)=>(e(),n(r,{type:`avatar`,class:`w-20 h-20`}))}});export{i as default};

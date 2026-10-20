@@ -1,0 +1,1 @@
+import{E as e,g as t,l as n}from"./runtime-core.esm-bundler-CWTomftd.js";import{t as r}from"./Skeleton-C-LWFCXX.js";var i=t({__name:`skeleton-avatar`,setup(t){return(t,i)=>(e(),n(r,{type:`avatar`,class:`w-20 h-20`}))}});export{i as default};

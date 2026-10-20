@@ -1,0 +1,1 @@
+import{E as e,g as t,l as n}from"./runtime-core.esm-bundler-CWTomftd.js";import{t as r}from"./ProgressBar-DlkjENsI.js";var i=t({__name:`progress-bar-animation`,setup(t){return(t,i)=>(e(),n(r,{currentValue:2600,minValue:0,maxValue:5e3,showAnimation:``}))}});export{i as default};

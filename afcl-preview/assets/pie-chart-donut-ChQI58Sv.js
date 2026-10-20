@@ -1,0 +1,1 @@
+import{E as e,g as t,l as n}from"./runtime-core.esm-bundler-CWTomftd.js";import{t as r}from"./PieChart-DH9JVNzO.js";var i=t({__name:`pie-chart-donut`,setup(t){return(t,i)=>(e(),n(r,{data:[{amount:5,label:`Cars`},{amount:3,label:`Bikes`},{amount:2,label:`Trucks`},{amount:1,label:`Boats`}],options:{chart:{height:250,type:`donut`}}}))}});export{i as default};

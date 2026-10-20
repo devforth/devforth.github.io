@@ -1,0 +1,1 @@
+import{E as e,g as t,l as n}from"./runtime-core.esm-bundler-CWTomftd.js";import{t as r}from"./CodeInput-BRkLhukf.js";var i=t({__name:`code-input-invalid`,setup(t){return(t,i)=>(e(),n(r,{modelValue:`1234`,groupSize:3,invalid:``}))}});export{i as default};

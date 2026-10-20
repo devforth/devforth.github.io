@@ -1,0 +1,1 @@
+import{E as e,g as t,l as n}from"./runtime-core.esm-bundler-CWTomftd.js";import{t as r}from"./CountryFlag-DuZSo-ZZ.js";var i=t({__name:`country-flag`,setup(t){return(t,i)=>(e(),n(r,{countryCode:`ua`}))}});export{i as default};

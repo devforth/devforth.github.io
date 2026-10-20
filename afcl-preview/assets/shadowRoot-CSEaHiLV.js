@@ -1,0 +1,1 @@
+import{y as e}from"./runtime-core.esm-bundler-CWTomftd.js";var t=Symbol(`afclTeleportTarget`);function n(){return e(t,`body`)}function r(e){return e.getRootNode().activeElement}export{r as n,n as r,t};

@@ -1,1 +1,0 @@
-import{D as e,_ as t,l as n}from"./runtime-core.esm-bundler-B3W2HlGA.js";import{t as r}from"./ProgressBar-C-CO4uRC.js";var i=t({__name:`progress-bar`,setup(t){return(t,i)=>(e(),n(r,{currentValue:2600,minValue:0,maxValue:5e3}))}});export{i as default};

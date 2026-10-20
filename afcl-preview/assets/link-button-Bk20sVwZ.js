@@ -1,0 +1,1 @@
+import{E as e,R as t,g as n,l as r,m as i}from"./runtime-core.esm-bundler-CWTomftd.js";import{t as a}from"./LinkButton-Y-laahNl.js";var o=n({__name:`link-button`,setup(n){return(n,o)=>(e(),r(a,{to:`/login`},{default:t(()=>[...o[0]||=[i(`Go to login`,-1)]]),_:1}))}});export{o as default};

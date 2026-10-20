@@ -1,1 +1,0 @@
-import{D as e,_ as t,l as n}from"./runtime-core.esm-bundler-B3W2HlGA.js";import{t as r}from"./Spinner-B1USHw_s.js";var i=t({__name:`spinner`,setup(t){return(t,i)=>(e(),n(r,{class:`w-10 h-10`}))}});export{i as default};

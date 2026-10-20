@@ -1,1 +1,0 @@
-import{D as e,_ as t,d as n,h as r}from"./runtime-core.esm-bundler-B3W2HlGA.js";import{t as i}from"./Skeleton-jlV-wIS1.js";var a={class:`flex flex-col gap-2`},o=t({__name:`skeleton`,setup(t){return(t,o)=>(e(),n(`div`,a,[r(i,{class:`w-full h-4`}),r(i,{class:`w-full h-2`}),r(i,{class:`w-full h-2`}),r(i,{class:`w-full h-2`}),r(i,{class:`w-full h-2`})]))}});export{o as default};
