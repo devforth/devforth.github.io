@@ -1,1 +1,0 @@
-import{E as e,g as t,l as n}from"./runtime-core.esm-bundler-CWTomftd.js";import{t as r}from"./JsonViewer-Car84UDJ.js";var i=t({__name:`json-viewer-inline`,setup(t){return(t,i)=>(e(),n(r,{inline:``,value:{campaign:`cs2026`,channel:`linkedin`,touches:3,verified:!0}}))}});export{i as default};

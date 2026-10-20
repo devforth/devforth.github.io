@@ -1,0 +1,1 @@
+import{E as e,R as t,g as n,l as r,m as i}from"./runtime-core.esm-bundler-CWTomftd.js";import{t as a}from"./Input-Bm2zl1FM.js";var o=n({__name:`input`,setup(n){return(n,o)=>(e(),r(a,{type:`number`,class:`w-full`},{suffix:t(()=>[...o[0]||=[i(` USD `,-1)]]),_:1}))}});export{o as default};

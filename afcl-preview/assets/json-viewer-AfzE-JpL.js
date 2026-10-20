@@ -1,0 +1,1 @@
+import{E as e,g as t,l as n}from"./runtime-core.esm-bundler-CWTomftd.js";import{t as r}from"./JsonViewer-BqFfRq0t.js";var i=t({__name:`json-viewer`,setup(t){return(t,i)=>(e(),n(r,{value:[{id:1,name:`Alice`,meta:{age:30,hobbies:[`reading`,`biking`]}},{id:2,name:`Bob`}],expandDepth:2}))}});export{i as default};
