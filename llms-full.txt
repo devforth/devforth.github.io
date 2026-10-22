@@ -2019,6 +2019,42 @@ To format your date fields to display the elapsed time, you can utilize the Rela
     ...
 ```
 
+#### Enum Badge
+
+Renders the value of a column with `enum` as a badge with the label of its enum option. Give a variant to the values which should stand out, the other values get the `default` one. Variants are `default`, `success`, `warning`, `danger`, `accent` and `muted`, the same as of the AFCL [Badge](./15-afcl/03-dataDisplay.md#badge). Empty values render as an empty cell.
+
+```ts title='./resources/orders.ts'
+  columns: [
+    ...
+    {
+      name: 'status',
+      enum: [
+        { value: 'new', label: 'New' },
+        { value: 'paid', label: 'Paid' },
+        { value: 'cancelled', label: 'Cancelled' },
+      ],
+  //diff-add
+      components: {
+  //diff-add
+        list: {
+  //diff-add
+          file: '@/renderers/EnumBadge.vue',
+  //diff-add
+          meta: {
+  //diff-add
+            variants: { new: 'accent', paid: 'success', cancelled: 'muted' },
+  //diff-add
+          },
+  //diff-add
+        },
+  //diff-add
+      },
+      ...
+    }
+```
+
+Set the same component for `show` to render the badge on the show page too.
+
 #### Rich text and Zero-style Rich text
 
 If you have some field which holds HTML content you can use `RichText` renderer to render it as HTML.
@@ -9625,6 +9661,27 @@ import { CountryFlag } from '@/afcl'
 </div>
 ```
 
+### Badge
+
+A Badge labels a status or a category. Variants are `default`, `success`, `warning`, `danger`, `accent` (the `primary` color of the theme) and `muted`.
+
+```js
+import { Badge } from '@/afcl'
+```
+
+```html
+<div class="flex flex-wrap items-center gap-2">
+  <Badge>Default</Badge>
+  <Badge variant="success">Paid</Badge>
+  <Badge variant="warning">Pending</Badge>
+  <Badge variant="danger">Failed</Badge>
+  <Badge variant="accent">New</Badge>
+  <Badge variant="muted">Archived</Badge>
+</div>
+```
+
+To render values of an enum column as badges in the list or show view, use the [Enum Badge](../02-customFieldRendering.md#enum-badge) renderer.
+
 ### ProgressBar
 
 ```js
@@ -10604,7 +10661,7 @@ Examples are live: each of them renders the code below it with real AFCL compone
 
 - [Buttons and Inputs](./01-buttonsAndInputs.md): [Button](./01-buttonsAndInputs.md#button), [Button Group](./01-buttonsAndInputs.md#button-group), [Link](./01-buttonsAndInputs.md#link), [LinkButton](./01-buttonsAndInputs.md#linkbutton), [Select](./01-buttonsAndInputs.md#select), [Input](./01-buttonsAndInputs.md#input), [Code Input](./01-buttonsAndInputs.md#code-input), [Textarea](./01-buttonsAndInputs.md#textarea), [Checkbox](./01-buttonsAndInputs.md#checkbox), [Toggle](./01-buttonsAndInputs.md#toggle), [Date picker](./01-buttonsAndInputs.md#date-picker), [Dropzone](./01-buttonsAndInputs.md#dropzone)
 - [Layout and Overlays](./02-layoutAndOverlays.md): [VerticalTabs](./02-layoutAndOverlays.md#verticaltabs), [Card](./02-layoutAndOverlays.md#card), [Page Header](./02-layoutAndOverlays.md#page-header), [Tooltip](./02-layoutAndOverlays.md#tooltip), [Dialog](./02-layoutAndOverlays.md#dialog-pop-up), [Dialog Panel](./02-layoutAndOverlays.md#dialog-panel), [Dropdown Menu](./02-layoutAndOverlays.md#dropdown-menu), [Modal](./02-layoutAndOverlays.md#modal)
-- [Data Display and Loading](./03-dataDisplay.md): [Table](./03-dataDisplay.md#table), [Json Viewer](./03-dataDisplay.md#json-viewer), [Country Flag](./03-dataDisplay.md#country-flag), [ProgressBar](./03-dataDisplay.md#progressbar), [Skeleton](./03-dataDisplay.md#skeleton), [Spinner](./03-dataDisplay.md#spinner)
+- [Data Display and Loading](./03-dataDisplay.md): [Table](./03-dataDisplay.md#table), [Json Viewer](./03-dataDisplay.md#json-viewer), [Country Flag](./03-dataDisplay.md#country-flag), [Badge](./03-dataDisplay.md#badge), [ProgressBar](./03-dataDisplay.md#progressbar), [Skeleton](./03-dataDisplay.md#skeleton), [Spinner](./03-dataDisplay.md#spinner)
 - [Charts](./04-charts.md): [Bar Chart](./04-charts.md#bar-chart), [Area Chart](./04-charts.md#area-chart), [Pie Chart](./04-charts.md#pie-chart), [Treemap Chart](./04-charts.md#treemap-chart), [Mixed Chart](./04-charts.md#mixed-chart)
 
 ---
