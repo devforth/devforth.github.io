@@ -113,14 +113,14 @@ app.post(
 
     const plugin = admin.getPluginById('my_reports_plugin');
 
-    const { uploadUrl, filePath, uploadExtraParams, pathColumnName } = await plugin.getUploadUrl({
+    const { uploadUrl, contentType: uploadContentType, filePath, uploadExtraParams, pathColumnName } = await plugin.getUploadUrl({
       recordId, // can be undefined for new records
       filename, // e.g. file.name
       contentType, // e.g. file.type
-      size, // optional, will be validated against maxFileSize to drop error earlier
+      size, // e.g. file.size: validated against maxFileSize, the upload URL then accepts only a file of exactly this size
     });
 
-    res.json({ uploadUrl, filePath, uploadExtraParams, pathColumnName });
+    res.json({ uploadUrl, contentType: uploadContentType, filePath, uploadExtraParams, pathColumnName });
   }),
 );
 ```
@@ -131,7 +131,7 @@ On the frontend:
 const file = input.files[0];
 
 // 1) Ask your backend to generate upload URL
-const { uploadUrl, filePath, uploadExtraParams } = await fetch('/api/uploads/get-url-existing', {
+const { uploadUrl, contentType, filePath, uploadExtraParams } = await fetch('/api/uploads/get-url-existing', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
@@ -164,7 +164,8 @@ await new Promise<void>((resolve, reject) => {
   });
 
   xhr.open('PUT', uploadUrl, true);
-  xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+  // the type picked by the plugin from the file extension, the storage may reject another one
+  xhr.setRequestHeader('Content-Type', contentType);
 
   if (uploadExtraParams) {
     Object.entries(uploadExtraParams).forEach(([key, value]) => {
@@ -318,7 +319,7 @@ async function onFileChange(e: Event) {
   if (!file) return;
 
   // 1) Ask backend for presigned URL
-  const { uploadUrl, filePath, uploadExtraParams, pathColumnName } = await fetch(
+  const { uploadUrl, contentType, filePath, uploadExtraParams, pathColumnName } = await fetch(
     '/api/uploads/avatar/get-url',
     {
       method: 'POST',
@@ -354,7 +355,8 @@ async function onFileChange(e: Event) {
     });
 
     xhr.open('PUT', uploadUrl, true);
-    xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+    // the type picked by the plugin from the file extension, the storage may reject another one
+    xhr.setRequestHeader('Content-Type', contentType);
 
     if (uploadExtraParams) {
       Object.entries(uploadExtraParams).forEach(([key, value]) => {
@@ -392,14 +394,14 @@ app.post(
 
     const plugin = admin.getPluginById('my_reports_plugin');
 
-    const { uploadUrl, filePath, uploadExtraParams, pathColumnName } = await plugin.getUploadUrl({
+    const { uploadUrl, contentType: uploadContentType, filePath, uploadExtraParams, pathColumnName } = await plugin.getUploadUrl({
       recordId, // can be undefined for create pages
       filename,
       contentType,
-      size, // optional
+      size, // exact size of the file, the upload URL accepts only this size
     });
 
-    res.json({ uploadUrl, filePath, uploadExtraParams, pathColumnName });
+    res.json({ uploadUrl, contentType: uploadContentType, filePath, uploadExtraParams, pathColumnName });
   }),
 );
 ```
