@@ -9722,6 +9722,24 @@ import { CountryFlag } from '@/afcl'
 </div>
 ```
 
+### Zoomable Image
+
+A Zoomable Image is an image which opens over the whole page on a click, and closes on a click, a scroll or Escape. The dark overlay covers the page and the docked agent chat. The Upload plugin shows its previews with it, the agent chat the images of messages.
+
+```js
+import { ZoomableImage } from '@/afcl'
+```
+
+```html
+<ZoomableImage
+  src="/img/preview_light.png"
+  alt="AdminForth admin panel"
+  class="max-w-64 rounded-default border border-lightListBorder dark:border-darkListBorder"
+/>
+```
+
+The image takes the attributes and classes of an `img`, e.g. `@error` or a size. A click on it does not reach its parents, so it can stay in a clickable block, e.g. a table row which opens the record.
+
 ### Badge
 
 A Badge labels a status or a category. Variants are `default`, `success`, `warning`, `danger`, `accent` (the `primary` color of the theme) and `muted`.
@@ -10722,7 +10740,7 @@ Examples are live: each of them renders the code below it with real AFCL compone
 
 - [Buttons and Inputs](./01-buttonsAndInputs.md): [Button](./01-buttonsAndInputs.md#button), [Button Group](./01-buttonsAndInputs.md#button-group), [Link](./01-buttonsAndInputs.md#link), [LinkButton](./01-buttonsAndInputs.md#linkbutton), [Select](./01-buttonsAndInputs.md#select), [Input](./01-buttonsAndInputs.md#input), [Code Input](./01-buttonsAndInputs.md#code-input), [Textarea](./01-buttonsAndInputs.md#textarea), [Checkbox](./01-buttonsAndInputs.md#checkbox), [Toggle](./01-buttonsAndInputs.md#toggle), [Date picker](./01-buttonsAndInputs.md#date-picker), [Dropzone](./01-buttonsAndInputs.md#dropzone)
 - [Layout and Overlays](./02-layoutAndOverlays.md): [VerticalTabs](./02-layoutAndOverlays.md#verticaltabs), [Card](./02-layoutAndOverlays.md#card), [Page Header](./02-layoutAndOverlays.md#page-header), [Tooltip](./02-layoutAndOverlays.md#tooltip), [Dialog](./02-layoutAndOverlays.md#dialog-pop-up), [Dialog Panel](./02-layoutAndOverlays.md#dialog-panel), [Dropdown Menu](./02-layoutAndOverlays.md#dropdown-menu), [Modal](./02-layoutAndOverlays.md#modal)
-- [Data Display and Loading](./03-dataDisplay.md): [Table](./03-dataDisplay.md#table), [Json Viewer](./03-dataDisplay.md#json-viewer), [Country Flag](./03-dataDisplay.md#country-flag), [Badge](./03-dataDisplay.md#badge), [ProgressBar](./03-dataDisplay.md#progressbar), [Skeleton](./03-dataDisplay.md#skeleton), [Spinner](./03-dataDisplay.md#spinner)
+- [Data Display and Loading](./03-dataDisplay.md): [Table](./03-dataDisplay.md#table), [Json Viewer](./03-dataDisplay.md#json-viewer), [Country Flag](./03-dataDisplay.md#country-flag), [Zoomable Image](./03-dataDisplay.md#zoomable-image), [Badge](./03-dataDisplay.md#badge), [ProgressBar](./03-dataDisplay.md#progressbar), [Skeleton](./03-dataDisplay.md#skeleton), [Spinner](./03-dataDisplay.md#spinner)
 - [Charts](./04-charts.md): [Bar Chart](./04-charts.md#bar-chart), [Area Chart](./04-charts.md#area-chart), [Pie Chart](./04-charts.md#pie-chart), [Treemap Chart](./04-charts.md#treemap-chart), [Mixed Chart](./04-charts.md#mixed-chart)
 
 ---
@@ -11652,7 +11670,7 @@ new AdminForthAdapterS3Storage({
 }),
 ```
 
-Before turning it on, update `@adminforth/bulk-ai-flow`, `@adminforth/markdown`, `@adminforth/rich-editor` and `@adminforth/oauth`: their older versions send the type reported by the browser, and the upload fails when it differs from the one picked by the extension. Your own code that uploads files to the URL from the [upload plugin API](../09-Plugins/05-1-upload-api.md) has to send the `contentType` returned with the URL as well. While the option is off, the adapter logs a warning on start. It will be on by default in the next major version.
+The option is available since `@adminforth/storage-adapter-amazon-s3` 1.3.0. Before turning it on, update `@adminforth/bulk-ai-flow`, `@adminforth/markdown`, `@adminforth/rich-editor` and `@adminforth/oauth`: their older versions send the type reported by the browser, and the upload fails when it differs from the one picked by the extension. Your own code that uploads files to the URL from the [upload plugin API](../09-Plugins/05-1-upload-api.md) has to send the `contentType` returned with the URL as well. While the option is off, the adapter logs a warning on start. It will be on by default in the next major version.
 
 ### S3 compatible adapter
 ```bash
@@ -11661,7 +11679,7 @@ pnpm add @adminforth/storage-adapter-s3-compatible
 
 Provides S3 compatible interface for object storage services such as MinIO, Wasabi, Cloudflare R2 or other third-party S3 providers.
 
-It supports the same `strictContentType` option as the Amazon S3 adapter, see [Strict content type](#strict-content-type).
+It supports the same `strictContentType` option as the Amazon S3 adapter since version 1.2.0, see [Strict content type](#strict-content-type).
 
 #### How the adapter works
 
@@ -13067,6 +13085,81 @@ globalPlugins: [
 Each item in `modes` defines a user-selectable preset in the chat UI. The selected mode is sent to the backend and the plugin uses that mode's `completionAdapter` for the response.
 
 The plugin adds a chat surface to the admin UI, keeps session history per admin user, and shows a mode picker when `modes` are configured.
+
+### Image attachments
+
+Users can paste, attach or drop images (PNG, JPEG, WebP) in the chat, up to 5 per message, and the agent sees them. The images are stored by the [Upload plugin](./05-0-upload.md) on a column of the turns resource.
+
+1. Add a nullable column for the paths of the images to the turns table and describe it as a string array:
+
+```ts title="./resources/turns.ts"
+{
+  name: 'attachments',
+  type: AdminForthDataTypes.JSON,
+  isArray: {
+    enabled: true,
+    itemType: AdminForthDataTypes.STRING,
+  },
+  showIn: { list: false, show: true, edit: false, create: false, filter: false },
+},
+```
+
+2. Install the Upload plugin on this column, with images only:
+
+```ts title="./resources/turns.ts"
+plugins: [
+  new UploadPlugin({
+    pathColumnName: 'attachments',
+    storageAdapter: new AdminForthAdapterS3Storage({
+      // ...bucket, region, credentials
+      strictContentType: true,
+    }),
+    allowedFileExtensions: ['png', 'jpg', 'jpeg', 'webp'],
+    filePath: ({ originalExtension }) => `agent_attachments/${randomUUID()}.${originalExtension}`,
+  }),
+],
+```
+
+With an S3 storage `strictContentType: true` is required: the browser uploads the image straight to the bucket, and without it any content can be stored under an image name, see [Strict content type](../06-Adapters/04-storage-adapters.md#strict-content-type). The option is available since `@adminforth/storage-adapter-amazon-s3` 1.3.0 and `@adminforth/storage-adapter-s3-compatible` 1.2.0.
+
+3. Make the turns and checkpoints resources read-only in the admin panel. The agent writes them itself, while create or edit rights on the turns resource would also let admins download any file of its storage through the Upload plugin:
+
+```ts title="./resources/turns.ts"
+options: {
+  allowedActions: {
+    create: false,
+    edit: false,
+    delete: false,
+  },
+},
+```
+
+4. Pass the column to the plugin:
+
+```ts
+turnResource: {
+  // ...
+  attachmentsField: 'attachments',
+},
+```
+
+Before the upload the browser scales an image down to fit 1920×1080 and converts it to WebP (to JPEG in a browser which can not encode WebP, e.g. Safari). The plugin accepts images up to 3.75 MB: the model gets them as base64, and the smallest per-image limit of the providers is 5 MB. Every image costs tokens on every model call, so the model sees an image for a while after it was sent, and only the latest few at once. Older images are replaced with a note, and the agent loads them again with the `view_image` tool when they matter for the answer.
+
+The limits are options of the plugin, each a whole number from 1:
+
+```ts
+new AdminForthAgent({
+  // ...
+  imageAttachments: {
+    // images one message can have, 5 by default
+    maxPerMessage: 5,
+    // minutes the model sees an image after it was sent or loaded again with view_image, 30 by default
+    visibleMinutes: 30,
+    // images the model sees at once, the latest ones, 5 by default
+    maxVisible: 5,
+  },
+}),
+```
 
 ### Chat surfaces (Telegram, etc.)
 
