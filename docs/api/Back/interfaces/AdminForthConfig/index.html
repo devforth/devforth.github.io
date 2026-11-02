@@ -27,8 +27,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.e501d7a6.css">
-<script src="/assets/js/runtime~main.a04ee5ba.js" defer="defer"></script>
-<script src="/assets/js/main.e7a304d3.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.5a3ad7c7.js" defer="defer"></script>
+<script src="/assets/js/main.cd84acdf.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -97,7 +97,8 @@ Logout is never blocked by these hooks, so use them for cleanup or logging.</p>
 <p><code>optional</code> <strong>clientIpHeader?</strong>: <code>string</code></p>
 </blockquote>
 <p>Client IP header name. If set, AdminForth will use this header to get client IP address.
-Otherwise it will use first IP address from X-Forwarded-For header.
+Otherwise it will use last IP address from X-Forwarded-For header (the one added by the nearest proxy).
+If the header is missing or has a private address, the address of the TCP connection is used.
 If you are using Cloudflare, set this to &#x27;CF-Connecting-IP&#x27;. Case-insensitive.</p>
 <h4 class="anchor anchorTargetStickyNavbar_tuHw" id="democredentials">demoCredentials?<a href="#democredentials" class="hash-link" aria-label="Direct link to demoCredentials?" title="Direct link to demoCredentials?" translate="no">​</a></h4>
 <blockquote>
