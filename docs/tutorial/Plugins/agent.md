@@ -235,7 +235,7 @@ globalPlugins: [
         name: 'Balanced',
         completionAdapter: new CompletionAdapterOpenAIResponses({
           openAiApiKey: process.env.OPENAI_API_KEY as string,
-          model: 'gpt-5.4-mini',
+          model: 'gpt-6-luna',
           extraRequestBodyParameters: {
             reasoning: {
               effort: 'medium',
@@ -247,7 +247,7 @@ globalPlugins: [
         name: 'Fast',
         completionAdapter: new CompletionAdapterOpenAIResponses({
           openAiApiKey: process.env.OPENAI_API_KEY as string,
-          model: 'gpt-5.4-mini',
+          model: 'gpt-6-luna',
           extraRequestBodyParameters: {
             reasoning: {
               effort: 'low',

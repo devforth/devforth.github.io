@@ -148,7 +148,7 @@ export const admin = new AdminForth({
       //diff-add
             openAiApiKey:  process.env.OPENAI_API_KEY as string,
       //diff-add
-            model: 'gpt-5-mini',
+            model: 'gpt-6-luna',
       //diff-add
           }
       //diff-add
@@ -227,7 +227,7 @@ new BulkAiFlowPlugin({
   actionName: 'Guess age',
   visionAdapter: new AdminForthImageVisionAdapterOpenAi({
     openAiApiKey: process.env.OPENAI_API_KEY as string,
-    model: 'gpt-5-mini',
+    model: 'gpt-6-luna',
   }),
   fillFieldsFromImages: { 
     'age': 'Analyze the image and estimate the age of the person. Return only a number.',
