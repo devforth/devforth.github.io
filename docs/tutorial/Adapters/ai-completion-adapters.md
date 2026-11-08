@@ -115,7 +115,6 @@ new CompletionAdapterOpenAIResponses({
   openAiApiKey: process.env.OPENAI_API_KEY as string,
   model: 'gpt-6.1-sol',
   extraRequestBodyParameters: {
-    temperature: 0.7,
     reasoning: {
       effort: 'medium',
     },
@@ -123,7 +122,7 @@ new CompletionAdapterOpenAIResponses({
 }),
 ```
 
-You can specify any GPT model you need. Without `model` the adapter uses `gpt-5-nano`, which is cheap but may behave weakly; `gpt-6-luna` is the cheapest GPT-6 model, and `gpt-6.1-terra` or `gpt-6.1-sol` are stronger.
+You can specify any GPT model you need. The default is `gpt-6-luna`, the cheapest GPT-6 model; use `gpt-6.1-terra` or `gpt-6.1-sol` for harder tasks.
 
 By default, this adapter uses the OpenAI `responses` API (`v1/responses`) unless `useCompletionApi` is set to `true`. If `useCompletionApi` is `true`, it uses the older Chat Completions API (`v1/chat/completions`). 
 
@@ -169,14 +168,14 @@ import CompletionAdapterGoogleGemini from '@adminforth/completion-adapter-google
 
 new CompletionAdapterGoogleGemini({
   geminiApiKey: process.env.GEMINI_API_KEY as string,
-  model: 'gemini-3-pro-preview',
+  model: 'gemini-4-argon',
   extraRequestBodyParameters: {
     temperature: 0.7,
   },
 }),
 ```
 
-You can specify any Gemini model you need. The default is `gemini-3-flash-preview`.
+You can specify any Gemini model you need. The default is `gemini-3.8-flash`.
 
 ## Adding extra request body params
 
@@ -187,7 +186,7 @@ import CompletionAdapterGoogleGemini from '@adminforth/completion-adapter-google
 
 new CompletionAdapterGoogleGemini({
   geminiApiKey: process.env.GEMINI_API_KEY as string,
-  model: 'gemini-3-pro-preview',
+  model: 'gemini-4-argon',
   extraRequestBodyParameters: {
     temperature: 0.7,
     responseMimeType: 'application/json',

@@ -46,13 +46,7 @@ export const admin = new AdminForth({
 //diff-add
         openAiApiKey: process.env.OPENAI_API_KEY as string,
 //diff-add
-        model: 'gpt-6-luna', // without model the adapter uses "gpt-5-nano"
-//diff-add
-        extraRequestBodyParameters: {
-//diff-add
-            temperature: 0.7 //Model temperature
-//diff-add
-        }
+        model: 'gpt-6-luna', // default "gpt-6-luna"
 //diff-add
       }),
 //diff-add
