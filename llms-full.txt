@@ -11671,14 +11671,14 @@ pnpm add @adminforth/image-generation-adapter-openai
 
 Uses OpenAI image generation model `gpt-image` to generate images from text prompts.
 
-Up to the winter 2026 OpenAI models are one of the most powerful image generation models available, especially GPT-Image-1.5, which is why we started with them.
+As of November 2026, OpenAI models are among the most powerful image generation models available, especially GPT Image 2.6, which is why we started with them.
 
 ```ts
 import ImageGenerationAdapterOpenAI from '@adminforth/image-generation-adapter-openai';
 
 new ImageGenerationAdapterOpenAI({
   openAiApiKey: process.env.OPENAI_API_KEY as string,
-  model: 'gpt-image-1',
+  model: 'gpt-image-2.6-flare',
   extraParams: {
     quality: 'high',
   },
@@ -11994,7 +11994,7 @@ import CompletionAdapterOpenAIResponses from '@adminforth/completion-adapter-ope
 
 new CompletionAdapterOpenAIResponses({
   openAiApiKey: process.env.OPENAI_API_KEY as string,
-  model: 'gpt-5.2',
+  model: 'gpt-6.1-sol',
   extraRequestBodyParameters: {
     temperature: 0.7,
     reasoning: {
@@ -12004,7 +12004,7 @@ new CompletionAdapterOpenAIResponses({
 }),
 ```
 
-You can specify any GPT model you need. The default is `gpt-5-nano` as it is cheapest though may behave weakly.
+You can specify any GPT model you need. Without `model` the adapter uses `gpt-5-nano`, which is cheap but may behave weakly; `gpt-6-luna` is the cheapest GPT-6 model, and `gpt-6.1-terra` or `gpt-6.1-sol` are stronger.
 
 By default, this adapter uses the OpenAI `responses` API (`v1/responses`) unless `useCompletionApi` is set to `true`. If `useCompletionApi` is `true`, it uses the older Chat Completions API (`v1/chat/completions`). 
 
@@ -13126,7 +13126,7 @@ globalPlugins: [
         name: 'Smart Thinking',
         completionAdapter: new CompletionAdapterOpenAIResponses({
           openAiApiKey: process.env.OPENAI_API_KEY as string,
-          model: 'gpt-5.4',
+          model: 'gpt-6.1-sol',
           extraRequestBodyParameters: {
             reasoning: {
               effort: 'xhigh',
@@ -16141,7 +16141,7 @@ Requesting an upload URL requires permission to write the record the file belong
 ### Image generation
 
 Upload plugin supports AI generation for images. Yo use it you need to install image generation adapter.
-For example for OpenAI models like `gpt-image-1.5` (or old `DALL-E` models):
+For example for OpenAI models like `gpt-image-2.6-flare`:
 
 ```bash
 pnpm add @adminforth/image-generation-adapter-openai
@@ -16161,7 +16161,7 @@ new UploadPlugin({
   //diff-add
       openAiApiKey: process.env.OPENAI_API_KEY as string,
   //diff-add
-      model: 'gpt-image-1.5', 
+      model: 'gpt-image-2.6-flare', 
   //diff-add
     }),
 //diff-add
@@ -16183,7 +16183,7 @@ new ImageGenerationAdapterOpenAI({
   //diff-add
     openAiApiKey: process.env.OPENAI_API_KEY as string,
   //diff-add
-    model: 'gpt-image-1.5', 
+    model: 'gpt-image-2.6-flare', 
   //diff-add
     extraParams: {
   //diff-add
@@ -17781,7 +17781,7 @@ export default {
 
       completeAdapter: new CompletionAdapterOpenAIResponses({
         openAiApiKey: process.env.OPENAI_API_KEY as string,
-        model: 'gpt-5-nano',
+        model: 'gpt-6-luna',
         extraRequestBodyParameters: {
           // for UI translation it is better to lower down the temperature. Less creative and more accurate
           temperature: 0.5,
@@ -18050,7 +18050,7 @@ For English it will use 2 pluralization forms (1 and other), for Slavic language
 
 ![alt text](image-4.png)
 
-> 🚧 Cheaper LLM models like `gpt-5-nano` might still purely generate pluralisation slavic forms, even despite the fact plugin carefully
+> 🚧 Cheaper LLM models like `gpt-6-luna` might still purely generate pluralisation slavic forms, even despite the fact plugin carefully
 instructs the model and gives it examples. So if you are using cheap model we recommend reviewing generated translations for plurals and fixing them manually. You can use filter with '|' parameter to filter out strings with pluralisation.
 
 ### Limiting access to translating
@@ -19379,7 +19379,7 @@ export const admin = new AdminForth({
 //diff-add
         openAiApiKey: process.env.OPENAI_API_KEY as string,
 //diff-add
-        model: 'gpt-5-nano', // default "gpt-5-nano"
+        model: 'gpt-6-luna', // without model the adapter uses "gpt-5-nano"
 //diff-add
         extraRequestBodyParameters: {
 //diff-add
@@ -19955,7 +19955,7 @@ new BulkAiFlowPlugin({
   actionName: 'Translate surnames',
   textCompleteAdapter: new CompletionAdapterOpenAIResponses({
     openAiApiKey: process.env.OPENAI_API_KEY as string,
-    model: 'gpt-5-nano',
+    model: 'gpt-6-luna',
     extraRequestBodyParameters: {
       temperature: 0.7
     }
@@ -20006,7 +20006,7 @@ new BulkAiFlowPlugin({
   actionName: 'Generate cartoon avatars',
   imageGenerationAdapter: new ImageGenerationAdapterOpenAI({
     openAiApiKey: process.env.OPENAI_API_KEY as string,
-    model: 'gpt-image-1.5',
+    model: 'gpt-image-2.6-flare',
   }),
   attachFiles: async ({ record }) => {
     if (!record.user_photo) {
@@ -20034,16 +20034,17 @@ new BulkAiFlowPlugin({
 |-------|-------------|
 | `'low'` | Fastest generation, lowest cost. Good for drafts or high-volume batch jobs where speed matters more than visual fidelity. |
 | `'medium'` | Balanced quality and speed. A sensible default for most use cases. |
-| `'high'` | Best image quality, slowest and most expensive. Use for final promotional assets or when visual detail is critical. |
+| `'high'` | High fidelity. Use for final promotional assets or when visual detail is critical. |
+| `'xhigh'`, `'max'` | GPT Image 2.6 levels above `'high'`: finest detail, slowest and most expensive. |
 
 ```ts
 new ImageGenerationAdapterOpenAI({
   openAiApiKey: process.env.OPENAI_API_KEY as string,
-  model: 'gpt-image-1',
+  model: 'gpt-image-2.6-flare',
   //diff-add
   extraParams: {
   //diff-add
-    quality: 'low', // 'low' | 'medium' | 'high'
+    quality: 'low', // 'low' | 'medium' | 'high' | 'xhigh' | 'max'
   //diff-add
   },
 }),
@@ -20058,21 +20059,21 @@ new ImageGenerationAdapterOpenAI({
 ```ts
 const lowQualityImages = new ImageGenerationAdapterOpenAI({
   openAiApiKey: process.env.OPENAI_API_KEY as string,
-  model: 'gpt-image-1',
+  model: 'gpt-image-2.6-flare',
   extraParams: { quality: 'low' },
 });
 const highQualityImages = new ImageGenerationAdapterOpenAI({
   openAiApiKey: process.env.OPENAI_API_KEY as string,
-  model: 'gpt-image-1',
+  model: 'gpt-image-2.6-flare',
   extraParams: { quality: 'high' },
 });
 const fastText = new CompletionAdapterOpenAIResponses({
   openAiApiKey: process.env.OPENAI_API_KEY as string,
-  model: 'gpt-5-nano',
+  model: 'gpt-6-luna',
 });
 const smartText = new CompletionAdapterOpenAIResponses({
   openAiApiKey: process.env.OPENAI_API_KEY as string,
-  model: 'gpt-6-luna',
+  model: 'gpt-6.1-terra',
 });
 
 new BulkAiFlowPlugin({
@@ -22002,7 +22003,7 @@ To get completion suggestions for the text in the editor, you can use the `compl
 //diff-add
           openAiApiKey: process.env.OPENAI_API_KEY as string,
 //diff-add
-          model: 'gpt-5-nano', //gpt-5-nano is a default (cheapest one)
+          model: 'gpt-6-luna', // the cheapest GPT-6 model; without model the adapter uses gpt-5-nano
           extraRequestBodyParameters: {
 //diff-add
             temperature: 0.7 //Model temperature
@@ -24536,7 +24537,7 @@ export interface PluginOptions extends PluginsCommonOptions {
 //diff-add
    * Model name. Go to https://platform.openai.com/docs/models, select model and copy name.
 //diff-add
-   * Default is `gpt-5-nano`. Use e.g. more expensive `gpt-5.2` for more powerful model.
+   * Default is `gpt-6-luna`. Use e.g. more expensive `gpt-6.1-sol` for more powerful model.
 //diff-add
    */
 //diff-add
@@ -24707,7 +24708,7 @@ Let's define API endpoint in our plugin:
 //diff-add
           body: JSON.stringify({
 //diff-add
-            model: this.options.model || 'gpt-5-nano',
+            model: this.options.model || 'gpt-6-luna',
 //diff-add
             messages: [{ role: 'user', content, }],
 //diff-add
