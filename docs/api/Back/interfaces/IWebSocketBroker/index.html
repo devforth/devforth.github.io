@@ -27,8 +27,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.e501d7a6.css">
-<script src="/assets/js/runtime~main.246b2b50.js" defer="defer"></script>
-<script src="/assets/js/main.1ed0a246.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.d5b7fea0.js" defer="defer"></script>
+<script src="/assets/js/main.3945440e.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -38,12 +38,13 @@
 <h2 class="anchor anchorTargetStickyNavbar_tuHw" id="properties">Properties<a href="#properties" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_tuHw" id="publish">publish<a href="#publish" class="hash-link" aria-label="Direct link to publish" title="Direct link to publish" translate="no">​</a></h3>
 <blockquote>
-<p><strong>publish</strong>: (<code>topic</code>, <code>data</code>, <code>filterUsers?</code>) =&gt; <code>void</code></p>
+<p><strong>publish</strong>: (<code>topic</code>, <code>data</code>, <code>filterUsers?</code>) =&gt; <code>Promise</code>&lt;<code>number</code>&gt;</p>
 </blockquote>
+<p>resolves to the number of connections the message was sent to</p>
 <h4 class="anchor anchorTargetStickyNavbar_tuHw" id="parameters">Parameters<a href="#parameters" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody><tr><td><code>topic</code></td><td><code>string</code></td></tr><tr><td><code>data</code></td><td><code>any</code></td></tr><tr><td><code>filterUsers?</code></td><td>(<code>adminUser</code>) =&gt; <code>Promise</code>&lt;<code>boolean</code>&gt;</td></tr></tbody></table>
 <h4 class="anchor anchorTargetStickyNavbar_tuHw" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
-<p><code>void</code></p>
+<p><code>Promise</code>&lt;<code>number</code>&gt;</p>
 <hr>
 <h3 class="anchor anchorTargetStickyNavbar_tuHw" id="registerwsclient">registerWsClient<a href="#registerwsclient" class="hash-link" aria-label="Direct link to registerWsClient" title="Direct link to registerWsClient" translate="no">​</a></h3>
 <blockquote>
