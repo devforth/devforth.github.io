@@ -7065,6 +7065,29 @@ export default {
 }
 ```
 
+#### Default filters
+
+Filters applied when the list opens without filters in the URL:
+
+```typescript title="./resources/apartments.ts"
+import { AdminForthFilterOperators } from 'adminforth';
+
+...
+export default {
+  resourceId: 'aparts',
+  options: {
+//diff-add
+    defaultFilters: [
+//diff-add
+      { field: 'listed', operator: AdminForthFilterOperators.EQ, value: true },
+//diff-add
+    ],
+  }
+}
+```
+
+Filters in the URL replace the default ones. If a user clears the filters, the defaults come back on the next page load.
+
 #### Sticky column
 
 You can make a column sticky in the list view by setting `listSticky` to `true`. This keeps the column visible when horizontally scrolling through the table, which is particularly useful for important columns like titles or IDs that should always remain in view.

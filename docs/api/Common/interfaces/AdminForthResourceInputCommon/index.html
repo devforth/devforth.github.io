@@ -27,8 +27,8 @@
 <script src="/scripts/adminforth.js"></script>
 <script src="/scripts/tluma-config.js"></script>
 <script src="https://tluma.ai/widget.js" async></script><link rel="stylesheet" href="/assets/css/styles.e501d7a6.css">
-<script src="/assets/js/runtime~main.9f05153b.js" defer="defer"></script>
-<script src="/assets/js/main.4fd867aa.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.6814468e.js" defer="defer"></script>
+<script src="/assets/js/main.1d885db3.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -88,6 +88,13 @@ By default, they are inside three dots dropdown menu.</p>
 <blockquote>
 <p><code>optional</code> <strong>createFieldGroups?</strong>: <a class="" href="/docs/api/Common/type-aliases/FieldGroup/"><code>FieldGroup</code></a>[]</p>
 </blockquote>
+<h4 class="anchor anchorTargetStickyNavbar_tuHw" id="defaultfilters">defaultFilters?<a href="#defaultfilters" class="hash-link" aria-label="Direct link to defaultFilters?" title="Direct link to defaultFilters?" translate="no">​</a></h4>
+<blockquote>
+<p><code>optional</code> <strong>defaultFilters?</strong>: <a class="" href="/docs/api/Common/type-aliases/FilterParams/"><code>FilterParams</code></a>[]</p>
+</blockquote>
+<p>Filters applied in list view when the URL has no filters.
+Example:</p>
+<div class="language-ts codeBlockContainer_Yg1w theme-code-block" style="--prism-color:#f8f8f2;--prism-background-color:#272822"><div class="codeBlockContent_iyzY"><pre tabindex="0" class="prism-code language-ts codeBlock_jwas thin-scrollbar" style="color:#f8f8f2;background-color:#272822"><code class="codeBlockLines_bw_7"><div class="token-line" style="color:#f8f8f2"><span class="token keyword" style="color:#66d9ef">import</span><span class="token plain"> </span><span class="token punctuation" style="color:#f8f8f2">{</span><span class="token plain"> AdminForthFilterOperators </span><span class="token punctuation" style="color:#f8f8f2">}</span><span class="token plain"> </span><span class="token keyword" style="color:#66d9ef">from</span><span class="token plain"> </span><span class="token string" style="color:#a6e22e">&#x27;adminforth&#x27;</span><span class="token punctuation" style="color:#f8f8f2">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#f8f8f2"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#f8f8f2"><span class="token plain"></span><span class="token operator" style="color:#66d9ef">...</span><span class="token plain"></span><br></div><div class="token-line" style="color:#f8f8f2"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#f8f8f2"><span class="token plain">defaultFilters</span><span class="token operator" style="color:#66d9ef">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#f8f8f2">[</span><span class="token plain"></span><br></div><div class="token-line" style="color:#f8f8f2"><span class="token plain">  </span><span class="token punctuation" style="color:#f8f8f2">{</span><span class="token plain"> field</span><span class="token operator" style="color:#66d9ef">:</span><span class="token plain"> </span><span class="token string" style="color:#a6e22e">&#x27;status&#x27;</span><span class="token punctuation" style="color:#f8f8f2">,</span><span class="token plain"> operator</span><span class="token operator" style="color:#66d9ef">:</span><span class="token plain"> AdminForthFilterOperators</span><span class="token punctuation" style="color:#f8f8f2">.</span><span class="token constant" style="color:#e6db74">EQ</span><span class="token punctuation" style="color:#f8f8f2">,</span><span class="token plain"> value</span><span class="token operator" style="color:#66d9ef">:</span><span class="token plain"> </span><span class="token string" style="color:#a6e22e">&#x27;pending&#x27;</span><span class="token plain"> </span><span class="token punctuation" style="color:#f8f8f2">}</span><span class="token punctuation" style="color:#f8f8f2">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#f8f8f2"><span class="token plain"></span><span class="token punctuation" style="color:#f8f8f2">]</span><br></div></code></pre></div></div>
 <h4 class="anchor anchorTargetStickyNavbar_tuHw" id="defaultsort">defaultSort?<a href="#defaultsort" class="hash-link" aria-label="Direct link to defaultSort?" title="Direct link to defaultSort?" translate="no">​</a></h4>
 <blockquote>
 <p><code>optional</code> <strong>defaultSort?</strong>: <code>object</code></p>
